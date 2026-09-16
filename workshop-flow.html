@@ -301,9 +301,458 @@
       color: var(--muted);
       font-size: 0.88rem;
     }
+    /* ==========================================================
+       CLASSROOM TEACHING TOOLBAR (課堂授課教具列)
+       ========================================================== */
+    .classroom-toolbar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(18, 22, 28, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255, 106, 0, 0.45);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 106, 0, 0.2);
+      border-radius: 40px;
+      padding: 6px 12px;
+      transition: all 0.25s ease;
+    }
+    .classroom-toolbar:hover {
+      border-color: var(--key);
+      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.85), 0 0 28px rgba(255, 106, 0, 0.3);
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: #E2E8F0;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .tool-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFF;
+    }
+    .tool-btn.active {
+      background: var(--key);
+      color: #000;
+    }
+    .tool-icon {
+      font-size: 1.1rem;
+      display: inline-block;
+    }
+    .tool-text {
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+    }
+    .toolbar-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.18);
+      margin: 0 2px;
+    }
+
+    /* Spotlight Overlay (課堂聚光燈) */
+    #spotlight-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9980;
+      display: none;
+      background: radial-gradient(circle 140px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), transparent 0%, rgba(0, 0, 0, 0.78) 100%);
+    }
+    #spotlight-overlay.active {
+      display: block;
+    }
+
+    /* Laser Pointer */
+    #laser-dot {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FF2222 0%, #FF0000 65%, rgba(255, 0, 0, 0) 100%);
+      box-shadow: 0 0 14px 4px #FF2222, 0 0 26px 8px rgba(255, 50, 50, 0.6);
+      pointer-events: none;
+      z-index: 99999;
+      display: none;
+      transform: translate(-50%, -50%);
+    }
+    body.laser-active, body.laser-active * {
+      cursor: crosshair !important;
+    }
+
+    /* Screen Drawing Canvas */
+    #chalk-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9990;
+      pointer-events: none;
+      display: none;
+    }
+    #chalk-canvas.drawing-active {
+      pointer-events: auto;
+      cursor: crosshair;
+      display: block;
+    }
+    .pen-palette {
+      position: fixed;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1A1E24;
+      border: 1px solid #38BDF8;
+      border-radius: 30px;
+      padding: 6px 14px;
+      display: none;
+      gap: 12px;
+      align-items: center;
+      z-index: 9995;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+    .pen-palette.show {
+      display: flex;
+    }
+    .pen-color-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .pen-color-dot:hover, .pen-color-dot.active {
+      transform: scale(1.3);
+      border-color: #FFF;
+    }
+
+    /* Blackboard Fullscreen Deck Modal */
+    #deck-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0F1612 0%, #060907 100%);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      color: #F5F7FA;
+      padding: 24px 36px;
+      user-select: none;
+    }
+    #deck-modal.active {
+      display: flex;
+    }
+    .deck-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 14px;
+      flex-shrink: 0;
+    }
+    .deck-title-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .deck-badge {
+      background: var(--key);
+      color: #000;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+    }
+    .deck-category-label {
+      color: var(--hi);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .deck-counter {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #38BDF8;
+      font-family: Consolas, monospace;
+    }
+    .deck-icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-icon-btn:hover {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+    }
+    .deck-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+    .deck-slide-box {
+      max-width: 960px;
+      width: 100%;
+      background: rgba(20, 26, 22, 0.75);
+      border: 2px solid rgba(52, 211, 153, 0.35);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 36px 42px;
+      animation: fadeInSlide 0.2s ease-out;
+    }
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .deck-slide-h2 {
+      font-size: 2.1rem;
+      color: #FFF;
+      margin: 0 0 16px 0;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+    .deck-slide-h2 .highlight {
+      color: var(--hi);
+    }
+    .deck-slide-desc {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: #E2E8F0;
+      margin: 0 0 20px 0;
+    }
+    .deck-slide-list {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #D1D5DB;
+      padding-left: 28px;
+      margin: 0;
+    }
+    .deck-slide-list li {
+      margin-bottom: 10px;
+    }
+    .deck-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+      flex-shrink: 0;
+    }
+    .deck-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-nav-btn:hover {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+    }
+    .deck-shortcuts-hint {
+      font-size: 0.85rem;
+      color: #88929A;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .deck-shortcuts-hint kbd {
+      background: #1C2024;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #3E4650;
+      color: #FFF;
+      font-family: monospace;
+    }
+
+    /* Help Modal */
+    #help-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #16181D;
+      border: 2px solid var(--key);
+      border-radius: 12px;
+      padding: 24px 30px;
+      z-index: 10005;
+      display: none;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.85);
+      max-width: 440px;
+      width: 90%;
+    }
+    #help-modal.show { display: block; }
+    #help-modal h3 { margin: 0 0 12px 0; color: var(--hi); }
+    #help-modal table { width: 100%; border-collapse: collapse; }
+    #help-modal td { padding: 6px 0; border: none; font-size: 0.9rem; }
+    #help-modal kbd { background: #262B34; padding: 2px 6px; border-radius: 4px; border: 1px solid #485264; color: #FFF; font-family: monospace; }
+
+    /* Interactive Timeline Cards */
+    .timeline-item.clickable-card {
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid transparent;
+      transition: all 0.22s ease;
+    }
+    .timeline-item.clickable-card:hover {
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(255, 106, 0, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    .card-zoom-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.74rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      transition: all 0.2s;
+    }
+    .clickable-card:hover .card-zoom-badge {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .classroom-toolbar { padding: 4px 8px; bottom: 12px; }
+      .tool-text { display: none; }
+      .tool-btn { padding: 6px 8px; }
+      .deck-slide-box { padding: 20px 18px; }
+      .deck-slide-h2 { font-size: 1.5rem; }
+      .deck-slide-desc { font-size: 1.05rem; }
+      .deck-slide-list { font-size: 0.98rem; }
+      .deck-shortcuts-hint { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Spotlight Overlay (課堂聚光燈) -->
+  <div id="spotlight-overlay"></div>
+
+  <!-- Laser Pointer Dot -->
+  <div id="laser-dot"></div>
+
+  <!-- Screen Drawing Canvas -->
+  <canvas id="chalk-canvas"></canvas>
+
+  <!-- Pen Palette -->
+  <div id="pen-palette" class="pen-palette">
+    <span style="font-size:0.8rem; color:#94A3B8; font-weight:bold;">畫筆顏色：</span>
+    <div class="pen-color-dot active" style="background:#FFD400;" onclick="setPenColor('#FFD400', this)" title="黃色標記"></div>
+    <div class="pen-color-dot" style="background:#FF3B30;" onclick="setPenColor('#FF3B30', this)" title="紅色圈記"></div>
+    <div class="pen-color-dot" style="background:#38BDF8;" onclick="setPenColor('#38BDF8', this)" title="藍色指示"></div>
+    <div class="pen-color-dot" style="background:#34D399;" onclick="setPenColor('#34D399', this)" title="綠色確認"></div>
+    <button onclick="clearCanvas()" style="background:#262C36; color:#FFF; border:1px solid #485468; border-radius:12px; padding:3px 10px; font-size:0.75rem; cursor:pointer;">清空畫布</button>
+  </div>
+
+  <!-- Blackboard Fullscreen Deck Modal (黑板全螢幕翻頁系統) -->
+  <div id="deck-modal">
+    <!-- Deck Top Bar -->
+    <div class="deck-header">
+      <div class="deck-title-area">
+        <span class="deck-badge">CDSJ5 黑板授課模式</span>
+        <span id="deck-category-label" class="deck-category-label">120分鐘實操動線</span>
+      </div>
+      <div class="deck-controls-top">
+        <span id="deck-counter" class="deck-counter">[ 1 / 11 ]</span>
+        <button class="deck-icon-btn" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">⛶</button>
+        <button class="deck-icon-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖</button>
+      </div>
+    </div>
+
+    <!-- Deck Main Content -->
+    <div class="deck-body">
+      <div id="deck-slide-box" class="deck-slide-box">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Deck Bottom Bar -->
+    <div class="deck-footer">
+      <button class="deck-nav-btn" onclick="prevSlide()">◀ 上一張 (←)</button>
+      <div class="deck-shortcuts-hint">
+        <span>翻頁：<kbd>←</kbd> <kbd>→</kbd> 或 <kbd>Space</kbd></span>
+        <span>全螢幕：<kbd>F</kbd></span>
+        <span>關閉：<kbd>Esc</kbd></span>
+      </div>
+      <button class="deck-nav-btn" onclick="nextSlide()">下一張 (→) ▶</button>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="help-modal">
+    <h3>⌨️ 課堂授課快捷鍵指南</h3>
+    <table>
+      <tr><td><kbd>B</kbd> / <kbd>Space</kbd></td><td>開啟 / 關閉黑板全螢幕翻頁</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>上一張 / 下一張卡片翻頁</td></tr>
+      <tr><td><kbd>S</kbd></td><td>開啟 / 關閉課堂聚光燈</td></tr>
+      <tr><td><kbd>L</kbd></td><td>開啟 / 關閉課堂雷射筆</td></tr>
+      <tr><td><kbd>P</kbd></td><td>開啟 / 關閉螢幕塗鴉畫筆</td></tr>
+      <tr><td><kbd>C</kbd></td><td>清除螢幕所有塗鴉筆跡</td></tr>
+      <tr><td><kbd>[</kbd> / <kbd>]</kbd></td><td>縮小 / 放大全站字級</td></tr>
+      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>退出放大模式 / 退出畫筆 / 關閉工具</td></tr>
+    </table>
+    <div style="text-align:right; margin-top:16px;">
+      <button class="btn" style="padding:6px 14px; font-size:0.85rem;" onclick="toggleHelp()">我知道了</button>
+    </div>
+  </div>
 
   <!-- Sticky Header -->
   <header class="site-header">
@@ -357,7 +806,8 @@
     <div class="timeline">
 
       <!-- Step 1: 0-10 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 0)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">00–10 min（10分鐘）</span>
         <h2 class="step-title">一、看見終點：展示 4 大成果與專案地圖</h2>
         <div class="action-grid">
@@ -383,7 +833,8 @@
       </div>
 
       <!-- Step 2: 10-20 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 1)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">10–20 min（10分鐘）</span>
         <h2 class="step-title">二、啟動專案：確認 OpenCode 與教材環境</h2>
         <div class="action-grid">
@@ -408,7 +859,8 @@
       </div>
 
       <!-- Step 3: 20-30 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 2)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">20–30 min（10分鐘）</span>
         <h2 class="step-title">三、讀懂 AGENTS.md：建立專案持續規則</h2>
         <div class="action-grid">
@@ -435,7 +887,8 @@
       </div>
 
       <!-- Step 4: 30-42 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 3)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">30–42 min（12分鐘）</span>
         <h2 class="step-title">四、讀取真實教材：專業分析先於題目生成</h2>
         <div class="action-grid">
@@ -462,7 +915,8 @@
       </div>
 
       <!-- Step 5: 42-50 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 4)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">42–50 min（8分鐘）</span>
         <h2 class="step-title">五、教師確認需求：形成 task-spec.md 規格書</h2>
         <div class="action-grid">
@@ -488,7 +942,8 @@
       </div>
 
       <!-- Step 6: 50-60 min (MILESTONE) -->
-      <div class="timeline-item milestone">
+      <div class="timeline-item milestone clickable-card" onclick="handleCardClick(event, 5)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge gold">50–60 min（10分鐘）★ 關鍵半程里程碑</span>
         <h2 class="step-title">六、完成第一次備課成果：生成第一版課堂材料</h2>
         <div class="action-grid">
@@ -525,7 +980,8 @@
       </div>
 
       <!-- Step 7: 65-75 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 6)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">65–75 min（10分鐘，累計至75分）</span>
         <h2 class="step-title">七、做一次分層：A支援 / B基準 / C挑戰</h2>
         <div class="action-grid">
@@ -552,7 +1008,8 @@
       </div>
 
       <!-- Step 8: 75-95 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 7)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">75–95 min（20分鐘）</span>
         <h2 class="step-title">八、做一次同步修訂：模擬真實條件變更與聯動更新</h2>
         <div class="action-grid">
@@ -578,7 +1035,8 @@
       </div>
 
       <!-- Step 9: 95-110 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 8)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">95–110 min（15分鐘）</span>
         <h2 class="step-title">九、再次重用：保留專案長期規則，換入新課題</h2>
         <div class="action-grid">
@@ -604,7 +1062,8 @@
       </div>
 
       <!-- Step 10: 110-117 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 9)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge">110–117 min（7分鐘）</span>
         <h2 class="step-title">十、教師親自驗收：AI 產出 ≠ 完成，驗收才是完成</h2>
         <div class="action-grid">
@@ -626,7 +1085,8 @@
       </div>
 
       <!-- Step 11: 117-120 min -->
-      <div class="timeline-item">
+      <div class="timeline-item clickable-card" onclick="handleCardClick(event, 10)">
+        <span class="card-zoom-badge">🔍 放大黑板</span>
         <span class="time-badge gold">117–120 min（3分鐘）★ 培訓閉環</span>
         <h2 class="step-title">十一、帶一個真實課堂難題離場：下一場培訓入口</h2>
         <div class="action-grid">
@@ -746,6 +1206,36 @@
 
   </main>
 
+  <!-- Floating Classroom Teaching Toolbar (課堂授課教具列) -->
+  <aside id="classroom-toolbar" class="classroom-toolbar" aria-label="授課教具列">
+    <button id="btn-blackboard" class="tool-btn" onclick="toggleBlackboard()" title="開啟黑板全螢幕翻頁 (B / Space)">
+      <span class="tool-icon">🖥️</span><span class="tool-text">黑板模式</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button id="btn-spotlight" class="tool-btn" onclick="toggleSpotlight()" title="課堂聚光燈模式 (S)">
+      <span class="tool-icon">🔦</span><span class="tool-text">聚光燈</span>
+    </button>
+    <button id="btn-laser" class="tool-btn" onclick="toggleLaser()" title="雷射筆指引 (L)">
+      <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
+    </button>
+    <button id="btn-pen" class="tool-btn" onclick="togglePen()" title="螢幕畫筆標註 (P)">
+      <span class="tool-icon">✏️</span><span class="tool-text">課堂畫筆</span>
+    </button>
+    <button id="btn-clear" class="tool-btn" onclick="clearCanvas()" title="清除塗鴉筆跡 (C)">
+      <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button id="btn-font-scale" class="tool-btn" onclick="cycleFontScale()" title="字級縮放 ( [ / ] )">
+      <span class="tool-icon">🔠</span><span class="tool-text" id="font-scale-label">標準</span>
+    </button>
+    <button id="btn-fullscreen" class="tool-btn" onclick="toggleFullscreen()" title="瀏覽器滿版全螢幕 (F)">
+      <span class="tool-icon">⛶</span><span class="tool-text">滿版</span>
+    </button>
+    <button id="btn-help" class="tool-btn" onclick="toggleHelp()" title="快捷鍵說明 (?)">
+      <span class="tool-icon">⌨️</span>
+    </button>
+  </aside>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
@@ -763,6 +1253,406 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==========================================================
+       JAVASCRIPT: FULLSCREEN DECK, SPOTLIGHT, LASER, PEN, FONT SCALE
+       ========================================================== -->
+  <script>
+    // 1. Deck Data: 11 Slides for 120-minute Timeline Steps
+    const slidesData = [
+      {
+        category: "階段 1 ｜ 00–10 min",
+        title: "一、看見終點：<span class='highlight'>展示 4 大成果與專案地圖</span>",
+        desc: "【心理表徵建立】全員看見終點，不陷入安裝枝節與術語焦慮：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：投影 <code>output/</code> 4 份終極成品檔案，明確宣告今天不是學無目的聊天，而是專案級交付。",
+          "<strong>👩‍🏫 學員行動</strong>：只看投影、不急操作，確認所屬 A/B/C/D 分組，心中預想一項最耗時數學備課環節。",
+          "<strong>🎯 階段合格標準</strong>：看懂完整學習迴圈（教材→規則→訪談→備課→分層→修訂→重用）。",
+          "<strong>⚠️ 防踩坑提醒</strong>：此階段嚴禁發送請求，避免群聚併發癱瘓網路。"
+        ]
+      },
+      {
+        category: "階段 2 ｜ 10–20 min",
+        title: "二、啟動專案：<span class='highlight'>確認 OpenCode 與教材環境</span>",
+        desc: "【啟動與防線】雙擊啟動，確認專案邊界與安全紅線：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：演示雙擊 <code>01_啟動OpenCode培訓.bat</code>，展示專案核心目錄結構。",
+          "<strong>👩‍🏫 學員行動</strong>：依 A→B→C→D 錯峰啟動本機環境，確認 OpenCode 終端正常連通。",
+          "<strong>🎯 階段合格標準</strong>：專案目錄正確鎖定於 <code>Math-Agent-Workshop/</code>，不在隨機外層散落。",
+          "<strong>⚠️ 現場保障</strong>：助教巡視，若有 PowerShell 執行原則報錯，即刻改用 cmd。"
+        ]
+      },
+      {
+        category: "階段 3 ｜ 20–30 min",
+        title: "三、讀懂 AGENTS.md：<span class='highlight'>建立專案持續規則（專案憲法）</span>",
+        desc: "【規範優先】讓 Agent 遵守學校繁中、數學符號與零個資紅線：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：逐條解讀 <code>AGENTS.md</code> 核心四規範：澳門繁體、術語一致、嚴禁個資、唯讀教材保護。",
+          "<strong>👩‍🏫 學員行動</strong>：錯峰送出 <strong>Prompt 1</strong>，驗證 Agent 能正確朗讀專案憲法並盤點教材清單。",
+          "<strong>🎯 階段合格標準</strong>：Agent 回應清楚列出唯讀材料與輸出目錄規範，無幻覺。",
+          "<strong>💡 核心觀念</strong>：專案規則是長期資產，一次設定，後續所有備課自動遵從！"
+        ]
+      },
+      {
+        category: "階段 4 ｜ 30–42 min",
+        title: "四、讀取真實教材：<span class='highlight'>專業分析先於題目生成</span>",
+        desc: "【守住數學事實】徹底杜絕 AI 隨意出題超綱或算理模糊：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：展示校本 <code>materials/P5-分數加減法.pdf</code>，強調『教材是唯一真理來源』。",
+          "<strong>👩‍🏫 學員行動</strong>：錯峰送出 <strong>Prompt 2</strong>，要求 Agent 提煉概念核心、前置知識、學生易錯迷思與題型階梯。",
+          "<strong>🎯 階段合格標準</strong>：Agent 產出條理清晰的教學分析，指出異分母通分關鍵與約分盲點。",
+          "<strong>⚠️ 防踩坑提醒</strong>：若 PDF 讀取異常，立即切換 backup 目錄純文字版，不卡死流程。"
+        ]
+      },
+      {
+        category: "階段 5 ｜ 42–50 min",
+        title: "五、教師確認需求：<span class='highlight'>形成 task-spec.md 規格書</span>",
+        desc: "【規格先於產出】掌控 AI 的主控權，由老師決定課堂參數：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：演示『反向訪談法』，讓 Agent 向老師提出 6 個核心參數問題（年級、題數、情境、排版）。",
+          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 3</strong>，逐一回答 Agent 提問，產出規格書。",
+          "<strong>🎯 階段合格標準</strong>：專案目錄生成 <code>requirements/task-spec.md</code>，條列確定之參數清單。",
+          "<strong>💡 核心教學法</strong>：不讓 AI 自由發揮；規格確立後，生成的成果才有高可用性。"
+        ]
+      },
+      {
+        category: "階段 6 ｜ 50–60 min（合格線）",
+        title: "六、第一次備課成果：<span class='highlight'>產出第 1 版課堂材料（成果 1）</span>",
+        desc: "【第 60 分鐘合格線】產出真實課堂練習紙與教師解答詳細版：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：宣布 50 分鐘第 1 個里程碑，監控錯峰發送 <strong>Prompt 4</strong>。",
+          "<strong>👩‍🏫 學員行動</strong>：A組(50m)→B組(52m)→C組(54m)→D組(56m) 依序送出 Prompt 4。",
+          "<strong>🎯 階段合格標準</strong>：在 <code>output/01-first-version/</code> 生成學生練習紙與獨立教師解答版。",
+          "<strong>☕ 60–65 min 技術緩衝</strong>：中場微休息 5 分鐘，助教排查落後或 429 請求異常學員。"
+        ]
+      },
+      {
+        category: "階段 7 ｜ 65–75 min",
+        title: "七、做一次分層：<span class='highlight'>A支援 / B基準 / C挑戰（成果 2）</span>",
+        desc: "【因材施教】不換課題，為不同認知步調學生建立學習階梯：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：強調『分層不是多出 10 題』，而是實質加入圖形表徵、分解支架與高階辨析。",
+          "<strong>👩‍🏫 學員行動</strong>：調用 <code>worksheet-generator</code> 技能，送出 <strong>Prompt 5</strong>。",
+          "<strong>🎯 階段合格標準</strong>：在 <code>output/02-differentiated/</code> 產出 A支援版、B基準版、C挑戰版與差異對照表。",
+          "<strong>🌟 亮點功能</strong>：差異對照表讓科組教師一眼看懂每層題型的認知調整邏輯。"
+        ]
+      },
+      {
+        category: "階段 8 ｜ 75–95 min",
+        title: "八、做一次同步修訂：<span class='highlight'>模擬真實條件變更與聯動更新（成果 3）</span>",
+        desc: "【專案連鎖一致性】課堂時間縮減時，多檔案同步更新與差異報告：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：設計真實情境『課堂縮減 10 分鐘，需刪減題目並插入 1 題典型錯因辨析』。",
+          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 6</strong>，觀察 Agent 先盤點受影響檔案，獲准後同步更新題目與解答。",
+          "<strong>🎯 階段合格標準</strong>：在 <code>output/03-revised/</code> 產生更新材料，並附帶 <code>change-summary.md</code> 差異報告。",
+          "<strong>🛡️ 版本安全</strong>：嚴禁覆蓋 01/02 原版，完整保留修訂版本歷史軌跡。"
+        ]
+      },
+      {
+        category: "階段 9 ｜ 95–110 min",
+        title: "九、再次重用：<span class='highlight'>保留專案長期規則，換入新課題（成果 4）</span>",
+        desc: "【長期資產複用】不需重新寫 prompt，換個材料立即開工：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：換入全新章節 <code>materials/P5-帶分數加減法.pdf</code>，演示專案重用威力。",
+          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 7</strong>，複用先前建立的全部規則、格式規範與輸出習慣。",
+          "<strong>🎯 階段合格標準</strong>：在 <code>output/04-reused/</code> 成功生成新單元完整課堂材料。",
+          "<strong>🚀 效率倍增</strong>：耗時由最初的 40 分鐘縮減至 5 分鐘，越用越快！"
+        ]
+      },
+      {
+        category: "階段 10 ｜ 110–117 min",
+        title: "十、教師親自驗收：<span class='highlight'>AI 產出 ≠ 完成，驗收才是完成</span>",
+        desc: "【專業把關】教師是數學算理的最終守門員：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：投影「9 大驗收檢核指標」（算理、文字、數字、圖表、答案、分層、格式、安全、存檔）。",
+          "<strong>👩‍🏫 學員行動</strong>：打開自己產出的教材，親自試算 1–2 題，檢查排版作答空間與通分邏輯。",
+          "<strong>🎯 階段合格標準</strong>：確認所有題目分母均在規範內，無印刷或算理錯誤。",
+          "<strong>🔑 核心理念</strong>：以人為本，科技賦能，教師的專業判斷無可替代！"
+        ]
+      },
+      {
+        category: "階段 11 ｜ 117–120 min",
+        title: "十一、帶一個真實課堂難題離場：<span class='highlight'>下一場培訓入口</span>",
+        desc: "【培訓閉環】記錄真實痛點，作為進階工作坊的出發點：",
+        points: [
+          "<strong>👨‍🏫 講師重點</strong>：說明持續精進機制，工作坊結束不是終點，而是校本實踐的起點。",
+          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 8</strong>，在 <code>notes/next-workshop-problem.md</code> 填寫自己的真實教學痛點。",
+          "<strong>🎯 階段合格標準</strong>：離場憑證包含：單元難點、學生迷思、希望 Agent 協助與教師堅持把關邊界。",
+          "<strong>🎉 圓滿結業</strong>：帶著 4 份專案成品與 1 份進階憑證離開會場！"
+        ]
+      }
+    ];
+
+    let currentSlide = 0;
+
+    // 2. Deck Modal Functions
+    function openDeck(index) {
+      if (index >= 0 && index < slidesData.length) {
+        currentSlide = index;
+      } else {
+        currentSlide = 0;
+      }
+      renderSlide();
+      document.getElementById('deck-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeck() {
+      document.getElementById('deck-modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+      } else {
+        currentSlide = slidesData.length - 1;
+      }
+      renderSlide();
+    }
+
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+      } else {
+        currentSlide = 0;
+      }
+      renderSlide();
+    }
+
+    function renderSlide() {
+      const slide = slidesData[currentSlide];
+      document.getElementById('deck-category-label').innerText = slide.category;
+      document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
+
+      let html = `<h2 class="deck-slide-h2">${slide.title}</h2>`;
+      html += `<p class="deck-slide-desc">${slide.desc}</p>`;
+
+      if (slide.points && slide.points.length > 0) {
+        html += `<ul class="deck-slide-list">`;
+        slide.points.forEach(pt => {
+          html += `<li>${pt}</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      document.getElementById('deck-slide-box').innerHTML = html;
+    }
+
+    function handleCardClick(e, index) {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      openDeck(index);
+    }
+
+    // 3. Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log("Fullscreen error:", err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // 4. Blackboard Mode Toggle
+    function toggleBlackboard() {
+      const modal = document.getElementById('deck-modal');
+      if (modal.classList.contains('active')) {
+        closeDeck();
+      } else {
+        openDeck(currentSlide || 0);
+      }
+    }
+
+    // 5. Spotlight Logic (課堂聚光燈)
+    let spotlightActive = false;
+    const spotlightOverlay = document.getElementById('spotlight-overlay');
+    const btnSpotlight = document.getElementById('btn-spotlight');
+
+    function toggleSpotlight() {
+      spotlightActive = !spotlightActive;
+      if (spotlightActive) {
+        spotlightOverlay.classList.add('active');
+        if (btnSpotlight) btnSpotlight.classList.add('active');
+      } else {
+        spotlightOverlay.classList.remove('active');
+        if (btnSpotlight) btnSpotlight.classList.remove('active');
+      }
+    }
+
+    // 6. Laser Pointer Logic
+    let laserActive = false;
+    const laserDot = document.getElementById('laser-dot');
+    const btnLaser = document.getElementById('btn-laser');
+
+    function toggleLaser() {
+      laserActive = !laserActive;
+      if (laserActive) {
+        laserDot.style.display = 'block';
+        document.body.classList.add('laser-active');
+        btnLaser.classList.add('active');
+      } else {
+        laserDot.style.display = 'none';
+        document.body.classList.remove('laser-active');
+        btnLaser.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('mousemove', function(e) {
+      if (spotlightActive) {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      }
+      if (laserActive) {
+        laserDot.style.left = e.clientX + 'px';
+        laserDot.style.top = e.clientY + 'px';
+      }
+    });
+
+    // 7. Font Scale Logic (字級縮放)
+    const fontScales = [
+      { label: '標準', scale: '100%' },
+      { label: '大字', scale: '112%' },
+      { label: '特大', scale: '125%' }
+    ];
+    let currentFontScaleIdx = 0;
+
+    function cycleFontScale() {
+      currentFontScaleIdx = (currentFontScaleIdx + 1) % fontScales.length;
+      applyFontScale();
+    }
+
+    function applyFontScale() {
+      const current = fontScales[currentFontScaleIdx];
+      document.documentElement.style.fontSize = current.scale;
+      const label = document.getElementById('font-scale-label');
+      if (label) label.innerText = current.label;
+      const btn = document.getElementById('btn-font-scale');
+      if (btn) {
+        if (currentFontScaleIdx > 0) btn.classList.add('active');
+        else btn.classList.remove('active');
+      }
+    }
+
+    function stepFontScale(delta) {
+      currentFontScaleIdx = (currentFontScaleIdx + delta + fontScales.length) % fontScales.length;
+      applyFontScale();
+    }
+
+    // 8. Canvas Screen Drawing Logic
+    let drawingActive = false;
+    let isDrawing = false;
+    const canvas = document.getElementById('chalk-canvas');
+    const ctx = canvas.getContext('2d');
+    const btnPen = document.getElementById('btn-pen');
+    const penPalette = document.getElementById('pen-palette');
+    let penColor = '#FFD400';
+    let penWidth = 4;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function togglePen() {
+      drawingActive = !drawingActive;
+      if (drawingActive) {
+        canvas.classList.add('drawing-active');
+        btnPen.classList.add('active');
+        penPalette.classList.add('show');
+        if (laserActive) toggleLaser(); // turn off laser when pen is on
+      } else {
+        canvas.classList.remove('drawing-active');
+        btnPen.classList.remove('active');
+        penPalette.classList.remove('show');
+      }
+    }
+
+    function setPenColor(color, el) {
+      penColor = color;
+      document.querySelectorAll('.pen-color-dot').forEach(d => d.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    canvas.addEventListener('mousedown', function(e) {
+      if (!drawingActive) return;
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.clientX, e.clientY);
+      ctx.strokeStyle = penColor;
+      ctx.lineWidth = penWidth;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+      if (!drawingActive || !isDrawing) return;
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+    });
+
+    window.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+
+    // 9. Keyboard Shortcuts
+    window.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('deck-modal');
+      const isModalOpen = modal.classList.contains('active');
+
+      if (e.key === 'Escape') {
+        if (isModalOpen) closeDeck();
+        if (drawingActive) togglePen();
+        if (laserActive) toggleLaser();
+        if (spotlightActive) toggleSpotlight();
+        document.getElementById('help-modal').classList.remove('show');
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (isModalOpen) {
+          nextSlide();
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (isModalOpen) {
+          prevSlide();
+        }
+      } else if (e.key === ' ' && isModalOpen) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key.toLowerCase() === 'b') {
+        toggleBlackboard();
+      } else if (e.key.toLowerCase() === 's') {
+        toggleSpotlight();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key.toLowerCase() === 'l') {
+        toggleLaser();
+      } else if (e.key.toLowerCase() === 'p') {
+        togglePen();
+      } else if (e.key.toLowerCase() === 'c') {
+        clearCanvas();
+      } else if (e.key === ']') {
+        stepFontScale(1);
+      } else if (e.key === '[') {
+        stepFontScale(-1);
+      } else if (e.key === '?') {
+        toggleHelp();
+      }
+    });
+
+    // 10. Help Modal Toggle
+    function toggleHelp() {
+      const hm = document.getElementById('help-modal');
+      hm.classList.toggle('show');
+    }
+  </script>
 
 </body>
 </html>

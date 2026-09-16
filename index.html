@@ -651,6 +651,22 @@
       margin: 0 2px;
     }
 
+    /* Spotlight Overlay (課堂聚光燈) */
+    #spotlight-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9980;
+      display: none;
+      background: radial-gradient(circle 140px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), transparent 0%, rgba(0, 0, 0, 0.78) 100%);
+    }
+    #spotlight-overlay.active {
+      display: block;
+    }
+
     /* Laser Pointer */
     #laser-dot {
       position: fixed;
@@ -945,6 +961,9 @@
 </head>
 <body>
 
+  <!-- Spotlight Overlay (課堂聚光燈) -->
+  <div id="spotlight-overlay"></div>
+
   <!-- Laser Pointer Dot -->
   <div id="laser-dot"></div>
 
@@ -1001,11 +1020,13 @@
     <table>
       <tr><td><kbd>B</kbd> / <kbd>Space</kbd></td><td>開啟 / 關閉黑板全螢幕翻頁</td></tr>
       <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>上一張 / 下一張卡片翻頁</td></tr>
-      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>S</kbd></td><td>開啟 / 關閉課堂聚光燈</td></tr>
       <tr><td><kbd>L</kbd></td><td>開啟 / 關閉課堂雷射筆</td></tr>
       <tr><td><kbd>P</kbd></td><td>開啟 / 關閉螢幕塗鴉畫筆</td></tr>
       <tr><td><kbd>C</kbd></td><td>清除螢幕所有塗鴉筆跡</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>退出放大模式 / 退出畫筆</td></tr>
+      <tr><td><kbd>[</kbd> / <kbd>]</kbd></td><td>縮小 / 放大全站字級</td></tr>
+      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>退出放大模式 / 退出畫筆 / 關閉工具</td></tr>
     </table>
     <div style="text-align:right; margin-top:16px;">
       <button class="btn" style="padding:6px 14px; font-size:0.85rem;" onclick="toggleHelp()">我知道了</button>
@@ -1470,7 +1491,10 @@ git push -u origin main</div>
       <span class="tool-icon">🖥️</span><span class="tool-text">黑板模式</span>
     </button>
     <div class="toolbar-divider"></div>
-    <button id="btn-laser" class="tool-btn" onclick="toggleLaser()" title="雷射筆聚光 (L)">
+    <button id="btn-spotlight" class="tool-btn" onclick="toggleSpotlight()" title="課堂聚光燈模式 (S)">
+      <span class="tool-icon">🔦</span><span class="tool-text">聚光燈</span>
+    </button>
+    <button id="btn-laser" class="tool-btn" onclick="toggleLaser()" title="雷射筆指引 (L)">
       <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
     </button>
     <button id="btn-pen" class="tool-btn" onclick="togglePen()" title="螢幕畫筆標註 (P)">
@@ -1480,6 +1504,9 @@ git push -u origin main</div>
       <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
     </button>
     <div class="toolbar-divider"></div>
+    <button id="btn-font-scale" class="tool-btn" onclick="cycleFontScale()" title="字級縮放 ( [ / ] )">
+      <span class="tool-icon">🔠</span><span class="tool-text" id="font-scale-label">標準</span>
+    </button>
     <button id="btn-fullscreen" class="tool-btn" onclick="toggleFullscreen()" title="瀏覽器滿版全螢幕 (F)">
       <span class="tool-icon">⛶</span><span class="tool-text">滿版</span>
     </button>
@@ -1794,7 +1821,23 @@ git push -u origin main</div>
       }
     }
 
-    // 5. Laser Pointer Logic
+    // 5. Spotlight Logic (課堂聚光燈)
+    let spotlightActive = false;
+    const spotlightOverlay = document.getElementById('spotlight-overlay');
+    const btnSpotlight = document.getElementById('btn-spotlight');
+
+    function toggleSpotlight() {
+      spotlightActive = !spotlightActive;
+      if (spotlightActive) {
+        spotlightOverlay.classList.add('active');
+        if (btnSpotlight) btnSpotlight.classList.add('active');
+      } else {
+        spotlightOverlay.classList.remove('active');
+        if (btnSpotlight) btnSpotlight.classList.remove('active');
+      }
+    }
+
+    // 6. Laser Pointer Logic
     let laserActive = false;
     const laserDot = document.getElementById('laser-dot');
     const btnLaser = document.getElementById('btn-laser');
@@ -1813,13 +1856,47 @@ git push -u origin main</div>
     }
 
     window.addEventListener('mousemove', function(e) {
+      if (spotlightActive) {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      }
       if (laserActive) {
         laserDot.style.left = e.clientX + 'px';
         laserDot.style.top = e.clientY + 'px';
       }
     });
 
-    // 6. Canvas Screen Drawing Logic
+    // 7. Font Scale Logic (字級縮放)
+    const fontScales = [
+      { label: '標準', scale: '100%' },
+      { label: '大字', scale: '112%' },
+      { label: '特大', scale: '125%' }
+    ];
+    let currentFontScaleIdx = 0;
+
+    function cycleFontScale() {
+      currentFontScaleIdx = (currentFontScaleIdx + 1) % fontScales.length;
+      applyFontScale();
+    }
+
+    function applyFontScale() {
+      const current = fontScales[currentFontScaleIdx];
+      document.documentElement.style.fontSize = current.scale;
+      const label = document.getElementById('font-scale-label');
+      if (label) label.innerText = current.label;
+      const btn = document.getElementById('btn-font-scale');
+      if (btn) {
+        if (currentFontScaleIdx > 0) btn.classList.add('active');
+        else btn.classList.remove('active');
+      }
+    }
+
+    function stepFontScale(delta) {
+      currentFontScaleIdx = (currentFontScaleIdx + delta + fontScales.length) % fontScales.length;
+      applyFontScale();
+    }
+
+    // 8. Canvas Screen Drawing Logic
     let drawingActive = false;
     let isDrawing = false;
     const canvas = document.getElementById('chalk-canvas');
@@ -1881,7 +1958,7 @@ git push -u origin main</div>
       isDrawing = false;
     });
 
-    // 7. Keyboard Shortcuts
+    // 9. Keyboard Shortcuts
     window.addEventListener('keydown', function(e) {
       const modal = document.getElementById('deck-modal');
       const isModalOpen = modal.classList.contains('active');
@@ -1890,6 +1967,7 @@ git push -u origin main</div>
         if (isModalOpen) closeDeck();
         if (drawingActive) togglePen();
         if (laserActive) toggleLaser();
+        if (spotlightActive) toggleSpotlight();
         document.getElementById('help-modal').classList.remove('show');
       } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         if (isModalOpen) {
@@ -1904,6 +1982,8 @@ git push -u origin main</div>
         nextSlide();
       } else if (e.key.toLowerCase() === 'b') {
         toggleBlackboard();
+      } else if (e.key.toLowerCase() === 's') {
+        toggleSpotlight();
       } else if (e.key.toLowerCase() === 'f') {
         toggleFullscreen();
       } else if (e.key.toLowerCase() === 'l') {
@@ -1912,12 +1992,16 @@ git push -u origin main</div>
         togglePen();
       } else if (e.key.toLowerCase() === 'c') {
         clearCanvas();
+      } else if (e.key === ']') {
+        stepFontScale(1);
+      } else if (e.key === '[') {
+        stepFontScale(-1);
       } else if (e.key === '?') {
         toggleHelp();
       }
     });
 
-    // 8. Help Modal Toggle
+    // 10. Help Modal Toggle
     function toggleHelp() {
       const hm = document.getElementById('help-modal');
       hm.classList.toggle('show');
