@@ -928,23 +928,24 @@
       border-color: #FFFFFF;
     }
 
-    /* ------------------------------------------------------
-       11. HERITAGE GREEN CLASSROOM BOARD (#deck-modal)
-       ------------------------------------------------------ */
+        /* ==========================================================
+       11. HERITAGE GREEN DUAL-COLUMN BLACKBOARD DASHBOARD (#deck-modal)
+       佔用整個黑板的 85%，滿版高利用率，發光粉筆色彩系統
+       ========================================================== */
     #deck-modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(circle at center, #173F35 0%, #112D26 100%);
+      background: radial-gradient(circle at center, #14332B 0%, #0A1C17 100%);
       z-index: 10000;
       display: none;
       flex-direction: column;
       justify-content: space-between;
       box-sizing: border-box;
       color: var(--chalk-text);
-      padding: 24px 36px;
+      padding: 12px 28px;
       user-select: none;
     }
     #deck-modal.active {
@@ -954,8 +955,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding-bottom: 10px;
       flex-shrink: 0;
     }
     .deck-title-area {
@@ -966,16 +967,19 @@
     .deck-badge {
       background: var(--ai-orange);
       color: #FFFFFF;
-      padding: 3px 10px;
-      border-radius: 4px;
+      padding: 4px 12px;
+      border-radius: 6px;
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.35);
     }
     .deck-category-label {
       color: var(--chalk-gold);
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 10px rgba(218, 181, 87, 0.3);
     }
     .deck-controls-top {
       display: flex;
@@ -983,18 +987,20 @@
       gap: 14px;
     }
     .deck-counter {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--chalk-blue);
       font-family: Consolas, monospace;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(88, 175, 226, 0.3);
     }
     .deck-icon-btn {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       color: #FFF;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       width: 38px;
       height: 38px;
-      border-radius: 50%;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1005,158 +1011,212 @@
     .deck-icon-btn:hover {
       background: var(--ai-orange);
       border-color: var(--ai-orange);
+      transform: scale(1.05);
     }
     .deck-body {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 0;
-      overflow-y: auto;
-    }
-    .deck-card-frame {
-      width: 82vw;
-      height: 77vh;
-      background: #1D493E;
-      border: 1.5px solid rgba(255, 255, 255, 0.14);
-      border-radius: 18px;
-      box-shadow: 0 16px 48px rgba(10, 28, 22, 0.6);
-      display: flex;
-      flex-direction: column;
-      padding: 28px 36px;
-      box-sizing: border-box;
-      animation: deckFadeIn 0.22s ease-out;
+      padding: 10px 0;
       overflow: hidden;
-      position: relative;
     }
-    @keyframes deckFadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .deck-card-inner-dashboard {
+
+    /* 85% 視窗黑板實體畫布 (緊湊無多餘留白) */
+    .deck-slide-box {
+      width: 88vw;
+      max-width: 1720px;
+      height: 85vh;
+      max-height: 86vh;
+      background: radial-gradient(circle at top left, #1B453B 0%, #102D26 100%);
+      border: 2px solid rgba(82, 209, 161, 0.45);
+      border-radius: 18px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(31, 89, 72, 0.4), inset 0 0 32px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
-      height: 100%;
+      justify-content: space-between;
+      padding: 22px 30px;
+      box-sizing: border-box;
+      animation: deckFadeIn 0.2s ease-out;
+      overflow: hidden;
       gap: 14px;
     }
-    .deck-row-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
-      padding-bottom: 12px;
-      flex-shrink: 0;
+    @keyframes deckFadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
     }
-    .deck-slide-h2 {
-      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-      font-weight: 800;
-      color: #FFFDF6;
-      margin: 0;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .deck-context-tag {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--chalk-gold);
-      background: rgba(184, 138, 40, 0.18);
-      border: 1px solid rgba(184, 138, 40, 0.35);
-      padding: 4px 14px;
-      border-radius: 20px;
-    }
-    .deck-row-content {
+
+    /* 雙欄黑板儀表板網格 (~62% : ~38%) */
+    .deck-dashboard-grid {
       display: grid;
-      grid-template-columns: 1.62fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.63fr 1fr;
+      gap: 26px;
+      align-items: stretch;
       flex: 1;
       min-height: 0;
     }
-    .deck-col-left {
-      background: rgba(22, 58, 50, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 20px 24px;
+
+    /* 【左側：課堂實操主畫布 (~62% 寬度)】 */
+    .deck-col-main {
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
       gap: 12px;
       overflow-y: auto;
+      padding-right: 10px;
+    }
+    .deck-col-main::-webkit-scrollbar {
+      width: 6px;
+    }
+    .deck-col-main::-webkit-scrollbar-thumb {
+      background: rgba(82, 209, 161, 0.35);
+      border-radius: 4px;
+    }
+    .deck-slide-h2 {
+      font-size: clamp(2rem, 2.6vw, 2.5rem);
+      font-weight: 800;
+      color: #FFFDF6;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 16px rgba(218, 181, 87, 0.45), 0 0 32px rgba(218, 181, 87, 0.2);
     }
     .deck-slide-desc {
-      font-size: 1.15rem;
-      line-height: 1.7;
+      font-size: clamp(1.15rem, 1.3vw, 1.28rem);
+      line-height: 1.6;
       color: #E2EDE9;
       margin: 0;
+      background: rgba(18, 48, 40, 0.65);
+      border-left: 4.5px solid var(--chalk-gold);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 16px;
     }
     .deck-slide-list {
       margin: 0;
-      padding-left: 24px;
-      font-size: 1.08rem;
-      line-height: 1.75;
-      color: #E2EDE9;
+      padding-left: 20px;
+      font-size: clamp(1.1rem, 1.25vw, 1.22rem);
+      line-height: 1.7;
+      color: #F6F2E7;
+      flex: 1;
     }
     .deck-slide-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
+
+    /* 【右側：校長專欄雙卡片 (~38% 寬度)】 */
     .deck-col-side {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      justify-content: space-between;
+      height: 100%;
       min-width: 0;
     }
-    .deck-card-box {
-      background: #173F35;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 14px 16px;
+    .deck-card-team, .deck-card-detail {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      justify-content: flex-start;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 180ms ease, box-shadow 180ms ease;
     }
-    .deck-card-box.century {
-      border-left: 4px solid var(--chalk-gold);
+    .deck-card-team:hover, .deck-card-detail:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
-    .deck-card-box.detail {
-      border-left: 4px solid var(--chalk-blue);
+
+    /* 🏛️「百年團隊」傳承心法卡片 */
+    .deck-card-team {
+      background: linear-gradient(145deg, rgba(218, 181, 87, 0.15) 0%, rgba(16, 44, 37, 0.95) 100%);
+      border: 1.5px solid rgba(218, 181, 87, 0.55);
+      border-left: 5px solid #DAB557;
     }
-    .deck-box-title {
-      font-size: 0.95rem;
+    .deck-card-team .card-side-title {
+      color: #DAB557;
+      font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
       gap: 8px;
+      text-shadow: 0 0 12px rgba(218, 181, 87, 0.4);
     }
-    .deck-card-box.century .deck-box-title { color: var(--chalk-gold); }
-    .deck-card-box.detail .deck-box-title { color: var(--chalk-blue); }
-    .deck-box-body {
-      font-size: 0.94rem;
-      line-height: 1.65;
-      color: #E2EDE9;
+
+    /* 🔬「細節當主菜」微觀把關卡片 */
+    .deck-card-detail {
+      background: linear-gradient(145deg, rgba(88, 175, 226, 0.15) 0%, rgba(16, 44, 37, 0.95) 100%);
+      border: 1.5px solid rgba(88, 175, 226, 0.55);
+      border-left: 5px solid #58AFE2;
     }
-    .deck-motto-strip {
-      background: linear-gradient(90deg, rgba(184, 138, 40, 0.15) 0%, rgba(31, 89, 72, 0.25) 100%);
-      border: 1px solid rgba(184, 138, 40, 0.35);
-      border-radius: 8px;
-      padding: 10px 18px;
+    .deck-card-detail .card-side-title {
+      color: #58AFE2;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 8px;
+      text-shadow: 0 0 12px rgba(88, 175, 226, 0.4);
+    }
+
+    .card-side-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 6px;
+    }
+    .card-side-icon {
+      font-size: 1.3rem;
+    }
+    .card-side-body {
+      font-size: clamp(0.96rem, 1.1vw, 1.05rem);
+      line-height: 1.65;
+      color: #EAF2EE;
+    }
+    .card-side-body strong {
+      color: #FFFFFF;
+    }
+
+    /* 🌟 聖五校訓橫幅 */
+    .deck-bottom-banner {
+      background: linear-gradient(90deg, rgba(218, 181, 87, 0.2) 0%, rgba(31, 89, 72, 0.38) 100%);
+      border: 1.5px solid rgba(218, 181, 87, 0.45);
+      border-radius: 8px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
       flex-shrink: 0;
-      font-size: 0.92rem;
-      color: #FFFDF6;
     }
-    .deck-motto-strip strong {
-      color: var(--chalk-gold);
+    .banner-badge {
+      background: rgba(218, 181, 87, 0.28);
+      color: #DAB557;
+      border: 1px solid rgba(218, 181, 87, 0.65);
       font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
     }
+    .banner-quote {
+      font-size: clamp(0.96rem, 1.1vw, 1.06rem);
+      color: #FFFDF6;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* 底部翻頁欄 */
     .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding-top: 10px;
       flex-shrink: 0;
     }
     .deck-nav-btn {
@@ -1168,7 +1228,7 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       padding: 8px 20px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 180ms ease;
@@ -1177,12 +1237,13 @@
       background: var(--ai-orange);
       color: #FFFFFF;
       border-color: var(--ai-orange);
+      transform: translateY(-2px);
     }
     .deck-shortcuts-hint {
       font-size: 0.85rem;
       color: #9DB4AC;
       display: flex;
-      gap: 12px;
+      gap: 14px;
       align-items: center;
     }
     .deck-shortcuts-hint kbd {
@@ -1194,27 +1255,28 @@
       font-family: monospace;
     }
 
-    /* Modal Chalkboard Highlight System */
-    .hl-gold   { color: #DAB557; font-weight: 800; }
-    .hl-cyan   { color: #58AFE2; font-weight: 800; }
-    .hl-green  { color: #52D1A1; font-weight: 800; }
-    .hl-rose   { color: #F87185; font-weight: 800; }
-    .hl-purple { color: #C084FC; font-weight: 800; }
+    /* 5 色發光粉筆標籤與文字系統 (高飽和、鮮明對比、吸睛) */
+    .hl-gold   { color: #DAB557; font-weight: 800; text-shadow: 0 0 12px rgba(218, 181, 87, 0.45); }
+    .hl-cyan   { color: #58AFE2; font-weight: 800; text-shadow: 0 0 12px rgba(88, 175, 226, 0.45); }
+    .hl-green  { color: #52D1A1; font-weight: 800; text-shadow: 0 0 12px rgba(82, 209, 161, 0.45); }
+    .hl-rose   { color: #F87171; font-weight: 800; text-shadow: 0 0 12px rgba(248, 113, 113, 0.45); }
+    .hl-purple { color: #C084FC; font-weight: 800; text-shadow: 0 0 12px rgba(192, 132, 252, 0.45); }
 
     .hl-badge {
       display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.82em;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.84em;
       font-weight: 800;
-      margin-right: 4px;
+      margin-right: 6px;
       vertical-align: middle;
+      letter-spacing: 0.3px;
     }
-    .hl-badge.gold   { background: rgba(218, 181, 87, 0.2); color: #DAB557; border: 1px solid rgba(218, 181, 87, 0.45); }
-    .hl-badge.cyan   { background: rgba(88, 175, 226, 0.2); color: #58AFE2; border: 1px solid rgba(88, 175, 226, 0.45); }
-    .hl-badge.green  { background: rgba(82, 209, 161, 0.2); color: #52D1A1; border: 1px solid rgba(82, 209, 161, 0.45); }
-    .hl-badge.rose   { background: rgba(248, 113, 133, 0.2); color: #F87185; border: 1px solid rgba(248, 113, 133, 0.45); }
-    .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.45); }
+    .hl-badge.gold   { background: rgba(218, 181, 87, 0.24); color: #DAB557; border: 1.5px solid rgba(218, 181, 87, 0.65); box-shadow: 0 0 10px rgba(218, 181, 87, 0.25); }
+    .hl-badge.cyan   { background: rgba(88, 175, 226, 0.24); color: #58AFE2; border: 1.5px solid rgba(88, 175, 226, 0.65); box-shadow: 0 0 10px rgba(88, 175, 226, 0.25); }
+    .hl-badge.green  { background: rgba(82, 209, 161, 0.24); color: #52D1A1; border: 1.5px solid rgba(82, 209, 161, 0.65); box-shadow: 0 0 10px rgba(82, 209, 161, 0.25); }
+    .hl-badge.rose   { background: rgba(248, 113, 113, 0.24); color: #F87171; border: 1.5px solid rgba(248, 113, 113, 0.65); box-shadow: 0 0 10px rgba(248, 113, 113, 0.25); }
+    .hl-badge.purple { background: rgba(192, 132, 252, 0.24); color: #C084FC; border: 1.5px solid rgba(192, 132, 252, 0.65); box-shadow: 0 0 10px rgba(192, 132, 252, 0.25); }
 
     /* ------------------------------------------------------
        12. HELP MODAL
@@ -2155,7 +2217,7 @@ output/04-reused/</pre>
       renderSlide();
     }
 
-    function renderSlide() {
+        function renderSlide() {
       const slide = slidesData[currentSlide];
       document.getElementById('deck-category-label').innerText = slide.category;
       document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
@@ -2168,7 +2230,7 @@ output/04-reused/</pre>
       `;
 
       if (slide.svg) {
-        html += `<div style="text-align:center; margin:12px 0;"><img src="${slide.svg}" style="max-height:220px; max-width:100%; border-radius:10px; border:1px solid rgba(52,211,153,0.3); background:rgba(0,0,0,0.4); padding:6px;"></div>`;
+        html += `<div style="text-align:center; margin:10px 0;"><img src="${slide.svg}" style="max-height:200px; max-width:100%; border-radius:10px; border:1.5px solid rgba(82,209,161,0.4); background:rgba(0,0,0,0.35); padding:6px;"></div>`;
       }
 
       if (slide.points && slide.points.length > 0) {
@@ -2185,34 +2247,33 @@ output/04-reused/</pre>
           <div class="deck-card-team">
             <div class="card-side-header">
               <span class="card-side-icon">🏛️</span>
-              <span class="card-side-title">百年團隊 ｜ 傳承共構</span>
+              <span class="card-side-title">「百年團隊」傳承心法</span>
             </div>
             <div class="card-side-body">
-              ${slide.teamNote || "科組智慧資產累積，跨世代備課共構；青年教師掌握工具，資深教師把關算理，新人入職站在巨人肩膀上。"}
+              ${slide.teamNote || "跨世代科組共構、數位資產累積；新人無縫接軌、代代相傳的智慧庫。"}
             </div>
           </div>
 
           <div class="deck-card-detail">
             <div class="card-side-header">
               <span class="card-side-icon">🔬</span>
-              <span class="card-side-title">細節當主菜 ｜ 微觀把關</span>
+              <span class="card-side-title">「細節當主菜」微觀把關</span>
             </div>
             <div class="card-side-body">
-              ${slide.detailNote || "細節不是配菜，細節是課堂靈魂！算理邊界、表徵精確、作答留白、繁體術語零妥協，精雕細琢見真章。"}
+              ${slide.detailNote || "算理分母≤20、圖形比例零誤差；學生書寫留白、澳門繁體術語不妥協。"}
             </div>
           </div>
         </div>
       </div>
 
       <div class="deck-bottom-banner">
-        <span class="banner-badge">聖五校訓</span>
-        <span class="banner-quote">毅誠勤樸 ｜ 以細節為席，鑄百年之師；把教學主控權牢牢握在教師手中。</span>
+        <span class="banner-badge">🌟 聖五校訓橫幅</span>
+        <span class="banner-quote">【聖五校訓・毅誠勤樸】以細節為席，鑄百年之師；把教學主控權牢牢握在教師手中。</span>
       </div>
       `;
 
       document.getElementById('deck-slide-box').innerHTML = html;
     }
-
             function handleCardClick(e, index) {
       if (e.target.closest('a') || e.target.closest('button')) return;
       openDeck(index);
