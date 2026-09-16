@@ -1493,7 +1493,7 @@
       </div>
 
       <p class="hero-p">
-        這不是一般的 AI 概念演講，而是專為一線小學數學教師打造的 OpenCode / AI Agent 落地工作坊。<br>
+        這不是一般的 AI 概念演講，而是專為一線小學數學教師打造的 OpenCode / AI Agent 實作工作坊。<br>
         從一份真實校本教材出發，在專案規則中完成備課、分層、同步修訂與再次重用，成果最終一鍵發布至 GitHub！
       </p>
 
@@ -1514,7 +1514,7 @@
         <div class="pillar-card" onclick="openDeck(3)" title="點擊放大至黑板翻頁">
           <span class="card-zoom-badge">放大授課 ↗</span>
           <div class="pillar-num">4 次循環</div>
-          <div class="pillar-title">🔄 Agent 工作閉環</div>
+          <div class="pillar-title">🔄 AI 備課工作循環</div>
           <p class="pillar-desc">完整體驗「第一次備課 → 分層設計 → 同步修訂 → 再次重用」四階段。</p>
         </div>
         <div class="pillar-card" onclick="openDeck(4)" title="點擊放大至黑板翻頁">
@@ -1528,7 +1528,7 @@
       <div class="hero-actions">
         <button class="btn" onclick="openDeck(0)">🖥️ 開啟黑板全螢幕翻頁</button>
         <a href="workshop-flow.html" class="btn btn-secondary">👉 進入 120 分鐘實操流程</a>
-        <a href="prompts.html" class="btn btn-secondary">📋 複製 8 階段精準 Prompt</a>
+        <a href="prompts.html" class="btn btn-secondary">📋 複製 8 階段備課指令 (Prompt)</a>
         <a href="#github-deploy" class="btn btn-blue">🚀 最後部署到 GITHUB</a>
       </div>
     </div>
@@ -1552,12 +1552,12 @@
           <span class="card-zoom-badge">放大授課 ↗</span>
           <span class="card-badge hi">架構支柱 2</span>
           <h3>📄 1 個真實教材（守住數學事實）</h3>
-          <p>小學數學容不得算理模糊。專案嚴格以 <code>materials/</code> 內的示範教材（如 P5 分數加減法）為依據，嚴禁 Agent 任意超綱出題，確保概念準確無誤。</p>
+          <p>小學數學容不得算理模糊。專案嚴格以 <code>materials/</code> 內的示範教材（如 P5 分數加減法）為依據，嚴禁 AI 任意超綱出題，確保概念準確無誤。</p>
         </div>
         <div class="card clickable-card" onclick="openDeck(7)">
           <span class="card-zoom-badge">放大授課 ↗</span>
           <span class="card-badge" style="background:var(--blue); color:#000;">架構支柱 3</span>
-          <h3>🔄 4 次 Agent 工作循環</h3>
+          <h3>🔄 4 次 AI 備課工作循環</h3>
           <p>從單純生成進階到專案控制：第 1 次掌握規格確認；第 2 次學會階梯式分層；第 3 次掌握連鎖同步修訂；第 4 次驗證跨課題重用價值。</p>
         </div>
         <div class="card clickable-card" onclick="openDeck(8)">
@@ -1580,7 +1580,7 @@
           <span class="card-zoom-badge">放大授課 ↗</span>
           <span class="card-badge key">成果 1｜第 60 分鐘</span>
           <h3>第一次備課成果</h3>
-          <p>Agent 閱讀 <code>materials/</code> 內的示範教材，向教師確認 6 個需求後產出的第一版課堂學習單。</p>
+          <p>AI 助手閱讀 <code>materials/</code> 內的示範教材，向教師確認 6 個需求後產出的第一版課堂學習單。</p>
           <ul>
             <li>概念緊扣課本，無超綱算式</li>
             <li>題目依認知階梯合理排序</li>
@@ -1608,7 +1608,7 @@
           <span class="card-zoom-badge">放大授課 ↗</span>
           <span class="card-badge key">成果 3｜第 95 分鐘</span>
           <h3>同步修訂成果與報告</h3>
-          <p>模擬真實備課情境的條件變更（如課堂縮減為 30 分鐘），由 Agent 聯動同步更新所有關聯檔案。</p>
+          <p>模擬真實備課情境的條件變更（如課堂縮減為 30 分鐘），由 AI 助手聯動同步更新所有關聯檔案。</p>
           <ul>
             <li>一次改動，多個相關檔案一致更新</li>
             <li>自動產出 <code>change-summary.md</code> 差異清單</li>
@@ -1636,7 +1636,7 @@
       <div class="out clickable-card" onclick="openDeck(14)" style="margin-top: 18px; cursor:pointer;" title="點擊放大黑板展示">
         <span class="card-zoom-badge" style="top:12px; right:14px;">放大授課 ↗</span>
         <strong>🚪 下一場培訓入口（第 117–120 分鐘）：</strong><br>
-        每位老師在離場前記錄一個真實的課堂痛點至 <code>notes/next-workshop-problem.md</code>。這不是虛構的練習，而是你帶給下一期進階培訓的真實專案起點！
+        每位老師在離場前記錄一個真實的課堂難點至 <code>notes/next-workshop-problem.md</code>。這不是虛構的練習，而是你帶給下一期進階培訓的真實專案起點！
       </div>
 
       <!-- 第一張圖片適當放大 (Prominent Map with Fullscreen Trigger) -->
@@ -1973,7 +1973,7 @@ git push -u origin main</div>
       {
         category: "核心支柱 1",
         title: "⏱️ 2 小時 <span class='hl-gold'>精準實操節奏</span>",
-        desc: "120 分鐘精準劃分，拒絕冗長的泛理論宣講：",
+        desc: "120 分鐘精準劃分，拒絕冗長的空洞理論宣講：",
         points: [
           "<span class='hl-badge cyan'>前 60 分鐘</span>看見終點 → 啟動專案 → 讀懂規則 → 教材分析 → 需求訪談 → <span class='hl-gold'>產出第 1 版成果</span>。",
           "<span class='hl-badge gold'>第 60 分鐘合格線</span>每位老師專案中必產出一份真實可用的<span class='hl-green'>課堂材料</span>與<span class='hl-green'>教師解答</span>。",
@@ -1988,7 +1988,7 @@ git push -u origin main</div>
         desc: "小學數學容不得算理模糊與超綱：",
         points: [
           "<span class='hl-badge cyan'>唯一依託</span>以校本真實示範教材 <code>materials/P5-分數加減法.pdf</code> 為唯一材料依託。",
-          "<span class='hl-badge rose'>嚴格邊界約束</span><span class='hl-rose'>嚴禁 Agent 任意超綱出題</span>（如分母控制在 20 以內，不涉及三項混算）。",
+          "<span class='hl-badge rose'>嚴格邊界約束</span><span class='hl-rose'>嚴禁 AI 任意超綱出題</span>（如分母控制在 20 以內，不涉及三項混算）。",
           "<span class='hl-badge green'>尊重教材表徵</span>保留教材原有<span class='hl-green'>通分面積圖、數線圖</span>，不隨意替換為生僻解法。"
         ],
         teamNote: "<strong>【校本權威的延續】</strong>學校幾十年累積的教學大綱與校本教材，是百年團隊的定海神針。不被隨機生成的題目帶偏，守住聖五數學的嚴謹學風。",
@@ -1996,16 +1996,16 @@ git push -u origin main</div>
       },
       {
         category: "核心支柱 3",
-        title: "🔄 4 次循環 <span class='hl-purple'>Agent 工作閉環</span>",
-        desc: "從「生成一次文字」躍升到「專案級工作流控制」：",
+        title: "🔄 4 次循環 <span class='hl-purple'>AI 備課工作循環</span>",
+        desc: "從「生成一次文字」躍升到「專案級備課流程掌控」：",
         points: [
           "<span class='hl-badge gold'>第 1 次循環（第一次備課）</span>向老師提出 <span class='hl-gold'>6 個問題確認規格</span>，寫入 <code>task-spec.md</code> 後才生成。",
           "<span class='hl-badge purple'>第 2 次循環（做一次分層）</span>不換課題，建立 <span class='hl-purple'>A支援版 / B基準版 / C挑戰版</span> 實質支架。",
           "<span class='hl-badge cyan'>第 3 次循環（同步修訂）</span>教學時間改變時，Agent <span class='hl-cyan'>跨檔案同步修改</span>並出具差異報告。",
           "<span class='hl-badge green'>第 4 次循環（再次重用）</span>換入全新課題，<span class='hl-green'>保留專案規則</span>，體驗資產複用價值。"
         ],
-        teamNote: "<strong>【備課閉環的科組共享】</strong>不是單純的單次提問，而是 4 次循環工作流。一旦在科組建立起來，每學期每單元都能標準化複製運轉。",
-        detailNote: "<strong>【四步閉環步步留痕】</strong>訪談規格書、第一版草稿、三階分層包、同步修訂報告。每一環節產出檔案分門別類，井然有序。"
+        teamNote: "<strong>【備課循環的科組共享】</strong>不是單純的單次提問，而是 4 次循環備課流程。一旦在科組建立起來，每學期每單元都能標準化複製運轉。",
+        detailNote: "<strong>【四步循環步步留痕】</strong>訪談規格書、第一版草稿、三階分層包、同步修訂報告。每一環節產出檔案分門別類，井然有序。"
       },
       {
         category: "核心支柱 4",
@@ -2014,7 +2014,7 @@ git push -u origin main</div>
         points: [
           "<span class='hl-badge gold'>專案化思維</span>不是用完即丟的聊天視窗，而是<span class='hl-gold'>結構化的專案資料夾</span>。</span>",
           "<span class='hl-badge cyan'>專案憲法</span>以 <code>AGENTS.md</code> 作為長期憲法，每次執行自動遵守學校語言與安全規範。",
-          "<span class='hl-badge green'>秒級複用</span>下週備新課題時，直接換入新單元 PDF，<span class='hl-green'>秒級複用成熟工作流，越備越快！</span>"
+          "<span class='hl-badge green'>秒級複用</span>下週備新課題時，直接換入新單元 PDF，<span class='hl-green'>秒級複用成熟備課流程，越備越快！</span>"
         ],
         teamNote: "<strong>【校本數位資產庫】</strong>每個 OpenCode 專案不是用完即丟的快餐，而是科組共享的長效資產。新教師入職，打開專案即可繼承前人備課結晶。",
         detailNote: "<strong>【憲法級規則鎖定】</strong><code>AGENTS.md</code> 明確規定澳門繁體、禁止外傳學生個資、保護材料唯讀。以極致細節築起資產安全與專業壁壘。"
@@ -2074,7 +2074,7 @@ git push -u origin main</div>
       {
         category: "全覽圖表放大",
         title: "🌟 2 小時學習迴圈 <span class='hl-gold'>全覽地圖</span>",
-        desc: "點擊下方大圖或查看流程閉環：",
+        desc: "點擊下方大圖或查看完整備課流程：",
         svg: "images/00-workshop-map.svg",
         points: [
           "<span class='hl-badge cyan'>1. 教材與規則 (00-30分)</span> → <span class='hl-badge purple'>2. 教師確認需求 (30-50分)</span>",
@@ -2092,9 +2092,9 @@ git push -u origin main</div>
         points: [
           "<span class='hl-badge cyan'>學生練習紙</span>具備算理梯度的 8–10 題核心練習題。",
           "<span class='hl-badge green'>教師詳細答案版</span>含每題<span class='hl-green'>通分步驟、常見易錯點分析與評分標準</span>。",
-          "<span class='hl-badge gold'>規格對齊</span>完全遵守 <code>task-spec.md</code> 設定，格式整潔可用。"
+          "<span class='hl-badge gold'>符合教學規格</span>完全遵守 <code>task-spec.md</code> 設定，格式整潔可用。"
         ],
-        teamNote: "<strong>【第一份可交付遺產】</strong>第 60 分鐘產出的學生紙與教師答案版，標誌著團隊邁入 AI 賦能備課新紀元。",
+        teamNote: "<strong>【第一份可交付遺產】</strong>第 60 分鐘產出的學生紙與教師答案版，標誌著團隊邁入 AI 輔助備課新階段。",
         detailNote: "<strong>【答案步驟詳盡透徹】</strong>教師版包含通分公倍數找法、學生典型錯因點評，代課老師拿起來就能直接進班上課。"
       },
       {
@@ -2115,7 +2115,7 @@ git push -u origin main</div>
         title: "🔄 同步修訂：<span class='hl-cyan'>條件變更與聯動報告</span>",
         desc: "跨檔案連鎖一致性保障：",
         points: [
-          "<span class='hl-badge cyan'>多檔同步</span>學生練習紙與教師答案版題號、題目完全對齊。",
+          "<span class='hl-badge cyan'>多檔同步</span>學生練習紙與教師答案版題號、題目完全一致。",
           "<span class='hl-badge gold'>差異報告</span>產出 <code>change-summary.md</code> 清晰說明修訂背景與修改點。",
           "<span class='hl-badge rose'>歷史保護</span>保留 <code>01-first-version</code> 原版，不直接粗暴覆蓋。"
         ],
@@ -2137,7 +2137,7 @@ git push -u origin main</div>
       {
         category: "課堂提示詞庫",
         title: "💡 提示詞庫全覽：<span class='hl-cyan'>8 階段任務卡</span>",
-        desc: "現場一鍵複製、即插即用的結構化 Prompt 集合：",
+        desc: "現場一鍵複製、即開即用的備課指引與指令庫：",
         points: [
           "<span class='hl-badge cyan'>Prompt 1–3</span>讀懂規則、教材分析、需求訪談。",
           "<span class='hl-badge gold'>Prompt 4–5</span>第一次備課（成果1）、三階分層（成果2）。",
@@ -2145,7 +2145,7 @@ git push -u origin main</div>
           "<span class='hl-badge green'>Prompt 8</span>帶走一個真實課堂難題，銜接下一場培訓。"
         ],
         teamNote: "<strong>【科組共享提示詞庫】</strong>將 8 階段提示詞固化為標準操作卡，避免個別教師因 Prompt 寫不好而卡關，共享最優解。",
-        detailNote: "<strong>【限制詞即是護城河】</strong>每個 Prompt 都包含明確的「應該做」與「嚴禁做」，用精細約束杜絕模型幻覺與超綱。"
+        detailNote: "<strong>【限制詞即是護城河】</strong>每個 Prompt 都包含明確的「應該做」與「嚴禁做」，用精細約束杜絕 AI 憑空捏造與超綱出題。"
       },
       {
         category: "現場排查與技術保障",
@@ -2173,7 +2173,7 @@ git push -u origin main</div>
         detailNote: "<strong>【九大維度無一放過】</strong>算理嚴謹、字型繁體、排版留白、分母範圍、答案解析，每一處細節都是教學良心。"
       },
       {
-        category: "結業與持續賦能",
+        category: "結業與教學應用",
         title: "🎓 結業與 <span class='hl-gold'>下一場進階入口</span>",
         desc: "帶著沉甸甸的專案成果，開啟自主校本實踐：",
         points: [
@@ -2181,8 +2181,8 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>1 份進階憑證</span>記錄於 <code>notes/next-workshop-problem.md</code>。",
           "<span class='hl-badge green'>科組共享</span>專案範本可直接打包分享給科組全體同仁！"
         ],
-        teamNote: "<strong>【從培訓會場走向百年講台】</strong>今天產出的不是練習題，而是聖五科組數位化教研的種子。期待大家在各年級落地生根！",
-        detailNote: "<strong>【真實痛點封存入庫】</strong>帶著 4 份專案成果與 1 份個人離場痛點檔案，讓下一次科組教研更有方向感與力量感。"
+        teamNote: "<strong>【從培訓會場走向百年講台】</strong>今天產出的不是練習題，而是聖五科組數位化教研的種子。期待大家在各年級課堂扎根實踐！",
+        detailNote: "<strong>【教學難題記錄入庫】</strong>帶著 4 份專案成果與 1 份個人教學難點記錄檔案，讓下一次科組教研更有方向感與力量感。"
       }
     ];
 
