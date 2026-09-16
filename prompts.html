@@ -7,20 +7,42 @@
   <meta name="description" content="120 分鐘數學教師實操工作坊專用 Prompt 庫。包含 8 大核心階段提示詞、使用時機、約束條件、預期檔案產出與一鍵複製功能。">
   <style>
     :root {
-      --bg: #050505;
-      --bg2: #0B0B0B;
-      --surface: #1E1E1E;
-      --surface-hover: #262626;
-      --line: #2E2E2E;
-      --line-light: #404040;
-      --text: #F5F7FA;
-      --muted: #9AA0A6;
-      --key: #FF6A00;
-      --hi: #FFD400;
-      --success: #34D399;
-      --danger: #F87171;
-      --blue: #38BDF8;
-    }
+      --bg: #F7F4EC;
+      --surface: #FFFDF8;
+      --card: #FFFFFF;
+
+      --text-primary: #182436;
+      --text-secondary: #59636E;
+
+      --school-green: #1F5948;
+      --school-navy: #172437;
+
+      --ai-orange: #F26A21;
+      --heritage-gold: #C69A3B;
+      --tech-blue: #2787C8;
+
+      --border: #E7E0D5;
+      --soft-green: #EEF5F1;
+      --soft-orange: #FFF2E8;
+      --soft-gold: #FFF8E5;
+
+      --shadow:
+        0 8px 30px rgba(24, 36, 54, 0.07);
+
+      /* 相容映射 (Compatibility Aliases) */
+      --text: var(--text-primary);
+      --muted: var(--text-secondary);
+      --line: var(--border);
+      --line-light: var(--border);
+      --key: var(--ai-orange);
+      --hi: var(--heritage-gold);
+      --blue: var(--tech-blue);
+      --success: var(--school-green);
+      --danger: #DC2626;
+      --bg2: var(--surface);
+      --surface-hover: var(--soft-green);
+      --chalk-bg: #0F1612;
+     }
 
     * { box-sizing: border-box; }
     body {
