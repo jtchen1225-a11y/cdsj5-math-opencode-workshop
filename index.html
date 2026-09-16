@@ -9,10 +9,10 @@
     :root {
       --bg: #050505;
       --bg2: #0B0B0B;
-      --surface: #1E1E1E;
+      --surface: #1C1C1C;
       --surface-hover: #262626;
       --line: #2E2E2E;
-      --line-light: #404040;
+      --line-light: #444444;
       --text: #F5F7FA;
       --muted: #9AA0A6;
       --key: #FF6A00;
@@ -20,7 +20,7 @@
       --success: #34D399;
       --danger: #F87171;
       --blue: #38BDF8;
-      --purple: #C084FC;
+      --chalk-bg: #080C09;
     }
 
     * { box-sizing: border-box; }
@@ -32,10 +32,11 @@
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     .wrap {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -47,7 +48,7 @@
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 500;
     }
     .nav-container {
       display: flex;
@@ -105,7 +106,7 @@
     .hero {
       padding: 44px 0 36px;
       border-bottom: 1px solid var(--line);
-      background: radial-gradient(circle at top right, rgba(255, 106, 0, 0.08) 0%, transparent 60%);
+      background: radial-gradient(circle at top right, rgba(255, 106, 0, 0.09) 0%, transparent 65%);
     }
     .hero-meta {
       display: flex;
@@ -138,7 +139,7 @@
       border-color: rgba(255, 212, 0, 0.3);
     }
     .hero h1 {
-      font-size: 2.3rem;
+      font-size: 2.35rem;
       line-height: 1.25;
       margin: 0 0 14px 0;
       font-weight: 800;
@@ -165,6 +166,7 @@
       border-radius: 8px;
       padding: 14px 18px;
       margin: 20px 0 26px;
+      position: relative;
     }
     .motto-icon {
       font-size: 1.8rem;
@@ -187,7 +189,7 @@
     /* 4 Pillars Grid */
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
       gap: 14px;
       margin: 24px 0 12px;
     }
@@ -196,14 +198,15 @@
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 18px 16px;
-      transition: all 0.2s;
+      transition: all 0.22s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
     .pillar-card:hover {
       border-color: var(--key);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 18px rgba(255, 106, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 106, 0, 0.2);
     }
     .pillar-card::before {
       content: "";
@@ -211,7 +214,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 3.5px;
       background: var(--key);
     }
     .pillar-card:nth-child(2)::before { background: var(--hi); }
@@ -236,7 +239,7 @@
       margin-bottom: 6px;
     }
     .pillar-desc {
-      font-size: 0.83rem;
+      font-size: 0.84rem;
       color: var(--muted);
       line-height: 1.45;
       margin: 0;
@@ -269,7 +272,7 @@
       font-size: 0.96rem;
     }
 
-    /* Grid & Cards */
+    /* Grid & Clickable Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -281,12 +284,38 @@
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 20px;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
     }
-    .card:hover {
-      border-color: var(--line-light);
-      transform: translateY(-2px);
+    .card.clickable-card {
+      cursor: pointer;
     }
+    .card.clickable-card:hover {
+      border-color: var(--key);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 22px rgba(255, 106, 0, 0.16);
+    }
+    .card-zoom-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.74rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      transition: all 0.2s;
+    }
+    .card.clickable-card:hover .card-zoom-badge,
+    .pillar-card:hover .card-zoom-badge {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+      font-weight: 700;
+    }
+
     .card-badge {
       display: inline-block;
       font-size: 0.75rem;
@@ -407,7 +436,68 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) td { background: #0E0E0E; }
 
-    /* GitHub Section Special Box */
+    /* Diagram Boxes (Enlarged & Clickable) */
+    .diagram-box {
+      background: #0E0E0E;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      text-align: center;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .diagram-box.prominent-map {
+      background: radial-gradient(circle at center, #161A16 0%, #0A0D0A 100%);
+      border: 1.5px solid rgba(255, 106, 0, 0.45);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 106, 0, 0.1);
+      padding: 24px 18px;
+    }
+    .diagram-box.clickable-card {
+      cursor: pointer;
+    }
+    .diagram-box.clickable-card:hover {
+      border-color: var(--hi);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 212, 0, 0.2);
+    }
+    .diagram-box img, .diagram-box svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    .diagram-caption {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .diagram-zoom-pill {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid var(--key);
+      color: var(--key);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .diagram-box:hover .diagram-zoom-pill {
+      background: var(--key);
+      color: #000;
+    }
+
+    /* GitHub Section */
     .github-box {
       background: linear-gradient(135deg, #13161C 0%, #0E1015 100%);
       border: 1px solid rgba(56, 189, 248, 0.4);
@@ -476,6 +566,7 @@
       font-size: 0.92rem;
       transition: all 0.2s;
       border: none;
+      cursor: pointer;
     }
     .btn:hover {
       background: #FFA040;
@@ -498,32 +589,334 @@
       background: #0369A1;
     }
 
-    /* Diagrams */
-    .diagram-box {
-      background: #0E0E0E;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 24px 0;
-      text-align: center;
+    /* ==========================================================
+       CLASSROOM TEACHING TOOLBAR (課堂授課教具列)
+       ========================================================== */
+    .classroom-toolbar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(18, 22, 28, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255, 106, 0, 0.45);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 106, 0, 0.2);
+      border-radius: 40px;
+      padding: 6px 12px;
+      transition: all 0.25s ease;
     }
-    .diagram-box img, .diagram-box svg {
-      max-width: 100%;
-      height: auto;
+    .classroom-toolbar:hover {
+      border-color: var(--key);
+      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.85), 0 0 28px rgba(255, 106, 0, 0.3);
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: #E2E8F0;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .tool-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFF;
+    }
+    .tool-btn.active {
+      background: var(--key);
+      color: #000;
+    }
+    .tool-icon {
+      font-size: 1.1rem;
+      display: inline-block;
+    }
+    .tool-text {
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+    }
+    .toolbar-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.18);
+      margin: 0 2px;
+    }
+
+    /* Laser Pointer */
+    #laser-dot {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FF2222 0%, #FF0000 65%, rgba(255, 0, 0, 0) 100%);
+      box-shadow: 0 0 14px 4px #FF2222, 0 0 26px 8px rgba(255, 50, 50, 0.6);
+      pointer-events: none;
+      z-index: 99999;
+      display: none;
+      transform: translate(-50%, -50%);
+    }
+    body.laser-active, body.laser-active * {
+      cursor: crosshair !important;
+    }
+
+    /* Screen Drawing Canvas */
+    #chalk-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9990;
+      pointer-events: none;
+      display: none;
+    }
+    #chalk-canvas.drawing-active {
+      pointer-events: auto;
+      cursor: crosshair;
       display: block;
-      margin: 0 auto;
     }
-    .diagram-caption {
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-top: 10px;
+    .pen-palette {
+      position: fixed;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1A1E24;
+      border: 1px solid #38BDF8;
+      border-radius: 30px;
+      padding: 6px 14px;
+      display: none;
+      gap: 12px;
+      align-items: center;
+      z-index: 9995;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
     }
+    .pen-palette.show {
+      display: flex;
+    }
+    .pen-color-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .pen-color-dot:hover, .pen-color-dot.active {
+      transform: scale(1.3);
+      border-color: #FFF;
+    }
+
+    /* ==========================================================
+       BLACKBOARD FULLSCREEN DECK MODAL (黑板全螢幕翻頁系統)
+       ========================================================== */
+    #deck-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0F1612 0%, #060907 100%);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      color: #F5F7FA;
+      padding: 24px 36px;
+      user-select: none;
+    }
+    #deck-modal.active {
+      display: flex;
+    }
+    .deck-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 14px;
+      flex-shrink: 0;
+    }
+    .deck-title-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .deck-badge {
+      background: var(--key);
+      color: #000;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+    }
+    .deck-category-label {
+      color: var(--hi);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .deck-counter {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #38BDF8;
+      font-family: Consolas, monospace;
+    }
+    .deck-icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-icon-btn:hover {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+    }
+
+    /* Deck Slide Content Container */
+    .deck-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+    .deck-slide-box {
+      max-width: 960px;
+      width: 100%;
+      background: rgba(20, 26, 22, 0.75);
+      border: 2px solid rgba(52, 211, 153, 0.35);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 36px 42px;
+      animation: fadeInSlide 0.2s ease-out;
+    }
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .deck-slide-h2 {
+      font-size: 2.1rem;
+      color: #FFF;
+      margin: 0 0 16px 0;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+    .deck-slide-h2 .highlight {
+      color: var(--hi);
+    }
+    .deck-slide-desc {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: #E2E8F0;
+      margin: 0 0 20px 0;
+    }
+    .deck-slide-list {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #D1D5DB;
+      padding-left: 28px;
+      margin: 0;
+    }
+    .deck-slide-list li {
+      margin-bottom: 10px;
+    }
+
+    /* Deck Footer Navigation */
+    .deck-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+      flex-shrink: 0;
+    }
+    .deck-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-nav-btn:hover {
+      background: var(--key);
+      color: #000;
+      border-color: var(--key);
+    }
+    .deck-shortcuts-hint {
+      font-size: 0.85rem;
+      color: #88929A;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .deck-shortcuts-hint kbd {
+      background: #1C2024;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #3E4650;
+      color: #FFF;
+      font-family: monospace;
+    }
+
+    /* Help Modal */
+    #help-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #16181D;
+      border: 2px solid var(--key);
+      border-radius: 12px;
+      padding: 24px 30px;
+      z-index: 10005;
+      display: none;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.85);
+      max-width: 440px;
+      width: 90%;
+    }
+    #help-modal.show { display: block; }
+    #help-modal h3 { margin: 0 0 12px 0; color: var(--hi); }
+    #help-modal table { width: 100%; border-collapse: collapse; }
+    #help-modal td { padding: 6px 0; border: none; font-size: 0.9rem; }
+    #help-modal kbd { background: #262B34; padding: 2px 6px; border-radius: 4px; border: 1px solid #485264; color: #FFF; font-family: monospace; }
 
     /* Footer */
     footer.site-footer {
       border-top: 1px solid var(--line);
       padding: 36px 0;
       margin-top: 48px;
+      margin-bottom: 70px;
       background: #080808;
       color: var(--muted);
       font-size: 0.88rem;
@@ -536,6 +929,14 @@
       .pillars-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { gap: 4px; }
       .nav-links a { padding: 4px 6px; font-size: 0.8rem; }
+      .classroom-toolbar { padding: 4px 8px; bottom: 12px; }
+      .tool-text { display: none; }
+      .tool-btn { padding: 6px 8px; }
+      .deck-slide-box { padding: 20px 18px; }
+      .deck-slide-h2 { font-size: 1.5rem; }
+      .deck-slide-desc { font-size: 1.05rem; }
+      .deck-slide-list { font-size: 0.98rem; }
+      .deck-shortcuts-hint { display: none; }
     }
     @media (max-width: 480px) {
       .pillars-grid { grid-template-columns: 1fr; }
@@ -543,6 +944,73 @@
   </style>
 </head>
 <body>
+
+  <!-- Laser Pointer Dot -->
+  <div id="laser-dot"></div>
+
+  <!-- Screen Drawing Canvas -->
+  <canvas id="chalk-canvas"></canvas>
+
+  <!-- Pen Palette -->
+  <div id="pen-palette" class="pen-palette">
+    <span style="font-size:0.8rem; color:#94A3B8; font-weight:bold;">畫筆顏色：</span>
+    <div class="pen-color-dot active" style="background:#FFD400;" onclick="setPenColor('#FFD400', this)" title="黃色標記"></div>
+    <div class="pen-color-dot" style="background:#FF3B30;" onclick="setPenColor('#FF3B30', this)" title="紅色圈記"></div>
+    <div class="pen-color-dot" style="background:#38BDF8;" onclick="setPenColor('#38BDF8', this)" title="藍色指示"></div>
+    <div class="pen-color-dot" style="background:#34D399;" onclick="setPenColor('#34D399', this)" title="綠色確認"></div>
+    <button onclick="clearCanvas()" style="background:#262C36; color:#FFF; border:1px solid #485468; border-radius:12px; padding:3px 10px; font-size:0.75rem; cursor:pointer;">清空畫布</button>
+  </div>
+
+  <!-- Blackboard Fullscreen Deck Modal (黑板全螢幕翻頁系統) -->
+  <div id="deck-modal">
+    <!-- Deck Top Bar -->
+    <div class="deck-header">
+      <div class="deck-title-area">
+        <span class="deck-badge">CDSJ5 黑板授課模式</span>
+        <span id="deck-category-label" class="deck-category-label">核心架構</span>
+      </div>
+      <div class="deck-controls-top">
+        <span id="deck-counter" class="deck-counter">[ 1 / 18 ]</span>
+        <button class="deck-icon-btn" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">⛶</button>
+        <button class="deck-icon-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖</button>
+      </div>
+    </div>
+
+    <!-- Deck Main Content -->
+    <div class="deck-body">
+      <div id="deck-slide-box" class="deck-slide-box">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Deck Bottom Bar -->
+    <div class="deck-footer">
+      <button class="deck-nav-btn" onclick="prevSlide()">◀ 上一張 (←)</button>
+      <div class="deck-shortcuts-hint">
+        <span>翻頁：<kbd>←</kbd> <kbd>→</kbd> 或 <kbd>Space</kbd></span>
+        <span>全螢幕：<kbd>F</kbd></span>
+        <span>關閉：<kbd>Esc</kbd></span>
+      </div>
+      <button class="deck-nav-btn" onclick="nextSlide()">下一張 (→) ▶</button>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="help-modal">
+    <h3>⌨️ 課堂授課快捷鍵指南</h3>
+    <table>
+      <tr><td><kbd>B</kbd> / <kbd>Space</kbd></td><td>開啟 / 關閉黑板全螢幕翻頁</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>上一張 / 下一張卡片翻頁</td></tr>
+      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>L</kbd></td><td>開啟 / 關閉課堂雷射筆</td></tr>
+      <tr><td><kbd>P</kbd></td><td>開啟 / 關閉螢幕塗鴉畫筆</td></tr>
+      <tr><td><kbd>C</kbd></td><td>清除螢幕所有塗鴉筆跡</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>退出放大模式 / 退出畫筆</td></tr>
+    </table>
+    <div style="text-align:right; margin-top:16px;">
+      <button class="btn" style="padding:6px 14px; font-size:0.85rem;" onclick="toggleHelp()">我知道了</button>
+    </div>
+  </div>
 
   <!-- Sticky Header -->
   <header class="site-header">
@@ -574,8 +1042,9 @@
 
       <h1>小學數學 × OpenCode<br><span class="key-text">---AI Agent 實作工作坊</span></h1>
       
-      <!-- Slogan Banner -->
-      <div class="motto-banner">
+      <!-- Slogan Banner (Clickable to enlarge) -->
+      <div class="motto-banner clickable-card" onclick="openDeck(0)" title="點擊放大至黑板展示">
+        <span class="card-zoom-badge">🔍 黑板放大</span>
         <span class="motto-icon">🌟</span>
         <div class="motto-text">
           <strong>AI 時代守本心，毅誠勤樸篤前行</strong>
@@ -588,24 +1057,28 @@
         從一份真實校本教材出發，在專案規則中完成備課、分層、同步修訂與再次重用，成果最終一鍵發布至 GitHub！
       </p>
 
-      <!-- 4 Core Pillars of Workshop -->
+      <!-- 4 Core Pillars of Workshop (Clickable to enlarge) -->
       <div class="pillars-grid" id="pillars">
-        <div class="pillar-card">
+        <div class="pillar-card" onclick="openDeck(1)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">🔍 黑板放大</span>
           <div class="pillar-num">2 小時</div>
           <div class="pillar-title">⏱️ 精準實操節奏</div>
           <p class="pillar-desc">精確 120 分鐘動線，第 60 分鐘必達首份備課成果，不拖泥帶水。</p>
         </div>
-        <div class="pillar-card">
+        <div class="pillar-card" onclick="openDeck(2)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">🔍 黑板放大</span>
           <div class="pillar-num">1 個教材</div>
           <div class="pillar-title">📄 真實校本材料</div>
           <p class="pillar-desc">以真實數學教材 PDF 為唯一根據，恪守知識點邊界，拒絕憑空捏造。</p>
         </div>
-        <div class="pillar-card">
+        <div class="pillar-card" onclick="openDeck(3)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">🔍 黑板放大</span>
           <div class="pillar-num">4 次循環</div>
           <div class="pillar-title">🔄 Agent 工作閉環</div>
           <p class="pillar-desc">完整體驗「第一次備課 → 分層設計 → 同步修訂 → 再次重用」四階段。</p>
         </div>
-        <div class="pillar-card">
+        <div class="pillar-card" onclick="openDeck(4)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">🔍 黑板放大</span>
           <div class="pillar-num">1 個專案</div>
           <div class="pillar-title">📦 長期校本資產</div>
           <p class="pillar-desc">建立具備 AGENTS.md 規範的永久專案架構，隨時換課題複用。</p>
@@ -613,7 +1086,8 @@
       </div>
 
       <div class="hero-actions">
-        <a href="workshop-flow.html" class="btn">👉 進入 120 分鐘實操流程</a>
+        <button class="btn" onclick="openDeck(0)">🖥️ 開啟黑板全螢幕翻頁</button>
+        <a href="workshop-flow.html" class="btn btn-secondary">👉 進入 120 分鐘實操流程</a>
         <a href="prompts.html" class="btn btn-secondary">📋 複製 8 階段精準 Prompt</a>
         <a href="#github-deploy" class="btn btn-blue">🚀 最後部署到 GITHUB</a>
       </div>
@@ -622,28 +1096,32 @@
 
   <main class="wrap">
 
-    <!-- Section 1: Detailed Pillars Breakdown (四大架構深入解析) -->
+    <!-- Section 1: Detailed Pillars Breakdown (四大架構深入解析，全部可點擊放大翻頁) -->
     <section class="section">
       <h2 class="section-title">🏛️ 工作坊核心架構：2小時 · 1教材 · 4循環 · 1專案</h2>
-      <p class="section-subtitle">本培訓不走馬看花，圍繞著四個不可替代的實操支柱構建：</p>
+      <p class="section-subtitle">點擊任一卡片即可放大進入「黑板焦點授課模式」，並可自由翻頁：</p>
 
       <div class="grid">
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(5)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">架構支柱 1</span>
           <h3>⏱️ 2 小時（120 分鐘高密度實踐）</h3>
           <p>前 60 分鐘聚焦看清終點、啟動專案、教材分析並產出第一版可用教材；後 60 分鐘深化分層、修訂、重用與課堂難題記錄。分工明確，絕無無效等待。</p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(6)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge hi">架構支柱 2</span>
           <h3>📄 1 個真實教材（守住數學事實）</h3>
           <p>小學數學容不得算理模糊。專案嚴格以 <code>materials/</code> 內的示範教材（如 P5 分數加減法）為依據，嚴禁 Agent 任意超綱出題，確保概念準確無誤。</p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(7)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge" style="background:var(--blue); color:#000;">架構支柱 3</span>
           <h3>🔄 4 次 Agent 工作循環</h3>
           <p>從單純生成進階到專案控制：第 1 次掌握規格確認；第 2 次學會階梯式分層；第 3 次掌握連鎖同步修訂；第 4 次驗證跨課題重用價值。</p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(8)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge" style="background:var(--success); color:#000;">架構支柱 4</span>
           <h3>📦 1 個可重用專案（持續累積）</h3>
           <p>不是一次性聊天記錄，而是留下含有 <code>AGENTS.md</code> 長期規則的資料夾資產。下週備新課時，直接換入新單元即可開工，越用越快。</p>
@@ -651,14 +1129,15 @@
       </div>
     </section>
 
-    <!-- Section 2: What You Will Leave With (你會帶走) -->
+    <!-- Section 2: What You Will Leave With (你會帶走 + 第一張圖適當放大) -->
     <section class="section">
       <h2 class="section-title">📦 你會帶走：4 大核心成果 + 1 個離場入口</h2>
-      <p class="section-subtitle">2 小時培訓結束時，每位教師的專案資料夾內都將真實擁有以下成果：</p>
+      <p class="section-subtitle">2 小時培訓結束時，每位教師的專案資料夾內都將真實擁有以下成果（點擊卡片可放大翻頁）：</p>
 
       <div class="grid">
         <!-- Card 1 -->
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(10)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">成果 1｜第 60 分鐘</span>
           <h3>第一次備課成果</h3>
           <p>Agent 閱讀 <code>materials/</code> 內的示範教材，向教師確認 6 個需求後產出的第一版課堂學習單。</p>
@@ -671,7 +1150,8 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(11)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">成果 2｜第 75 分鐘</span>
           <h3>分層學習材料</h3>
           <p>在同一個核心目標下，依學生學習需求建立真正的梯級支架，而不是單純改換數字。</p>
@@ -684,7 +1164,8 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(12)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">成果 3｜第 95 分鐘</span>
           <h3>同步修訂成果與報告</h3>
           <p>模擬真實備課情境的條件變更（如課堂縮減為 30 分鐘），由 Agent 聯動同步更新所有關聯檔案。</p>
@@ -697,7 +1178,8 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(13)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">成果 4｜第 110 分鐘</span>
           <h3>再次重用新任務成果</h3>
           <p>保留 <code>AGENTS.md</code> 長期規則，換入另一個新課題，證明整個專案架構可持續複用。</p>
@@ -711,14 +1193,21 @@
       </div>
 
       <!-- 5th Callout -->
-      <div class="out" style="margin-top: 18px;">
+      <div class="out clickable-card" onclick="openDeck(14)" style="margin-top: 18px; cursor:pointer;" title="點擊放大黑板展示">
+        <span class="card-zoom-badge" style="top:12px; right:14px;">🔍 放大黑板</span>
         <strong>🚪 下一場培訓入口（第 117–120 分鐘）：</strong><br>
         每位老師在離場前記錄一個真實的課堂痛點至 <code>notes/next-workshop-problem.md</code>。這不是虛構的練習，而是你帶給下一期進階培訓的真實專案起點！
       </div>
 
-      <div class="diagram-box">
-        <img src="images/00-workshop-map.svg" alt="2小時學習迴圈全覽圖" width="920" height="340">
-        <div class="diagram-caption">圖 1：120 分鐘工作坊「備課 → 分層 → 修訂 → 重用 → 離場問題」完整閉環</div>
+      <!-- 第一張圖片適當放大 (Prominent Map with Fullscreen Trigger) -->
+      <div class="diagram-box prominent-map clickable-card" onclick="openDeck(9)" title="點擊黑板滿版全螢幕放大">
+        <div class="diagram-zoom-pill">
+          <span>🔍 點擊黑板全螢幕放大</span>
+        </div>
+        <img src="images/00-workshop-map.svg" alt="2小時學習迴圈全覽圖" style="width:100%; max-width:940px; margin:0 auto; display:block;">
+        <div class="diagram-caption">
+          <strong>圖 1：120 分鐘工作坊「備課 → 分層 → 修訂 → 重用 → 離場問題」完整學習迴圈（開頭核心內容 · 點擊滿版放大）</strong>
+        </div>
       </div>
     </section>
 
@@ -777,33 +1266,43 @@
       </div>
     </section>
 
-    <!-- Section 4: Project Structure & Security Boundaries (專案結構與安全權限) -->
+    <!-- Section 4: Project Structure & Security Boundaries (第二張圖已修復完美顯示 + 放大按鈕) -->
     <section class="section">
       <h2 class="section-title">📁 專案架構與安全邊界</h2>
-      <p class="section-subtitle">每位老師的 <code>Math-Agent-Workshop/</code> 均採用最嚴謹清晰的權限劃分：</p>
+      <p class="section-subtitle">每位老師的 <code>Math-Agent-Workshop/</code> 均採用最嚴謹清晰的權限劃分（點擊卡片可放大翻頁）：</p>
 
-      <div class="diagram-box">
-        <img src="images/01-project-structure.svg" alt="專案目錄與權限邊界圖" width="920" height="320">
-        <div class="diagram-caption">圖 2：專案資料夾結構與 Agent 權限邊界</div>
+      <!-- 第二張圖片修復完成，支援滿版全螢幕黑板放大 -->
+      <div class="diagram-box prominent-map clickable-card" onclick="openDeck(15)" title="點擊黑板滿版全螢幕放大">
+        <div class="diagram-zoom-pill">
+          <span>🔍 點擊黑板全螢幕放大</span>
+        </div>
+        <img src="images/01-project-structure.svg" alt="專案目錄與權限邊界圖" style="width:100%; max-width:940px; margin:0 auto; display:block;">
+        <div class="diagram-caption">
+          <strong>圖 2：專案資料夾結構與 Agent 權限邊界（只讀 materials、只寫 output · 點擊滿版放大）</strong>
+        </div>
       </div>
 
       <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(17)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge" style="background:#38BDF8; color:#000;">只讀來源</span>
           <h3>materials/</h3>
           <p>存放學校教科書或單元 PDF（如 P5 分數加減法）。<strong>Agent 僅能讀取，嚴禁修改或刪除原始檔案。</strong></p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(18)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge" style="background:#F59E0B; color:#000;">需求規格</span>
           <h3>requirements/</h3>
           <p>存放 <code>task-spec.md</code>。Agent 在分析後向教師確認教學目標、課時、題數，確認後方可動工。</p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(19)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge key">成果產出</span>
           <h3>output/</h3>
           <p>所有生成檔案的唯一儲存區。依 <code>01-first-version</code>、<code>02-differentiated</code> 等階段分層存放。</p>
         </div>
-        <div class="card">
+        <div class="card clickable-card" onclick="openDeck(16)">
+          <span class="card-zoom-badge">🔍 放大黑板</span>
           <span class="card-badge hi">長期憲法</span>
           <h3>AGENTS.md</h3>
           <p>定義學校教學常態規則（澳門常用繁體中文、中英文術語一致、嚴禁處理學生個資等）。</p>
@@ -956,13 +1455,38 @@ git push -u origin main</div>
         請依序開啟 120 分鐘實操流程，或隨時查閱提示詞庫與疑難排解手冊。遇到任何報錯，技術助手與備援 SOP 隨時為您護航！
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <a href="workshop-flow.html" class="btn" style="padding: 12px 24px; font-size: 1rem;">🚀 進入 120 分鐘流程</a>
+        <button class="btn" onclick="openDeck(0)" style="padding: 12px 24px; font-size: 1rem;">🖥️ 開啟黑板全螢幕翻頁</button>
+        <a href="workshop-flow.html" class="btn btn-secondary" style="padding: 12px 24px;">🚀 進入 120 分鐘流程</a>
         <a href="prompts.html" class="btn btn-secondary" style="padding: 12px 24px;">📋 查看完整提示詞</a>
         <a href="troubleshooting.html" class="btn btn-secondary" style="padding: 12px 24px;">🛠️ 疑難排解 SOP</a>
       </div>
     </div>
 
   </main>
+
+  <!-- Floating Classroom Teaching Toolbar (課堂授課教具列) -->
+  <aside id="classroom-toolbar" class="classroom-toolbar" aria-label="授課教具列">
+    <button id="btn-blackboard" class="tool-btn" onclick="toggleBlackboard()" title="開啟黑板全螢幕翻頁 (B / Space)">
+      <span class="tool-icon">🖥️</span><span class="tool-text">黑板模式</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button id="btn-laser" class="tool-btn" onclick="toggleLaser()" title="雷射筆聚光 (L)">
+      <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
+    </button>
+    <button id="btn-pen" class="tool-btn" onclick="togglePen()" title="螢幕畫筆標註 (P)">
+      <span class="tool-icon">✏️</span><span class="tool-text">課堂畫筆</span>
+    </button>
+    <button id="btn-clear" class="tool-btn" onclick="clearCanvas()" title="清除塗鴉筆跡 (C)">
+      <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button id="btn-fullscreen" class="tool-btn" onclick="toggleFullscreen()" title="瀏覽器滿版全螢幕 (F)">
+      <span class="tool-icon">⛶</span><span class="tool-text">滿版</span>
+    </button>
+    <button id="btn-help" class="tool-btn" onclick="toggleHelp()" title="快捷鍵說明 (?)">
+      <span class="tool-icon">⌨️</span>
+    </button>
+  </aside>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -977,9 +1501,428 @@ git push -u origin main</div>
         <a href="workshop-flow.html" style="color:var(--muted); text-decoration:none;">120分鐘流程</a>
         <a href="prompts.html" style="color:var(--muted); text-decoration:none;">提示詞</a>
         <a href="troubleshooting.html" style="color:var(--muted); text-decoration:none;">疑難排解</a>
+        <a href="#github-deploy" style="color:var(--muted); text-decoration:none;">部署 GITHUB</a>
       </div>
     </div>
   </footer>
+
+  <!-- ==========================================================
+       JAVASCRIPT: FULLSCREEN DECK, LASER POINTER, CANVAS PEN
+       ========================================================== -->
+  <script>
+    // 1. Deck Data: Slides for all core content
+    const slidesData = [
+      {
+        category: "開頭核心理念",
+        title: "AI 時代守本心，<span class='highlight'>毅誠勤樸篤前行</span>",
+        desc: "以澳門聖若瑟教區中學第五校校訓「毅誠勤樸」為精神底色：",
+        points: [
+          "<strong>AI Agent 負責流程加速</strong>：快速解析示範教材、排版工作紙初稿、多檔連動維護。",
+          "<strong>教師守住教學本質</strong>：把關數學算理正確性、評估學生認知坡度、注入課堂溫度與人文關懷。",
+          "<strong>不隨波逐流，不盲信機器</strong>：讓技術為教學服務，把寶貴時間還給師生互動！"
+        ]
+      },
+      {
+        category: "核心支柱 1",
+        title: "⏱️ 2 小時 <span class='highlight'>精準實操節奏</span>",
+        desc: "120 分鐘精準劃分，拒絕冗長的泛理論宣講：",
+        points: [
+          "<strong>前 60 分鐘</strong>：看見終點 → 啟動專案 → 讀懂規則 → 教材分析 → 需求訪談 → 產出第 1 版成果。",
+          "<strong>第 60 分鐘合格線</strong>：每位老師專案中必產出一份真實可用的課堂材料與教師解答。",
+          "<strong>後 60 分鐘</strong>：做分層（A/B/C）→ 同步修訂（聯動更新）→ 跨課題重用 → 離場難題記錄。"
+        ]
+      },
+      {
+        category: "核心支柱 2",
+        title: "📄 1 個真實教材 <span class='highlight'>守住數學事實</span>",
+        desc: "小學數學容不得算理模糊與超綱：",
+        points: [
+          "以校本真實示範教材 <code>materials/P5-分數加減法.pdf</code> 為唯一材料依託。",
+          "<strong>嚴格邊界約束</strong>：嚴禁 Agent 任意超綱出題（如分母控制在 20 以內，不涉及三項混算）。",
+          "<strong>尊重教材表徵</strong>：保留教材原有通分面積圖、數線圖，不隨意替換為生僻解法。"
+        ]
+      },
+      {
+        category: "核心支柱 3",
+        title: "🔄 4 次循環 <span class='highlight'>Agent 工作閉環</span>",
+        desc: "從「生成一次文字」躍升到「專案級工作流控制」：",
+        points: [
+          "<strong>第 1 次循環（第一次備課）</strong>：向老師提出 6 個問題確認規格，寫入 task-spec.md 後才生成。",
+          "<strong>第 2 次循環（做一次分層）</strong>：不換課題，建立 A支援版 / B基準版 / C挑戰版實質支架。",
+          "<strong>第 3 次循環（同步修訂）</strong>：教學時間改變時，Agent 跨檔案同步修改並出具差異報告。",
+          "<strong>第 4 次循環（再次重用）</strong>：換入全新課題，保留專案規則，體驗資產複用價值。"
+        ]
+      },
+      {
+        category: "核心支柱 4",
+        title: "📦 1 個可重用專案 <span class='highlight'>長期校本資產</span>",
+        desc: "建立永久的個人與科組數位教學專案：",
+        points: [
+          "不是用完即丟的聊天視窗，而是結構化的專案資料夾。",
+          "以 <code>AGENTS.md</code> 作為長期憲法，每次執行自動遵守學校語言與安全規範。",
+          "下週備新課題時，直接換入新單元 PDF，秒級複用成熟工作流，越備越快！"
+        ]
+      },
+      {
+        category: "架構支柱深入",
+        title: "架構支柱 1：<span class='highlight'>⏱️ 2 小時高密度實踐</span>",
+        desc: "打破「學完忘光」的困境，打造 120 分鐘即學即產出的課堂：",
+        points: [
+          "00–10 min：看見終點，預覽 4 份成品，釐清學習迴圈。",
+          "10–30 min：啟動 OpenCode，讀懂 AGENTS.md 邊界約束。",
+          "30–50 min：讀取教材分析，完成 6 個關鍵問題需求訪談。",
+          "50–60 min：完成第 1 版備課成果（成果 1 里程碑）！",
+          "60–120 min：進階分層、同步修訂、新課重用與驗收。"
+        ]
+      },
+      {
+        category: "架構支柱深入",
+        title: "架構支柱 2：<span class='highlight'>📄 1 個真實教材依歸</span>",
+        desc: "教學的靈魂在於具體的教材與學生認知：",
+        points: [
+          "只以 <code>materials/</code> 內的 PDF 檔案為事實來源。",
+          "若 PDF 讀取不全或文字模糊，Agent 必須停止並回報，絕不可主觀猜測。",
+          "所有題目與活動設計緊扣本課「異分母分數加減法」核心算理。"
+        ]
+      },
+      {
+        category: "架構支柱深入",
+        title: "架構支柱 3：<span class='highlight'>🔄 4 次工作循環進階</span>",
+        desc: "循序漸進掌握 AI Agent 的四大核心能力：",
+        points: [
+          "能力 1【需求受控】：不讓 AI 自由發揮，先確認規格書。",
+          "能力 2【差異化教學】：針對學生差異設計直觀表徵與高階推理。",
+          "能力 3【專案一致性】：一次修改需求，題目與答案版自動聯動。",
+          "能力 4【可持續重用】：驗證專案規則與流程的長期通用性。"
+        ]
+      },
+      {
+        category: "架構支柱深入",
+        title: "架構支柱 4：<span class='highlight'>📦 1 個可重用專案資產</span>",
+        desc: "將教師的個人備課智慧固化為專案規範：",
+        points: [
+          "<code>AGENTS.md</code>：規定澳門繁體中文、中英文術語統一、嚴禁洩漏個資。",
+          "<code>materials/</code>：唯讀教材來源保護區。",
+          "<code>requirements/</code>：任務規格書存放區。",
+          "<code>output/</code>：依 01/02/03/04 階段版本化管理。"
+        ]
+      },
+      {
+        category: "全覽圖表放大",
+        title: "🌟 2 小時學習迴圈 <span class='highlight'>全覽地圖</span>",
+        desc: "點擊下方大圖或查看流程閉環：",
+        svg: "images/00-workshop-map.svg",
+        points: [
+          "1. 教材與規則 (00-30分) → 2. 教師確認需求 (30-50分)",
+          "3. 第一次備課 (50-60分) → 4. 做一次分層 (65-75分)",
+          "5. 同步修訂 (75-95分) → 6. 再次重用 (95-110分)",
+          "7. 帶真實課堂問題離場 (117-120分)！"
+        ]
+      },
+      {
+        category: "核心成果 1",
+        title: "成果 1：<span class='highlight'>第一次備課成果（第60分鐘）</span>",
+        desc: "存放於 <code>output/01-first-version/</code>：",
+        points: [
+          "由 Agent 讀取教材後，依據確認好的 <code>task-spec.md</code> 規格產生。",
+          "具備階梯坡度：基礎計算題 → 課本例題變式 → 簡單生活應用題。",
+          "學生作答紙與教師答案詳細版<strong>完全分開存檔</strong>。",
+          "保留教師可再人工檢視與增刪的留白與題號標記。"
+        ]
+      },
+      {
+        category: "核心成果 2",
+        title: "成果 2：<span class='highlight'>分層學習材料（第75分鐘）</span>",
+        desc: "存放於 <code>output/02-differentiated/</code>：",
+        points: [
+          "<strong>A 支援版</strong>：保留核心算理，加入分數直觀圖形、通分步驟分解支架。",
+          "<strong>B 基準版</strong>：維持常規課堂練習難度，鞏固通分與約分計算技能。",
+          "<strong>C 挑戰版</strong>：引入錯誤辨析題、逆向填空題與多步生活應用情境。",
+          "自動產出差異對照表，清楚說明三個版本到底「改了甚麼」。"
+        ]
+      },
+      {
+        category: "核心成果 3",
+        title: "成果 3：<span class='highlight'>同步修訂成果與報告（第95分鐘）</span>",
+        desc: "存放於 <code>output/03-revised/</code>：",
+        points: [
+          "模擬真實備課情境：課堂時間縮短、需緊急加入典型錯因辨析。",
+          "Agent 先向老師盤點將影響哪些檔案，獲准後同步更新關聯檔案。",
+          "自動產生 <code>change-summary.md</code>，條列改動前後的清晰差異。",
+          "完整保留 01 與 02 歷史版本，絕不魯莽覆蓋！"
+        ]
+      },
+      {
+        category: "核心成果 4",
+        title: "成果 4：<span class='highlight'>再次重用新任務成果（第110分鐘）</span>",
+        desc: "存放於 <code>output/04-reused/</code>：",
+        points: [
+          "換入新課題（如帶分數加減法），測試專案是否真正可重複使用。",
+          "保留 <code>AGENTS.md</code> 的規則、語言規範與輸出路徑習慣。",
+          "僅需重新確認新任務的具體題數與課堂階段，即可迅速開工。",
+          "證明 AI 備課專案是一項可持續增長的高價值教學資產。"
+        ]
+      },
+      {
+        category: "培訓閉環入口",
+        title: "🚪 下一場培訓入口：<span class='highlight'>真實課堂問題離場憑證</span>",
+        desc: "存放於 <code>notes/next-workshop-problem.md</code>：",
+        points: [
+          "每位老師在培訓最後 3 分鐘記錄一項自己的真實課堂難題。",
+          "包含：年級、單元、目前最耗時備課環節、學生最常見迷思。",
+          "寫明希望未來 AI Agent 協助的事項，以及堅持由教師把關的底線。",
+          "拒絕機器虛構，真實記錄，作為下次進階工作坊的真實出發點！"
+        ]
+      },
+      {
+        category: "全覽圖表放大",
+        title: "🌟 專案目錄與權限邊界 <span class='highlight'>全覽架構圖</span>",
+        desc: "點擊下方大圖或查看目錄架構邊界：",
+        svg: "images/01-project-structure.svg",
+        points: [
+          "AGENTS.md【長期憲法】：澳門繁中、術語一致、嚴禁學生個資。",
+          "materials/【只讀來源】：學校示範教材 PDF，唯讀保護。",
+          "requirements/【規格確認】：task-spec.md，教師確認後開工。",
+          "output/【成果產出】：01/02/03/04 分階段資料夾存檔。"
+        ]
+      },
+      {
+        category: "專案權限規範",
+        title: "專案權限：<span class='highlight'>AGENTS.md 長期憲法</span>",
+        desc: "專案最核心的行為約束標準：",
+        points: [
+          "<strong>澳門繁中與一致術語</strong>：中文部使用繁體中文，中英文部術語對齊。",
+          "<strong>學生個資絕對紅線</strong>：嚴禁處理學生真實姓名、學號、成績或家長電話。",
+          "<strong>嚴禁虛構未讀教材</strong>：不得憑空捏造未提供的知識點。",
+          "<strong>金鑰安全保護</strong>：不將個人 API Key 或密碼寫入程式碼中。"
+        ]
+      },
+      {
+        category: "專案權限規範",
+        title: "專案權限：<span class='highlight'>materials/ 只讀來源</span>",
+        desc: "存放示範與真實教學 PDF 材料：",
+        points: [
+          "<strong>唯讀權限保護</strong>：Agent 僅能讀取，嚴禁修改或刪除原始檔案。",
+          "包含示範教材：<code>P5-分數加減法-示範教材.pdf</code>。",
+          "若 PDF 包含不可解析掃描層，立即停止並回報，改用 backup/ 文字檔。"
+        ]
+      }
+    ];
+
+    let currentSlide = 0;
+
+    // 2. Deck Modal Functions
+    function openDeck(index) {
+      if (index >= 0 && index < slidesData.length) {
+        currentSlide = index;
+      } else {
+        currentSlide = 0;
+      }
+      renderSlide();
+      document.getElementById('deck-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeck() {
+      document.getElementById('deck-modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+      } else {
+        currentSlide = slidesData.length - 1;
+      }
+      renderSlide();
+    }
+
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+      } else {
+        currentSlide = 0;
+      }
+      renderSlide();
+    }
+
+    function renderSlide() {
+      const slide = slidesData[currentSlide];
+      document.getElementById('deck-category-label').innerText = slide.category;
+      document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
+
+      let html = `<h2 class="deck-slide-h2">${slide.title}</h2>`;
+      html += `<p class="deck-slide-desc">${slide.desc}</p>`;
+
+      if (slide.svg) {
+        html += '<div style="background:#090C09; border:1px solid #283628; border-radius:10px; padding:14px; margin-bottom:20px; text-align:center;">' +
+          '<img ' + 'src="' + slide.svg + '" style="max-height:45vh; width:auto; max-width:100%; border-radius:6px; display:inline-block;" alt="圖表放大">' +
+        '</div>';
+      }
+
+      if (slide.points && slide.points.length > 0) {
+        html += `<ul class="deck-slide-list">`;
+        slide.points.forEach(pt => {
+          html += `<li>${pt}</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      document.getElementById('deck-slide-box').innerHTML = html;
+    }
+
+    // 3. Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log("Fullscreen error:", err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // 4. Blackboard Mode Toggle
+    function toggleBlackboard() {
+      const modal = document.getElementById('deck-modal');
+      if (modal.classList.contains('active')) {
+        closeDeck();
+      } else {
+        openDeck(currentSlide || 0);
+      }
+    }
+
+    // 5. Laser Pointer Logic
+    let laserActive = false;
+    const laserDot = document.getElementById('laser-dot');
+    const btnLaser = document.getElementById('btn-laser');
+
+    function toggleLaser() {
+      laserActive = !laserActive;
+      if (laserActive) {
+        laserDot.style.display = 'block';
+        document.body.classList.add('laser-active');
+        btnLaser.classList.add('active');
+      } else {
+        laserDot.style.display = 'none';
+        document.body.classList.remove('laser-active');
+        btnLaser.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('mousemove', function(e) {
+      if (laserActive) {
+        laserDot.style.left = e.clientX + 'px';
+        laserDot.style.top = e.clientY + 'px';
+      }
+    });
+
+    // 6. Canvas Screen Drawing Logic
+    let drawingActive = false;
+    let isDrawing = false;
+    const canvas = document.getElementById('chalk-canvas');
+    const ctx = canvas.getContext('2d');
+    const btnPen = document.getElementById('btn-pen');
+    const penPalette = document.getElementById('pen-palette');
+    let penColor = '#FFD400';
+    let penWidth = 4;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function togglePen() {
+      drawingActive = !drawingActive;
+      if (drawingActive) {
+        canvas.classList.add('drawing-active');
+        btnPen.classList.add('active');
+        penPalette.classList.add('show');
+        if (laserActive) toggleLaser(); // turn off laser when pen is on
+      } else {
+        canvas.classList.remove('drawing-active');
+        btnPen.classList.remove('active');
+        penPalette.classList.remove('show');
+      }
+    }
+
+    function setPenColor(color, el) {
+      penColor = color;
+      document.querySelectorAll('.pen-color-dot').forEach(d => d.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    canvas.addEventListener('mousedown', function(e) {
+      if (!drawingActive) return;
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.clientX, e.clientY);
+      ctx.strokeStyle = penColor;
+      ctx.lineWidth = penWidth;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+      if (!drawingActive || !isDrawing) return;
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+    });
+
+    window.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+
+    // 7. Keyboard Shortcuts
+    window.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('deck-modal');
+      const isModalOpen = modal.classList.contains('active');
+
+      if (e.key === 'Escape') {
+        if (isModalOpen) closeDeck();
+        if (drawingActive) togglePen();
+        if (laserActive) toggleLaser();
+        document.getElementById('help-modal').classList.remove('show');
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (isModalOpen) {
+          nextSlide();
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (isModalOpen) {
+          prevSlide();
+        }
+      } else if (e.key === ' ' && isModalOpen) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key.toLowerCase() === 'b') {
+        toggleBlackboard();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key.toLowerCase() === 'l') {
+        toggleLaser();
+      } else if (e.key.toLowerCase() === 'p') {
+        togglePen();
+      } else if (e.key.toLowerCase() === 'c') {
+        clearCanvas();
+      } else if (e.key === '?') {
+        toggleHelp();
+      }
+    });
+
+    // 8. Help Modal Toggle
+    function toggleHelp() {
+      const hm = document.getElementById('help-modal');
+      hm.classList.toggle('show');
+    }
+  </script>
 
 </body>
 </html>
