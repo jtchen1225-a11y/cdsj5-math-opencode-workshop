@@ -492,17 +492,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
+      padding: 12px 20px;
       overflow-y: auto;
     }
     .deck-slide-box {
-      max-width: 960px;
-      width: 100%;
-      background: rgba(20, 26, 22, 0.75);
-      border: 2px solid rgba(52, 211, 153, 0.35);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
-      border-radius: 16px;
-      padding: 36px 42px;
+      width: 82vw;
+      max-width: 1440px;
+      min-height: 74vh;
+      max-height: 80vh;
+      box-sizing: border-box;
+      background: rgba(15, 23, 18, 0.95);
+      border: 2.5px solid rgba(52, 211, 153, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+      padding: 38px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
@@ -510,32 +517,83 @@
       to { opacity: 1; transform: scale(1); }
     }
     .deck-slide-h2 {
-      font-size: 2.1rem;
+      font-size: 2.35rem;
       color: #FFF;
       margin: 0 0 16px 0;
-      line-height: 1.3;
+      line-height: 1.32;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
       color: var(--hi);
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       line-height: 1.7;
       color: #E2E8F0;
       margin: 0 0 20px 0;
     }
     .deck-slide-list {
-      font-size: 1.2rem;
-      line-height: 1.8;
+      font-size: 1.25rem;
+      line-height: 1.85;
       color: #D1D5DB;
       padding-left: 28px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .deck-footer {
+    .deck-slide-box code {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: Consolas, Monaco, monospace;
+      font-weight: 700;
+      font-size: 0.94em;
+    }
+
+    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+    .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+    .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
+    .hl-rose   { color: #FB7185; font-weight: 800; text-shadow: 0 0 12px rgba(251, 113, 133, 0.35); }
+    .hl-purple { color: #C084FC; font-weight: 800; text-shadow: 0 0 12px rgba(192, 132, 252, 0.35); }
+    .hl-badge  {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.88em;
+      font-weight: 800;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .hl-badge.gold   { background: rgba(251, 191, 36, 0.2); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .hl-badge.cyan   { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); }
+    .hl-badge.green  { background: rgba(74, 222, 128, 0.2); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.5); }
+    .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
+    .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
+
+    @media (max-width: 768px) {
+      .deck-slide-box {
+        width: 94vw;
+        padding: 20px;
+        min-height: auto;
+        max-height: 82vh;
+      }
+      .deck-slide-h2 {
+        font-size: 1.6rem;
+      }
+      .deck-slide-desc {
+        font-size: 1.05rem;
+      }
+      .deck-slide-list {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+    }
+        .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1151,116 +1209,116 @@
        JAVASCRIPT: FULLSCREEN DECK, SPOTLIGHT, LASER, PEN, FONT SCALE
        ========================================================== -->
   <script>
-    // 1. Deck Data: 10 Slides for Troubleshooting and SOP
+    // 1. Deck Data: 10 Slides for Troubleshooting
     const slidesData = [
       {
-        category: "排查 1 ｜ 工作區路徑",
-        title: "問題 1：<span class='highlight'>OpenCode 開啟了錯誤的資料夾</span>",
-        desc: "【現象】找不到 AGENTS.md 或 materials/，工作區看見無關檔案：",
+        category: "排查 1 ｜ 啟動工作區",
+        title: "問題 1：<span class='hl-rose'>OpenCode 開啟了錯誤的資料夾</span>",
+        desc: "【現象】輸入指令後，Agent 回報找不到 <code>AGENTS.md</code> 或 <code>materials/</code>：",
         points: [
-          "<strong>🔍 可能原因</strong>：在使用者家目錄、下載區或 ZIP 壓縮檔內直接執行，未進專案根目錄。",
-          "<strong>⚡ 修正動作</strong>：關閉當前視窗，確認 Starter Pack 已解壓至<strong>桌面</strong>，重新雙擊 <code>01_啟動OpenCode培訓.bat</code>。",
-          "<strong>✔ 驗證步驟</strong>：在 OpenCode 輸入 <code>Prompt 1</code>，確認 Agent 正確列出 <code>materials/</code> 與 <code>AGENTS.md</code>。",
-          "<strong>💡 助教心法</strong>：引導學員確認終端提示字元路徑是否為 <code>Math-Agent-Workshop</code>。"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>工作區散落無關個人檔案，Agent 回報路徑不存在。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>在下載資料夾或 ZIP 壓縮檔內直接啟動，<span class='hl-rose'>未切換至專案根目錄</span>。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>關閉當前視窗，確認 Starter Pack 已解壓至<span class='hl-gold'>桌面</span>，雙擊 <code>01_啟動OpenCode培訓.bat</code>。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>輸入 <span class='hl-cyan'>Prompt 1</span>，確認 Agent 正確列出 <code>materials/</code> 與 <code>AGENTS.md</code>。"
         ]
       },
       {
-        category: "排查 2 ｜ 教材解析異常",
-        title: "問題 2：<span class='highlight'>PDF 不在 materials/ 或無法可靠讀取</span>",
-        desc: "【現象】提示「找不到示範教材」或「PDF 包含不可解析之掃描圖層」：",
+        category: "排查 2 ｜ 教材讀取備援",
+        title: "問題 2：<span class='hl-rose'>PDF 不在 materials/ 或無法可靠讀取</span>",
+        desc: "【現象】Agent 提示找不到示範教材，或回報包含不可解析掃描圖層：",
         points: [
-          "<strong>🔍 可能原因</strong>：教材 PDF 被移動、名稱拼寫不符，或系統缺乏外部 PDF 提取模組。",
-          "<strong>⚡ 修正動作</strong>：依照 <code>AGENTS.md</code> 備援規則：改為指定讀取 <code>backup/P5-分數加減法-示範教材.txt</code> 文字版備用教材。",
-          "<strong>✔ 驗證步驟</strong>：Agent 回應能正確讀取文字檔內容，並註明來源為備用文字教材，不再卡死。",
-          "<strong>💡 備援哲學</strong>：課堂時間寶貴，遇到 PDF 解析故障立即降級到 txt，先保證教學主線推進！"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>PDF 檔名不符、檔案被移走，或系統缺少 PDF 文字提取器。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>模型無法直接讀取純圖檔 PDF，卡在教材分析階段。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>依照備援規則：改為指定讀取 <code>backup/P5-分數加減法-示範教材.txt</code> <span class='hl-gold'>文字版備用教材</span>。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>Agent 回應能正確讀取文字檔內容，<span class='hl-green'>不再停滯卡死</span>。"
         ]
       },
       {
-        category: "排查 3 ｜ 規格先於產出",
-        title: "問題 3：<span class='highlight'>Agent 在確認需求前就擅自開始生成教材</span>",
-        desc: "【現象】輸入分析教材指令後，Agent 直接輸出整張學習單與考卷：",
+        category: "排查 3 ｜ 需求訪談防線",
+        title: "問題 3：<span class='hl-rose'>Agent 在確認需求前就擅自開始生成教材</span>",
+        desc: "【現象】剛發送教材分析指令，Agent 卻直接輸出了一整份包含 10 題的題目考卷：",
         points: [
-          "<strong>🔍 可能原因</strong>：Prompt 指令過於籠統，Agent 依預設貪婪生成模式直接產出結果。",
-          "<strong>⚡ 修正動作</strong>：輸入：『停。請刪除剛才產出的內容。先閱讀 AGENTS.md，按照規格確認流程向我提問 6 個問題。』",
-          "<strong>✔ 驗證步驟</strong>：Agent 停止輸出試卷，轉為向老師提問 6 個參數並等待回答。",
-          "<strong>💡 控制核心</strong>：老師始終是主人；規格沒確認前，AI 的任何擅自發揮都不可接受。"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>未做需求訪談直接產出大量不受控練習題。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>模型發散，漏讀了 <code>AGENTS.md</code> 中「<span class='hl-rose'>未確認需求前不得動工</span>」的底線限制。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>立即發送指令糾偏：『<span class='hl-gold'>請嚴格遵守 AGENTS.md。停止生成成品，先向我提出 <span class='hl-cyan'>6 個需求確認問題</span>。</span>』",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>Agent 停止輸出試卷，轉為<span class='hl-green'>條列 6 個關鍵問題等待教師回答</span>。"
         ]
       },
       {
-        category: "排查 4 ｜ 數學算理邊界",
-        title: "問題 4：<span class='highlight'>題目過難、超綱或缺乏階梯坡度</span>",
-        desc: "【現象】產出包含三項異分母混算或出現負數，超出小學五年級範圍：",
+        category: "排查 4 ｜ 規則憲法遺失",
+        title: "問題 4：<span class='hl-rose'>Agent 回報找不到 AGENTS.md</span>",
+        desc: "【現象】執行 Prompt 1 時，Agent 回答「本專案目錄下未發現 AGENTS.md 檔案」：",
         points: [
-          "<strong>🔍 可能原因</strong>：模型調用外部奧數題庫或高年級題目，偏離了校本示範教材範圍。",
-          "<strong>⚡ 修正動作</strong>：明確要求：『所有題目必須嚴格參照 materials/ 示範教材，分母限制在 20 以內，僅限兩項異分母加減法。』",
-          "<strong>✔ 驗證步驟</strong>：檢查題目與答案，確認通分計算符合常規課堂進度，無未學概念。",
-          "<strong>💡 算理底線</strong>：小學數學容不得模糊與超綱，教師必須親自核對每道題目。"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>無法載入澳門繁體與安全紅線，產出簡體或格式混亂。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>工作區最外層遺失 <code>AGENTS.md</code>，或被誤移入子目錄。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>確認專案根目錄；若遺失，從 <code>resources/sample-agents.md</code> <span class='hl-gold'>複製一份至根目錄</span>。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>重新發送 <span class='hl-cyan'>Prompt 1</span>，確認 Agent 能準確列出<span class='hl-green'>學校專屬四規範</span>。"
         ]
       },
       {
-        category: "排查 5 ｜ 檔案分離規範",
-        title: "問題 5：<span class='highlight'>學生練習紙與教師解答混在同一檔案</span>",
-        desc: "【現象】在生成的學生練習紙最下方直接印出了答案與算理詳解：",
+        category: "排查 5 ｜ 輸出路徑規範",
+        title: "問題 5：<span class='hl-rose'>產出檔案被寫到 output/ 以外的目錄</span>",
+        desc: "【現象】新生成的 Markdown 或 HTML 散落在專案根目錄或 materials/ 內：",
         points: [
-          "<strong>🔍 可能原因</strong>：Agent 為求省事將所有文字輸出在單一檔案，違反專案存檔慣例。",
-          "<strong>⚡ 修正動作</strong>：指示 Agent：『依 AGENTS.md 規範，將答案與評分標準獨立分離為 teacher-guide.md，學生版不得包含答案。』",
-          "<strong>✔ 驗證步驟</strong>：<code>output/</code> 資料夾內存在 2 個獨立檔案，學生版乾淨留白供書寫算式。",
-          "<strong>💡 課堂可用</strong>：必須能直接列印給學生施測，才是合格的備課交付成果。"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>根目錄凌亂，成果未依階段版本化歸檔。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>指令中未強調存放路徑，或 Agent 忽略了路徑規範。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>輸入糾正指令：『<span class='hl-gold'>根據專案規則，將剛才生成的檔案移動或重新儲存到 <span class='hl-cyan'>output/01-first-version/</span> 下。</span>』",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>檢查 <code>output/</code> 對應資料夾，確認檔案已就位且<span class='hl-green'>根目錄保持乾淨</span>。"
         ]
       },
       {
-        category: "排查 6 ｜ 因材施教本質",
-        title: "問題 6：<span class='highlight'>分層設計只有題量差異，缺乏實質認知鷹架</span>",
-        desc: "【現象】A 版只有 3 題、B 版 6 題、C 版 10 題，題目類型完全一樣：",
+        category: "排查 6 ｜ 唯讀保護紅線",
+        title: "問題 6（高危險）：<span class='hl-rose'>老師或 Agent 誤圖覆蓋 materials/ 原始教材</span>",
+        desc: "【現象】提示訊息詢問是否允許覆蓋 materials/ 內的 PDF 或既有檔案：",
         points: [
-          "<strong>🔍 可能原因</strong>：未調用 <code>worksheet-generator</code> 技能，或對「分層」定義理解為「題量縮減」。",
-          "<strong>⚡ 修正動作</strong>：發送 Prompt 5：要求 A 版增加面積模型圖示與步驟分解；C 版增加錯誤辨析與逆向填空。",
-          "<strong>✔ 驗證步驟</strong>：檢查三份檔案與差異對照表，確認認知階梯明確，提供實質學習支架。",
-          "<strong>💡 分層真義</strong>：為落後學生搭鷹架，為資優學生給梯子，不是罰寫題量！"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>終端彈出覆蓋確認，若按 Yes 將永久破壞來源教材！",
+          "<span class='hl-badge purple'>② 原因 Cause</span>輸入修改要求時，誤將儲存目標指定到了來源資料夾。",
+          "<span class='hl-badge gold'>③ 動作 Action</span><span class='hl-rose'>絕對選擇拒絕（No）</span>！重新下達指令，明確指示儲存於 <span class='hl-cyan'>output/03-revised/</span>。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>查看 <code>materials/</code> 檔案修改時間，確認<span class='hl-green'>原始 PDF 毫髮無損</span>。"
         ]
       },
       {
-        category: "排查 7 ｜ 版本歷史保護",
-        title: "問題 7：<span class='highlight'>同步修訂時覆蓋了原有的 output/ 歷史版本</span>",
-        desc: "【現象】修訂後，<code>output/01-first-version/</code> 內容被改變或消失：",
+        category: "排查 7 ｜ 規格約束對齊",
+        title: "問題 7：<span class='hl-rose'>生成內容過於空泛、脫離校本需求</span>",
+        desc: "【現象】題目出現初中代數、或是未定義分母過大的無效重複題：",
         points: [
-          "<strong>🔍 可能原因</strong>：Agent 執行了原位覆蓋 (overwrite)，未依專案規範建立 <code>03-revised/</code> 目錄。",
-          "<strong>⚡ 修正動作</strong>：若有備份，從 <code>backup/</code> 還原；明確指示 Agent 將修訂成果獨立存放於 <code>output/03-revised/</code>。",
-          "<strong>✔ 驗證步驟</strong>：專案 output 下同時並存 <code>01-first-version/</code> 與 <code>03-revised/</code> 兩個完整資料夾。",
-          "<strong>💡 版本意識</strong>：教學成果是漸進迭代的，保留歷史版本隨時可供回溯比較。"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>難度超綱、分母高達 99、題型單一無教學價值。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>在 Prompt 3 需求訪談時給出的約束過少（只說「隨便出幾題」）。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>編輯 <code>requirements/task-spec.md</code>，精確寫入年級、<span class='hl-gold'>分母限制（≤20）</span>、<span class='hl-cyan'>題數（8題）</span>與作答時間。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>讓 Agent 重新對齊規格書，產出題目<span class='hl-green'>精準落在教學目標內</span>。"
         ]
       },
       {
-        category: "排查 8 ｜ 專案規則繼承",
-        title: "問題 8：<span class='highlight'>換新課題時，Agent 遺忘先前的專案規則</span>",
-        desc: "【現象】換入新課題後，回答突然變成簡體字，或遺忘了檔案存放格式：",
+        category: "排查 8 ｜ 真分層非假分層",
+        title: "問題 8：<span class='hl-rose'>分層作業只改了標籤，題目實質沒有分層</span>",
+        desc: "【現象】A/B/C 三個版本的題目幾乎一樣，僅是數字微調或換個題目編號：",
         points: [
-          "<strong>🔍 可能原因</strong>：開啟了全新獨立會話 (New Session)，導致對話歷史被重置且未主動載入規則。",
-          "<strong>⚡ 修正動作</strong>：發送指令：『請重新載入本專案根目錄之 AGENTS.md，確認所有輸出必須符合澳門繁體中文規範。』",
-          "<strong>✔ 驗證步驟</strong>：Agent 回覆確認遵守 <code>AGENTS.md</code> 憲法，後續產出自動恢復繁體中文。",
-          "<strong>💡 專案力量</strong>：只要檔案 <code>AGENTS.md</code> 在，隨時一句話就能立刻喚醒專案記憶！"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>學生無法獲得真正支架，假分層浪費印刷與教學精力。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>未明確指定支援版需要「<span class='hl-purple'>圖形/步驟支架</span>」，挑戰版需要「<span class='hl-purple'>推理與比較</span>」。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>使用 <span class='hl-cyan'>Prompt 5</span> 的嚴格要求，或調用 <code>worksheet-generator</code> 指定 <span class='hl-purple'>Knowing / Applying / Reasoning</span> 層次。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>檢查產出的差異對照表，確認 <span class='hl-purple'>A版有解題支架</span>，<span class='hl-purple'>C版有逆向推理</span>。"
         ]
       },
       {
-        category: "排查 9 ｜ 網路頻寬限流",
-        title: "問題 9：<span class='highlight'>終端機報錯 429 Too Many Requests（併發超限）</span>",
-        desc: "【現象】全班同時送出指令時，終端出現 Rate Limit 429 錯誤：",
+        category: "排查 9 ｜ 多檔聯動一致性",
+        title: "問題 9：<span class='hl-rose'>同步修訂只修改了單一檔案，漏掉聯動檔案</span>",
+        desc: "【現象】學生版學習單題目刪減了，但教師答案版仍然是舊版的題目與答案：",
         points: [
-          "<strong>🔍 可能原因</strong>：同一時間大量學員併發呼叫 API，觸發提供商每分鐘請求數 (RPM) 上限。",
-          "<strong>⚡ 修正動作</strong>：<strong>全體立即停手！不要狂按 Enter。</strong>嚴格遵守組別錯峰節奏（A組立即、B組+15s、C組+30s、D組+45s）。",
-          "<strong>✔ 驗證步驟</strong>：靜候 60 秒後重新送出，終端恢復正常逐步串流產出內容。",
-          "<strong>💡 錯峰黃金律</strong>：429 是暫時性流量限制，停手 60 秒即可自動復原，切忌頻繁重試！"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>學生版與答案版題號錯位，上課對答案引發混亂。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>修訂時未要求 Agent 先盤點關聯受影響檔案清單。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>發送指令：『<span class='hl-gold'>請檢查教師答案版是否與學生版保持題號與內容一致，並提供 <span class='hl-cyan'>change-summary.md</span> 說明修改。</span>』",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>核對 <code>output/03-revised/</code> 內的學生版與答案版<span class='hl-green'>題數與題目完全吻合</span>。"
         ]
       },
       {
-        category: "現場 SOP ｜ 全校突發",
-        title: "現場 SOP：<span class='highlight'>全校 Wi-Fi 斷網或 API 癱瘓（降級示範模式）</span>",
-        desc: "【現象】遭遇不可抗力之全域網路或第三方服務徹底中斷：",
+        category: "排查 10 ｜ 換新課題規則複用",
+        title: "問題 10：<span class='hl-rose'>再次重用變成隨意複製貼上，丟失專案規則</span>",
+        desc: "【現象】輸入新課題時，Agent 忘記了繁體中文、中英文對齊或 output/ 目錄規範：",
         points: [
-          "<strong>🔍 狀況判定</strong>：全校斷網或 API 服務全域當機，無法進行任何線上實操。",
-          "<strong>⚡ 講師處置流程</strong>：<br>1. 宣布停止學員操作，所有電腦螢幕轉向主講大螢幕。<br>2. 講師本機切換至預備之 <code>Math-Agent-Workshop/backup/</code> 示範成果進行解說。<br>3. 依據時間軸完整示範 4 大成果的推導邏輯與 9 大驗收標準。",
-          "<strong>✔ 主課是否暫停</strong>：<span style='color:var(--hi); font-weight:bold;'>不暫停，切換為專家示範與觀摩模式！</span>",
-          "<strong>💡 守護底線</strong>：即使沒有網路，教師對 Agent 的架構理解與規格控制力依然能完整帶走！"
+          "<span class='hl-badge rose'>① 現象 Symptom</span>新課題產出格式脫軌，重新出現簡體字或無結構散落。",
+          "<span class='hl-badge purple'>② 原因 Cause</span>新對話開啟了全域上下文重設，未引用 <code>AGENTS.md</code>。",
+          "<span class='hl-badge gold'>③ 動作 Action</span>在同一個 OpenCode 專案工作區中執行 <span class='hl-cyan'>Prompt 7</span>，並在開頭指名「<span class='hl-gold'>保留 AGENTS.md 長期規則</span>」。",
+          "<span class='hl-badge green'>④ 驗證 Verify</span>新課題產出正確寫入 <code>output/04-reused/</code>，且<span class='hl-green'>完全遵守既有規則</span>。"
         ]
       }
     ];

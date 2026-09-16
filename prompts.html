@@ -526,17 +526,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
+      padding: 12px 20px;
       overflow-y: auto;
     }
     .deck-slide-box {
-      max-width: 960px;
-      width: 100%;
-      background: rgba(20, 26, 22, 0.75);
-      border: 2px solid rgba(52, 211, 153, 0.35);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
-      border-radius: 16px;
-      padding: 36px 42px;
+      width: 82vw;
+      max-width: 1440px;
+      min-height: 74vh;
+      max-height: 80vh;
+      box-sizing: border-box;
+      background: rgba(15, 23, 18, 0.95);
+      border: 2.5px solid rgba(52, 211, 153, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+      padding: 38px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
@@ -544,32 +551,83 @@
       to { opacity: 1; transform: scale(1); }
     }
     .deck-slide-h2 {
-      font-size: 2.1rem;
+      font-size: 2.35rem;
       color: #FFF;
       margin: 0 0 16px 0;
-      line-height: 1.3;
+      line-height: 1.32;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
       color: var(--hi);
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       line-height: 1.7;
       color: #E2E8F0;
       margin: 0 0 20px 0;
     }
     .deck-slide-list {
-      font-size: 1.2rem;
-      line-height: 1.8;
+      font-size: 1.25rem;
+      line-height: 1.85;
       color: #D1D5DB;
       padding-left: 28px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .deck-footer {
+    .deck-slide-box code {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: Consolas, Monaco, monospace;
+      font-weight: 700;
+      font-size: 0.94em;
+    }
+
+    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+    .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+    .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
+    .hl-rose   { color: #FB7185; font-weight: 800; text-shadow: 0 0 12px rgba(251, 113, 133, 0.35); }
+    .hl-purple { color: #C084FC; font-weight: 800; text-shadow: 0 0 12px rgba(192, 132, 252, 0.35); }
+    .hl-badge  {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.88em;
+      font-weight: 800;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .hl-badge.gold   { background: rgba(251, 191, 36, 0.2); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .hl-badge.cyan   { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); }
+    .hl-badge.green  { background: rgba(74, 222, 128, 0.2); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.5); }
+    .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
+    .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
+
+    @media (max-width: 768px) {
+      .deck-slide-box {
+        width: 94vw;
+        padding: 20px;
+        min-height: auto;
+        max-height: 82vh;
+      }
+      .deck-slide-h2 {
+        font-size: 1.6rem;
+      }
+      .deck-slide-desc {
+        font-size: 1.05rem;
+      }
+      .deck-slide-list {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+    }
+        .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1298,90 +1356,90 @@ output/04-reused/</pre>
     const slidesData = [
       {
         category: "提示詞 1 ｜ 啟動與邊界",
-        title: "Prompt 1：<span class='highlight'>認識工作區與 AGENTS.md 邊界</span>",
+        title: "Prompt 1：<span class='hl-cyan'>認識工作區</span> 與 <span class='hl-gold'>AGENTS.md 邊界</span>",
         desc: "【第 20–30 分鐘｜讀懂規則】不改動任何檔案，驗證 Agent 遵循專案憲法：",
         points: [
-          "<strong>🎯 核心意圖</strong>：讓 Agent 主動朗讀專案邊界與輸出規範，證明其已受控於 <code>AGENTS.md</code>。",
-          "<strong>✔ 應該做</strong>：條列回答專案用途、澳門繁中規則、唯讀限制、產出目錄，以及需要向老師確認的項目。",
-          "<strong>✘ 嚴禁做</strong>：不得建立或修改任何檔案，不得擅自開始生成教材。",
-          "<strong>📁 預期產出</strong>：僅在終端條列文字回答，無任何磁碟寫入。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>讓 Agent 主動朗讀專案邊界與輸出規範，證明其已受控於 <code>AGENTS.md</code>。",
+          "<span class='hl-badge green'>✔ 應該做</span>條列回答專案用途、<span class='hl-gold'>澳門繁中規則</span>、<span class='hl-green'>唯讀限制</span>、產出目錄，以及需要向老師確認的項目。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得建立或修改任何檔案</span>，不得擅自開始生成教材。",
+          "<span class='hl-badge cyan'>📁 預期產出</span>僅在終端條列文字回答，<span class='hl-green'>無任何磁碟寫入</span>。"
         ]
       },
       {
         category: "提示詞 2 ｜ 專業分析先於題目",
-        title: "Prompt 2：<span class='highlight'>讀取並分析真實示範教材</span>",
+        title: "Prompt 2：<span class='hl-green'>讀取並分析真實示範教材</span>",
         desc: "【第 30–42 分鐘｜教材分析】深入剖析教材本質，杜絕算理偏離與超綱：",
         points: [
-          "<strong>🎯 核心意圖</strong>：調用 <code>textbook-analysis</code> 技能，從校本教材萃取數學核心與易錯點。",
-          "<strong>✔ 應該做</strong>：輸出核心概念、先備知識、表徵語言、常見迷思，以及例題變式階梯。",
-          "<strong>✘ 嚴禁做</strong>：不得直接跳躍至生成練習卷，不得脫離教材內容擅自腦補外部題型。",
-          "<strong>📁 預期產出</strong>：結構化文字報告，若 PDF 無法解析須立即停止並主動報備。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>調用 <code>textbook-analysis</code> 技能，從校本教材萃取<span class='hl-gold'>數學核心</span>與<span class='hl-rose'>易錯點</span>。",
+          "<span class='hl-badge green'>✔ 應該做</span>輸出核心概念、先備知識、表徵語言、常見迷思，以及例題變式階梯。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得直接跳躍至生成練習卷</span>，不得脫離教材內容擅自腦補外部題型。",
+          "<span class='hl-badge cyan'>📁 預期產出</span>結構化文字報告，若 PDF 無法解析須立即停止並主動報備。"
         ]
       },
       {
         category: "提示詞 3 ｜ 規格先於產出",
-        title: "Prompt 3：<span class='highlight'>教師需求訪談與 task-spec.md 生成</span>",
+        title: "Prompt 3：<span class='hl-purple'>教師需求訪談</span> 與 <span class='hl-cyan'>task-spec.md 生成</span>",
         desc: "【第 42–50 分鐘｜需求訪談】由教師掌舵課堂參數，不讓 AI 自由發揮：",
         points: [
-          "<strong>🎯 核心意圖</strong>：以反向訪談法，限制 Agent 提出不超過 6 個關鍵問題並記錄成案。",
-          "<strong>✔ 應該做</strong>：詢問年級、課堂階段、題數（8-10題）、分層需求、答案版格式，並寫入規格書。",
-          "<strong>✘ 嚴禁做</strong>：在規格確認前不得直接寫入教材內容。",
-          "<strong>📁 預期產出</strong>：生成 <code>requirements/task-spec.md</code>，狀態更新為 <code>confirmed</code>。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>以<span class='hl-purple'>反向訪談法</span>，限制 Agent 提出<span class='hl-gold'>不超過 6 個關鍵問題</span>並記錄成案。",
+          "<span class='hl-badge green'>✔ 應該做</span>詢問年級、課堂階段、題數（8-10題）、分層需求、答案版格式，並寫入規格書。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>在規格確認前不得直接寫入教材內容</span>。",
+          "<span class='hl-badge cyan'>📁 預期產出</span>生成 <code>requirements/task-spec.md</code>，狀態更新為 <span class='hl-green'>confirmed</span>。"
         ]
       },
       {
         category: "提示詞 4 ｜ 半程關鍵里程碑",
-        title: "Prompt 4：<span class='highlight'>生成第 1 版課堂練習材料（成果 1）</span>",
+        title: "Prompt 4：<span class='hl-gold'>生成第 1 版課堂練習材料（成果 1）</span>",
         desc: "【第 50–60 分鐘｜第一次備課】第 60 分鐘合格線，產出首份可用成果：",
         points: [
-          "<strong>🎯 核心意圖</strong>：依據確認好的 <code>task-spec.md</code>，生成具備梯度的課堂材料。",
-          "<strong>✔ 應該做</strong>：分出學生作答紙與教師解答詳細版，遵守 <code>AGENTS.md</code> 澳門繁體規範。",
-          "<strong>✘ 嚴禁做</strong>：不得覆蓋或改寫 <code>materials/</code> 內的原教材 PDF，兩者不得混於同一檔案。",
-          "<strong>📁 預期產出</strong>：<code>output/01-first-version/</code> 下之學生練習紙與獨立解答版。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>依據確認好的 <code>task-spec.md</code>，生成具備梯度的課堂材料。",
+          "<span class='hl-badge green'>✔ 應該做</span>分出<span class='hl-green'>學生作答紙</span>與<span class='hl-green'>教師解答詳細版</span>，遵守 <code>AGENTS.md</code> 澳門繁體規範。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得覆蓋或改寫 materials/ 內原教材 PDF</span>，兩者不得混於同一檔案。",
+          "<span class='hl-badge cyan'>📁 預期產出</span><code>output/01-first-version/</code> 下之學生練習紙與獨立解答版。"
         ]
       },
       {
         category: "提示詞 5 ｜ 因材施教認知階梯",
-        title: "Prompt 5：<span class='highlight'>生成 A/B/C 三層次分層材料（成果 2）</span>",
+        title: "Prompt 5：<span class='hl-purple'>生成 A/B/C 三層次分層材料（成果 2）</span>",
         desc: "【第 65–75 分鐘｜分層設計】基於第一版成果，建立實質學習支架：",
         points: [
-          "<strong>🎯 核心意圖</strong>：調用 <code>worksheet-generator</code> 技能，產出 A支援 / B基準 / C挑戰 三層版本。",
-          "<strong>✔ 應該做</strong>：A版增加直觀面積圖/通分分解；B版保持基準；C版提供逆向填空與高階推理。",
-          "<strong>✘ 嚴禁做</strong>：不得把分層做成純粹的「題目多加幾道」或「數字變大」的假分層。",
-          "<strong>📁 預期產出</strong>：<code>output/02-differentiated/</code> 內含三版學習紙、解答與差異對照表。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>調用 <code>worksheet-generator</code> 技能，產出 <span class='hl-purple'>A支援 / B基準 / C挑戰</span> 三層版本。",
+          "<span class='hl-badge green'>✔ 應該做</span><span class='hl-purple'>A版</span>增加直觀面積圖/分解；<span class='hl-purple'>B版</span>保持基準；<span class='hl-purple'>C版</span>提供逆向填空與高階推理。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得把分層做成純粹「多加幾題」或「數字變大」的假分層</span>。",
+          "<span class='hl-badge cyan'>📁 預期產出</span><code>output/02-differentiated/</code> 內含三版學習紙、解答與<span class='hl-gold'>差異對照表</span>。"
         ]
       },
       {
         category: "提示詞 6 ｜ 專案聯動與版本控制",
-        title: "Prompt 6：<span class='highlight'>課堂突發需求之專案同步修訂（成果 3）</span>",
+        title: "Prompt 6：<span class='hl-gold'>課堂突發需求之專案同步修訂（成果 3）</span>",
         desc: "【第 75–95 分鐘｜同步修訂】模擬真實教學時間縮短，多檔案聯動修改：",
         points: [
-          "<strong>🎯 核心意圖</strong>：給予變更指令（時間縮短為30分、加入錯因辨析題），測試連鎖修訂。",
-          "<strong>✔ 應該做</strong>：Agent 先條列將影響哪些檔案，獲准後同步修訂學生紙與教師答案，並出具差異報告。",
-          "<strong>✘ 嚴禁做</strong>：嚴禁粗暴覆蓋 01-first-version 或 02-differentiated 原檔。",
-          "<strong>📁 預期產出</strong>：<code>output/03-revised/</code> 更新檔案與 <code>change-summary.md</code> 差異報告。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>給予變更指令（<span class='hl-gold'>時間縮短為30分</span>、加入錯因辨析題），測試連鎖修訂。",
+          "<span class='hl-badge green'>✔ 應該做</span>Agent <span class='hl-green'>先條列將影響哪些檔案</span>，獲准後同步修訂學生紙與教師答案，並出具差異報告。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>嚴禁粗暴覆蓋 01-first-version 或 02-differentiated 原檔</span>。",
+          "<span class='hl-badge cyan'>📁 預期產出</span><code>output/03-revised/</code> 更新檔案與 <code>change-summary.md</code> <span class='hl-gold'>差異報告</span>。"
         ]
       },
       {
         category: "提示詞 7 ｜ 長期校本資產複用",
-        title: "Prompt 7：<span class='highlight'>換入新課題之專案再次重用（成果 4）</span>",
+        title: "Prompt 7：<span class='hl-green'>換入新課題之專案再次重用（成果 4）</span>",
         desc: "【第 95–110 分鐘｜專案重用】零配置切換新單元，驗證專案累積價值：",
         points: [
-          "<strong>🎯 核心意圖</strong>：換入全新課題（如帶分數加減），體驗專案流程與規則的無縫重用。",
-          "<strong>✔ 應該做</strong>：複用 <code>AGENTS.md</code> 規則與工作流，僅重新確認新課題題數與階段參數。",
-          "<strong>✘ 嚴禁做</strong>：不得破壞或覆蓋先前已完成的 01/02/03 成績檔案。",
-          "<strong>📁 預期產出</strong>：<code>output/04-reused/</code> 成功產出全新課題之學生紙與答案版。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>換入全新課題（如帶分數加減），體驗專案流程與規則的<span class='hl-green'>無縫重用</span>。",
+          "<span class='hl-badge green'>✔ 應該做</span>沿用 <code>AGENTS.md</code> 所有格式、術語、繁中與輸出路徑規範，<span class='hl-gold'>5 分鐘快速出稿</span>。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得在沒有指定新課題材料的情況下開始胡亂生成</span>。",
+          "<span class='hl-badge cyan'>📁 預期產出</span><code>output/04-reused/</code> 產出全新課題完整配套教材。"
         ]
       },
       {
-        category: "提示詞 8 ｜ 培訓閉環入場券",
-        title: "Prompt 8：<span class='highlight'>建立下一場培訓真實課堂難題記錄</span>",
-        desc: "【第 117–120 分鐘｜離場憑證】帶著真實問題離場，銜接進階實踐：",
+        category: "提示詞 8 ｜ 沉澱真實課堂難題",
+        title: "Prompt 8：<span class='hl-gold'>帶一個真實課堂難題離場（下一場入口）</span>",
+        desc: "【第 117–120 分鐘｜培訓閉環】把個人教學痛點記錄在專案中：",
         points: [
-          "<strong>🎯 核心意圖</strong>：在專案中建立課堂真實問題範本，拒絕泛泛而談。",
-          "<strong>✔ 應該做</strong>：填入年級、單元課題、最耗時環節、學生最常見易錯迷思、希望 Agent 協助方向。",
-          "<strong>✘ 嚴禁做</strong>：不得由機器虛構問題，必須是教師自身的真實教學體會。",
-          "<strong>📁 預期產出</strong>：在 <code>notes/next-workshop-problem.md</code> 填寫並存檔，成為下一期入場券。"
+          "<span class='hl-badge gold'>🎯 核心意圖</span>記錄個人學期最棘手課題與學生盲點，作為後續校本教研與進階培訓依據。",
+          "<span class='hl-badge green'>✔ 應該做</span>詳細填寫課題名稱、學生常見錯因、期望 Agent 輔助項目與教師親自把關標準。",
+          "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得留白或填寫過於空泛無定義的內容</span>（如「數學很難」）。",
+          "<span class='hl-badge cyan'>📁 預期產出</span>在 <code>notes/next-workshop-problem.md</code> 固化個人離場檔案。"
         ]
       }
     ];

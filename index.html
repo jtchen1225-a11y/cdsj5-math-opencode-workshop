@@ -817,17 +817,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
+      padding: 12px 20px;
       overflow-y: auto;
     }
     .deck-slide-box {
-      max-width: 960px;
-      width: 100%;
-      background: rgba(20, 26, 22, 0.75);
-      border: 2px solid rgba(52, 211, 153, 0.35);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
-      border-radius: 16px;
-      padding: 36px 42px;
+      width: 82vw;
+      max-width: 1440px;
+      min-height: 74vh;
+      max-height: 80vh;
+      box-sizing: border-box;
+      background: rgba(15, 23, 18, 0.95);
+      border: 2.5px solid rgba(52, 211, 153, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+      padding: 38px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
@@ -835,34 +842,83 @@
       to { opacity: 1; transform: scale(1); }
     }
     .deck-slide-h2 {
-      font-size: 2.1rem;
+      font-size: 2.35rem;
       color: #FFF;
       margin: 0 0 16px 0;
-      line-height: 1.3;
+      line-height: 1.32;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
       color: var(--hi);
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       line-height: 1.7;
       color: #E2E8F0;
       margin: 0 0 20px 0;
     }
     .deck-slide-list {
-      font-size: 1.2rem;
-      line-height: 1.8;
+      font-size: 1.25rem;
+      line-height: 1.85;
       color: #D1D5DB;
       padding-left: 28px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .deck-slide-box code {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: Consolas, Monaco, monospace;
+      font-weight: 700;
+      font-size: 0.94em;
     }
 
-    /* Deck Footer Navigation */
-    .deck-footer {
+    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+    .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+    .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
+    .hl-rose   { color: #FB7185; font-weight: 800; text-shadow: 0 0 12px rgba(251, 113, 133, 0.35); }
+    .hl-purple { color: #C084FC; font-weight: 800; text-shadow: 0 0 12px rgba(192, 132, 252, 0.35); }
+    .hl-badge  {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.88em;
+      font-weight: 800;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .hl-badge.gold   { background: rgba(251, 191, 36, 0.2); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .hl-badge.cyan   { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); }
+    .hl-badge.green  { background: rgba(74, 222, 128, 0.2); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.5); }
+    .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
+    .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
+
+    @media (max-width: 768px) {
+      .deck-slide-box {
+        width: 94vw;
+        padding: 20px;
+        min-height: auto;
+        max-height: 82vh;
+      }
+      .deck-slide-h2 {
+        font-size: 1.6rem;
+      }
+      .deck-slide-desc {
+        font-size: 1.05rem;
+      }
+      .deck-slide-list {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+    }
+        .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1541,197 +1597,192 @@ git push -u origin main</div>
     const slidesData = [
       {
         category: "開頭核心理念",
-        title: "AI 時代守本心，<span class='highlight'>毅誠勤樸篤前行</span>",
+        title: "AI 時代守本心，<span class='hl-gold'>毅誠勤樸篤前行</span>",
         desc: "以澳門聖若瑟教區中學第五校校訓「毅誠勤樸」為精神底色：",
         points: [
-          "<strong>AI Agent 負責流程加速</strong>：快速解析示範教材、排版工作紙初稿、多檔連動維護。",
-          "<strong>教師守住教學本質</strong>：把關數學算理正確性、評估學生認知坡度、注入課堂溫度與人文關懷。",
-          "<strong>不隨波逐流，不盲信機器</strong>：讓技術為教學服務，把寶貴時間還給師生互動！"
+          "<span class='hl-badge cyan'>AI Agent 職責</span><span class='hl-cyan'>負責流程加速</span>：快速解析示範教材、排版工作紙初稿、多檔連動維護。",
+          "<span class='hl-badge gold'>👨‍🏫 教師守護本質</span><span class='hl-gold'>把關數學算理正確性</span>、評估學生認知坡度、注入課堂溫度與人文關懷。",
+          "<span class='hl-badge green'>🌱 實踐原則</span><span class='hl-green'>不隨波逐流，不盲信機器</span>：讓技術為教學服務，把寶貴時間還給師生互動！"
         ]
       },
       {
         category: "核心支柱 1",
-        title: "⏱️ 2 小時 <span class='highlight'>精準實操節奏</span>",
+        title: "⏱️ 2 小時 <span class='hl-gold'>精準實操節奏</span>",
         desc: "120 分鐘精準劃分，拒絕冗長的泛理論宣講：",
         points: [
-          "<strong>前 60 分鐘</strong>：看見終點 → 啟動專案 → 讀懂規則 → 教材分析 → 需求訪談 → 產出第 1 版成果。",
-          "<strong>第 60 分鐘合格線</strong>：每位老師專案中必產出一份真實可用的課堂材料與教師解答。",
-          "<strong>後 60 分鐘</strong>：做分層（A/B/C）→ 同步修訂（聯動更新）→ 跨課題重用 → 離場難題記錄。"
+          "<span class='hl-badge cyan'>前 60 分鐘</span>看見終點 → 啟動專案 → 讀懂規則 → 教材分析 → 需求訪談 → <span class='hl-gold'>產出第 1 版成果</span>。",
+          "<span class='hl-badge gold'>第 60 分鐘合格線</span>每位老師專案中必產出一份真實可用的<span class='hl-green'>課堂材料</span>與<span class='hl-green'>教師解答</span>。",
+          "<span class='hl-badge purple'>後 60 分鐘</span>做分層（<span class='hl-purple'>A/B/C</span>）→ 同步修訂（<span class='hl-cyan'>聯動更新</span>）→ 跨課題重用 → 離場難題記錄。"
         ]
       },
       {
         category: "核心支柱 2",
-        title: "📄 1 個真實教材 <span class='highlight'>守住數學事實</span>",
+        title: "📄 1 個真實教材 <span class='hl-green'>守住數學事實</span>",
         desc: "小學數學容不得算理模糊與超綱：",
         points: [
-          "以校本真實示範教材 <code>materials/P5-分數加減法.pdf</code> 為唯一材料依託。",
-          "<strong>嚴格邊界約束</strong>：嚴禁 Agent 任意超綱出題（如分母控制在 20 以內，不涉及三項混算）。",
-          "<strong>尊重教材表徵</strong>：保留教材原有通分面積圖、數線圖，不隨意替換為生僻解法。"
+          "<span class='hl-badge cyan'>唯一依託</span>以校本真實示範教材 <code>materials/P5-分數加減法.pdf</code> 為唯一材料依託。",
+          "<span class='hl-badge rose'>嚴格邊界約束</span><span class='hl-rose'>嚴禁 Agent 任意超綱出題</span>（如分母控制在 20 以內，不涉及三項混算）。",
+          "<span class='hl-badge green'>尊重教材表徵</span>保留教材原有<span class='hl-green'>通分面積圖、數線圖</span>，不隨意替換為生僻解法。"
         ]
       },
       {
         category: "核心支柱 3",
-        title: "🔄 4 次循環 <span class='highlight'>Agent 工作閉環</span>",
+        title: "🔄 4 次循環 <span class='hl-purple'>Agent 工作閉環</span>",
         desc: "從「生成一次文字」躍升到「專案級工作流控制」：",
         points: [
-          "<strong>第 1 次循環（第一次備課）</strong>：向老師提出 6 個問題確認規格，寫入 task-spec.md 後才生成。",
-          "<strong>第 2 次循環（做一次分層）</strong>：不換課題，建立 A支援版 / B基準版 / C挑戰版實質支架。",
-          "<strong>第 3 次循環（同步修訂）</strong>：教學時間改變時，Agent 跨檔案同步修改並出具差異報告。",
-          "<strong>第 4 次循環（再次重用）</strong>：換入全新課題，保留專案規則，體驗資產複用價值。"
+          "<span class='hl-badge gold'>第 1 次循環（第一次備課）</span>向老師提出 <span class='hl-gold'>6 個問題確認規格</span>，寫入 <code>task-spec.md</code> 後才生成。",
+          "<span class='hl-badge purple'>第 2 次循環（做一次分層）</span>不換課題，建立 <span class='hl-purple'>A支援版 / B基準版 / C挑戰版</span> 實質支架。",
+          "<span class='hl-badge cyan'>第 3 次循環（同步修訂）</span>教學時間改變時，Agent <span class='hl-cyan'>跨檔案同步修改</span>並出具差異報告。",
+          "<span class='hl-badge green'>第 4 次循環（再次重用）</span>換入全新課題，<span class='hl-green'>保留專案規則</span>，體驗資產複用價值。"
         ]
       },
       {
         category: "核心支柱 4",
-        title: "📦 1 個可重用專案 <span class='highlight'>長期校本資產</span>",
+        title: "📦 1 個可重用專案 <span class='hl-gold'>長期校本資產</span>",
         desc: "建立永久的個人與科組數位教學專案：",
         points: [
-          "不是用完即丟的聊天視窗，而是結構化的專案資料夾。",
-          "以 <code>AGENTS.md</code> 作為長期憲法，每次執行自動遵守學校語言與安全規範。",
-          "下週備新課題時，直接換入新單元 PDF，秒級複用成熟工作流，越備越快！"
+          "<span class='hl-badge gold'>專案化思維</span>不是用完即丟的聊天視窗，而是<span class='hl-gold'>結構化的專案資料夾</span>。",
+          "<span class='hl-badge cyan'>專案憲法</span>以 <code>AGENTS.md</code> 作為長期憲法，每次執行自動遵守學校語言與安全規範。",
+          "<span class='hl-badge green'>秒級複用</span>下週備新課題時，直接換入新單元 PDF，<span class='hl-green'>秒級複用成熟工作流，越備越快！</span>"
         ]
       },
       {
         category: "架構支柱深入",
-        title: "架構支柱 1：<span class='highlight'>⏱️ 2 小時高密度實踐</span>",
+        title: "架構支柱 1：<span class='hl-gold'>⏱️ 2 小時高密度實踐</span>",
         desc: "打破「學完忘光」的困境，打造 120 分鐘即學即產出的課堂：",
         points: [
-          "00–10 min：看見終點，預覽 4 份成品，釐清學習迴圈。",
-          "10–30 min：啟動 OpenCode，讀懂 AGENTS.md 邊界約束。",
-          "30–50 min：讀取教材分析，完成 6 個關鍵問題需求訪談。",
-          "50–60 min：完成第 1 版備課成果（成果 1 里程碑）！",
-          "60–120 min：進階分層、同步修訂、新課重用與驗收。"
+          "<span class='hl-badge cyan'>00–10 min</span>看見終點，預覽 4 份成品，釐清學習迴圈。",
+          "<span class='hl-badge cyan'>10–30 min</span>啟動 OpenCode，讀懂 <span class='hl-gold'>AGENTS.md 邊界約束</span>。",
+          "<span class='hl-badge cyan'>30–50 min</span>讀取教材分析，完成 <span class='hl-purple'>6 個關鍵問題需求訪談</span>。",
+          "<span class='hl-badge gold'>50–60 min</span>完成第 1 版備課成果（<span class='hl-gold'>成果 1 里程碑</span>）！",
+          "<span class='hl-badge green'>60–120 min</span>進階分層、同步修訂、新課重用與驗收。"
         ]
       },
       {
         category: "架構支柱深入",
-        title: "架構支柱 2：<span class='highlight'>📄 1 個真實教材依歸</span>",
+        title: "架構支柱 2：<span class='hl-green'>📄 1 個真實教材依歸</span>",
         desc: "教學的靈魂在於具體的教材與學生認知：",
         points: [
-          "只以 <code>materials/</code> 內的 PDF 檔案為事實來源。",
-          "若 PDF 讀取不全或文字模糊，Agent 必須停止並回報，絕不可主觀猜測。",
-          "所有題目與活動設計緊扣本課「異分母分數加減法」核心算理。"
+          "<span class='hl-badge cyan'>唯一事實</span>只以 <code>materials/</code> 內的 PDF 檔案為事實來源。",
+          "<span class='hl-badge rose'>禁絕主觀猜測</span>若 PDF 讀取不全或文字模糊，Agent <span class='hl-rose'>必須停止並回報</span>，絕不可主觀猜測。",
+          "<span class='hl-badge green'>聚焦算理</span>所有題目與活動設計緊扣本課「<span class='hl-green'>異分母分數加減法</span>」核心算理。"
         ]
       },
       {
         category: "架構支柱深入",
-        title: "架構支柱 3：<span class='highlight'>🔄 4 次工作循環進階</span>",
+        title: "架構支柱 3：<span class='hl-purple'>🔄 4 次工作循環進階</span>",
         desc: "循序漸進掌握 AI Agent 的四大核心能力：",
         points: [
-          "能力 1【需求受控】：不讓 AI 自由發揮，先確認規格書。",
-          "能力 2【差異化教學】：針對學生差異設計直觀表徵與高階推理。",
-          "能力 3【專案一致性】：一次修改需求，題目與答案版自動聯動。",
-          "能力 4【可持續重用】：驗證專案規則與流程的長期通用性。"
+          "<span class='hl-badge gold'>能力 1【需求受控】</span><span class='hl-rose'>不讓 AI 自由發揮</span>，先確認規格書。",
+          "<span class='hl-badge purple'>能力 2【差異化教學】</span>針對學生差異設計<span class='hl-purple'>直觀表徵與高階推理</span>。",
+          "<span class='hl-badge cyan'>能力 3【專案一致性】</span>一次修改需求，<span class='hl-cyan'>題目與答案版自動聯動</span>。",
+          "<span class='hl-badge green'>能力 4【可持續重用】</span>驗證專案規則與流程的<span class='hl-green'>長期通用性</span>。"
         ]
       },
       {
         category: "架構支柱深入",
-        title: "架構支柱 4：<span class='highlight'>📦 1 個可重用專案資產</span>",
+        title: "架構支柱 4：<span class='hl-gold'>📦 1 個可重用專案資產</span>",
         desc: "將教師的個人備課智慧固化為專案規範：",
         points: [
-          "<code>AGENTS.md</code>：規定澳門繁體中文、中英文術語統一、嚴禁洩漏個資。",
-          "<code>materials/</code>：唯讀教材來源保護區。",
-          "<code>requirements/</code>：任務規格書存放區。",
-          "<code>output/</code>：依 01/02/03/04 階段版本化管理。"
+          "<span class='hl-badge gold'>AGENTS.md</span>規定澳門繁體中文、中英文術語統一、<span class='hl-rose'>嚴禁洩漏個資</span>。",
+          "<span class='hl-badge green'>materials/</span><span class='hl-green'>唯讀教材來源保護區</span>。",
+          "<span class='hl-badge purple'>requirements/</span>任務規格書存放區。",
+          "<span class='hl-badge cyan'>output/</span>依 <code>01 / 02 / 03 / 04</code> 階段版本化管理。"
         ]
       },
       {
         category: "全覽圖表放大",
-        title: "🌟 2 小時學習迴圈 <span class='highlight'>全覽地圖</span>",
+        title: "🌟 2 小時學習迴圈 <span class='hl-gold'>全覽地圖</span>",
         desc: "點擊下方大圖或查看流程閉環：",
         svg: "images/00-workshop-map.svg",
         points: [
-          "1. 教材與規則 (00-30分) → 2. 教師確認需求 (30-50分)",
-          "3. 第一次備課 (50-60分) → 4. 做一次分層 (65-75分)",
-          "5. 同步修訂 (75-95分) → 6. 再次重用 (95-110分)",
-          "7. 帶真實課堂問題離場 (117-120分)！"
+          "<span class='hl-badge cyan'>1. 教材與規則 (00-30分)</span> → <span class='hl-badge purple'>2. 教師確認需求 (30-50分)</span>",
+          "<span class='hl-badge gold'>3. 第一次備課 (50-60分)</span> → <span class='hl-badge purple'>4. 做一次分層 (65-75分)</span>",
+          "<span class='hl-badge cyan'>5. 同步修訂 (75-95分)</span> → <span class='hl-badge green'>6. 再次重用 (95-110分)</span>",
+          "<span class='hl-badge gold'>7. 帶真實課堂問題離場 (117-120分)！</span>"
         ]
       },
       {
         category: "核心成果 1",
-        title: "成果 1：<span class='highlight'>第一次備課成果（第60分鐘）</span>",
-        desc: "存放於 <code>output/01-first-version/</code>：",
+        title: "📄 第一次備課成果：<span class='hl-gold'>首份課堂材料</span>",
+        desc: "第 60 分鐘合格線里程碑：",
         points: [
-          "由 Agent 讀取教材後，依據確認好的 <code>task-spec.md</code> 規格產生。",
-          "具備階梯坡度：基礎計算題 → 課本例題變式 → 簡單生活應用題。",
-          "學生作答紙與教師答案詳細版<strong>完全分開存檔</strong>。",
-          "保留教師可再人工檢視與增刪的留白與題號標記。"
+          "<span class='hl-badge cyan'>學生練習紙</span>具備算理梯度的 8–10 題核心練習題。",
+          "<span class='hl-badge green'>教師詳細答案版</span>含每題<span class='hl-green'>通分步驟、常見易錯點分析與評分標準</span>。",
+          "<span class='hl-badge gold'>規格對齊</span>完全遵守 <code>task-spec.md</code> 設定，格式整潔可用。"
         ]
       },
       {
         category: "核心成果 2",
-        title: "成果 2：<span class='highlight'>分層學習材料（第75分鐘）</span>",
-        desc: "存放於 <code>output/02-differentiated/</code>：",
+        title: "🎯 分層材料：<span class='hl-purple'>A支援 / B基準 / C挑戰</span>",
+        desc: "因材施教的實質展現：",
         points: [
-          "<strong>A 支援版</strong>：保留核心算理，加入分數直觀圖形、通分步驟分解支架。",
-          "<strong>B 基準版</strong>：維持常規課堂練習難度，鞏固通分與約分計算技能。",
-          "<strong>C 挑戰版</strong>：引入錯誤辨析題、逆向填空題與多步生活應用情境。",
-          "自動產出差異對照表，清楚說明三個版本到底「改了甚麼」。"
+          "<span class='hl-badge purple'>A 支援版</span>增加通分分解步驟支架、直觀面積圖輔助。",
+          "<span class='hl-badge cyan'>B 基準版</span>維持標準難度與常規題型練習。",
+          "<span class='hl-badge gold'>C 挑戰版</span>加入逆向填空、高階比較與開放性思維題。",
+          "<span class='hl-badge green'>差異對照表</span>條列三層次題型的認知設計差異與用意。"
         ]
       },
       {
         category: "核心成果 3",
-        title: "成果 3：<span class='highlight'>同步修訂成果與報告（第95分鐘）</span>",
-        desc: "存放於 <code>output/03-revised/</code>：",
+        title: "🔄 同步修訂：<span class='hl-cyan'>條件變更與聯動報告</span>",
+        desc: "跨檔案連鎖一致性保障：",
         points: [
-          "模擬真實備課情境：課堂時間縮短、需緊急加入典型錯因辨析。",
-          "Agent 先向老師盤點將影響哪些檔案，獲准後同步更新關聯檔案。",
-          "自動產生 <code>change-summary.md</code>，條列改動前後的清晰差異。",
-          "完整保留 01 與 02 歷史版本，絕不魯莽覆蓋！"
+          "<span class='hl-badge cyan'>多檔同步</span>學生練習紙與教師答案版題號、題目完全對齊。",
+          "<span class='hl-badge gold'>差異報告</span>產出 <code>change-summary.md</code> 清晰說明修訂背景與修改點。",
+          "<span class='hl-badge rose'>歷史保護</span>保留 <code>01-first-version</code> 原版，不直接粗暴覆蓋。"
         ]
       },
       {
         category: "核心成果 4",
-        title: "成果 4：<span class='highlight'>再次重用新任務成果（第110分鐘）</span>",
-        desc: "存放於 <code>output/04-reused/</code>：",
+        title: "📦 再次重用：<span class='hl-green'>跨課題無縫切換</span>",
+        desc: "校本數位資產的長期價值：",
         points: [
-          "換入新課題（如帶分數加減法），測試專案是否真正可重複使用。",
-          "保留 <code>AGENTS.md</code> 的規則、語言規範與輸出路徑習慣。",
-          "僅需重新確認新任務的具體題數與課堂階段，即可迅速開工。",
-          "證明 AI 備課專案是一項可持續增長的高價值教學資產。"
+          "<span class='hl-badge green'>規則保留</span>換入全新課題 PDF，<code>AGENTS.md</code> 規範依然生效。",
+          "<span class='hl-badge gold'>極速交付</span>備課時間從最初的 40 分鐘銳減至 <span class='hl-gold'>5 分鐘</span>。",
+          "<span class='hl-badge cyan'>品質穩定</span>保持澳門繁體、零個資與嚴格分層體系。"
         ]
       },
       {
-        category: "培訓閉環入口",
-        title: "🚪 下一場培訓入口：<span class='highlight'>真實課堂問題離場憑證</span>",
-        desc: "存放於 <code>notes/next-workshop-problem.md</code>：",
+        category: "課堂提示詞庫",
+        title: "💡 提示詞庫全覽：<span class='hl-cyan'>8 階段任務卡</span>",
+        desc: "現場一鍵複製、即插即用的結構化 Prompt 集合：",
         points: [
-          "每位老師在培訓最後 3 分鐘記錄一項自己的真實課堂難題。",
-          "包含：年級、單元、目前最耗時備課環節、學生最常見迷思。",
-          "寫明希望未來 AI Agent 協助的事項，以及堅持由教師把關的底線。",
-          "拒絕機器虛構，真實記錄，作為下次進階工作坊的真實出發點！"
+          "<span class='hl-badge cyan'>Prompt 1–3</span>讀懂規則、教材分析、需求訪談。",
+          "<span class='hl-badge gold'>Prompt 4–5</span>第一次備課（成果1）、三階分層（成果2）。",
+          "<span class='hl-badge purple'>Prompt 6–7</span>同步修訂（成果3）、新課題重用（成果4）。",
+          "<span class='hl-badge green'>Prompt 8</span>帶走一個真實課堂難題，銜接下一場培訓。"
         ]
       },
       {
-        category: "全覽圖表放大",
-        title: "🌟 專案目錄與權限邊界 <span class='highlight'>全覽架構圖</span>",
-        desc: "點擊下方大圖或查看目錄架構邊界：",
-        svg: "images/01-project-structure.svg",
+        category: "現場排查與技術保障",
+        title: "⚡ 30–40 人現場技術保障：<span class='hl-rose'>突發排查 SOP</span>",
+        desc: "確保每一位教師不掉隊、不卡關的應急手冊：",
         points: [
-          "AGENTS.md【長期憲法】：澳門繁中、術語一致、嚴禁學生個資。",
-          "materials/【只讀來源】：學校示範教材 PDF，唯讀保護。",
-          "requirements/【規格確認】：task-spec.md，教師確認後開工。",
-          "output/【成果產出】：01/02/03/04 分階段資料夾存檔。"
+          "<span class='hl-badge rose'>10 大常見問題</span>嚴格採「現象、原因、動作、驗證」4 步排查格式。",
+          "<span class='hl-badge gold'>錯峰節奏</span>A/B/C/D 四組依序發送請求，徹底避免 <span class='hl-rose'>429 併發限流</span>。",
+          "<span class='hl-badge green'>降級備援</span>遇到全域斷網立即切換本機純文字教材與離線專家示範模式。"
         ]
       },
       {
-        category: "專案權限規範",
-        title: "專案權限：<span class='highlight'>AGENTS.md 長期憲法</span>",
-        desc: "專案最核心的行為約束標準：",
+        category: "教師驗收九大維度",
+        title: "✅ 教師驗收 <span class='hl-gold'>9 大檢核維度</span>",
+        desc: "AI 產出 ≠ 完成，教師驗收才是完成：",
         points: [
-          "<strong>澳門繁中與一致術語</strong>：中文部使用繁體中文，中英文部術語對齊。",
-          "<strong>學生個資絕對紅線</strong>：嚴禁處理學生真實姓名、學號、成績或家長電話。",
-          "<strong>嚴禁虛構未讀教材</strong>：不得憑空捏造未提供的知識點。",
-          "<strong>金鑰安全保護</strong>：不將個人 API Key 或密碼寫入程式碼中。"
+          "<span class='hl-badge gold'>1. 算理</span>分母在 20 內，計算過程無超綱與邏輯錯誤。",
+          "<span class='hl-badge cyan'>2. 表徵</span>澳門繁體標準，通分面積圖比例清晰無歧義。",
+          "<span class='hl-badge purple'>3. 分層</span>A/B/C 確實具備認知梯度，非單純題量增減。",
+          "<span class='hl-badge green'>4. 安全</span>無任何學生個資，原始教材資料夾毫髮無損。"
         ]
       },
       {
-        category: "專案權限規範",
-        title: "專案權限：<span class='highlight'>materials/ 只讀來源</span>",
-        desc: "存放示範與真實教學 PDF 材料：",
+        category: "結業與持續賦能",
+        title: "🎓 結業與 <span class='hl-gold'>下一場進階入口</span>",
+        desc: "帶著沉甸甸的專案成果，開啟自主校本實踐：",
         points: [
-          "<strong>唯讀權限保護</strong>：Agent 僅能讀取，嚴禁修改或刪除原始檔案。",
-          "包含示範教材：<code>P5-分數加減法-示範教材.pdf</code>。",
-          "若 PDF 包含不可解析掃描層，立即停止並回報，改用 backup/ 文字檔。"
+          "<span class='hl-badge gold'>4 大成果檔案</span>整齊歸檔於專案 <code>output/</code> 資料夾中。",
+          "<span class='hl-badge cyan'>1 份進階憑證</span>記錄於 <code>notes/next-workshop-problem.md</code>。",
+          "<span class='hl-badge green'>科組共享</span>專案範本可直接打包分享給科組全體同仁！"
         ]
       }
     ];

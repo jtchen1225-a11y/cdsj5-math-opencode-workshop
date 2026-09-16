@@ -525,17 +525,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
+      padding: 12px 20px;
       overflow-y: auto;
     }
     .deck-slide-box {
-      max-width: 960px;
-      width: 100%;
-      background: rgba(20, 26, 22, 0.75);
-      border: 2px solid rgba(52, 211, 153, 0.35);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(0, 0, 0, 0.5);
-      border-radius: 16px;
-      padding: 36px 42px;
+      width: 82vw;
+      max-width: 1440px;
+      min-height: 74vh;
+      max-height: 80vh;
+      box-sizing: border-box;
+      background: rgba(15, 23, 18, 0.95);
+      border: 2.5px solid rgba(52, 211, 153, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      border-radius: 20px;
+      padding: 38px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
@@ -543,32 +550,83 @@
       to { opacity: 1; transform: scale(1); }
     }
     .deck-slide-h2 {
-      font-size: 2.1rem;
+      font-size: 2.35rem;
       color: #FFF;
       margin: 0 0 16px 0;
-      line-height: 1.3;
+      line-height: 1.32;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
       color: var(--hi);
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       line-height: 1.7;
       color: #E2E8F0;
       margin: 0 0 20px 0;
     }
     .deck-slide-list {
-      font-size: 1.2rem;
-      line-height: 1.8;
+      font-size: 1.25rem;
+      line-height: 1.85;
       color: #D1D5DB;
       padding-left: 28px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .deck-footer {
+    .deck-slide-box code {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: Consolas, Monaco, monospace;
+      font-weight: 700;
+      font-size: 0.94em;
+    }
+
+    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+    .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+    .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
+    .hl-rose   { color: #FB7185; font-weight: 800; text-shadow: 0 0 12px rgba(251, 113, 133, 0.35); }
+    .hl-purple { color: #C084FC; font-weight: 800; text-shadow: 0 0 12px rgba(192, 132, 252, 0.35); }
+    .hl-badge  {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.88em;
+      font-weight: 800;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .hl-badge.gold   { background: rgba(251, 191, 36, 0.2); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .hl-badge.cyan   { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.5); }
+    .hl-badge.green  { background: rgba(74, 222, 128, 0.2); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.5); }
+    .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
+    .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
+
+    @media (max-width: 768px) {
+      .deck-slide-box {
+        width: 94vw;
+        padding: 20px;
+        min-height: auto;
+        max-height: 82vh;
+      }
+      .deck-slide-h2 {
+        font-size: 1.6rem;
+      }
+      .deck-slide-desc {
+        font-size: 1.05rem;
+      }
+      .deck-slide-list {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+    }
+        .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1262,123 +1320,123 @@
     const slidesData = [
       {
         category: "階段 1 ｜ 00–10 min",
-        title: "一、看見終點：<span class='highlight'>展示 4 大成果與專案地圖</span>",
+        title: "一、看見終點：<span class='hl-gold'>展示 4 大成果</span> 與 <span class='hl-cyan'>專案地圖</span>",
         desc: "【心理表徵建立】全員看見終點，不陷入安裝枝節與術語焦慮：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：投影 <code>output/</code> 4 份終極成品檔案，明確宣告今天不是學無目的聊天，而是專案級交付。",
-          "<strong>👩‍🏫 學員行動</strong>：只看投影、不急操作，確認所屬 A/B/C/D 分組，心中預想一項最耗時數學備課環節。",
-          "<strong>🎯 階段合格標準</strong>：看懂完整學習迴圈（教材→規則→訪談→備課→分層→修訂→重用）。",
-          "<strong>⚠️ 防踩坑提醒</strong>：此階段嚴禁發送請求，避免群聚併發癱瘓網路。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>投影 <code>output/</code> <span class='hl-gold'>4 份終極成品檔案</span>，明確宣告今天不是學無目的聊天，而是<span class='hl-green'>專案級交付</span>。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>只看投影、不急操作，確認所屬 <span class='hl-purple'>A / B / C / D</span> 分組，心中預想一項最耗時數學備課環節。",
+          "<span class='hl-badge green'>🎯 合格標準</span>看懂完整學習迴圈（<span class='hl-cyan'>教材→規則→訪談→備課→分層→修訂→重用</span>）。",
+          "<span class='hl-badge rose'>⚠️ 防踩坑提醒</span><span class='hl-rose'>此階段嚴禁發送請求</span>，避免群聚併發癱瘓網路！"
         ]
       },
       {
         category: "階段 2 ｜ 10–20 min",
-        title: "二、啟動專案：<span class='highlight'>確認 OpenCode 與教材環境</span>",
+        title: "二、啟動專案：<span class='hl-green'>確認 OpenCode</span> 與 <span class='hl-cyan'>教材環境</span>",
         desc: "【啟動與防線】雙擊啟動，確認專案邊界與安全紅線：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：演示雙擊 <code>01_啟動OpenCode培訓.bat</code>，展示專案核心目錄結構。",
-          "<strong>👩‍🏫 學員行動</strong>：依 A→B→C→D 錯峰啟動本機環境，確認 OpenCode 終端正常連通。",
-          "<strong>🎯 階段合格標準</strong>：專案目錄正確鎖定於 <code>Math-Agent-Workshop/</code>，不在隨機外層散落。",
-          "<strong>⚠️ 現場保障</strong>：助教巡視，若有 PowerShell 執行原則報錯，即刻改用 cmd。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>演示雙擊 <code>01_啟動OpenCode培訓.bat</code>，展示專案核心目錄結構。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>依 <span class='hl-purple'>A→B→C→D 錯峰啟動</span>本機環境，確認 OpenCode 終端正常連通。",
+          "<span class='hl-badge green'>🎯 合格標準</span>專案目錄正確鎖定於 <code>Math-Agent-Workshop/</code>，<span class='hl-rose'>絕不在隨機外層散落</span>。",
+          "<span class='hl-badge rose'>⚠️ 現場保障</span>助教巡視，若有 PowerShell 執行原則報錯，即刻改用 <span class='hl-cyan'>cmd</span> 模式。"
         ]
       },
       {
         category: "階段 3 ｜ 20–30 min",
-        title: "三、讀懂 AGENTS.md：<span class='highlight'>建立專案持續規則（專案憲法）</span>",
+        title: "三、讀懂 AGENTS.md：<span class='hl-gold'>建立專案持續規則（專案憲法）</span>",
         desc: "【規範優先】讓 Agent 遵守學校繁中、數學符號與零個資紅線：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：逐條解讀 <code>AGENTS.md</code> 核心四規範：澳門繁體、術語一致、嚴禁個資、唯讀教材保護。",
-          "<strong>👩‍🏫 學員行動</strong>：錯峰送出 <strong>Prompt 1</strong>，驗證 Agent 能正確朗讀專案憲法並盤點教材清單。",
-          "<strong>🎯 階段合格標準</strong>：Agent 回應清楚列出唯讀材料與輸出目錄規範，無幻覺。",
-          "<strong>💡 核心觀念</strong>：專案規則是長期資產，一次設定，後續所有備課自動遵從！"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>逐條解讀 <code>AGENTS.md</code> 核心四規範：<span class='hl-gold'>澳門繁體</span>、<span class='hl-purple'>術語一致</span>、<span class='hl-rose'>嚴禁個資</span>、<span class='hl-green'>唯讀教材保護</span>。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>錯峰送出 <span class='hl-cyan'>Prompt 1</span>，驗證 Agent 能正確朗讀專案憲法並盤點教材清單。",
+          "<span class='hl-badge green'>🎯 合格標準</span>Agent 回應清楚列出唯讀材料與輸出目錄規範，<span class='hl-green'>完全零幻覺</span>。",
+          "<span class='hl-badge purple'>💡 核心觀念</span>專案規則是<span class='hl-gold'>長期資產</span>，一次設定，後續所有備課自動遵從！"
         ]
       },
       {
         category: "階段 4 ｜ 30–42 min",
-        title: "四、讀取真實教材：<span class='highlight'>專業分析先於題目生成</span>",
+        title: "四、讀取真實教材：<span class='hl-green'>專業分析先於題目生成</span>",
         desc: "【守住數學事實】徹底杜絕 AI 隨意出題超綱或算理模糊：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：展示校本 <code>materials/P5-分數加減法.pdf</code>，強調『教材是唯一真理來源』。",
-          "<strong>👩‍🏫 學員行動</strong>：錯峰送出 <strong>Prompt 2</strong>，要求 Agent 提煉概念核心、前置知識、學生易錯迷思與題型階梯。",
-          "<strong>🎯 階段合格標準</strong>：Agent 產出條理清晰的教學分析，指出異分母通分關鍵與約分盲點。",
-          "<strong>⚠️ 防踩坑提醒</strong>：若 PDF 讀取異常，立即切換 backup 目錄純文字版，不卡死流程。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>展示校本 <code>materials/P5-分數加減法.pdf</code>，強調『<span class='hl-gold'>教材是唯一真理來源</span>』。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>錯峰送出 <span class='hl-cyan'>Prompt 2</span>，要求 Agent 提煉概念核心、前置知識、學生易錯迷思與題型階梯。",
+          "<span class='hl-badge green'>🎯 合格標準</span>Agent 產出條理清晰的教學分析，指出<span class='hl-green'>異分母通分關鍵</span>與<span class='hl-rose'>約分盲點</span>。",
+          "<span class='hl-badge rose'>⚠️ 防踩坑提醒</span>若 PDF 讀取異常，立即切換 <code>backup/</code> 目錄<span class='hl-gold'>純文字版</span>，不卡死流程。"
         ]
       },
       {
         category: "階段 5 ｜ 42–50 min",
-        title: "五、教師確認需求：<span class='highlight'>形成 task-spec.md 規格書</span>",
+        title: "五、教師確認需求：<span class='hl-purple'>形成 task-spec.md 規格書</span>",
         desc: "【規格先於產出】掌控 AI 的主控權，由老師決定課堂參數：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：演示『反向訪談法』，讓 Agent 向老師提出 6 個核心參數問題（年級、題數、情境、排版）。",
-          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 3</strong>，逐一回答 Agent 提問，產出規格書。",
-          "<strong>🎯 階段合格標準</strong>：專案目錄生成 <code>requirements/task-spec.md</code>，條列確定之參數清單。",
-          "<strong>💡 核心教學法</strong>：不讓 AI 自由發揮；規格確立後，生成的成果才有高可用性。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>演示『<span class='hl-purple'>反向訪談法</span>』，讓 Agent 向老師提出 <span class='hl-gold'>6 個核心參數問題</span>（年級、題數、情境、排版）。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>送出 <span class='hl-cyan'>Prompt 3</span>，逐一回答 Agent 提問，產出規格書。",
+          "<span class='hl-badge green'>🎯 合格標準</span>專案目錄生成 <code>requirements/task-spec.md</code>，條列確定之參數清單。",
+          "<span class='hl-badge purple'>💡 核心教學法</span><span class='hl-rose'>不讓 AI 自由發揮</span>；規格確立後，生成的成果才有<span class='hl-green'>高可用性</span>。"
         ]
       },
       {
         category: "階段 6 ｜ 50–60 min（合格線）",
-        title: "六、第一次備課成果：<span class='highlight'>產出第 1 版課堂材料（成果 1）</span>",
-        desc: "【第 60 分鐘合格線】產出真實課堂練習紙與教師解答詳細版：",
+        title: "六、第一次備課成果：<span class='hl-gold'>產出第 1 版課堂材料（成果 1）</span>",
+        desc: "【<span class='hl-gold'>第 60 分鐘合格線</span>】產出真實課堂練習紙與教師解答詳細版：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：宣布 50 分鐘第 1 個里程碑，監控錯峰發送 <strong>Prompt 4</strong>。",
-          "<strong>👩‍🏫 學員行動</strong>：A組(50m)→B組(52m)→C組(54m)→D組(56m) 依序送出 Prompt 4。",
-          "<strong>🎯 階段合格標準</strong>：在 <code>output/01-first-version/</code> 生成學生練習紙與獨立教師解答版。",
-          "<strong>☕ 60–65 min 技術緩衝</strong>：中場微休息 5 分鐘，助教排查落後或 429 請求異常學員。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>宣布 50 分鐘第 1 個里程碑，監控錯峰發送 <span class='hl-cyan'>Prompt 4</span>。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span><span class='hl-purple'>A組(50m)→B組(52m)→C組(54m)→D組(56m)</span> 依序送出 Prompt 4。",
+          "<span class='hl-badge green'>🎯 合格標準</span>在 <code>output/01-first-version/</code> 生成<span class='hl-green'>學生練習紙</span>與<span class='hl-green'>獨立教師解答版</span>。",
+          "<span class='hl-badge gold'>☕ 60–65 min 技術緩衝</span>中場微休息 5 分鐘，助教排查落後或 <span class='hl-rose'>429 請求異常</span>學員。"
         ]
       },
       {
         category: "階段 7 ｜ 65–75 min",
-        title: "七、做一次分層：<span class='highlight'>A支援 / B基準 / C挑戰（成果 2）</span>",
+        title: "七、做一次分層：<span class='hl-purple'>A支援 / B基準 / C挑戰（成果 2）</span>",
         desc: "【因材施教】不換課題，為不同認知步調學生建立學習階梯：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：強調『分層不是多出 10 題』，而是實質加入圖形表徵、分解支架與高階辨析。",
-          "<strong>👩‍🏫 學員行動</strong>：調用 <code>worksheet-generator</code> 技能，送出 <strong>Prompt 5</strong>。",
-          "<strong>🎯 階段合格標準</strong>：在 <code>output/02-differentiated/</code> 產出 A支援版、B基準版、C挑戰版與差異對照表。",
-          "<strong>🌟 亮點功能</strong>：差異對照表讓科組教師一眼看懂每層題型的認知調整邏輯。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>強調『<span class='hl-rose'>分層不是多出 10 題</span>』，而是實質加入<span class='hl-green'>圖形表徵、分解支架與高階辨析</span>。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>調用 <code>worksheet-generator</code> 技能，送出 <span class='hl-cyan'>Prompt 5</span>。",
+          "<span class='hl-badge green'>🎯 合格標準</span>在 <code>output/02-differentiated/</code> 產出 <span class='hl-purple'>A支援版、B基準版、C挑戰版</span> 與 <span class='hl-gold'>差異對照表</span>。",
+          "<span class='hl-badge green'>🌟 亮點功能</span>差異對照表讓科組教師一眼看懂每層題型的<span class='hl-green'>認知調整邏輯</span>。"
         ]
       },
       {
         category: "階段 8 ｜ 75–95 min",
-        title: "八、做一次同步修訂：<span class='highlight'>模擬真實條件變更與聯動更新（成果 3）</span>",
+        title: "八、做一次同步修訂：<span class='hl-gold'>模擬真實條件變更與聯動更新（成果 3）</span>",
         desc: "【專案連鎖一致性】課堂時間縮減時，多檔案同步更新與差異報告：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：設計真實情境『課堂縮減 10 分鐘，需刪減題目並插入 1 題典型錯因辨析』。",
-          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 6</strong>，觀察 Agent 先盤點受影響檔案，獲准後同步更新題目與解答。",
-          "<strong>🎯 階段合格標準</strong>：在 <code>output/03-revised/</code> 產生更新材料，並附帶 <code>change-summary.md</code> 差異報告。",
-          "<strong>🛡️ 版本安全</strong>：嚴禁覆蓋 01/02 原版，完整保留修訂版本歷史軌跡。"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>設計真實情境『<span class='hl-gold'>課堂縮減 10 分鐘</span>，需刪減題目並插入 1 題<span class='hl-purple'>典型錯因辨析</span>』。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>送出 <span class='hl-cyan'>Prompt 6</span>，觀察 Agent 先盤點受影響檔案，獲准後同步更新題目與解答。",
+          "<span class='hl-badge green'>🎯 合格標準</span>在 <code>output/03-revised/</code> 產生更新材料，並附帶 <code>change-summary.md</code> <span class='hl-gold'>差異報告</span>。",
+          "<span class='hl-badge rose'>🛡️ 版本安全</span><span class='hl-rose'>嚴禁覆蓋 01/02 原版</span>，完整保留修訂版本歷史軌跡。"
         ]
       },
       {
         category: "階段 9 ｜ 95–110 min",
-        title: "九、再次重用：<span class='highlight'>保留專案長期規則，換入新課題（成果 4）</span>",
+        title: "九、再次重用：<span class='hl-green'>保留專案長期規則，換入新課題（成果 4）</span>",
         desc: "【長期資產複用】不需重新寫 prompt，換個材料立即開工：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：換入全新章節 <code>materials/P5-帶分數加減法.pdf</code>，演示專案重用威力。",
-          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 7</strong>，複用先前建立的全部規則、格式規範與輸出習慣。",
-          "<strong>🎯 階段合格標準</strong>：在 <code>output/04-reused/</code> 成功生成新單元完整課堂材料。",
-          "<strong>🚀 效率倍增</strong>：耗時由最初的 40 分鐘縮減至 5 分鐘，越用越快！"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>換入全新章節 <code>materials/P5-帶分數加減法.pdf</code>，演示專案重用威力。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>送出 <span class='hl-cyan'>Prompt 7</span>，複用先前建立的全部規則、格式規範與輸出習慣。",
+          "<span class='hl-badge green'>🎯 合格標準</span>在 <code>output/04-reused/</code> 成功生成新單元完整課堂材料。",
+          "<span class='hl-badge gold'>🚀 效率倍增</span>耗時由最初的 40 分鐘縮減至 <span class='hl-gold'>5 分鐘</span>，<span class='hl-green'>越用越快</span>！"
         ]
       },
       {
         category: "階段 10 ｜ 110–117 min",
-        title: "十、教師親自驗收：<span class='highlight'>AI 產出 ≠ 完成，驗收才是完成</span>",
+        title: "十、教師親自驗收：<span class='hl-rose'>AI 產出 ≠ 完成</span>，<span class='hl-green'>驗收才是完成</span>",
         desc: "【專業把關】教師是數學算理的最終守門員：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：投影「9 大驗收檢核指標」（算理、文字、數字、圖表、答案、分層、格式、安全、存檔）。",
-          "<strong>👩‍🏫 學員行動</strong>：打開自己產出的教材，親自試算 1–2 題，檢查排版作答空間與通分邏輯。",
-          "<strong>🎯 階段合格標準</strong>：確認所有題目分母均在規範內，無印刷或算理錯誤。",
-          "<strong>🔑 核心理念</strong>：以人為本，科技賦能，教師的專業判斷無可替代！"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>投影「<span class='hl-gold'>9 大驗收檢核指標</span>」（算理、文字、數字、圖表、答案、分層、格式、安全、存檔）。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>打開自己產出的教材，<span class='hl-green'>親自試算 1–2 題</span>，檢查排版作答空間與通分邏輯。",
+          "<span class='hl-badge green'>🎯 合格標準</span>確認所有題目分母均在規範內，<span class='hl-green'>無印刷或算理錯誤</span>。",
+          "<span class='hl-badge purple'>🔑 核心理念</span><span class='hl-gold'>以人為本，科技賦能</span>，教師的專業判斷無可替代！"
         ]
       },
       {
         category: "階段 11 ｜ 117–120 min",
-        title: "十一、帶一個真實課堂難題離場：<span class='highlight'>下一場培訓入口</span>",
+        title: "十一、帶真實課堂難題離場：<span class='hl-gold'>下一場培訓入口</span>",
         desc: "【培訓閉環】記錄真實痛點，作為進階工作坊的出發點：",
         points: [
-          "<strong>👨‍🏫 講師重點</strong>：說明持續精進機制，工作坊結束不是終點，而是校本實踐的起點。",
-          "<strong>👩‍🏫 學員行動</strong>：送出 <strong>Prompt 8</strong>，在 <code>notes/next-workshop-problem.md</code> 填寫自己的真實教學痛點。",
-          "<strong>🎯 階段合格標準</strong>：離場憑證包含：單元難點、學生迷思、希望 Agent 協助與教師堅持把關邊界。",
-          "<strong>🎉 圓滿結業</strong>：帶著 4 份專案成品與 1 份進階憑證離開會場！"
+          "<span class='hl-badge gold'>👨‍🏫 講師重點</span>說明持續精進機制，工作坊結束不是終點，而是<span class='hl-green'>校本實踐的起點</span>。",
+          "<span class='hl-badge cyan'>👩‍🏫 學員行動</span>送出 <span class='hl-cyan'>Prompt 8</span>，在 <code>notes/next-workshop-problem.md</code> 填寫自己的真實教學痛點。",
+          "<span class='hl-badge green'>🎯 合格標準</span>離場憑證包含：單元難點、學生迷思、希望 Agent 協助與教師堅持把關邊界。",
+          "<span class='hl-badge gold'>🎉 圓滿結業</span>帶著 <span class='hl-gold'>4 份專案成品</span> 與 <span class='hl-cyan'>1 份進階憑證</span> 離開會場！"
         ]
       }
     ];
