@@ -64,9 +64,9 @@
 
     /* Header */
     header.site-header {
-      background: rgba(11, 11, 11, 0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+      background: rgba(247, 244, 236, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 500;
@@ -84,13 +84,13 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--text);
+      color: var(--school-navy);
       font-weight: 700;
       font-size: 1rem;
     }
     .brand-badge {
-      background: var(--key);
-      color: #000;
+      background: var(--ai-orange);
+      color: #FFFFFF;
       padding: 3px 8px;
       border-radius: 4px;
       font-size: 0.75rem;
@@ -106,28 +106,30 @@
       flex-wrap: wrap;
     }
     .nav-links a {
-      color: var(--muted);
+      color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.88rem;
-      font-weight: 500;
+      font-weight: 600;
       padding: 6px 10px;
       border-radius: 6px;
       transition: all 0.2s ease;
     }
-    .nav-links a:hover, .nav-links a.active {
-      color: #fff;
-      background: var(--surface);
+    .nav-links a:hover {
+      color: var(--school-navy);
+      background: var(--soft-green);
     }
     .nav-links a.active {
-      color: var(--key);
-      border-bottom: 2px solid var(--key);
+      color: var(--school-green);
+      background: var(--soft-green);
+      border-bottom: 2px solid var(--school-green);
+      font-weight: 700;
     }
 
     /* Hero */
     .hero {
       padding: 44px 0 36px;
-      border-bottom: 1px solid var(--line);
-      background: radial-gradient(circle at top right, rgba(255, 106, 0, 0.09) 0%, transparent 65%);
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at top right, rgba(242, 106, 33, 0.08) 0%, transparent 65%);
     }
     .hero-meta {
       display: flex;
@@ -140,24 +142,24 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 106, 0, 0.12);
-      color: var(--key);
-      border: 1px solid rgba(255, 106, 0, 0.3);
+      background: var(--soft-orange);
+      color: var(--ai-orange);
+      border: 1px solid rgba(242, 106, 33, 0.3);
       padding: 4px 12px;
       border-radius: 20px;
       font-size: 0.84rem;
       font-weight: 600;
     }
     .hero-tag.school {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--blue);
-      border-color: rgba(56, 189, 248, 0.35);
+      background: var(--soft-green);
+      color: var(--school-green);
+      border-color: rgba(31, 89, 72, 0.35);
       font-weight: 700;
     }
     .hero-tag.motto {
-      background: rgba(255, 212, 0, 0.1);
-      color: var(--hi);
-      border-color: rgba(255, 212, 0, 0.3);
+      background: var(--soft-gold);
+      color: var(--heritage-gold);
+      border-color: rgba(198, 154, 59, 0.35);
     }
     .hero h1 {
       font-size: 2.35rem;
@@ -165,13 +167,14 @@
       margin: 0 0 14px 0;
       font-weight: 800;
       letter-spacing: -0.5px;
+      color: var(--school-navy);
     }
     .hero h1 span.key-text {
-      color: var(--key);
+      color: var(--ai-orange);
     }
     .hero-p {
       font-size: 1.12rem;
-      color: var(--text);
+      color: var(--text-primary);
       margin: 0 0 20px 0;
       max-width: 860px;
       line-height: 1.6;
@@ -182,8 +185,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: linear-gradient(90deg, rgba(255, 106, 0, 0.15) 0%, rgba(255, 212, 0, 0.08) 100%);
-      border: 1px solid rgba(255, 106, 0, 0.4);
+      background: linear-gradient(90deg, var(--soft-orange) 0%, var(--soft-gold) 100%);
+      border: 1px solid rgba(242, 106, 33, 0.3);
       border-radius: 8px;
       padding: 14px 18px;
       margin: 20px 0 26px;
@@ -196,7 +199,7 @@
     }
     .motto-text strong {
       font-size: 1.15rem;
-      color: var(--hi);
+      color: var(--school-navy);
       display: block;
       margin-bottom: 2px;
       letter-spacing: 0.5px;
@@ -204,7 +207,7 @@
     .motto-text p {
       margin: 0;
       font-size: 0.9rem;
-      color: #E2E8F0;
+      color: var(--text-secondary);
     }
 
     /* 4 Pillars Grid */
@@ -215,19 +218,20 @@
       margin: 24px 0 12px;
     }
     .pillar-card {
-      background: #141414;
-      border: 1px solid var(--line);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 10px;
       padding: 18px 16px;
       transition: all 0.22s ease;
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      box-shadow: var(--shadow);
     }
     .pillar-card:hover {
-      border-color: var(--key);
+      border-color: var(--ai-orange);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(255, 106, 0, 0.2);
+      box-shadow: 0 12px 28px rgba(24, 36, 54, 0.12);
     }
     .pillar-card::before {
       content: "";
@@ -236,32 +240,32 @@
       left: 0;
       right: 0;
       height: 3.5px;
-      background: var(--key);
+      background: var(--ai-orange);
     }
-    .pillar-card:nth-child(2)::before { background: var(--hi); }
-    .pillar-card:nth-child(3)::before { background: var(--blue); }
-    .pillar-card:nth-child(4)::before { background: var(--success); }
+    .pillar-card:nth-child(2)::before { background: var(--heritage-gold); }
+    .pillar-card:nth-child(3)::before { background: var(--tech-blue); }
+    .pillar-card:nth-child(4)::before { background: var(--school-green); }
     .pillar-num {
       font-size: 1.85rem;
       font-weight: 900;
-      color: #FFF;
+      color: var(--school-navy);
       line-height: 1.2;
       margin-bottom: 4px;
       letter-spacing: -0.5px;
     }
-    .pillar-card:nth-child(1) .pillar-num { color: var(--key); }
-    .pillar-card:nth-child(2) .pillar-num { color: var(--hi); }
-    .pillar-card:nth-child(3) .pillar-num { color: var(--blue); }
-    .pillar-card:nth-child(4) .pillar-num { color: var(--success); }
+    .pillar-card:nth-child(1) .pillar-num { color: var(--ai-orange); }
+    .pillar-card:nth-child(2) .pillar-num { color: var(--heritage-gold); }
+    .pillar-card:nth-child(3) .pillar-num { color: var(--tech-blue); }
+    .pillar-card:nth-child(4) .pillar-num { color: var(--school-green); }
     .pillar-title {
       font-size: 1.02rem;
       font-weight: 700;
-      color: #FFF;
+      color: var(--school-navy);
       margin-bottom: 6px;
     }
     .pillar-desc {
       font-size: 0.84rem;
-      color: var(--muted);
+      color: var(--text-secondary);
       line-height: 1.45;
       margin: 0;
     }
@@ -276,19 +280,19 @@
     /* Section Headings */
     .section {
       padding: 42px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--border);
     }
     .section-title {
       font-size: 1.55rem;
       font-weight: 700;
       margin: 0 0 8px 0;
-      color: #FFF;
+      color: var(--school-navy);
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .section-subtitle {
-      color: var(--muted);
+      color: var(--text-secondary);
       margin: 0 0 24px 0;
       font-size: 0.96rem;
     }
@@ -301,39 +305,41 @@
       margin: 20px 0;
     }
     .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 10px;
       padding: 20px;
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
       position: relative;
+      box-shadow: var(--shadow);
     }
     .card.clickable-card {
       cursor: pointer;
     }
     .card.clickable-card:hover {
-      border-color: var(--key);
+      border-color: var(--ai-orange);
       transform: translateY(-3px);
-      box-shadow: 0 6px 22px rgba(255, 106, 0, 0.16);
+      box-shadow: 0 12px 28px rgba(24, 36, 54, 0.12);
     }
     .card-zoom-badge {
       position: absolute;
       top: 14px;
       right: 14px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--muted);
+      background: var(--soft-green);
+      color: var(--school-green);
       font-size: 0.74rem;
+      font-weight: 600;
       padding: 2px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(31, 89, 72, 0.25);
       pointer-events: none;
       transition: all 0.2s;
     }
     .card.clickable-card:hover .card-zoom-badge,
     .pillar-card:hover .card-zoom-badge {
-      background: var(--key);
-      color: #000;
-      border-color: var(--key);
+      background: var(--ai-orange);
+      color: #FFFFFF;
+      border-color: var(--ai-orange);
       font-weight: 700;
     }
 
@@ -344,32 +350,36 @@
       padding: 3px 8px;
       border-radius: 4px;
       margin-bottom: 12px;
-      background: #2A2A2A;
-      color: var(--text);
+      background: var(--soft-green);
+      color: var(--school-navy);
+      border: 1px solid var(--border);
     }
     .card-badge.key {
-      background: var(--key);
-      color: #000;
+      background: var(--ai-orange);
+      color: #FFFFFF;
+      border-color: var(--ai-orange);
     }
     .card-badge.hi {
-      background: var(--hi);
-      color: #000;
+      background: var(--heritage-gold);
+      color: #FFFFFF;
+      border-color: var(--heritage-gold);
     }
     .card h3 {
       margin: 0 0 10px 0;
       font-size: 1.15rem;
-      color: #FFF;
+      color: var(--school-navy);
+      font-weight: 700;
     }
     .card p {
       margin: 0 0 12px 0;
-      color: var(--muted);
+      color: var(--text-secondary);
       font-size: 0.92rem;
       line-height: 1.55;
     }
     .card ul {
       margin: 0;
       padding-left: 18px;
-      color: #D1D5DB;
+      color: var(--text-primary);
       font-size: 0.88rem;
     }
     .card ul li {
@@ -378,38 +388,39 @@
 
     /* UI Component Boxes */
     .warn {
-      background: rgba(255, 212, 0, 0.06);
-      border-left: 4px solid var(--hi);
-      border-top: 1px solid rgba(255, 212, 0, 0.2);
-      border-right: 1px solid rgba(255, 212, 0, 0.2);
-      border-bottom: 1px solid rgba(255, 212, 0, 0.2);
+      background: var(--soft-gold);
+      border-left: 4px solid var(--heritage-gold);
+      border-top: 1px solid rgba(198, 154, 59, 0.25);
+      border-right: 1px solid rgba(198, 154, 59, 0.25);
+      border-bottom: 1px solid rgba(198, 154, 59, 0.25);
       border-radius: 0 8px 8px 0;
       padding: 16px 20px;
       margin: 20px 0;
-      color: #E2E8F0;
+      color: var(--text-primary);
     }
-    .warn strong { color: var(--hi); }
+    .warn strong { color: var(--school-navy); }
 
     .out {
-      background: rgba(52, 211, 153, 0.06);
-      border-left: 4px solid var(--success);
-      border-top: 1px solid rgba(52, 211, 153, 0.2);
-      border-right: 1px solid rgba(52, 211, 153, 0.2);
-      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      background: var(--soft-green);
+      border-left: 4px solid var(--school-green);
+      border-top: 1px solid rgba(31, 89, 72, 0.25);
+      border-right: 1px solid rgba(31, 89, 72, 0.25);
+      border-bottom: 1px solid rgba(31, 89, 72, 0.25);
       border-radius: 0 8px 8px 0;
       padding: 16px 20px;
       margin: 20px 0;
-      color: #E2E8F0;
+      color: var(--text-primary);
     }
-    .out strong { color: var(--success); }
+    .out strong { color: var(--school-green); }
 
     /* Check list */
     .check {
-      background: #141414;
-      border: 1px solid var(--line);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 16px 20px;
       margin: 16px 0;
+      box-shadow: var(--shadow);
     }
     .check-item {
       display: flex;
@@ -417,11 +428,11 @@
       gap: 10px;
       margin-bottom: 10px;
       font-size: 0.92rem;
-      color: #D6D8DB;
+      color: var(--text-primary);
     }
     .check-item:last-child { margin-bottom: 0; }
     .check-icon {
-      color: var(--success);
+      color: var(--school-green);
       font-weight: bold;
       flex-shrink: 0;
     }
@@ -431,8 +442,10 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       margin: 20px 0;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
       border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
     }
     table {
       width: 100%;
@@ -441,45 +454,47 @@
       font-size: 0.9rem;
     }
     th {
-      background: #141414;
-      color: var(--hi);
+      background: var(--soft-green);
+      color: var(--school-green);
       text-align: left;
       padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
     }
     td {
       padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      color: #D1D5DB;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
       vertical-align: top;
+      background: var(--card);
     }
     tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) td { background: #0E0E0E; }
+    tr:nth-child(even) td { background: var(--surface); }
 
     /* Diagram Boxes (Enlarged & Clickable) */
     .diagram-box {
-      background: #0E0E0E;
-      border: 1px solid var(--line);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px;
       margin: 24px 0;
       text-align: center;
       position: relative;
       transition: all 0.25s ease;
+      box-shadow: var(--shadow);
     }
     .diagram-box.prominent-map {
-      background: radial-gradient(circle at center, #161A16 0%, #0A0D0A 100%);
-      border: 1.5px solid rgba(255, 106, 0, 0.45);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 106, 0, 0.1);
+      background: var(--card);
+      border: 1.5px solid var(--ai-orange);
+      box-shadow: 0 10px 30px rgba(24, 36, 54, 0.1);
       padding: 24px 18px;
     }
     .diagram-box.clickable-card {
       cursor: pointer;
     }
     .diagram-box.clickable-card:hover {
-      border-color: var(--hi);
-      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 212, 0, 0.2);
+      border-color: var(--ai-orange);
+      box-shadow: 0 14px 36px rgba(24, 36, 54, 0.15);
     }
     .diagram-box img, .diagram-box svg {
       max-width: 100%;
@@ -489,7 +504,7 @@
       border-radius: 8px;
     }
     .diagram-caption {
-      color: var(--muted);
+      color: var(--text-secondary);
       font-size: 0.88rem;
       margin-top: 12px;
       display: flex;
@@ -501,9 +516,9 @@
       position: absolute;
       top: 16px;
       right: 18px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 1px solid var(--key);
-      color: var(--key);
+      background: var(--soft-orange);
+      border: 1px solid var(--ai-orange);
+      color: var(--ai-orange);
       padding: 4px 12px;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -514,17 +529,18 @@
       transition: all 0.2s;
     }
     .diagram-box:hover .diagram-zoom-pill {
-      background: var(--key);
-      color: #000;
+      background: var(--ai-orange);
+      color: #FFFFFF;
     }
 
     /* GitHub Section */
     .github-box {
-      background: linear-gradient(135deg, #13161C 0%, #0E1015 100%);
-      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 26px;
       margin: 24px 0;
+      box-shadow: var(--shadow);
     }
     .github-steps-grid {
       display: grid;
@@ -533,16 +549,16 @@
       margin: 18px 0;
     }
     .gh-step-card {
-      background: #181C24;
-      border: 1px solid #283244;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 16px;
     }
     .gh-step-num {
       font-size: 0.78rem;
       font-weight: 800;
-      color: var(--blue);
-      background: rgba(56, 189, 248, 0.15);
+      color: var(--tech-blue);
+      background: var(--soft-blue, #EBF5FB);
       display: inline-block;
       padding: 2px 8px;
       border-radius: 4px;
@@ -551,23 +567,23 @@
     .gh-step-title {
       font-size: 1rem;
       font-weight: 700;
-      color: #FFF;
+      color: var(--school-navy);
       margin: 0 0 6px 0;
     }
     .gh-step-desc {
       font-size: 0.86rem;
-      color: #94A3B8;
+      color: var(--text-secondary);
       margin: 0;
       line-height: 1.5;
     }
     .code-snippet {
-      background: #080A0E;
-      border: 1px solid #1E2636;
+      background: #182436;
+      border: 1px solid #28374D;
       border-radius: 6px;
       padding: 12px;
       font-family: Consolas, Monaco, monospace;
       font-size: 0.85rem;
-      color: #38BDF8;
+      color: #60D5FA;
       margin-top: 10px;
       overflow-x: auto;
       white-space: pre;
@@ -578,8 +594,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--key);
-      color: #000;
+      background: var(--ai-orange);
+      color: #FFFFFF;
       text-decoration: none;
       padding: 10px 18px;
       border-radius: 6px;
@@ -590,24 +606,27 @@
       cursor: pointer;
     }
     .btn:hover {
-      background: #FFA040;
+      background: #D84E0F;
       transform: translateY(-1px);
     }
     .btn-secondary {
-      background: var(--surface);
-      color: #FFF;
-      border: 1px solid var(--line-light);
+      background: var(--card);
+      color: var(--school-navy);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
     .btn-secondary:hover {
-      background: var(--line-light);
+      background: var(--soft-green);
+      border-color: var(--school-green);
+      color: var(--school-green);
     }
     .btn-blue {
-      background: #0284C7;
+      background: var(--tech-blue);
       color: #FFF;
-      border: 1px solid #38BDF8;
+      border: 1px solid var(--tech-blue);
     }
     .btn-blue:hover {
-      background: #0369A1;
+      background: #1D6FA7;
     }
 
     /* ==========================================================
@@ -622,24 +641,24 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(18, 22, 28, 0.94);
+      background: rgba(255, 253, 248, 0.94);
       backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(255, 106, 0, 0.45);
-      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 106, 0, 0.2);
+      border: 1.5px solid var(--border);
+      box-shadow: 0 10px 36px rgba(24, 36, 54, 0.12), 0 2px 8px rgba(24, 36, 54, 0.06);
       border-radius: 40px;
       padding: 6px 12px;
       transition: all 0.25s ease;
     }
     .classroom-toolbar:hover {
-      border-color: var(--key);
-      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.85), 0 0 28px rgba(255, 106, 0, 0.3);
+      border-color: var(--school-green);
+      box-shadow: 0 14px 42px rgba(24, 36, 54, 0.18);
     }
     .tool-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: transparent;
-      color: #E2E8F0;
+      color: var(--school-navy);
       border: none;
       padding: 7px 12px;
       border-radius: 20px;
@@ -650,12 +669,12 @@
       font-family: inherit;
     }
     .tool-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #FFF;
+      background: var(--soft-green);
+      color: var(--school-green);
     }
     .tool-btn.active {
-      background: var(--key);
-      color: #000;
+      background: var(--school-green);
+      color: #FFF;
     }
     .tool-icon {
       font-size: 1.1rem;
@@ -668,7 +687,7 @@
     .toolbar-divider {
       width: 1px;
       height: 20px;
-      background: rgba(255, 255, 255, 0.18);
+      background: var(--border);
       margin: 0 2px;
     }
 
@@ -726,15 +745,15 @@
       bottom: 84px;
       left: 50%;
       transform: translateX(-50%);
-      background: #1A1E24;
-      border: 1px solid #38BDF8;
+      background: var(--card);
+      border: 1.5px solid var(--border);
       border-radius: 30px;
       padding: 6px 14px;
       display: none;
       gap: 12px;
       align-items: center;
       z-index: 9995;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 30px rgba(24, 36, 54, 0.15);
     }
     .pen-palette.show {
       display: flex;
@@ -749,7 +768,7 @@
     }
     .pen-color-dot:hover, .pen-color-dot.active {
       transform: scale(1.3);
-      border-color: #FFF;
+      border-color: var(--school-navy);
     }
 
     /* ==========================================================
@@ -1099,30 +1118,31 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: #16181D;
-      border: 2px solid var(--key);
+      background: var(--card);
+      border: 2px solid var(--school-green);
       border-radius: 12px;
       padding: 24px 30px;
       z-index: 10005;
       display: none;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.85);
+      box-shadow: 0 16px 48px rgba(24, 36, 54, 0.2);
       max-width: 440px;
       width: 90%;
+      color: var(--text-primary);
     }
     #help-modal.show { display: block; }
-    #help-modal h3 { margin: 0 0 12px 0; color: var(--hi); }
+    #help-modal h3 { margin: 0 0 12px 0; color: var(--school-navy); }
     #help-modal table { width: 100%; border-collapse: collapse; }
-    #help-modal td { padding: 6px 0; border: none; font-size: 0.9rem; }
-    #help-modal kbd { background: #262B34; padding: 2px 6px; border-radius: 4px; border: 1px solid #485264; color: #FFF; font-family: monospace; }
+    #help-modal td { padding: 6px 0; border: none; font-size: 0.9rem; color: var(--text-primary); background: transparent; }
+    #help-modal kbd { background: var(--soft-green); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); color: var(--school-green); font-family: monospace; font-weight: bold; }
 
     /* Footer */
     footer.site-footer {
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--border);
       padding: 36px 0;
       margin-top: 48px;
       margin-bottom: 70px;
-      background: #080808;
-      color: var(--muted);
+      background: var(--surface);
+      color: var(--text-secondary);
       font-size: 0.88rem;
     }
 
@@ -1562,7 +1582,7 @@
         </div>
       </div>
 
-      <h3 style="color:#FFF; margin: 24px 0 10px 0;">🚦 課堂 A/B/C/D 錯峰送出節奏（防範 429 限流）</h3>
+      <h3 style="color:var(--school-navy); margin: 24px 0 10px 0;">🚦 課堂 A/B/C/D 錯峰送出節奏（防範 429 限流）</h3>
       <p style="color:var(--muted); font-size: 0.92rem;">為避免 40 台電腦在同一秒向 API 伺服器送出密集請求引發限流，現場分為 4 組錯峰敲擊 Enter：</p>
 
       <div class="tw">
@@ -1613,7 +1633,7 @@
       <div class="github-box">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
           <div>
-            <h3 style="margin:0 0 6px 0; color:#FFF; font-size:1.25rem;">🌐 為什麼要部署到 GitHub Pages？</h3>
+            <h3 style="margin:0 0 6px 0; color:var(--school-navy); font-size:1.25rem;">🌐 為什麼要部署到 GitHub Pages？</h3>
             <p style="margin:0; color:#94A3B8; font-size:0.9rem;">零伺服器維護費、跨裝置（手機/平板/課室大螢幕）即開即看、中英文部教師資源跨學年共享傳承。</p>
           </div>
           <span style="background:rgba(56,189,248,0.2); color:#38BDF8; border:1px solid #38BDF8; padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:700;">純靜態 · 免主機費</span>
@@ -1648,18 +1668,18 @@ git push -u origin main</div>
           </div>
         </div>
 
-        <div class="check" style="background:#0F1218; border-color:#232D3F; margin-top:16px;">
+        <div class="check" style="background:var(--soft-green); border-color:var(--border); margin-top:16px;">
           <div class="check-item">
             <span class="check-icon">✓</span>
-            <div><strong>線上正式發布網址：</strong><a href="https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/" target="_blank" rel="noopener" style="color:var(--hi); font-weight:bold; text-decoration:underline;">https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/</a>（隨時隨地公開查閱本手冊與教學成果）</div>
+            <div><strong>線上正式發布網址：</strong><a href="https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/" target="_blank" rel="noopener" style="color:var(--school-green); font-weight:bold; text-decoration:underline;">https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/</a>（隨時隨地公開查閱本手冊與教學成果）</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Quick Navigation Banner -->
-    <div style="background: linear-gradient(135deg, #181818 0%, #20150A 100%); border: 1px solid var(--key); border-radius: 12px; padding: 28px; margin: 40px 0; text-align: center;">
-      <h2 style="margin: 0 0 12px 0; font-size: 1.6rem; color: #FFF;">準備好開始 2 小時實操了嗎？</h2>
+    <div style="background: linear-gradient(135deg, var(--soft-green) 0%, var(--soft-gold) 100%); border: 1.5px solid var(--border); border-radius: 12px; padding: 28px; margin: 40px 0; text-align: center; box-shadow: var(--shadow);">
+      <h2 style="margin: 0 0 12px 0; font-size: 1.6rem; color: var(--school-navy);">準備好開始 2 小時實操了嗎？</h2>
       <p style="color: var(--muted); max-width: 680px; margin: 0 auto 20px auto; font-size: 0.98rem;">
         請依序開啟 120 分鐘實操流程，或隨時查閱提示詞庫與疑難排解手冊。遇到任何報錯，技術助手與備援 SOP 隨時為您護航！
       </p>
@@ -1707,7 +1727,7 @@ git push -u origin main</div>
   <footer class="site-footer">
     <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
       <div>
-        <p style="margin: 0 0 6px 0; font-weight: 700; color: #FFF;">聖若瑟教區中學第五校 小學中英文部 數學科組</p>
+        <p style="margin: 0 0 6px 0; font-weight: 700; color: var(--school-navy);">聖若瑟教區中學第五校 小學中英文部 數學科組</p>
         <p style="margin: 0; font-size: 0.82rem; color:var(--hi);">「AI 時代守本心，毅誠勤樸篤前行」</p>
         <p style="margin: 4px 0 0 0; font-size: 0.8rem; color:var(--muted);">小學數學 × OpenCode AI Agent 2小時實作工作坊 ｜ 純靜態自包含設計 ｜ 支援 GitHub Pages 部署</p>
       </div>
