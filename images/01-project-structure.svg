@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" width="100%" height="auto">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#222222"/>
+      <stop offset="100%" stop-color="#161616"/>
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-10%" width="110%" height="125%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="320" rx="16" fill="#0E0E0E" stroke="#2A2A2A" stroke-width="1.5"/>
+
+  <!-- Title Badge -->
+  <rect x="30" y="24" width="280" height="28" rx="6" fill="#202020" stroke="#333333"/>
+  <text x="40" y="43" fill="#FF6A00" font-family="'Noto Sans TC', sans-serif" font-size="12" font-weight="bold">專案目錄與權限邊界 PROJECT & PERMISSIONS</text>
+
+  <!-- Section 1: AGENTS.md -->
+  <g transform="translate(30, 70)" filter="url(#shadow2)">
+    <rect width="195" height="225" rx="10" fill="url(#boxGrad)" stroke="#3A3A3A" stroke-width="1.5"/>
+    <rect x="14" y="14" width="95" height="20" rx="4" fill="#3B2A10" stroke="#FF8A00" stroke-width="0.8"/>
+    <text x="20" y="28" fill="#FFD400" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="bold">長期約束 RULES</text>
+    <text x="14" y="58" fill="#FFFFFF" font-family="'Noto Sans TC', sans-serif" font-size="14" font-weight="bold">AGENTS.md</text>
+    <text x="14" y="78" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">專案最核心的憲法</text>
+    <line x1="14" y1="90" x2="181" y2="90" stroke="#333333" stroke-width="1"/>
+    <text x="14" y="112" fill="#34D399" font-family="'Noto Sans TC', sans-serif" font-size="11">✔ 澳門常用繁體中文</text>
+    <text x="14" y="132" fill="#34D399" font-family="'Noto Sans TC', sans-serif" font-size="11">✔ 中英文部數學術語一致</text>
+    <text x="14" y="152" fill="#F87171" font-family="'Noto Sans TC', sans-serif" font-size="11">✘ 嚴禁處理學生真實個資</text>
+    <text x="14" y="172" fill="#F87171" font-family="'Noto Sans TC', sans-serif" font-size="11">✘ 嚴禁虛構未讀教材</text>
+    <text x="14" y="192" fill="#F87171" font-family="'Noto Sans TC', sans-serif" font-size="11">✘ 不可記錄金鑰與密碼</text>
+    <rect x="14" y="200" width="167" height="15" rx="3" fill="#292010"/>
+    <text x="18" y="211" fill="#FF8A00" font-family="'Noto Sans TC', sans-serif" font-size="9.5">Agent 每次執行都必須遵守</text>
+  </g>
+
+  <!-- Section 2: materials/ -->
+  <g transform="translate(245, 70)" filter="url(#shadow2)">
+    <rect width="195" height="225" rx="10" fill="url(#boxGrad)" stroke="#3A3A3A" stroke-width="1.5"/>
+    <rect x="14" y="14" width="85" height="20" rx="4" fill="#1E2A38" stroke="#38BDF8" stroke-width="0.8"/>
+    <text x="20" y="28" fill="#38BDF8" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="bold">只讀來源 READ</text>
+    <text x="14" y="58" fill="#FFFFFF" font-family="'Noto Sans TC', sans-serif" font-size="14" font-weight="bold">materials/</text>
+    <text x="14" y="78" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">示範與真實教學 PDF</text>
+    <line x1="14" y1="90" x2="181" y2="90" stroke="#333333" stroke-width="1"/>
+    <text x="14" y="112" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="11">📄 P5-分數加減法.pdf</text>
+    <text x="14" y="132" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="11">📄 練習試卷 (只讀)</text>
+    <text x="14" y="152" fill="#38BDF8" font-family="'Noto Sans TC', sans-serif" font-size="11">🔒 唯讀權限保護</text>
+    <text x="14" y="172" fill="#F87171" font-family="'Noto Sans TC', sans-serif" font-size="11">✘ 絕不覆蓋原始檔案</text>
+    <text x="14" y="192" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">如無法讀取則立即回報</text>
+    <rect x="14" y="200" width="167" height="15" rx="3" fill="#132330"/>
+    <text x="18" y="211" fill="#38BDF8" font-family="'Noto Sans TC', sans-serif" font-size="9.5">禁止 Agent 寫入此資料夾</text>
+  </g>
+
+  <!-- Section 3: requirements/ -->
+  <g transform="translate(460, 70)" filter="url(#shadow2)">
+    <rect width="210" height="225" rx="10" fill="url(#boxGrad)" stroke="#3A3A3A" stroke-width="1.5"/>
+    <rect x="14" y="14" width="105" height="20" rx="4" fill="#3A2810" stroke="#F59E0B" stroke-width="0.8"/>
+    <text x="20" y="28" fill="#F59E0B" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="bold">規格確認 SPEC</text>
+    <text x="14" y="58" fill="#FFFFFF" font-family="'Noto Sans TC', sans-serif" font-size="14" font-weight="bold">requirements/</text>
+    <text x="14" y="78" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">單次備課明確需求</text>
+    <line x1="14" y1="90" x2="196" y2="90" stroke="#333333" stroke-width="1"/>
+    <text x="14" y="112" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="11">📄 task-spec.md</text>
+    <text x="14" y="132" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">・年級與部別（中文/英文）</text>
+    <text x="14" y="152" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">・課堂階段與時長（課前/課中）</text>
+    <text x="14" y="172" fill="#9AA0A6" font-family="'Noto Sans TC', sans-serif" font-size="11">・核心概念與題數難度</text>
+    <text x="14" y="192" fill="#F59E0B" font-family="'Noto Sans TC', sans-serif" font-size="11">狀態：Draft → Confirmed</text>
+    <rect x="14" y="200" width="182" height="15" rx="3" fill="#2E200C"/>
+    <text x="18" y="211" fill="#F59E0B" font-family="'Noto Sans TC', sans-serif" font-size="9.5">老師確認前不得產出教材</text>
+  </g>
+
+  <!-- Section 4: output/ & notes/ -->
+  <g transform="translate(690, 70)" filter="url(#shadow2)">
+    <rect width="200" height="225" rx="10" fill="url(#boxGrad)" stroke="#FF6A00" stroke-width="1.8"/>
+    <rect x="14" y="14" width="115" height="20" rx="4" fill="#FF6A00"/>
+    <text x="18" y="28" fill="#000000" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="bold">成果產出 OUTPUT</text>
+    <text x="14" y="58" fill="#FFFFFF" font-family="'Noto Sans TC', sans-serif" font-size="14" font-weight="bold">output/ &amp; notes/</text>
+    <text x="14" y="78" fill="#FFD400" font-family="'Noto Sans TC', sans-serif" font-size="11">所有生成檔案唯一存放區</text>
+    <line x1="14" y1="90" x2="186" y2="90" stroke="#333333" stroke-width="1"/>
+    <text x="14" y="112" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="10.5">📁 01-first-version/ (第1版)</text>
+    <text x="14" y="130" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="10.5">📁 02-differentiated/ (分層)</text>
+    <text x="14" y="148" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="10.5">📁 03-revised/ (同步修訂)</text>
+    <text x="14" y="166" fill="#E2E8F0" font-family="'Noto Sans TC', sans-serif" font-size="10.5">📁 04-reused/ (再次重用)</text>
+    <text x="14" y="184" fill="#FFD400" font-family="'Noto Sans TC', sans-serif" font-size="10.5">📝 notes/next-problem.md</text>
+    <rect x="14" y="200" width="172" height="15" rx="3" fill="#2E1C0A"/>
+    <text x="18" y="211" fill="#FF8A00" font-family="'Noto Sans TC', sans-serif" font-size="9.5">嚴格按階段分資料夾存檔</text>
+  </g>
+</svg>

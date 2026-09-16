@@ -1,0 +1,16 @@
+00_Node.js與OpenCode自助安裝指南.docx
+00_一鍵檢查環境.bat
+01_OpenCode課前安裝檢查表_V2.docx
+01_啟動OpenCode培訓.bat
+02_老師加入Workspace與API_Key指南_V2.docx
+03_講師用_40人現場部署與故障SOP.docx
+04_OpenCode-Math-Workshop/.opencode/skills/lesson-designer/SKILL.md
+04_OpenCode-Math-Workshop/.opencode/skills/textbook-analysis/SKILL.md
+04_OpenCode-Math-Workshop/.opencode/skills/worksheet-generator/SKILL.md
+04_OpenCode-Math-Workshop/01_Input/exercises/P4_分數練習_4頁.pdf
+04_OpenCode-Math-Workshop/01_Input/textbook/P4_分數示範教材_6頁.pdf
+04_OpenCode-Math-Workshop/02_Output/把Agent產出放在這裡.txt
+04_OpenCode-Math-Workshop/03_Prompts/5個循序Prompt＋1個完整Agent任務_V2.md
+04_OpenCode-Math-Workshop/AGENTS.md
+04_OpenCode-Math-Workshop/opencode.json
+README_先看我.md

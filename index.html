@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聖若瑟教區中學第五校｜小學數學 × OpenCode — AI Agent 實作工作坊</title>
+  <meta name="description" content="聖若瑟教區中學第五校小學中英文部：AI 時代守本心，毅誠勤樸篤前行。小學數學 × OpenCode AI Agent 2小時實作工作坊。2小時、1個真實教材、4次工作循環、1個可重用專案，最後部署到 GITHUB。">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg2: #0B0B0B;
+      --surface: #1E1E1E;
+      --surface-hover: #262626;
+      --line: #2E2E2E;
+      --line-light: #404040;
+      --text: #F5F7FA;
+      --muted: #9AA0A6;
+      --key: #FF6A00;
+      --hi: #FFD400;
+      --success: #34D399;
+      --danger: #F87171;
+      --blue: #38BDF8;
+      --purple: #C084FC;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header.site-header {
+      background: rgba(11, 11, 11, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .brand-badge {
+      background: var(--key);
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+      background: var(--surface);
+    }
+    .nav-links a.active {
+      color: var(--key);
+      border-bottom: 2px solid var(--key);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at top right, rgba(255, 106, 0, 0.08) 0%, transparent 60%);
+    }
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 106, 0, 0.12);
+      color: var(--key);
+      border: 1px solid rgba(255, 106, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .hero-tag.school {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--blue);
+      border-color: rgba(56, 189, 248, 0.35);
+      font-weight: 700;
+    }
+    .hero-tag.motto {
+      background: rgba(255, 212, 0, 0.1);
+      color: var(--hi);
+      border-color: rgba(255, 212, 0, 0.3);
+    }
+    .hero h1 {
+      font-size: 2.3rem;
+      line-height: 1.25;
+      margin: 0 0 14px 0;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span.key-text {
+      color: var(--key);
+    }
+    .hero-p {
+      font-size: 1.12rem;
+      color: var(--text);
+      margin: 0 0 20px 0;
+      max-width: 860px;
+      line-height: 1.6;
+    }
+
+    /* Motto Banner */
+    .motto-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(90deg, rgba(255, 106, 0, 0.15) 0%, rgba(255, 212, 0, 0.08) 100%);
+      border: 1px solid rgba(255, 106, 0, 0.4);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 20px 0 26px;
+    }
+    .motto-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .motto-text strong {
+      font-size: 1.15rem;
+      color: var(--hi);
+      display: block;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .motto-text p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #E2E8F0;
+    }
+
+    /* 4 Pillars Grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin: 24px 0 12px;
+    }
+    .pillar-card {
+      background: #141414;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px 16px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-card:hover {
+      border-color: var(--key);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(255, 106, 0, 0.15);
+    }
+    .pillar-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--key);
+    }
+    .pillar-card:nth-child(2)::before { background: var(--hi); }
+    .pillar-card:nth-child(3)::before { background: var(--blue); }
+    .pillar-card:nth-child(4)::before { background: var(--success); }
+    .pillar-num {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #FFF;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .pillar-card:nth-child(1) .pillar-num { color: var(--key); }
+    .pillar-card:nth-child(2) .pillar-num { color: var(--hi); }
+    .pillar-card:nth-child(3) .pillar-num { color: var(--blue); }
+    .pillar-card:nth-child(4) .pillar-num { color: var(--success); }
+    .pillar-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+    .pillar-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    /* Section Headings */
+    .section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      margin: 0 0 24px 0;
+      font-size: 0.96rem;
+    }
+
+    /* Grid & Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      border-color: var(--line-light);
+      transform: translateY(-2px);
+    }
+    .card-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      background: #2A2A2A;
+      color: var(--text);
+    }
+    .card-badge.key {
+      background: var(--key);
+      color: #000;
+    }
+    .card-badge.hi {
+      background: var(--hi);
+      color: #000;
+    }
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.15rem;
+      color: #FFF;
+    }
+    .card p {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #D1D5DB;
+      font-size: 0.88rem;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+
+    /* UI Component Boxes */
+    .warn {
+      background: rgba(255, 212, 0, 0.06);
+      border-left: 4px solid var(--hi);
+      border-top: 1px solid rgba(255, 212, 0, 0.2);
+      border-right: 1px solid rgba(255, 212, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 212, 0, 0.2);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      color: #E2E8F0;
+    }
+    .warn strong { color: var(--hi); }
+
+    .out {
+      background: rgba(52, 211, 153, 0.06);
+      border-left: 4px solid var(--success);
+      border-top: 1px solid rgba(52, 211, 153, 0.2);
+      border-right: 1px solid rgba(52, 211, 153, 0.2);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      color: #E2E8F0;
+    }
+    .out strong { color: var(--success); }
+
+    /* Check list */
+    .check {
+      background: #141414;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      color: #D6D8DB;
+    }
+    .check-item:last-child { margin-bottom: 0; }
+    .check-icon {
+      color: var(--success);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Tables */
+    .tw {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #141414;
+      color: var(--hi);
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: #D1D5DB;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #0E0E0E; }
+
+    /* GitHub Section Special Box */
+    .github-box {
+      background: linear-gradient(135deg, #13161C 0%, #0E1015 100%);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 12px;
+      padding: 26px;
+      margin: 24px 0;
+    }
+    .github-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .gh-step-card {
+      background: #181C24;
+      border: 1px solid #283244;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .gh-step-num {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--blue);
+      background: rgba(56, 189, 248, 0.15);
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .gh-step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFF;
+      margin: 0 0 6px 0;
+    }
+    .gh-step-desc {
+      font-size: 0.86rem;
+      color: #94A3B8;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .code-snippet {
+      background: #080A0E;
+      border: 1px solid #1E2636;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.85rem;
+      color: #38BDF8;
+      margin-top: 10px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--key);
+      color: #000;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn:hover {
+      background: #FFA040;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: #FFF;
+      border: 1px solid var(--line-light);
+    }
+    .btn-secondary:hover {
+      background: var(--line-light);
+    }
+    .btn-blue {
+      background: #0284C7;
+      color: #FFF;
+      border: 1px solid #38BDF8;
+    }
+    .btn-blue:hover {
+      background: #0369A1;
+    }
+
+    /* Diagrams */
+    .diagram-box {
+      background: #0E0E0E;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .diagram-box img, .diagram-box svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      margin-top: 48px;
+      background: #080808;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 700px) {
+      .wrap { padding: 0 16px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero-p { font-size: 1rem; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 4px; }
+      .nav-links a { padding: 4px 6px; font-size: 0.8rem; }
+    }
+    @media (max-width: 480px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="wrap nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">CDSJ5</span>
+        <span>聖若瑟五校 ｜ 數學 × OpenCode 工作坊</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首頁概覽</a></li>
+        <li><a href="#pillars">四大架構</a></li>
+        <li><a href="workshop-flow.html">120分鐘流程</a></li>
+        <li><a href="prompts.html">提示詞庫</a></li>
+        <li><a href="troubleshooting.html">疑難排解</a></li>
+        <li><a href="#github-deploy">部署 GITHUB</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-meta">
+        <span class="hero-tag school">澳門聖若瑟教區中學第五校</span>
+        <span class="hero-tag motto">校訓精神：毅誠勤樸</span>
+        <span class="hero-tag">小學中英文部數學教師</span>
+        <span class="hero-tag">零編程門檻</span>
+      </div>
+
+      <h1>小學數學 × OpenCode<br><span class="key-text">---AI Agent 實作工作坊</span></h1>
+      
+      <!-- Slogan Banner -->
+      <div class="motto-banner">
+        <span class="motto-icon">🌟</span>
+        <div class="motto-text">
+          <strong>AI 時代守本心，毅誠勤樸篤前行</strong>
+          <p>以聖若瑟五校校訓為精神底色：AI 負責加速備課與排版流程；教師專注於數學本質、教學判斷與關懷學生。</p>
+        </div>
+      </div>
+
+      <p class="hero-p">
+        這不是一般的 AI 概念演講，而是專為一線小學數學教師打造的 OpenCode / AI Agent 落地工作坊。<br>
+        從一份真實校本教材出發，在專案規則中完成備課、分層、同步修訂與再次重用，成果最終一鍵發布至 GitHub！
+      </p>
+
+      <!-- 4 Core Pillars of Workshop -->
+      <div class="pillars-grid" id="pillars">
+        <div class="pillar-card">
+          <div class="pillar-num">2 小時</div>
+          <div class="pillar-title">⏱️ 精準實操節奏</div>
+          <p class="pillar-desc">精確 120 分鐘動線，第 60 分鐘必達首份備課成果，不拖泥帶水。</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">1 個教材</div>
+          <div class="pillar-title">📄 真實校本材料</div>
+          <p class="pillar-desc">以真實數學教材 PDF 為唯一根據，恪守知識點邊界，拒絕憑空捏造。</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">4 次循環</div>
+          <div class="pillar-title">🔄 Agent 工作閉環</div>
+          <p class="pillar-desc">完整體驗「第一次備課 → 分層設計 → 同步修訂 → 再次重用」四階段。</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">1 個專案</div>
+          <div class="pillar-title">📦 長期校本資產</div>
+          <p class="pillar-desc">建立具備 AGENTS.md 規範的永久專案架構，隨時換課題複用。</p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="workshop-flow.html" class="btn">👉 進入 120 分鐘實操流程</a>
+        <a href="prompts.html" class="btn btn-secondary">📋 複製 8 階段精準 Prompt</a>
+        <a href="#github-deploy" class="btn btn-blue">🚀 最後部署到 GITHUB</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- Section 1: Detailed Pillars Breakdown (四大架構深入解析) -->
+    <section class="section">
+      <h2 class="section-title">🏛️ 工作坊核心架構：2小時 · 1教材 · 4循環 · 1專案</h2>
+      <p class="section-subtitle">本培訓不走馬看花，圍繞著四個不可替代的實操支柱構建：</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="card-badge key">架構支柱 1</span>
+          <h3>⏱️ 2 小時（120 分鐘高密度實踐）</h3>
+          <p>前 60 分鐘聚焦看清終點、啟動專案、教材分析並產出第一版可用教材；後 60 分鐘深化分層、修訂、重用與課堂難題記錄。分工明確，絕無無效等待。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge hi">架構支柱 2</span>
+          <h3>📄 1 個真實教材（守住數學事實）</h3>
+          <p>小學數學容不得算理模糊。專案嚴格以 <code>materials/</code> 內的示範教材（如 P5 分數加減法）為依據，嚴禁 Agent 任意超綱出題，確保概念準確無誤。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge" style="background:var(--blue); color:#000;">架構支柱 3</span>
+          <h3>🔄 4 次 Agent 工作循環</h3>
+          <p>從單純生成進階到專案控制：第 1 次掌握規格確認；第 2 次學會階梯式分層；第 3 次掌握連鎖同步修訂；第 4 次驗證跨課題重用價值。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge" style="background:var(--success); color:#000;">架構支柱 4</span>
+          <h3>📦 1 個可重用專案（持續累積）</h3>
+          <p>不是一次性聊天記錄，而是留下含有 <code>AGENTS.md</code> 長期規則的資料夾資產。下週備新課時，直接換入新單元即可開工，越用越快。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: What You Will Leave With (你會帶走) -->
+    <section class="section">
+      <h2 class="section-title">📦 你會帶走：4 大核心成果 + 1 個離場入口</h2>
+      <p class="section-subtitle">2 小時培訓結束時，每位教師的專案資料夾內都將真實擁有以下成果：</p>
+
+      <div class="grid">
+        <!-- Card 1 -->
+        <div class="card">
+          <span class="card-badge key">成果 1｜第 60 分鐘</span>
+          <h3>第一次備課成果</h3>
+          <p>Agent 閱讀 <code>materials/</code> 內的示範教材，向教師確認 6 個需求後產出的第一版課堂學習單。</p>
+          <ul>
+            <li>概念緊扣課本，無超綱算式</li>
+            <li>題目依認知階梯合理排序</li>
+            <li>學生版與教師答案版分開存檔</li>
+            <li>存放於 <code>output/01-first-version/</code></li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <span class="card-badge key">成果 2｜第 75 分鐘</span>
+          <h3>分層學習材料</h3>
+          <p>在同一個核心目標下，依學生學習需求建立真正的梯級支架，而不是單純改換數字。</p>
+          <ul>
+            <li><strong>A 支援版</strong>：加入圖形表徵與解題步驟提示</li>
+            <li><strong>B 基準版</strong>：維持常規課堂核心練習要求</li>
+            <li><strong>C 挑戰版</strong>：增加推理辨析、生活遷移情境</li>
+            <li>存放於 <code>output/02-differentiated/</code></li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <span class="card-badge key">成果 3｜第 95 分鐘</span>
+          <h3>同步修訂成果與報告</h3>
+          <p>模擬真實備課情境的條件變更（如課堂縮減為 30 分鐘），由 Agent 聯動同步更新所有關聯檔案。</p>
+          <ul>
+            <li>一次改動，多個相關檔案一致更新</li>
+            <li>自動產出 <code>change-summary.md</code> 差異清單</li>
+            <li>保留原歷史版本，不擅自覆蓋</li>
+            <li>存放於 <code>output/03-revised/</code></li>
+          </ul>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+          <span class="card-badge key">成果 4｜第 110 分鐘</span>
+          <h3>再次重用新任務成果</h3>
+          <p>保留 <code>AGENTS.md</code> 長期規則，換入另一個新課題，證明整個專案架構可持續複用。</p>
+          <ul>
+            <li>無需重新配置專案規則與安全邊界</li>
+            <li>重新確認新任務的具體規格</li>
+            <li>體驗專案長期累積的真實效益</li>
+            <li>存放於 <code>output/04-reused/</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5th Callout -->
+      <div class="out" style="margin-top: 18px;">
+        <strong>🚪 下一場培訓入口（第 117–120 分鐘）：</strong><br>
+        每位老師在離場前記錄一個真實的課堂痛點至 <code>notes/next-workshop-problem.md</code>。這不是虛構的練習，而是你帶給下一期進階培訓的真實專案起點！
+      </div>
+
+      <div class="diagram-box">
+        <img src="images/00-workshop-map.svg" alt="2小時學習迴圈全覽圖" width="920" height="340">
+        <div class="diagram-caption">圖 1：120 分鐘工作坊「備課 → 分層 → 修訂 → 重用 → 離場問題」完整閉環</div>
+      </div>
+    </section>
+
+    <!-- Section 3: Core Mental Models (思維釐清) -->
+    <section class="section">
+      <h2 class="section-title">🧠 核心思維釐清：從 Chatbot 到 AI Agent</h2>
+      <p class="section-subtitle">打破對生成式 AI 的固有印象，理解為什麼 OpenCode 在資料夾與規則中工作：</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%;">維度</th>
+              <th style="width: 39%;">傳統 Chatbot（例如網頁對話）</th>
+              <th style="width: 39%;">OpenCode AI Agent（本培訓模式）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>工作場域</strong></td>
+              <td>孤立的聊天視窗，用完即拋，難以追蹤修改。</td>
+              <td><strong>在學校專案資料夾內工作</strong>，能看見教材與歷程檔。</td>
+            </tr>
+            <tr>
+              <td><strong>長期規則</strong></td>
+              <td>每次對話都要重新貼一段很長的人設與要求。</td>
+              <td><strong>由 <code>AGENTS.md</code> 統一規定</strong>，每次執行自動遵守。</td>
+            </tr>
+            <tr>
+              <td><strong>教材讀取</strong></td>
+              <td>依賴使用者手動複製文字或零散上傳。</td>
+              <td><strong>直接可靠解析 <code>materials/</code> 內的 PDF</strong>。</td>
+            </tr>
+            <tr>
+              <td><strong>需求確認</strong></td>
+              <td>AI 擅自發揮想像力，產出常脫離年級與進度。</td>
+              <td><strong>先向老師提出 6 個問題確認規格</strong>，寫入 <code>task-spec.md</code> 後才產出。</td>
+            </tr>
+            <tr>
+              <td><strong>成果管理</strong></td>
+              <td>一段文字貼在聊天視窗，需要老師手動整理複製。</td>
+              <td><strong>直接在 <code>output/</code> 分階段建立結構化檔案</strong>。</td>
+            </tr>
+            <tr>
+              <td><strong>專業技能</strong></td>
+              <td>一般性通用回答，缺乏數學學科工具支持。</td>
+              <td><strong>載入專業 Skills</strong>（教材分析、分層生成、8分鐘活動）。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn">
+        <strong>教師的核心地位（AI 時代守本心）：</strong><br>
+        AI Agent 負責<strong>加速流程與初稿排版</strong>；小學數學教師負責<strong>教學目標、專業判斷、難度把關與最後驗收</strong>。AI 產出絕不等於完成，只有經教師驗收確認才算完成。
+      </div>
+    </section>
+
+    <!-- Section 4: Project Structure & Security Boundaries (專案結構與安全權限) -->
+    <section class="section">
+      <h2 class="section-title">📁 專案架構與安全邊界</h2>
+      <p class="section-subtitle">每位老師的 <code>Math-Agent-Workshop/</code> 均採用最嚴謹清晰的權限劃分：</p>
+
+      <div class="diagram-box">
+        <img src="images/01-project-structure.svg" alt="專案目錄與權限邊界圖" width="920" height="320">
+        <div class="diagram-caption">圖 2：專案資料夾結構與 Agent 權限邊界</div>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <div class="card">
+          <span class="card-badge" style="background:#38BDF8; color:#000;">只讀來源</span>
+          <h3>materials/</h3>
+          <p>存放學校教科書或單元 PDF（如 P5 分數加減法）。<strong>Agent 僅能讀取，嚴禁修改或刪除原始檔案。</strong></p>
+        </div>
+        <div class="card">
+          <span class="card-badge" style="background:#F59E0B; color:#000;">需求規格</span>
+          <h3>requirements/</h3>
+          <p>存放 <code>task-spec.md</code>。Agent 在分析後向教師確認教學目標、課時、題數，確認後方可動工。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge key">成果產出</span>
+          <h3>output/</h3>
+          <p>所有生成檔案的唯一儲存區。依 <code>01-first-version</code>、<code>02-differentiated</code> 等階段分層存放。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge hi">長期憲法</span>
+          <h3>AGENTS.md</h3>
+          <p>定義學校教學常態規則（澳門常用繁體中文、中英文術語一致、嚴禁處理學生個資等）。</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="check-item">
+          <span class="check-icon">🔒</span>
+          <div><strong>學生隱私紅線：</strong>嚴禁將真實學生姓名、學號、成績、家長聯絡方式上傳至 OpenCode。練習紙一律保留空白填寫欄。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">🔒</span>
+          <div><strong>金鑰安全保護：</strong>40 位教師使用獨立個人 API Key，嚴禁在專案程式碼中記錄金鑰或密碼。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">🔒</span>
+          <div><strong>原始教材保護：</strong><code>materials/</code> 檔案如無法可靠解析，Agent 必須停止並回報，絕不可自行猜測內容。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 40-Person Workshop Staggered Rhythm (40人錯峰與課前準備) -->
+    <section class="section">
+      <h2 class="section-title">⚡ 40 人現場錯峰與課前 4 件事</h2>
+      <p class="section-subtitle">確保 40 位教師同時在校園 Wi-Fi 環境下流暢實操的關鍵技術規範：</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="card-badge key">課前第 1 步</span>
+          <h3>安裝 Node.js LTS</h3>
+          <p>由官網下載 LTS 版本（如 v24.x），使用預設選項一路 Next，勾選 Add to PATH。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge key">課前第 2 步</span>
+          <h3>安裝 OpenCode</h3>
+          <p>開啟「命令提示字元 cmd」，輸入指令：<br><code>npm install -g opencode-ai</code></p>
+        </div>
+        <div class="card">
+          <span class="card-badge key">課前第 3 步</span>
+          <h3>加入 Workspace & Key</h3>
+          <p>接受邀請加入學校 Workspace，獲取專屬 API Key，在 OpenCode 中輸入 <code>/connect</code>。</p>
+        </div>
+        <div class="card">
+          <span class="card-badge key">課前第 4 步</span>
+          <h3>一鍵環境檢查</h3>
+          <p>在 Starter Pack 中雙擊 <code>00_一鍵檢查環境.bat</code>，確認三項均顯示版本號即 PASS。</p>
+        </div>
+      </div>
+
+      <h3 style="color:#FFF; margin: 24px 0 10px 0;">🚦 課堂 A/B/C/D 錯峰送出節奏（防範 429 限流）</h3>
+      <p style="color:var(--muted); font-size: 0.92rem;">為避免 40 台電腦在同一秒向 API 伺服器送出密集請求引發限流，現場分為 4 組錯峰敲擊 Enter：</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>組別</th>
+              <th>座位範圍</th>
+              <th>送出時間差</th>
+              <th>現場指令口訣</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--key);">A 組</strong></td>
+              <td>座位 01–10 號</td>
+              <td>講師宣布後 <strong>立即送出（0 秒）</strong></td>
+              <td>「A 組按 Enter，其他組先看畫面」</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--hi);">B 組</strong></td>
+              <td>座位 11–20 號</td>
+              <td>間隔 <strong>+15 秒</strong> 後送出</td>
+              <td>「B 組請送出」</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--blue);">C 組</strong></td>
+              <td>座位 21–30 號</td>
+              <td>間隔 <strong>+30 秒</strong> 後送出</td>
+              <td>「C 組請送出」</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--success);">D 組</strong></td>
+              <td>座位 31–40 號</td>
+              <td>間隔 <strong>+45 秒</strong> 後送出</td>
+              <td>「D 組請送出」</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 6: GitHub Deployment (最後部署到 GITHUB) -->
+    <section class="section" id="github-deploy">
+      <h2 class="section-title">🚀 最後部署到 GITHUB：將專案發布為 GitHub Pages</h2>
+      <p class="section-subtitle">完成實作後，只需 3 個步驟，即可將專案成果發布為隨時可用、隨處可存取的個人與科組網站：</p>
+
+      <div class="github-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <div>
+            <h3 style="margin:0 0 6px 0; color:#FFF; font-size:1.25rem;">🌐 為什麼要部署到 GitHub Pages？</h3>
+            <p style="margin:0; color:#94A3B8; font-size:0.9rem;">零伺服器維護費、跨裝置（手機/平板/課室大螢幕）即開即看、中英文部教師資源跨學年共享傳承。</p>
+          </div>
+          <span style="background:rgba(56,189,248,0.2); color:#38BDF8; border:1px solid #38BDF8; padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:700;">純靜態 · 免主機費</span>
+        </div>
+
+        <div class="github-steps-grid">
+          <!-- Step 1 -->
+          <div class="gh-step-card">
+            <span class="gh-step-num">步驟 1</span>
+            <h4 class="gh-step-title">建立 GitHub 儲存庫</h4>
+            <p class="gh-step-desc">登入 <a href="https://github.com/jtchen1225-a11y" target="_blank" rel="noopener" style="color:var(--blue);">GitHub (jtchen1225-a11y)</a>，儲存庫名稱為 <code>cdsj5-math-opencode-workshop</code>，設為 <strong>Public</strong>。</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="gh-step-card">
+            <span class="gh-step-num">步驟 2</span>
+            <h4 class="gh-step-title">推送專案至 GitHub</h4>
+            <p class="gh-step-desc">在專案根目錄開啟終端機或命令提示字元 cmd，執行指令：</p>
+            <div class="code-snippet">git init
+git add .
+git commit -m "feat: deploy CDSJ5 math opencode workshop site"
+git branch -M main
+git remote add origin https://github.com/jtchen1225-a11y/cdsj5-math-opencode-workshop.git
+git push -u origin main</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="gh-step-card">
+            <span class="gh-step-num">步驟 3</span>
+            <h4 class="gh-step-title">開啟 GitHub Pages</h4>
+            <p class="gh-step-desc">進入儲存庫的 <strong>Settings → Pages</strong>，在 Build and deployment 選 <code>Deploy from a branch</code>，分支選 <code>main</code> / <code>/ (root)</code>，點擊 <strong>Save</strong>！</p>
+          </div>
+        </div>
+
+        <div class="check" style="background:#0F1218; border-color:#232D3F; margin-top:16px;">
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            <div><strong>線上正式發布網址：</strong><a href="https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/" target="_blank" rel="noopener" style="color:var(--hi); font-weight:bold; text-decoration:underline;">https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/</a>（隨時隨地公開查閱本手冊與教學成果）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation Banner -->
+    <div style="background: linear-gradient(135deg, #181818 0%, #20150A 100%); border: 1px solid var(--key); border-radius: 12px; padding: 28px; margin: 40px 0; text-align: center;">
+      <h2 style="margin: 0 0 12px 0; font-size: 1.6rem; color: #FFF;">準備好開始 2 小時實操了嗎？</h2>
+      <p style="color: var(--muted); max-width: 680px; margin: 0 auto 20px auto; font-size: 0.98rem;">
+        請依序開啟 120 分鐘實操流程，或隨時查閱提示詞庫與疑難排解手冊。遇到任何報錯，技術助手與備援 SOP 隨時為您護航！
+      </p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="workshop-flow.html" class="btn" style="padding: 12px 24px; font-size: 1rem;">🚀 進入 120 分鐘流程</a>
+        <a href="prompts.html" class="btn btn-secondary" style="padding: 12px 24px;">📋 查看完整提示詞</a>
+        <a href="troubleshooting.html" class="btn btn-secondary" style="padding: 12px 24px;">🛠️ 疑難排解 SOP</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <p style="margin: 0 0 6px 0; font-weight: 700; color: #FFF;">聖若瑟教區中學第五校 小學中英文部 數學科組</p>
+        <p style="margin: 0; font-size: 0.82rem; color:var(--hi);">「AI 時代守本心，毅誠勤樸篤前行」</p>
+        <p style="margin: 4px 0 0 0; font-size: 0.8rem; color:var(--muted);">小學數學 × OpenCode AI Agent 2小時實作工作坊 ｜ 純靜態自包含設計 ｜ 支援 GitHub Pages 部署</p>
+      </div>
+      <div style="display: flex; gap: 16px; font-size: 0.85rem;">
+        <a href="index.html" style="color:var(--muted); text-decoration:none;">首頁</a>
+        <a href="workshop-flow.html" style="color:var(--muted); text-decoration:none;">120分鐘流程</a>
+        <a href="prompts.html" style="color:var(--muted); text-decoration:none;">提示詞</a>
+        <a href="troubleshooting.html" style="color:var(--muted); text-decoration:none;">疑難排解</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

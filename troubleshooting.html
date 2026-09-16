@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>疑難排解與 40 人現場 SOP｜小學數學教師 OpenCode 培訓</title>
+  <meta name="description" content="針對 2 小時小學數學教師實操工作坊設計的高頻問題速查。嚴格採用「現象、原因、一項動作、驗證步驟」4 步格式，並含 40 人現場故障分級處理指南。">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg2: #0B0B0B;
+      --surface: #1E1E1E;
+      --surface-hover: #262626;
+      --line: #2E2E2E;
+      --line-light: #404040;
+      --text: #F5F7FA;
+      --muted: #9AA0A6;
+      --key: #FF6A00;
+      --hi: #FFD400;
+      --success: #34D399;
+      --danger: #F87171;
+      --blue: #38BDF8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header.site-header {
+      background: rgba(11, 11, 11, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .brand-badge {
+      background: var(--key);
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+      background: var(--surface);
+    }
+    .nav-links a.active {
+      color: var(--key);
+      border-bottom: 2px solid var(--key);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 40px 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .page-hero h1 {
+      font-size: 2.1rem;
+      margin: 0 0 12px 0;
+      color: #FFF;
+    }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    /* Important Principles Banner */
+    .rule-banner {
+      background: rgba(255, 106, 0, 0.08);
+      border: 1px solid var(--key);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      color: #FEE;
+    }
+    .rule-banner strong {
+      color: var(--key);
+      font-size: 1.05rem;
+    }
+
+    /* Problem Card */
+    .trouble-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+      margin: 20px 0;
+      transition: border-color 0.2s;
+    }
+    .trouble-card:hover {
+      border-color: var(--line-light);
+    }
+    .trouble-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .trouble-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #2A2A2A;
+      color: #FFF;
+    }
+    .trouble-badge.critical {
+      background: rgba(248, 113, 113, 0.2);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+    .trouble-title {
+      font-size: 1.18rem;
+      margin: 0;
+      color: #FFF;
+      font-weight: 700;
+    }
+
+    /* 4-Step troubleshooting grid */
+    .trouble-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .step-box {
+      background: #141414;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+    }
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .symptom .step-label { color: #FCA5A5; }
+    .cause .step-label { color: #FCD34D; }
+    .action .step-label { color: #86EFAC; }
+    .verify .step-label { color: #93C5FD; }
+
+    .step-box p {
+      margin: 0;
+      color: #D1D5DB;
+      line-height: 1.5;
+    }
+    .step-box code {
+      background: #000;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: var(--key);
+    }
+
+    /* Tables */
+    .tw {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #141414;
+      color: var(--hi);
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: #D1D5DB;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #0E0E0E; }
+
+    /* Section divider */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FFF;
+      margin: 36px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      margin: 0 0 20px 0;
+      font-size: 0.94rem;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      margin-top: 48px;
+      background: #080808;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="wrap nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">CDSJ5</span>
+        <span>聖若瑟五校 ｜ 數學 × OpenCode 工作坊</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁概覽</a></li>
+        <li><a href="workshop-flow.html">120分鐘流程</a></li>
+        <li><a href="prompts.html">提示詞庫</a></li>
+        <li><a href="troubleshooting.html" class="active">疑難排解</a></li>
+        <li><a href="index.html#github-deploy">部署 GITHUB</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="wrap">
+      <h1>🛠️ 疑難排解與 40 人現場 SOP</h1>
+      <p>
+        收錄 10 大初學者高頻操作問題，以及 40 人校園 Wi-Fi 現場故障分級處置方案。<br>
+        遇到任何錯誤先停手，不要狂按 Enter。按照「現象 → 原因 → 動作 → 驗證」快速排除！
+      </p>
+
+      <div class="rule-banner">
+        <strong>💡 課堂處置第一原則：</strong><br>
+        「遇到錯誤：不要重複狂按 Enter。先停、看錯誤碼，按備援流程處理。任何單一電腦問題立即交技術助手，主講教學節奏不停。」
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- Section 1: 10 High Frequency Beginner Problems -->
+    <h2 class="section-title">🧭 10 大初學者高頻問題速查（SKILL.md 規範）</h2>
+    <p class="section-subtitle">每項問題均提供單一明確的修正動作與驗證步驟：</p>
+
+    <!-- Problem 1 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 1</span>
+        <h3 class="trouble-title">OpenCode 開啟了錯誤的資料夾</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>輸入指令後，Agent 回報找不到 <code>AGENTS.md</code> 或 <code>materials/</code>，工作區看到無關檔案。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>在使用者根目錄、下載資料夾或 ZIP 壓縮檔內直接啟動了 OpenCode，未切換至專案根目錄。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>關閉當前視窗，確認 Starter Pack 已解壓至<strong>桌面</strong>，重新雙擊 <code>01_啟動OpenCode培訓.bat</code>。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>在 OpenCode 中輸入 <code>Prompt 1</code>，確認 Agent 正確列出 <code>materials/</code> 與 <code>AGENTS.md</code>。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 2 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 2</span>
+        <h3 class="trouble-title">PDF 不在 materials/ 或無法可靠讀取</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>Agent 提示「找不到示範教材」或停止報告「PDF 包含不可解析之掃描圖層」。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>教材 PDF 被移動、名稱拼寫不符，或系統缺乏外部 PDF 提取外掛。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>依照 <code>AGENTS.md</code> 備援規則：改為指定讀取 <code>backup/P5-分數加減法-示範教材.txt</code> 文字版備用教材。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>Agent 回應能正確讀取文字檔內容，並註明來源為備用文字教材，不再停滯。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 3 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 3</span>
+        <h3 class="trouble-title">Agent 在確認需求前就擅自開始生成教材</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>剛發送教材分析 Prompt，Agent 卻直接輸出了一整份包含 10 題的題目與考卷。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>模型發散或漏讀了 <code>AGENTS.md</code> 中「未確認需求前不得動工」的底線限制。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>立即發送指令糾偏：「請嚴格遵守 AGENTS.md。停止生成成品，先向我提出 6 個需求確認問題。」</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>Agent 停止輸出試卷，轉為條列 6 個關鍵問題等待教師回答。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 4 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 4</span>
+        <h3 class="trouble-title">Agent 回報找不到 AGENTS.md</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>執行 Prompt 1 時，Agent 回答「本專案目錄下未發現 AGENTS.md 檔案」。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>工作區根目錄未正確包含 <code>AGENTS.md</code>，或檔案被誤移入子目錄。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>確認專案最外層有 <code>AGENTS.md</code>。若遺失，從 <code>resources/sample-agents.md</code> 複製一份置於根目錄。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>重新發送 Prompt 1，確認 Agent 能準確列出學校專屬規則。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 5 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 5</span>
+        <h3 class="trouble-title">產出檔案被寫到 output/ 以外的目錄</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>新生成的 Markdown 或 HTML 散落在專案根目錄或 <code>materials/</code> 內。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>指令中未強調存放路徑，或 Agent 忽略了路徑規範。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>輸入糾正指令：「根據專案規則，將剛才生成的檔案移動或重新儲存到對應的 output/ 子目錄下。」</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>檢查 <code>output/01-first-version/</code> 等資料夾，確認檔案已就位且根目錄保持乾淨。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 6 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge critical">問題 6（高危險）</span>
+        <h3 class="trouble-title">老師或 Agent 誤圖覆蓋 materials/ 原始教材</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>提示訊息詢問是否允許覆蓋 <code>materials/</code> 內的 PDF 或既有檔案。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>輸入修改要求時，誤將儲存目標指定到了來源資料夾。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p><strong>選擇拒絕（No）</strong>。重新下達指令，明確指示儲存於 <code>output/03-revised/</code>。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>查看 <code>materials/</code> 檔案修改時間，確認原始 PDF 毫髮無損。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 7 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 7</span>
+        <h3 class="trouble-title">生成內容過於空泛、脫離校本需求</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>題目出現初中代數、或是未定義分母過大的無效重複題。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>在 Prompt 3 需求訪談時給出的約束過少（只說「隨便出幾題」）。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>編輯 <code>requirements/task-spec.md</code>，精確寫入年級、分母限制（≤20）、題數（8題）與作答時間。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>讓 Agent 重新對齊規格書，產出題目精準落在教學目標內。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 8 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 8</span>
+        <h3 class="trouble-title">分層作業只改了標籤，題目實質沒有分層</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>A/B/C 三個版本的題目幾乎一樣，僅是數字微調或換個題目編號。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>未明確指定支援版需要「圖形/步驟支架」，挑戰版需要「推理與比較」。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>使用 Prompt 5 的嚴格要求，或調用 <code>worksheet-generator</code> 指定 Knowing / Applying / Reasoning 層次。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>檢查產出的差異對照表，確認 A 版有解題支架，C 版有逆向推理。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 9 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 9</span>
+        <h3 class="trouble-title">同步修訂只修改了單一檔案，漏掉聯動檔案</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>學生版學習單題目刪減了，但教師答案版仍然是舊版的題目與答案。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>修訂時未要求 Agent 先盤點關聯受影響檔案清單。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>發送指令：「請檢查教師答案版是否與學生版保持題號與內容一致，並提供 change-summary.md 說明修改。」</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>核對 <code>output/03-revised/</code> 內的學生版與答案版題數與題目完全吻合。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem 10 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-badge">問題 10</span>
+        <h3 class="trouble-title">再次重用變成隨意複製貼上，丟失專案規則</h3>
+      </div>
+      <div class="trouble-steps">
+        <div class="step-box symptom">
+          <div class="step-label">① 現象 Symptom</div>
+          <p>輸入新課題時，Agent 忘記了繁體中文、中英文對齊或 output/ 目錄規範。</p>
+        </div>
+        <div class="step-box cause">
+          <div class="step-label">② 可能原因 Likely cause</div>
+          <p>新對話開啟了全域上下文重設，未引用 <code>AGENTS.md</code>。</p>
+        </div>
+        <div class="step-box action">
+          <div class="step-label">③ 修正動作 Action</div>
+          <p>在同一個 OpenCode 專案工作區中執行 Prompt 7，並在開頭指名「保留 AGENTS.md 長期規則」。</p>
+        </div>
+        <div class="step-box verify">
+          <div class="step-label">④ 驗證步驟 Verify</div>
+          <p>新課題產出正確寫入 <code>output/04-reused/</code>，且完全遵守既有規則。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: 40-Person Classroom SOP -->
+    <div style="margin-top: 50px;">
+      <h2 class="section-title">⚡ 40 人現場突發技術狀況 SOP（分級處置表）</h2>
+      <p class="section-subtitle">針對學校 Wi-Fi、API 限流與初學者操作環境之突發情況處置：</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 20%;">故障現象 / 錯誤碼</th>
+              <th style="width: 18%;">性質判斷</th>
+              <th style="width: 44%;">講師決策與現場處置流程</th>
+              <th style="width: 18%;">主課是否暫停</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1–3 人報錯 401 或安裝失敗</strong></td>
+              <td>個人環境設定問題</td>
+              <td>
+                1. 技術助手上前個別排查 API Key 是否填妥。<br>
+                2. 若 3 分鐘內無法排除，請該學員先與鄰座老師併組共看。<br>
+                3. 主課不停。
+              </td>
+              <td><span style="color:var(--success); font-weight:bold;">不暫停</span></td>
+            </tr>
+            <tr>
+              <td><strong>單一組別出現 429 限流 (Rate Limit)</strong></td>
+              <td>瞬時連線過於密集</td>
+              <td>
+                1. 該組學員全體<strong>停手 60 秒</strong>，不要連續按 Enter。<br>
+                2. 其他組別維持原錯峰節奏（+15秒/+30秒）。<br>
+                3. 60 秒後重新單獨送出。
+              </td>
+              <td><span style="color:var(--success); font-weight:bold;">不暫停</span></td>
+            </tr>
+            <tr style="background: rgba(248, 113, 113, 0.08);">
+              <td><strong>超過 10 人同時出現 429 限流</strong></td>
+              <td>主模型服務端負載超載</td>
+              <td>
+                1. <strong>全班全體停手 2 分鐘</strong>。<br>
+                2. 講師統一宣布切換至備援模型（輸入 <code>/models</code> 選擇 <code>Nemotron 3.5 Lightning Free</code>）。<br>
+                3. 各組以 30 秒為間隔重新錯峰發送。
+              </td>
+              <td><span style="color:var(--danger); font-weight:bold;">短暫停 2 分鐘</span></td>
+            </tr>
+            <tr>
+              <td><strong>PowerShell 提示 npm.ps1 執行原則被阻擋</strong></td>
+              <td>Windows 系統安全性原則</td>
+              <td>
+                改用 Windows 內建之<strong>「命令提示字元 cmd」</strong>，避開 PowerShell 執行原則限制。
+              </td>
+              <td><span style="color:var(--success); font-weight:bold;">不暫停</span></td>
+            </tr>
+            <tr style="background: rgba(255, 212, 0, 0.08);">
+              <td><strong>全校 Wi-Fi 斷網或 API 提供商全域癱瘓</strong></td>
+              <td>不可抗力基礎設施故障</td>
+              <td>
+                1. 停止全體學員實操發送請求。<br>
+                2. 切換為講師本機或預備好的已完成結果（<code>Math-Agent-Workshop/backup/</code>）進行大螢幕教學講解。<br>
+                3. 維持教案主線推進，確保觀念與驗收標準傳達到位。
+              </td>
+              <td><span style="color:var(--hi); font-weight:bold;">轉為示範模式</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <p style="margin: 0 0 6px 0; font-weight: 700; color: #FFF;">聖若瑟教區中學第五校 小學中英文部 數學科組</p>
+        <p style="margin: 0; font-size: 0.82rem; color:var(--hi);">「AI 時代守本心，毅誠勤樸篤前行」</p>
+        <p style="margin: 4px 0 0 0; font-size: 0.8rem; color:var(--muted);">小學數學 × OpenCode AI Agent 2小時實作工作坊 ｜ 疑難排解與現場 SOP</p>
+      </div>
+      <div style="display: flex; gap: 16px; font-size: 0.85rem;">
+        <a href="index.html" style="color:var(--muted); text-decoration:none;">首頁</a>
+        <a href="workshop-flow.html" style="color:var(--muted); text-decoration:none;">120分鐘流程</a>
+        <a href="prompts.html" style="color:var(--muted); text-decoration:none;">提示詞</a>
+        <a href="troubleshooting.html" style="color:var(--muted); text-decoration:none;">疑難排解</a>
+        <a href="index.html#github-deploy" style="color:var(--muted); text-decoration:none;">部署 GITHUB</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

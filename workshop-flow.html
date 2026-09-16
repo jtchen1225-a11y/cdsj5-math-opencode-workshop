@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>120分鐘逐階段實操流程｜小學數學教師 OpenCode 培訓</title>
+  <meta name="description" content="120 分鐘完整的 OpenCode / AI Agent 數學教師實操時間軸，精確劃分各階段、講師行動、學員任務與 A/B/C/D 錯峰送出節奏。">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg2: #0B0B0B;
+      --surface: #1E1E1E;
+      --surface-hover: #262626;
+      --line: #2E2E2E;
+      --line-light: #404040;
+      --text: #F5F7FA;
+      --muted: #9AA0A6;
+      --key: #FF6A00;
+      --hi: #FFD400;
+      --success: #34D399;
+      --danger: #F87171;
+      --blue: #38BDF8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header.site-header {
+      background: rgba(11, 11, 11, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .brand-badge {
+      background: var(--key);
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+      background: var(--surface);
+    }
+    .nav-links a.active {
+      color: var(--key);
+      border-bottom: 2px solid var(--key);
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 40px 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .page-hero h1 {
+      font-size: 2.1rem;
+      margin: 0 0 12px 0;
+      color: #FFF;
+    }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+      max-width: 820px;
+    }
+
+    /* Summary Bar */
+    .summary-bar {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: #111;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 28px 0;
+    }
+    .summary-metric {
+      flex: 1;
+      min-width: 140px;
+    }
+    .metric-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--key);
+      line-height: 1.2;
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 36px 0;
+      padding-left: 36px;
+      border-left: 2px solid var(--line);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -43px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #242424;
+      border: 3px solid var(--key);
+    }
+    .timeline-item.milestone::before {
+      background: var(--hi);
+      border-color: #000;
+      box-shadow: 0 0 10px var(--hi);
+      width: 18px;
+      height: 18px;
+      left: -45px;
+    }
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 106, 0, 0.12);
+      color: var(--key);
+      border: 1px solid rgba(255, 106, 0, 0.3);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .time-badge.gold {
+      background: rgba(255, 212, 0, 0.12);
+      color: var(--hi);
+      border-color: rgba(255, 212, 0, 0.3);
+    }
+    .step-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFF;
+      margin: 0 0 14px 0;
+    }
+
+    /* Action Grid inside Step */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin: 14px 0;
+    }
+    .action-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .action-box h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.95rem;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .action-box p {
+      margin: 0;
+      color: #D1D5DB;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    /* Prompt link button inside step */
+    .prompt-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #181818;
+      color: var(--hi);
+      border: 1px solid rgba(255, 212, 0, 0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: all 0.2s;
+    }
+    .prompt-link-btn:hover {
+      background: rgba(255, 212, 0, 0.15);
+      color: #FFF;
+    }
+
+    /* Check tag */
+    .target-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    /* Tables */
+    .tw {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #141414;
+      color: var(--hi);
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: #D1D5DB;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #0E0E0E; }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      margin-top: 48px;
+      background: #080808;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="wrap nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">CDSJ5</span>
+        <span>聖若瑟五校 ｜ 數學 × OpenCode 工作坊</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁概覽</a></li>
+        <li><a href="workshop-flow.html" class="active">120分鐘流程</a></li>
+        <li><a href="prompts.html">提示詞庫</a></li>
+        <li><a href="troubleshooting.html">疑難排解</a></li>
+        <li><a href="index.html#github-deploy">部署 GITHUB</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="wrap">
+      <h1>⏱️ 120 分鐘逐分鐘實操流程</h1>
+      <p>
+        嚴格對齊 <code>SKILL.md</code> 之固定 120 分鐘教學動線（10+10+10+12+8+10+15+20+15+7+3 = 120 min）。<br>
+        前半場（0–60分）直達首份備課成果；後半場（60–120分）深耕分層、同步修訂、重用與課堂難題沉澱。
+      </p>
+
+      <div class="summary-bar">
+        <div class="summary-metric">
+          <div class="metric-value">120 min</div>
+          <div class="metric-label">總實操時間</div>
+        </div>
+        <div class="summary-metric">
+          <div class="metric-value">第 60 min</div>
+          <div class="metric-label">首份成果合格線</div>
+        </div>
+        <div class="summary-metric">
+          <div class="metric-value">4 組錯峰</div>
+          <div class="metric-label">A/B/C/D 送出時序</div>
+        </div>
+        <div class="summary-metric">
+          <div class="metric-value">4+1 項</div>
+          <div class="metric-label">離場帶走成果總數</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <div class="timeline">
+
+      <!-- Step 1: 0-10 min -->
+      <div class="timeline-item">
+        <span class="time-badge">00–10 min（10分鐘）</span>
+        <h2 class="step-title">一、看見終點：展示 4 大成果與專案地圖</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 0:00 投影 <code>output/</code> 最終 4 個資料夾與檔名成果。<br>
+              • 0:01 明確宣告：今天不是學無目的的聊天，而是讓 Agent 在專案中真實完成工作。<br>
+              • 0:03 重申紅線：使用示範教材、不輸入學生真實個資、不共用 API Key。<br>
+              • 0:06 說明完整學習迴圈：教材 → 規則 → 需求確認 → 備課 → 分層 → 修訂 → 重用。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 只看投影、不急於操作。<br>
+              • 確認自己在會場中的 <strong>A / B / C / D 組別</strong>。<br>
+              • 在心中預想一項自己平時最耗時的數學備課環節。
+            </p>
+          </div>
+        </div>
+        <div class="target-tag">🎯 階段目標：全員看見終點，不陷入安裝枝節與術語焦慮。A/B/C/D 不發請求。</div>
+      </div>
+
+      <!-- Step 2: 10-20 min -->
+      <div class="timeline-item">
+        <span class="time-badge">10–20 min（10分鐘）</span>
+        <h2 class="step-title">二、啟動專案：確認 OpenCode 與教材環境</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 演示雙擊 <code>01_啟動OpenCode培訓.bat</code>。<br>
+              • 投影展示專案目錄結構：<code>AGENTS.md</code>、<code>materials/</code>、<code>requirements/</code>、<code>output/</code>。<br>
+              • 強調 Agent 必須在專案根目錄執行，而不是在外部隨機視窗中發散對話。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 雙擊 <code>01_啟動OpenCode培訓.bat</code> 啟動 OpenCode。<br>
+              • 檢查終端機視窗，確認能看到 <code>materials/</code> 內的示範教材 PDF。<br>
+              • 保持待命，不要自行提前輸入其他指令。
+            </p>
+          </div>
+        </div>
+        <div class="target-tag">🎯 階段指標：≥90% 老師順利進入正確 Workshop 工作區；有阻礙者即時交技術助手處理。</div>
+      </div>
+
+      <!-- Step 3: 20-30 min -->
+      <div class="timeline-item">
+        <span class="time-badge">20–30 min（10分鐘）</span>
+        <h2 class="step-title">三、讀懂 AGENTS.md：建立專案持續規則</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 20:00 提問：「為什麼 Agent 知道不能覆蓋原教材、只能寫入 output/？」<br>
+              • 22:00 開啟 <code>AGENTS.md</code>。解說：澳門繁中、術語一致、Input 只讀、Output 才寫、嚴禁學生個資。<br>
+              • 26:00 核心定義：<code>Prompt</code> 是這次做甚麼；<code>AGENTS.md</code> 是每次都必須遵守的憲法。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 複製發送 <strong>Prompt 1</strong>，讓 Agent 摘要專案規則與目錄地圖。<br>
+              • <strong>A/B/C/D 錯峰送出</strong>：<br>
+              &nbsp;&nbsp;15:00 A組 ｜ 15:20 B組 ｜ 15:40 C組 ｜ 16:00 D組。<br>
+              • 對照 Agent 回答，確認規則被忠實理解，暫不改任何檔案。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p1" class="prompt-link-btn">📋 前往 Prompt 1：認識工作區與規則</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：老師能用自己的話說出 Prompt 與 AGENTS.md 的差別。</div>
+      </div>
+
+      <!-- Step 4: 30-42 min -->
+      <div class="timeline-item">
+        <span class="time-badge">30–42 min（12分鐘）</span>
+        <h2 class="step-title">四、讀取真實教材：專業分析先於題目生成</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 示範調用 <code>textbook-analysis</code> skill 讀取 <code>materials/</code> 內的 PDF 教材。<br>
+              • 說明優秀的教學設計必須先萃取：核心概念、先備知識、表徵語言、常見迷思。<br>
+              • 巡視現場確認沒有人跳過分析直接產出整份考卷。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 2</strong>，指示 Agent 閱讀教材並在對話畫面中輸出結構化分析表。<br>
+              • <strong>A/B/C/D 錯峰送出</strong>：<br>
+              &nbsp;&nbsp;35:00 A組 ｜ 35:20 B組 ｜ 35:40 C組 ｜ 36:00 D組。<br>
+              • 快速核對教材分析內容，確認符合小學數學專業算理。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p2" class="prompt-link-btn">📋 前往 Prompt 2：讀取並分析教材</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：Agent 輸出核心概念與迷思；未建立任何檔案；PDF 讀取失敗時能按規則主動停止報告。</div>
+      </div>
+
+      <!-- Step 5: 42-50 min -->
+      <div class="timeline-item">
+        <span class="time-badge">42–50 min（8分鐘）</span>
+        <h2 class="step-title">五、教師確認需求：形成 task-spec.md 規格書</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 演示「需求訪談」機制：Agent 不應隨意腦補年級、課時、題數。<br>
+              • 限制 Agent 一次只問最重要的 6 個問題，並將確認結果寫入 <code>requirements/task-spec.md</code>。<br>
+              • 宣導原則：<strong>規格由教師確認，確定前不得盲目動工</strong>。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 3</strong>，要求 Agent 提出不超過 6 個關鍵確認問題。<br>
+              • 教師簡要回答：年級（P5）、課堂階段（鞏固練習）、題數（8-10題）、分層要求、附答案。<br>
+              • 檢查 Agent 建立的 <code>requirements/task-spec.md</code> 狀態是否改為 <code>confirmed</code>。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p3" class="prompt-link-btn">📋 前往 Prompt 3：需求確認訪談</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：<code>requirements/task-spec.md</code> 建立完成，狀態為 confirmed。</div>
+      </div>
+
+      <!-- Step 6: 50-60 min (MILESTONE) -->
+      <div class="timeline-item milestone">
+        <span class="time-badge gold">50–60 min（10分鐘）★ 關鍵半程里程碑</span>
+        <h2 class="step-title">六、完成第一次備課成果：生成第一版課堂材料</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 投影展示 <code>output/01-first-version/</code> 目錄。<br>
+              • 解說規範：緊扣教材、題目層次遞進、保留教師修改標籤、學生版與答案版分離存檔。<br>
+              • 宣布「第 60 分鐘成果檢查點」，確保全體教師皆拿到第一份產出。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 確認 <code>task-spec.md</code> 後，發送 <strong>Prompt 4</strong> 生成第一版教材。<br>
+              • <strong>A/B/C/D 錯峰送出</strong>：<br>
+              &nbsp;&nbsp;50:00 A組 ｜ 50:20 B組 ｜ 50:40 C組 ｜ 51:00 D組。<br>
+              • 在專案中打開 <code>output/01-first-version/</code> 檢視生成檔案。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p4" class="prompt-link-btn">📋 前往 Prompt 4：第一次備課生成</a>
+        <div class="target-tag" style="display:block; border-color:var(--hi); color:var(--hi);">★ 第60分鐘通過標準：≥90% 老師成功在 <code>output/01-first-version/</code> 產出第一版可用教材與教師版解答。</div>
+      </div>
+
+      <!-- Break / Catchup: 60-65 min -->
+      <div class="timeline-item" style="opacity: 0.85;">
+        <span class="time-badge" style="background:#222; color:#AAA; border-color:#444;">60–65 min（5分鐘）</span>
+        <h3 style="margin:0 0 8px 0; color:#CCC;">☕ 微休息與技術追趕（Buffer）</h3>
+        <p style="margin:0; font-size:0.9rem; color:var(--muted);">
+          現場暫停發送新請求。講師投影回顧：Prompt → 規則 (AGENTS.md) → 專業技能 (Skill) → 規格 (task-spec.md) → 第一版成果。<br>
+          技術助手協助少數進度落後者補上第 60 分鐘成果。
+        </p>
+      </div>
+
+      <!-- Step 7: 65-75 min -->
+      <div class="timeline-item">
+        <span class="time-badge">65–75 min（10分鐘，累計至75分）</span>
+        <h2 class="step-title">七、做一次分層：A支援 / B基準 / C挑戰</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 投影對比兩種「假分層」與「真分層」：單純改數字不是分層，改變認知支架與思維層次才是分層。<br>
+              • 解說三層定位：A 支援（增加表徵支架）、B 基準（常規要求）、C 挑戰（推理、比較、辨析）。<br>
+              • 強調：不從零重來，直接基於 <code>output/01-first-version/</code> 進行分層。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 5</strong> 生成分層版本。<br>
+              • <strong>A/B/C/D 錯峰送出</strong>：<br>
+              &nbsp;&nbsp;66:00 A組 ｜ 66:20 B組 ｜ 66:40 C組 ｜ 67:00 D組。<br>
+              • 檢查 <code>output/02-differentiated/</code> 內的檔案與差異對照表。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p5" class="prompt-link-btn">📋 前往 Prompt 5：分層學習材料設計</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：三份版本皆有實質教學支架差異，核心概念不變，數學正確性完整保留。</div>
+      </div>
+
+      <!-- Step 8: 75-95 min -->
+      <div class="timeline-item">
+        <span class="time-badge">75–95 min（20分鐘）</span>
+        <h2 class="step-title">八、做一次同步修訂：模擬真實條件變更與聯動更新</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 引入突發教學情境：「學校活動調整，本節課只剩 30 分鐘，且剛才課堂發現學生容易直接把分母相加，必須加入一個典型錯因辨析題。」<br>
+              • 示範 Agent 先分析受影響檔案（學生版、教師答案、時間標籤），再同步連鎖修訂。<br>
+              • 重點：AI Agent 的價值在於在專案脈絡中「管理修改」，而非盲目重新生成覆蓋原檔。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 6</strong>，輸入指定修訂要求。<br>
+              • 先聽取 Agent 回報將影響哪些檔案，確認後才執行。<br>
+              • 檢視 <code>output/03-revised/</code> 與自動產出的 <code>change-summary.md</code>，確認歷史版本完整無缺。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p6" class="prompt-link-btn">📋 前往 Prompt 6：專案同步修訂</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：<code>output/03-revised/</code> 生成且關聯檔案同步更新，附 <code>change-summary.md</code>。</div>
+      </div>
+
+      <!-- Step 9: 95-110 min -->
+      <div class="timeline-item">
+        <span class="time-badge">95–110 min（15分鐘）</span>
+        <h2 class="step-title">九、再次重用：保留專案長期規則，換入新課題</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與投影</h4>
+            <p>
+              • 現場提問：「如果下週要備下一個單元，我們需要重新設定一次 OpenCode 嗎？」<br>
+              • 證明重用價值：<code>AGENTS.md</code> 依然生效，工作模式依然生效，直接換入新單元需求。<br>
+              • 示範將新成果存入 <code>output/04-reused/</code>。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 7</strong>，輸入另一個數學單元（如「分數與小數互化」或「帶分數加減」）。<br>
+              • 觀察 Agent 複用既有規則，僅重新確認新任務規格，並將成果輸出至 <code>output/04-reused/</code>。<br>
+              • 體會專案資產的持久累積效應。
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p7" class="prompt-link-btn">📋 前往 Prompt 7：新任務專案重用</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：老師未重新配置專案即可在 <code>output/04-reused/</code> 產出全新課題教材。</div>
+      </div>
+
+      <!-- Step 10: 110-117 min -->
+      <div class="timeline-item">
+        <span class="time-badge">110–117 min（7分鐘）</span>
+        <h2 class="step-title">十、教師親自驗收：AI 產出 ≠ 完成，驗收才是完成</h2>
+        <div class="action-grid">
+          <div class="action-box" style="grid-column: 1 / -1;">
+            <h4>🔍 9 大驗收清單（Teacher Checklist）</h4>
+            <div class="check" style="margin: 8px 0 0 0;">
+              <div class="check-item"><span class="check-icon">✓</span> <strong>數學算理正確性：</strong>逐題重算，通分、約分、算式與教師答案完全正確無誤。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>學習目標對齊：</strong>題目完全扣合小學五年級/四年級課程，無偏題或未學超綱概念。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>學生語言可讀性：</strong>文字題敘述符合澳門小學生生活經驗與閱讀水平，無生澀機器翻譯腔。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>難度坡度合理性：</strong>基礎題與挑戰題有清晰的台階，不是純粹數字變大。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>分層具實質差異：</strong>A 支援版有直觀圖形/表格支架，C 挑戰版有逆向思考或多步推理。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>修訂一致性傳導：</strong>教學時間與題數調整後，教師版與學生版同步更新。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>原始教材保護：</strong><code>materials/</code> 內的 PDF 完好無缺，沒有被意外改動。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>新課題重用成功：</strong><code>output/04-reused/</code> 成功生成且結構清晰。</div>
+              <div class="check-item"><span class="check-icon">✓</span> <strong>列印與排版空間：</strong>若輸出 HTML 或學習紙，預留了足夠的學生算式作答空間。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 11: 117-120 min -->
+      <div class="timeline-item">
+        <span class="time-badge gold">117–120 min（3分鐘）★ 培訓閉環</span>
+        <h2 class="step-title">十一、帶一個真實課堂難題離場：下一場培訓入口</h2>
+        <div class="action-grid">
+          <div class="action-box">
+            <h4>👨‍🏫 講師行動與結語</h4>
+            <p>
+              • 總結 3 個核心詞：Prompt＝這次做甚麼；AGENTS.md＝每次都守甚麼；Skill＝專業流程。<br>
+              • 結尾金句：<strong>「AI 時代守本心：把時間還給教學判斷與學生。」</strong><br>
+              • 指示每位老師在專案中建立 <code>notes/next-workshop-problem.md</code>。
+            </p>
+          </div>
+          <div class="action-box">
+            <h4>👩‍🏫 學員行動</h4>
+            <p>
+              • 發送 <strong>Prompt 8</strong> 建立範本。<br>
+              • 親筆填入一項自己下週即將面對的真實教學難題（課題、學生易錯點、期望 Agent 協助項目）。<br>
+              • 存檔專案，安心下課！
+            </p>
+          </div>
+        </div>
+        <a href="prompts.html#p8" class="prompt-link-btn">📋 前往 Prompt 8：記錄課堂問題離場</a>
+        <div class="target-tag" style="display:block;">🎯 階段指標：<code>notes/next-workshop-problem.md</code> 存入每位老師專案中，成為下一期培訓入場券。</div>
+      </div>
+
+    </div>
+
+    <!-- 120 Minutes Overview Table -->
+    <section class="section" style="border-bottom:none;">
+      <h2 class="section-title">📊 120 分鐘整體時序與通過標準對照表</h2>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 14%;">時間</th>
+              <th style="width: 26%;">核心主題</th>
+              <th style="width: 25%;">對應 Prompt / 工具</th>
+              <th style="width: 35%;">驗收通過標準</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>00–10 min</strong></td>
+              <td>看見終點 & 學習迴圈</td>
+              <td>投影 4 成果與專案地圖</td>
+              <td>學員知曉成果目錄與 A/B/C/D 組別</td>
+            </tr>
+            <tr>
+              <td><strong>10–20 min</strong></td>
+              <td>啟動專案與環境確認</td>
+              <td>01_啟動OpenCode培訓.bat</td>
+              <td>≥90% 進入工作區，教材 PDF 可見</td>
+            </tr>
+            <tr>
+              <td><strong>20–30 min</strong></td>
+              <td>讀懂 AGENTS.md 規則</td>
+              <td>Prompt 1（錯峰）</td>
+              <td>Agent 條列回報規則，未改任何檔案</td>
+            </tr>
+            <tr>
+              <td><strong>30–42 min</strong></td>
+              <td>讀取示範教材分析</td>
+              <td>Prompt 2 + textbook-analysis</td>
+              <td>結構化提煉概念、先備與迷思</td>
+            </tr>
+            <tr>
+              <td><strong>42–50 min</strong></td>
+              <td>教師確認需求規格</td>
+              <td>Prompt 3（6問訪談）</td>
+              <td>生成 requirements/task-spec.md (confirmed)</td>
+            </tr>
+            <tr style="background: rgba(255, 106, 0, 0.08);">
+              <td><strong>50–60 min</strong></td>
+              <td><strong>第一次備課（成果 1）</strong></td>
+              <td><strong>Prompt 4（錯峰）</strong></td>
+              <td><strong>output/01-first-version/ 產出雙版本材料</strong></td>
+            </tr>
+            <tr style="color:#888;">
+              <td>60–65 min</td>
+              <td>微休息與技術緩衝</td>
+              <td>投影回顧 / 技術支援</td>
+              <td>處理個別 429 或延遲學員</td>
+            </tr>
+            <tr>
+              <td><strong>65–75 min</strong></td>
+              <td><strong>做一次分層（成果 2）</strong></td>
+              <td><strong>Prompt 5 + worksheet-generator</strong></td>
+              <td><strong>output/02-differentiated/ 產出 A/B/C 三層</strong></td>
+            </tr>
+            <tr>
+              <td><strong>75–95 min</strong></td>
+              <td><strong>同步修訂（成果 3）</strong></td>
+              <td><strong>Prompt 6（聯動修改）</strong></td>
+              <td><strong>output/03-revised/ + change-summary.md</strong></td>
+            </tr>
+            <tr>
+              <td><strong>95–110 min</strong></td>
+              <td><strong>再次重用（成果 4）</strong></td>
+              <td><strong>Prompt 7（新課題重用）</strong></td>
+              <td><strong>output/04-reused/ 成功生成新課教材</strong></td>
+            </tr>
+            <tr>
+              <td><strong>110–117 min</strong></td>
+              <td>教師親自驗收</td>
+              <td>9 大檢核指標</td>
+              <td>逐題核對算理、難度與排版空間</td>
+            </tr>
+            <tr style="background: rgba(255, 212, 0, 0.08);">
+              <td><strong>117–120 min</strong></td>
+              <td><strong>帶真實問題離場</strong></td>
+              <td><strong>Prompt 8（離場憑證）</strong></td>
+              <td><strong>notes/next-workshop-problem.md 填妥存檔</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <p style="margin: 0 0 6px 0; font-weight: 700; color: #FFF;">聖若瑟教區中學第五校 小學中英文部 數學科組</p>
+        <p style="margin: 0; font-size: 0.82rem; color:var(--hi);">「AI 時代守本心，毅誠勤樸篤前行」</p>
+        <p style="margin: 4px 0 0 0; font-size: 0.8rem; color:var(--muted);">小學數學 × OpenCode AI Agent 2小時實作工作坊 ｜ 120 分鐘精確教學動線</p>
+      </div>
+      <div style="display: flex; gap: 16px; font-size: 0.85rem;">
+        <a href="index.html" style="color:var(--muted); text-decoration:none;">首頁</a>
+        <a href="workshop-flow.html" style="color:var(--muted); text-decoration:none;">120分鐘流程</a>
+        <a href="prompts.html" style="color:var(--muted); text-decoration:none;">提示詞</a>
+        <a href="troubleshooting.html" style="color:var(--muted); text-decoration:none;">疑難排解</a>
+        <a href="index.html#github-deploy" style="color:var(--muted); text-decoration:none;">部署 GITHUB</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
