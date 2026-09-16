@@ -526,35 +526,139 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
+      padding: 10px 24px;
       overflow-y: auto;
     }
     .deck-slide-box {
       width: 82vw;
       max-width: 1440px;
-      min-height: 74vh;
-      max-height: 80vh;
+      min-height: 75vh;
+      max-height: 82vh;
       box-sizing: border-box;
-      background: rgba(15, 23, 18, 0.95);
-      border: 2.5px solid rgba(52, 211, 153, 0.5);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      background: radial-gradient(circle at top left, rgba(20, 32, 25, 0.96) 0%, rgba(10, 16, 13, 0.98) 100%);
+      border: 2.5px solid rgba(52, 211, 153, 0.45);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(52, 211, 153, 0.15), inset 0 0 36px rgba(0, 0, 0, 0.7);
       border-radius: 20px;
-      padding: 38px 52px;
+      padding: 28px 38px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
-      from { opacity: 0; transform: scale(0.97); }
+      from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
-    .deck-slide-h2 {
-      font-size: 2.35rem;
+
+    /* Dashboard 2-Column Grid */
+    .deck-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 32px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .deck-col-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .deck-col-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+      min-width: 320px;
+    }
+
+    /* Side Cards: Century Team & Details as Main Course */
+    .deck-card-team, .deck-card-detail {
+      background: rgba(14, 22, 18, 0.85);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .deck-card-team:hover, .deck-card-detail:hover {
+      transform: translateY(-2px);
+    }
+    .deck-card-team {
+      border: 1.5px solid rgba(251, 191, 36, 0.5);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(14, 22, 18, 0.92) 100%);
+    }
+    .deck-card-detail {
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(14, 22, 18, 0.92) 100%);
+    }
+    .card-side-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 6px;
+    }
+    .card-side-icon {
+      font-size: 1.25rem;
+    }
+    .deck-card-team .card-side-title {
+      color: #FBBF24;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .deck-card-detail .card-side-title {
+      color: #38BDF8;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .card-side-body {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: #E2E8F0;
+    }
+    .card-side-body strong {
       color: #FFF;
-      margin: 0 0 16px 0;
-      line-height: 1.32;
+    }
+
+    /* Bottom Banner */
+    .deck-bottom-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .banner-badge {
+      background: rgba(52, 211, 153, 0.2);
+      color: #34D399;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .banner-quote {
+      font-size: 0.95rem;
+      color: #94A3B8;
+      letter-spacing: 0.3px;
+    }
+
+    /* Typography */
+    .deck-slide-h2 {
+      font-size: 2.2rem;
+      color: #FFF;
+      margin: 0 0 12px 0;
+      line-height: 1.3;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
@@ -562,20 +666,20 @@
       text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #E2E8F0;
-      margin: 0 0 20px 0;
+      font-size: 1.25rem;
+      line-height: 1.65;
+      color: #CBD5E1;
+      margin: 0 0 16px 0;
     }
     .deck-slide-list {
-      font-size: 1.25rem;
-      line-height: 1.85;
-      color: #D1D5DB;
-      padding-left: 28px;
+      font-size: 1.18rem;
+      line-height: 1.75;
+      color: #E2E8F0;
+      padding-left: 24px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .deck-slide-box code {
       background: rgba(56, 189, 248, 0.14);
@@ -585,10 +689,10 @@
       border-radius: 5px;
       font-family: Consolas, Monaco, monospace;
       font-weight: 700;
-      font-size: 0.94em;
+      font-size: 0.92em;
     }
 
-    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    /* Vibrant Chalkboard Text Highlights */
     .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
     .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
     .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
@@ -598,7 +702,7 @@
       display: inline-block;
       padding: 2px 10px;
       border-radius: 999px;
-      font-size: 0.88em;
+      font-size: 0.85em;
       font-weight: 800;
       margin-right: 6px;
       vertical-align: middle;
@@ -609,25 +713,32 @@
     .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
     .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
 
-    @media (max-width: 768px) {
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .deck-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .deck-col-side {
+        min-width: auto;
+      }
       .deck-slide-box {
-        width: 94vw;
-        padding: 20px;
+        width: 92vw;
+        padding: 24px;
         min-height: auto;
-        max-height: 82vh;
+        max-height: 85vh;
       }
       .deck-slide-h2 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
       .deck-slide-desc {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
       }
       .deck-slide-list {
-        font-size: 1rem;
-        padding-left: 20px;
+        font-size: 1.05rem;
       }
     }
-        .deck-footer {
+                .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1363,7 +1474,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>條列回答專案用途、<span class='hl-gold'>澳門繁中規則</span>、<span class='hl-green'>唯讀限制</span>、產出目錄，以及需要向老師確認的項目。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得建立或修改任何檔案</span>，不得擅自開始生成教材。",
           "<span class='hl-badge cyan'>📁 預期產出</span>僅在終端條列文字回答，<span class='hl-green'>無任何磁碟寫入</span>。"
-        ]
+        ],
+        teamNote: "<strong>【團隊協作的安全第一道門】</strong>百年團隊最忌諱一人操作失誤損壞全組共用資產。Prompt 1 是安全防護鎖，確立規則不可侵犯，讓團隊在共享專案時高枕無憂。",
+        detailNote: "<strong>【文字回答嚴格排查】</strong>檢查 Agent 是否明確辨析出 materials/ 為唯讀、輸出目錄為 output/；若 Agent 嘗試寫入任何檔案，立即糾偏重發，細節不容妥協。"
       },
       {
         category: "提示詞 2 ｜ 專業分析先於題目",
@@ -1374,7 +1487,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>輸出核心概念、先備知識、表徵語言、常見迷思，以及例題變式階梯。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得直接跳躍至生成練習卷</span>，不得脫離教材內容擅自腦補外部題型。",
           "<span class='hl-badge cyan'>📁 預期產出</span>結構化文字報告，若 PDF 無法解析須立即停止並主動報備。"
-        ]
+        ],
+        teamNote: "<strong>【科組學術積累的起點】</strong>教材分析是聖五數學科組的深層底蘊。Prompt 2 將多年名師的教材研讀維度封裝為技能，讓青年教師迅速掌握小學數學的深層骨架。",
+        detailNote: "<strong>【算理概念顯微鏡】</strong>通分公分母的求法、約分未盡的迷思陷阱；要求 Agent 嚴格依據教材例題提取概念，絕不可憑空引用外部非校本教材解法。"
       },
       {
         category: "提示詞 3 ｜ 規格先於產出",
@@ -1385,7 +1500,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>詢問年級、課堂階段、題數（8-10題）、分層需求、答案版格式，並寫入規格書。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>在規格確認前不得直接寫入教材內容</span>。",
           "<span class='hl-badge cyan'>📁 預期產出</span>生成 <code>requirements/task-spec.md</code>，狀態更新為 <span class='hl-green'>confirmed</span>。"
-        ]
+        ],
+        teamNote: "<strong>【教師掌控核心話語權】</strong>校長強調『細節當主菜』，主菜的配方必須由主廚——教師親自定奪！Prompt 3 確立教師作為專案架構師的絕對權威地位。",
+        detailNote: "<strong>【六大參數精確對齊】</strong>題數鎖定 8 題、分母不超過 20、預留書寫橫線 3 行；規格未確認前，嚴禁 Agent 生成題目，把關工程化嚴謹度。"
       },
       {
         category: "提示詞 4 ｜ 半程關鍵里程碑",
@@ -1396,7 +1513,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>分出<span class='hl-green'>學生作答紙</span>與<span class='hl-green'>教師解答詳細版</span>，遵守 <code>AGENTS.md</code> 澳門繁體規範。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得覆蓋或改寫 materials/ 內原教材 PDF</span>，兩者不得混於同一檔案。",
           "<span class='hl-badge cyan'>📁 預期產出</span><code>output/01-first-version/</code> 下之學生練習紙與獨立解答版。"
-        ]
+        ],
+        teamNote: "<strong>【團隊里程碑同行致遠】</strong>全體 30–40 位老師在第 60 分鐘共同跨過合格線，產出結構完整、格式統一的成品 1，為團隊樹立極大信心與凝聚力。",
+        detailNote: "<strong>【排版與答案顆粒度】</strong>學生紙必須有作答引導，教師版必須有通分分解過程與評分標註；兩者必須獨立分檔，不可偷懶混寫在一起。"
       },
       {
         category: "提示詞 5 ｜ 因材施教認知階梯",
@@ -1407,7 +1526,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span><span class='hl-purple'>A版</span>增加直觀面積圖/分解；<span class='hl-purple'>B版</span>保持基準；<span class='hl-purple'>C版</span>提供逆向填空與高階推理。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得把分層做成純粹「多加幾題」或「數字變大」的假分層</span>。",
           "<span class='hl-badge cyan'>📁 預期產出</span><code>output/02-differentiated/</code> 內含三版學習紙、解答與<span class='hl-gold'>差異對照表</span>。"
-        ]
+        ],
+        teamNote: "<strong>【有教無類的科組精神】</strong>百年名校對每一位孩子負責。科組統一分層標準，讓不同能力起點的學生在同一堂課上都能體會到解題的尊嚴與成就感。",
+        detailNote: "<strong>【微觀認知階梯】</strong>A版附帶長方形面積分割圖與填空支架；B版注重通分熟練度；C版設計「某數加上 1/3 等於 5/6」逆向思維題；差異對照表嚴密審查。"
       },
       {
         category: "提示詞 6 ｜ 專案聯動與版本控制",
@@ -1418,7 +1539,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>Agent <span class='hl-green'>先條列將影響哪些檔案</span>，獲准後同步修訂學生紙與教師答案，並出具差異報告。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>嚴禁粗暴覆蓋 01-first-version 或 02-differentiated 原檔</span>。",
           "<span class='hl-badge cyan'>📁 預期產出</span><code>output/03-revised/</code> 更新檔案與 <code>change-summary.md</code> <span class='hl-gold'>差異報告</span>。"
-        ]
+        ],
+        teamNote: "<strong>【團隊協同的版本紀律】</strong>教學材料的修訂往往牽涉全組多個班級。Prompt 6 訓練的是工程級協同紀律：牽一髮必動全身，動全身必有日誌，代代相傳有跡可循。",
+        detailNote: "<strong>【連鎖題號零差錯】</strong>刪除題目後，學生紙題號、答案版題號、計分總分必須百分之百一致；附帶 <code>change-summary.md</code> 清晰寫明修改原因與改動對照。"
       },
       {
         category: "提示詞 7 ｜ 長期校本資產複用",
@@ -1429,7 +1552,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>沿用 <code>AGENTS.md</code> 所有格式、術語、繁中與輸出路徑規範，<span class='hl-gold'>5 分鐘快速出稿</span>。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得在沒有指定新課題材料的情況下開始胡亂生成</span>。",
           "<span class='hl-badge cyan'>📁 預期產出</span><code>output/04-reused/</code> 產出全新課題完整配套教材。"
-        ]
+        ],
+        teamNote: "<strong>【百年團隊資產複利】</strong>一次辛苦建立的專案架構，成為未來幾年所有單元共用的起點。新課備課由 40 分鐘縮減至 5 分鐘，老師省下時間給學生一對一輔導！",
+        detailNote: "<strong>【換料不換規】</strong>換入帶分數加減法 PDF，嚴格檢視澳門繁體用詞、留白格線、答案格式是否 100% 傳承，把精益求精的細節轉化為團隊習慣。"
       },
       {
         category: "提示詞 8 ｜ 沉澱真實課堂難題",
@@ -1440,7 +1565,9 @@ output/04-reused/</pre>
           "<span class='hl-badge green'>✔ 應該做</span>詳細填寫課題名稱、學生常見錯因、期望 Agent 輔助項目與教師親自把關標準。",
           "<span class='hl-badge rose'>✘ 嚴禁做</span><span class='hl-rose'>不得留白或填寫過於空泛無定義的內容</span>（如「數學很難」）。",
           "<span class='hl-badge cyan'>📁 預期產出</span>在 <code>notes/next-workshop-problem.md</code> 固化個人離場檔案。"
-        ]
+        ],
+        teamNote: "<strong>【百年樹人，生生不息】</strong>研討會結束不是終點，而是聖五科組深耕教研的起點。每位教師帶著真實課堂痛點離開，在下週科組會上共商破解，團隊生機盎然。",
+        detailNote: "<strong>【精確痛點畫像】</strong>填寫難點課題（例如小五分數乘法除法）、學生迷思（倒數概念混淆）、教師把關點（數線模型表徵），具體可實踐，拒絕泛泛而談。"
       }
     ];
 
@@ -1486,8 +1613,16 @@ output/04-reused/</pre>
       document.getElementById('deck-category-label').innerText = slide.category;
       document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
 
-      let html = `<h2 class="deck-slide-h2">${slide.title}</h2>`;
-      html += `<p class="deck-slide-desc">${slide.desc}</p>`;
+      let html = `
+      <div class="deck-dashboard-grid">
+        <div class="deck-col-main">
+          <h2 class="deck-slide-h2">${slide.title}</h2>
+          <p class="deck-slide-desc">${slide.desc}</p>
+      `;
+
+      if (slide.svg) {
+        html += `<div style="text-align:center; margin:12px 0;"><img src="${slide.svg}" style="max-height:220px; max-width:100%; border-radius:10px; border:1px solid rgba(52,211,153,0.3); background:rgba(0,0,0,0.4); padding:6px;"></div>`;
+      }
 
       if (slide.points && slide.points.length > 0) {
         html += `<ul class="deck-slide-list">`;
@@ -1497,10 +1632,41 @@ output/04-reused/</pre>
         html += `</ul>`;
       }
 
+      html += `
+        </div>
+        <div class="deck-col-side">
+          <div class="deck-card-team">
+            <div class="card-side-header">
+              <span class="card-side-icon">🏛️</span>
+              <span class="card-side-title">百年團隊 ｜ 傳承共構</span>
+            </div>
+            <div class="card-side-body">
+              ${slide.teamNote || "科組智慧資產累積，跨世代備課共構；青年教師掌握工具，資深教師把關算理，新人入職站在巨人肩膀上。"}
+            </div>
+          </div>
+
+          <div class="deck-card-detail">
+            <div class="card-side-header">
+              <span class="card-side-icon">🔬</span>
+              <span class="card-side-title">細節當主菜 ｜ 微觀把關</span>
+            </div>
+            <div class="card-side-body">
+              ${slide.detailNote || "細節不是配菜，細節是課堂靈魂！算理邊界、表徵精確、作答留白、繁體術語零妥協，精雕細琢見真章。"}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="deck-bottom-banner">
+        <span class="banner-badge">聖五校訓</span>
+        <span class="banner-quote">毅誠勤樸 ｜ 以細節為席，鑄百年之師；把教學主控權牢牢握在教師手中。</span>
+      </div>
+      `;
+
       document.getElementById('deck-slide-box').innerHTML = html;
     }
 
-    function handleCardClick(e, index) {
+            function handleCardClick(e, index) {
       if (e.target.closest('a') || e.target.closest('button')) return;
       openDeck(index);
     }

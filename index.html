@@ -817,35 +817,139 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
+      padding: 10px 24px;
       overflow-y: auto;
     }
     .deck-slide-box {
       width: 82vw;
       max-width: 1440px;
-      min-height: 74vh;
-      max-height: 80vh;
+      min-height: 75vh;
+      max-height: 82vh;
       box-sizing: border-box;
-      background: rgba(15, 23, 18, 0.95);
-      border: 2.5px solid rgba(52, 211, 153, 0.5);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(52, 211, 153, 0.18), inset 0 0 32px rgba(0, 0, 0, 0.65);
+      background: radial-gradient(circle at top left, rgba(20, 32, 25, 0.96) 0%, rgba(10, 16, 13, 0.98) 100%);
+      border: 2.5px solid rgba(52, 211, 153, 0.45);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(52, 211, 153, 0.15), inset 0 0 36px rgba(0, 0, 0, 0.7);
       border-radius: 20px;
-      padding: 38px 52px;
+      padding: 28px 38px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       overflow-y: auto;
       animation: fadeInSlide 0.2s ease-out;
     }
     @keyframes fadeInSlide {
-      from { opacity: 0; transform: scale(0.97); }
+      from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
-    .deck-slide-h2 {
-      font-size: 2.35rem;
+
+    /* Dashboard 2-Column Grid */
+    .deck-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 32px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .deck-col-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .deck-col-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+      min-width: 320px;
+    }
+
+    /* Side Cards: Century Team & Details as Main Course */
+    .deck-card-team, .deck-card-detail {
+      background: rgba(14, 22, 18, 0.85);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .deck-card-team:hover, .deck-card-detail:hover {
+      transform: translateY(-2px);
+    }
+    .deck-card-team {
+      border: 1.5px solid rgba(251, 191, 36, 0.5);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(14, 22, 18, 0.92) 100%);
+    }
+    .deck-card-detail {
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(14, 22, 18, 0.92) 100%);
+    }
+    .card-side-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 6px;
+    }
+    .card-side-icon {
+      font-size: 1.25rem;
+    }
+    .deck-card-team .card-side-title {
+      color: #FBBF24;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .deck-card-detail .card-side-title {
+      color: #38BDF8;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .card-side-body {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: #E2E8F0;
+    }
+    .card-side-body strong {
       color: #FFF;
-      margin: 0 0 16px 0;
-      line-height: 1.32;
+    }
+
+    /* Bottom Banner */
+    .deck-bottom-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .banner-badge {
+      background: rgba(52, 211, 153, 0.2);
+      color: #34D399;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .banner-quote {
+      font-size: 0.95rem;
+      color: #94A3B8;
+      letter-spacing: 0.3px;
+    }
+
+    /* Typography */
+    .deck-slide-h2 {
+      font-size: 2.2rem;
+      color: #FFF;
+      margin: 0 0 12px 0;
+      line-height: 1.3;
       font-weight: 800;
     }
     .deck-slide-h2 .highlight {
@@ -853,20 +957,20 @@
       text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
     }
     .deck-slide-desc {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #E2E8F0;
-      margin: 0 0 20px 0;
+      font-size: 1.25rem;
+      line-height: 1.65;
+      color: #CBD5E1;
+      margin: 0 0 16px 0;
     }
     .deck-slide-list {
-      font-size: 1.25rem;
-      line-height: 1.85;
-      color: #D1D5DB;
-      padding-left: 28px;
+      font-size: 1.18rem;
+      line-height: 1.75;
+      color: #E2E8F0;
+      padding-left: 24px;
       margin: 0;
     }
     .deck-slide-list li {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .deck-slide-box code {
       background: rgba(56, 189, 248, 0.14);
@@ -876,10 +980,10 @@
       border-radius: 5px;
       font-family: Consolas, Monaco, monospace;
       font-weight: 700;
-      font-size: 0.94em;
+      font-size: 0.92em;
     }
 
-    /* Vibrant Chalkboard Text Highlights (5-Color System) */
+    /* Vibrant Chalkboard Text Highlights */
     .hl-gold   { color: #FBBF24; font-weight: 800; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
     .hl-cyan   { color: #38BDF8; font-weight: 800; text-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
     .hl-green  { color: #4ADE80; font-weight: 800; text-shadow: 0 0 12px rgba(74, 222, 128, 0.35); }
@@ -889,7 +993,7 @@
       display: inline-block;
       padding: 2px 10px;
       border-radius: 999px;
-      font-size: 0.88em;
+      font-size: 0.85em;
       font-weight: 800;
       margin-right: 6px;
       vertical-align: middle;
@@ -900,25 +1004,32 @@
     .hl-badge.rose   { background: rgba(251, 113, 133, 0.2); color: #FB7185; border: 1px solid rgba(251, 113, 133, 0.5); }
     .hl-badge.purple { background: rgba(192, 132, 252, 0.2); color: #C084FC; border: 1px solid rgba(192, 132, 252, 0.5); }
 
-    @media (max-width: 768px) {
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .deck-dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .deck-col-side {
+        min-width: auto;
+      }
       .deck-slide-box {
-        width: 94vw;
-        padding: 20px;
+        width: 92vw;
+        padding: 24px;
         min-height: auto;
-        max-height: 82vh;
+        max-height: 85vh;
       }
       .deck-slide-h2 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
       .deck-slide-desc {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
       }
       .deck-slide-list {
-        font-size: 1rem;
-        padding-left: 20px;
+        font-size: 1.05rem;
       }
     }
-        .deck-footer {
+            .deck-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1603,7 +1714,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>AI Agent 職責</span><span class='hl-cyan'>負責流程加速</span>：快速解析示範教材、排版工作紙初稿、多檔連動維護。",
           "<span class='hl-badge gold'>👨‍🏫 教師守護本質</span><span class='hl-gold'>把關數學算理正確性</span>、評估學生認知坡度、注入課堂溫度與人文關懷。",
           "<span class='hl-badge green'>🌱 實踐原則</span><span class='hl-green'>不隨波逐流，不盲信機器</span>：讓技術為教學服務，把寶貴時間還給師生互動！"
-        ]
+        ],
+        teamNote: "<strong>【百年樹人，精神傳承】</strong>聖若瑟五校校訓「毅誠勤樸」是科組團隊的共同精神紐帶。青年教師勇於探索 AI 工具，資深教師深耕算理本質，代代傳承聖五教育底色。",
+        detailNote: "<strong>【守護算理，溫暖課堂】</strong>AI 負責枯燥繁重的格式與排版，教師把時間留給觀察學生疑惑眼神。算理正不正確、步驟透不透徹，是課堂最不可含糊的主菜！"
       },
       {
         category: "核心支柱 1",
@@ -1613,7 +1726,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>前 60 分鐘</span>看見終點 → 啟動專案 → 讀懂規則 → 教材分析 → 需求訪談 → <span class='hl-gold'>產出第 1 版成果</span>。",
           "<span class='hl-badge gold'>第 60 分鐘合格線</span>每位老師專案中必產出一份真實可用的<span class='hl-green'>課堂材料</span>與<span class='hl-green'>教師解答</span>。",
           "<span class='hl-badge purple'>後 60 分鐘</span>做分層（<span class='hl-purple'>A/B/C</span>）→ 同步修訂（<span class='hl-cyan'>聯動更新</span>）→ 跨課題重用 → 離場難題記錄。"
-        ]
+        ],
+        teamNote: "<strong>【120分鐘同行致遠】</strong>集體備課拒絕一人跑得快、十人跟不上。嚴格執行 120 分鐘分段節奏，保證每一位科組夥伴在第 60 分鐘共同跨過合格線！",
+        detailNote: "<strong>【分秒必爭，節奏分明】</strong>前 60 分鐘必出第一版成果；後 60 分鐘精雕分層與修訂。時間控制精準到分鐘，彰顯工程級教學管理細節。"
       },
       {
         category: "核心支柱 2",
@@ -1623,7 +1738,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>唯一依託</span>以校本真實示範教材 <code>materials/P5-分數加減法.pdf</code> 為唯一材料依託。",
           "<span class='hl-badge rose'>嚴格邊界約束</span><span class='hl-rose'>嚴禁 Agent 任意超綱出題</span>（如分母控制在 20 以內，不涉及三項混算）。",
           "<span class='hl-badge green'>尊重教材表徵</span>保留教材原有<span class='hl-green'>通分面積圖、數線圖</span>，不隨意替換為生僻解法。"
-        ]
+        ],
+        teamNote: "<strong>【校本權威的延續】</strong>學校幾十年累積的教學大綱與校本教材，是百年團隊的定海神針。不被隨機生成的題目帶偏，守住聖五數學的嚴謹學風。",
+        detailNote: "<strong>【分母限制與圖形表徵】</strong>嚴禁分母超過 20；通分面積圖必須嚴格按照等分比例繪製；數字與圖形完全對齊，絕無模糊空間。"
       },
       {
         category: "核心支柱 3",
@@ -1634,17 +1751,21 @@ git push -u origin main</div>
           "<span class='hl-badge purple'>第 2 次循環（做一次分層）</span>不換課題，建立 <span class='hl-purple'>A支援版 / B基準版 / C挑戰版</span> 實質支架。",
           "<span class='hl-badge cyan'>第 3 次循環（同步修訂）</span>教學時間改變時，Agent <span class='hl-cyan'>跨檔案同步修改</span>並出具差異報告。",
           "<span class='hl-badge green'>第 4 次循環（再次重用）</span>換入全新課題，<span class='hl-green'>保留專案規則</span>，體驗資產複用價值。"
-        ]
+        ],
+        teamNote: "<strong>【備課閉環的科組共享】</strong>不是單純的單次提問，而是 4 次循環工作流。一旦在科組建立起來，每學期每單元都能標準化複製運轉。",
+        detailNote: "<strong>【四步閉環步步留痕】</strong>訪談規格書、第一版草稿、三階分層包、同步修訂報告。每一環節產出檔案分門別類，井然有序。"
       },
       {
         category: "核心支柱 4",
         title: "📦 1 個可重用專案 <span class='hl-gold'>長期校本資產</span>",
         desc: "建立永久的個人與科組數位教學專案：",
         points: [
-          "<span class='hl-badge gold'>專案化思維</span>不是用完即丟的聊天視窗，而是<span class='hl-gold'>結構化的專案資料夾</span>。",
+          "<span class='hl-badge gold'>專案化思維</span>不是用完即丟的聊天視窗，而是<span class='hl-gold'>結構化的專案資料夾</span>。</span>",
           "<span class='hl-badge cyan'>專案憲法</span>以 <code>AGENTS.md</code> 作為長期憲法，每次執行自動遵守學校語言與安全規範。",
           "<span class='hl-badge green'>秒級複用</span>下週備新課題時，直接換入新單元 PDF，<span class='hl-green'>秒級複用成熟工作流，越備越快！</span>"
-        ]
+        ],
+        teamNote: "<strong>【校本數位資產庫】</strong>每個 OpenCode 專案不是用完即丟的快餐，而是科組共享的長效資產。新教師入職，打開專案即可繼承前人備課結晶。",
+        detailNote: "<strong>【憲法級規則鎖定】</strong><code>AGENTS.md</code> 明確規定澳門繁體、禁止外傳學生個資、保護材料唯讀。以極致細節築起資產安全與專業壁壘。"
       },
       {
         category: "架構支柱深入",
@@ -1656,7 +1777,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>30–50 min</span>讀取教材分析，完成 <span class='hl-purple'>6 個關鍵問題需求訪談</span>。",
           "<span class='hl-badge gold'>50–60 min</span>完成第 1 版備課成果（<span class='hl-gold'>成果 1 里程碑</span>）！",
           "<span class='hl-badge green'>60–120 min</span>進階分層、同步修訂、新課重用與驗收。"
-        ]
+        ],
+        teamNote: "<strong>【打破傳統培訓沉疴】</strong>告別「聽時激動、回去不動」。百年團隊講究知行合一，用高密度實踐推動集體技能升級。",
+        detailNote: "<strong>【現場節奏分組管理】</strong>A/B/C/D 四組精準協同，助教每 15 分鐘巡視各排進度，確保 30–40 人全員按部就班。"
       },
       {
         category: "架構支柱深入",
@@ -1666,7 +1789,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>唯一事實</span>只以 <code>materials/</code> 內的 PDF 檔案為事實來源。",
           "<span class='hl-badge rose'>禁絕主觀猜測</span>若 PDF 讀取不全或文字模糊，Agent <span class='hl-rose'>必須停止並回報</span>，絕不可主觀猜測。",
           "<span class='hl-badge green'>聚焦算理</span>所有題目與活動設計緊扣本課「<span class='hl-green'>異分母分數加減法</span>」核心算理。"
-        ]
+        ],
+        teamNote: "<strong>【對教材的敬畏之心】</strong>百年團隊對知識抱有敬畏。教材是課堂的基石，絕不允許 AI 隨意竄改或替換生僻解法。",
+        detailNote: "<strong>【PDF 提取不全立即備援】</strong>只要發現掃描圖層無法解析，果斷啟用 <code>backup/</code> 純文字檔，不存僥倖心理。"
       },
       {
         category: "架構支柱深入",
@@ -1677,7 +1802,9 @@ git push -u origin main</div>
           "<span class='hl-badge purple'>能力 2【差異化教學】</span>針對學生差異設計<span class='hl-purple'>直觀表徵與高階推理</span>。",
           "<span class='hl-badge cyan'>能力 3【專案一致性】</span>一次修改需求，<span class='hl-cyan'>題目與答案版自動聯動</span>。",
           "<span class='hl-badge green'>能力 4【可持續重用】</span>驗證專案規則與流程的<span class='hl-green'>長期通用性</span>。"
-        ]
+        ],
+        teamNote: "<strong>【從手工作坊到現代工程】</strong>將散落的個人備課靈感，昇華為團隊可標準化執行的四次工作循環，讓教研成果成倍放大。",
+        detailNote: "<strong>【反向訪談先於生成】</strong>讓 AI 提問、教師回答；6 個規格問答確認前，嚴禁 Agent 私自生成一道題目！"
       },
       {
         category: "架構支柱深入",
@@ -1688,7 +1815,9 @@ git push -u origin main</div>
           "<span class='hl-badge green'>materials/</span><span class='hl-green'>唯讀教材來源保護區</span>。",
           "<span class='hl-badge purple'>requirements/</span>任務規格書存放區。",
           "<span class='hl-badge cyan'>output/</span>依 <code>01 / 02 / 03 / 04</code> 階段版本化管理。"
-        ]
+        ],
+        teamNote: "<strong>【跨年級教研傳承】</strong>小五備課專案的規範結構，可以直接借鑒給小四、小六科組，形成全校數學教學聯盟。",
+        detailNote: "<strong>【目錄路徑精確規範】</strong><code>materials/</code>, <code>requirements/</code>, <code>output/01-first-version/</code>，路徑即標準，規範即質量。"
       },
       {
         category: "全覽圖表放大",
@@ -1700,7 +1829,9 @@ git push -u origin main</div>
           "<span class='hl-badge gold'>3. 第一次備課 (50-60分)</span> → <span class='hl-badge purple'>4. 做一次分層 (65-75分)</span>",
           "<span class='hl-badge cyan'>5. 同步修訂 (75-95分)</span> → <span class='hl-badge green'>6. 再次重用 (95-110分)</span>",
           "<span class='hl-badge gold'>7. 帶真實課堂問題離場 (117-120分)！</span>"
-        ]
+        ],
+        teamNote: "<strong>【鳥瞰全域，心明眼亮】</strong>讓百年團隊的每一位成員清楚自己在整個教學地圖中的座標，明白每一步對於終局的意義。",
+        detailNote: "<strong>【七大節點環環相扣】</strong>從教材讀取到離場難題，七大卡點均有清晰合格判定，步步踏實方成大道。"
       },
       {
         category: "核心成果 1",
@@ -1710,7 +1841,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>學生練習紙</span>具備算理梯度的 8–10 題核心練習題。",
           "<span class='hl-badge green'>教師詳細答案版</span>含每題<span class='hl-green'>通分步驟、常見易錯點分析與評分標準</span>。",
           "<span class='hl-badge gold'>規格對齊</span>完全遵守 <code>task-spec.md</code> 設定，格式整潔可用。"
-        ]
+        ],
+        teamNote: "<strong>【第一份可交付遺產】</strong>第 60 分鐘產出的學生紙與教師答案版，標誌著團隊邁入 AI 賦能備課新紀元。",
+        detailNote: "<strong>【答案步驟詳盡透徹】</strong>教師版包含通分公倍數找法、學生典型錯因點評，代課老師拿起來就能直接進班上課。"
       },
       {
         category: "核心成果 2",
@@ -1721,7 +1854,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>B 基準版</span>維持標準難度與常規題型練習。",
           "<span class='hl-badge gold'>C 挑戰版</span>加入逆向填空、高階比較與開放性思維題。",
           "<span class='hl-badge green'>差異對照表</span>條列三層次題型的認知設計差異與用意。"
-        ]
+        ],
+        teamNote: "<strong>【不放棄任何一個孩子】</strong>百年團隊的愛心體現在因材施教上。為不同思維起點的孩子搭建適切的階梯。",
+        detailNote: "<strong>【三階分層實質支架】</strong>A版有圖形輔助與分解算式；B版常規熟練；C版逆向挑戰；並附帶差異對照表，邏輯嚴絲合縫。"
       },
       {
         category: "核心成果 3",
@@ -1731,7 +1866,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>多檔同步</span>學生練習紙與教師答案版題號、題目完全對齊。",
           "<span class='hl-badge gold'>差異報告</span>產出 <code>change-summary.md</code> 清晰說明修訂背景與修改點。",
           "<span class='hl-badge rose'>歷史保護</span>保留 <code>01-first-version</code> 原版，不直接粗暴覆蓋。"
-        ]
+        ],
+        teamNote: "<strong>【團隊協同的一致性】</strong>教學調整牽一髮動全身。同步修訂機制保證科組所有同軌班級材料同步更新，無資訊差。",
+        detailNote: "<strong>【修訂日誌清清楚楚】</strong><code>change-summary.md</code> 詳述修改緣由與題號對應；嚴禁覆蓋舊版，完整保留歷史版本。"
       },
       {
         category: "核心成果 4",
@@ -1741,7 +1878,9 @@ git push -u origin main</div>
           "<span class='hl-badge green'>規則保留</span>換入全新課題 PDF，<code>AGENTS.md</code> 規範依然生效。",
           "<span class='hl-badge gold'>極速交付</span>備課時間從最初的 40 分鐘銳減至 <span class='hl-gold'>5 分鐘</span>。",
           "<span class='hl-badge cyan'>品質穩定</span>保持澳門繁體、零個資與嚴格分層體系。"
-        ]
+        ],
+        teamNote: "<strong>【百年智慧的雪球效應】</strong>下週換新課，規則不動、架構不動，5 分鐘完成備課！百年團隊的厚積薄發就在此處。",
+        detailNote: "<strong>【一鍵換料品質如一】</strong>換入帶分數加減法教材，繁體術語、排版規格、答案格式無縫繼承，細節毫髮不差。"
       },
       {
         category: "課堂提示詞庫",
@@ -1752,7 +1891,9 @@ git push -u origin main</div>
           "<span class='hl-badge gold'>Prompt 4–5</span>第一次備課（成果1）、三階分層（成果2）。",
           "<span class='hl-badge purple'>Prompt 6–7</span>同步修訂（成果3）、新課題重用（成果4）。",
           "<span class='hl-badge green'>Prompt 8</span>帶走一個真實課堂難題，銜接下一場培訓。"
-        ]
+        ],
+        teamNote: "<strong>【科組共享提示詞庫】</strong>將 8 階段提示詞固化為標準操作卡，避免個別教師因 Prompt 寫不好而卡關，共享最優解。",
+        detailNote: "<strong>【限制詞即是護城河】</strong>每個 Prompt 都包含明確的「應該做」與「嚴禁做」，用精細約束杜絕模型幻覺與超綱。"
       },
       {
         category: "現場排查與技術保障",
@@ -1762,7 +1903,9 @@ git push -u origin main</div>
           "<span class='hl-badge rose'>10 大常見問題</span>嚴格採「現象、原因、動作、驗證」4 步排查格式。",
           "<span class='hl-badge gold'>錯峰節奏</span>A/B/C/D 四組依序發送請求，徹底避免 <span class='hl-rose'>429 併發限流</span>。",
           "<span class='hl-badge green'>降級備援</span>遇到全域斷網立即切換本機純文字教材與離線專家示範模式。"
-        ]
+        ],
+        teamNote: "<strong>【團隊作戰，全員平安】</strong>一人遇到報錯，全校沉澱經驗。10 大 SOP 讓團隊在技術風浪中處變不驚。",
+        detailNote: "<strong>【錯峰節奏精準執行】</strong>A/B/C/D 四組依序點擊，間隔 15 秒；遇 429 立即停手等待 60 秒，紀律嚴明是現場保障。"
       },
       {
         category: "教師驗收九大維度",
@@ -1773,7 +1916,9 @@ git push -u origin main</div>
           "<span class='hl-badge cyan'>2. 表徵</span>澳門繁體標準，通分面積圖比例清晰無歧義。",
           "<span class='hl-badge purple'>3. 分層</span>A/B/C 確實具備認知梯度，非單純題量增減。",
           "<span class='hl-badge green'>4. 安全</span>無任何學生個資，原始教材資料夾毫髮無損。"
-        ]
+        ],
+        teamNote: "<strong>【百年校譽的最後把關人】</strong>教材上印著聖若瑟五校的名字，教師的紅筆與驗收眼光，守護的是百年名校的學術尊嚴。",
+        detailNote: "<strong>【九大維度無一放過】</strong>算理嚴謹、字型繁體、排版留白、分母範圍、答案解析，每一處細節都是教學良心。"
       },
       {
         category: "結業與持續賦能",
@@ -1783,7 +1928,9 @@ git push -u origin main</div>
           "<span class='hl-badge gold'>4 大成果檔案</span>整齊歸檔於專案 <code>output/</code> 資料夾中。",
           "<span class='hl-badge cyan'>1 份進階憑證</span>記錄於 <code>notes/next-workshop-problem.md</code>。",
           "<span class='hl-badge green'>科組共享</span>專案範本可直接打包分享給科組全體同仁！"
-        ]
+        ],
+        teamNote: "<strong>【從培訓會場走向百年講台】</strong>今天產出的不是練習題，而是聖五科組數位化教研的種子。期待大家在各年級落地生根！",
+        detailNote: "<strong>【真實痛點封存入庫】</strong>帶著 4 份專案成果與 1 份個人離場痛點檔案，讓下一次科組教研更有方向感與力量感。"
       }
     ];
 
@@ -1829,13 +1976,15 @@ git push -u origin main</div>
       document.getElementById('deck-category-label').innerText = slide.category;
       document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
 
-      let html = `<h2 class="deck-slide-h2">${slide.title}</h2>`;
-      html += `<p class="deck-slide-desc">${slide.desc}</p>`;
+      let html = `
+      <div class="deck-dashboard-grid">
+        <div class="deck-col-main">
+          <h2 class="deck-slide-h2">${slide.title}</h2>
+          <p class="deck-slide-desc">${slide.desc}</p>
+      `;
 
       if (slide.svg) {
-        html += '<div style="background:#090C09; border:1px solid #283628; border-radius:10px; padding:14px; margin-bottom:20px; text-align:center;">' +
-          '<img ' + 'src="' + slide.svg + '" style="max-height:45vh; width:auto; max-width:100%; border-radius:6px; display:inline-block;" alt="圖表放大">' +
-        '</div>';
+        html += `<div style="text-align:center; margin:12px 0;"><img src="${slide.svg}" style="max-height:220px; max-width:100%; border-radius:10px; border:1px solid rgba(52,211,153,0.3); background:rgba(0,0,0,0.4); padding:6px;"></div>`;
       }
 
       if (slide.points && slide.points.length > 0) {
@@ -1846,10 +1995,41 @@ git push -u origin main</div>
         html += `</ul>`;
       }
 
+      html += `
+        </div>
+        <div class="deck-col-side">
+          <div class="deck-card-team">
+            <div class="card-side-header">
+              <span class="card-side-icon">🏛️</span>
+              <span class="card-side-title">百年團隊 ｜ 傳承共構</span>
+            </div>
+            <div class="card-side-body">
+              ${slide.teamNote || "科組智慧資產累積，跨世代備課共構；青年教師掌握工具，資深教師把關算理，新人入職站在巨人肩膀上。"}
+            </div>
+          </div>
+
+          <div class="deck-card-detail">
+            <div class="card-side-header">
+              <span class="card-side-icon">🔬</span>
+              <span class="card-side-title">細節當主菜 ｜ 微觀把關</span>
+            </div>
+            <div class="card-side-body">
+              ${slide.detailNote || "細節不是配菜，細節是課堂靈魂！算理邊界、表徵精確、作答留白、繁體術語零妥協，精雕細琢見真章。"}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="deck-bottom-banner">
+        <span class="banner-badge">聖五校訓</span>
+        <span class="banner-quote">毅誠勤樸 ｜ 以細節為席，鑄百年之師；把教學主控權牢牢握在教師手中。</span>
+      </div>
+      `;
+
       document.getElementById('deck-slide-box').innerHTML = html;
     }
 
-    // 3. Fullscreen Toggle
+        // 3. Fullscreen Toggle
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
