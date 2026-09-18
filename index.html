@@ -1192,15 +1192,18 @@
         leftHtml += `<li>${pt}</li>`;
       });
       leftHtml += `</ul>`;
+      if (slide.callout) {
+        leftHtml += `<div class="deck-slide-callout"><span>💡</span> <div>${slide.callout}</div></div>`;
+      }
       document.getElementById('deck-left-content').innerHTML = leftHtml;
 
       let rightHtml = `
         <div class="deck-note-card">
-          <div class="deck-note-title">🏛️ 聖五校訓與理念</div>
+          <div class="deck-note-title">🏛️ 百年團隊</div>
           <div class="deck-note-content">${slide.teamNote}</div>
         </div>
         <div class="deck-note-card">
-          <div class="deck-note-title">🎯 課堂執行細節</div>
+          <div class="deck-note-title">🎯 細節當主菜</div>
           <div class="deck-note-content">${slide.detailNote}</div>
         </div>
       `;
