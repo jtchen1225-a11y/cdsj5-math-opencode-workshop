@@ -1,9 +1,12 @@
 # 聖若瑟教區中學第五校 — 小學數學 × OpenCode AI Agent 實作工作坊 專案狀態檔
 
 > **校訓與精神**：AI 時代守本心，毅誠勤樸篤前行  
+> **核心信念**：AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生。  
 > **專案儲存庫**：https://github.com/jtchen1225-a11y/cdsj5-math-opencode-workshop  
-> **正式上線網址**：https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/  
-> **最後更新時間**：2026-10-01 23:05 (GMT+8)
+> **正式發布網址**：https://jtchen1225-a11y.github.io/cdsj5-math-opencode-workshop/  
+> **工作坊直達短網址**：https://www.daydaystudy.top/cdsj5  
+> **實操提示詞庫短網址**：https://www.daydaystudy.top/prompt  
+> **最後更新時間**：2026-10-02 00:38 (GMT+8)
 
 ---
 
@@ -14,46 +17,52 @@
 - **技術棧與設計原則**：
   - 純 HTML5 + 自包含 CSS + 輕量原生 Vanilla JS，**零外部依賴、零建置步驟、校園離線環境雙擊即用**。
   - 嚴格保留 OpenCode_40人培訓_Starter_Pack_V2 與 Math-Agent-Workshop 原始教材檔案，絕不覆蓋或破壞。
-  - 聖若瑟五校校色（典雅暖象牙白背景 #FAF8F5、校徽海軍藍 #1A2B4C、榮譽金 #D4A017 與黑板投影綠 #163022）。
+  - 聖若瑟五校校色（典雅暖象牙白背景 #F7F4EC、校徽墨綠 #1F5948、榮譽金 #D4A017 與黑板投影綠 #13322B）。
   - 自然教育化語言：捨棄晦澀的 AI 技術黑話，全面採用數學備課、同儕共備、分層評量等教師熟悉語境。
 
 ---
 
 ## 2. 當前進度階段 (Current Stage)
 
-- **目前階段**：**階段 5 — 課堂功能全面就緒與正式部署上線（Ready for Workshop & Fully Deployed）**
+- **目前階段**：**階段 6 — DayDayStudy 短網址整合、金色精神信念標章與課堂投影優化就緒（Short URLs & Heritage Belief Badge Active）**
 - **全站健檢狀態**：
   - [x] 4 大 HTML 核心頁面完整無缺（index.html、workshop-flow.html、prompts.html、troubleshooting.html）
-  - [x] 2 大向量圖表（00-workshop-map.svg、01-project-structure.svg）XML 語法檢驗合格、渲染正常
-  - [x] 全站內部超連結與資源參照 100% 有效
-  - [x] 120 分鐘時間軸精確吻合（0–120 min）
-  - [x] 原始教材目錄與檔案數 100% 完整保留
-  - [x] GitHub Pages 自動構建成功 (status: built)，全球 CDN 即時生效
+  - [x] 官方 DayDayStudy 短網址 (`/cdsj5` 與 `/prompt`) 註冊成功並具備一鍵複製功能
+  - [x] 聖若瑟五校「毅誠勤樸」金色精神信念標章醒目呈現於各頁 Hero 與黑板簡報中
+  - [x] 課堂投影黑板簡報（#deck-modal）P01-P12 數據、文字對比度與快捷鍵導航完整無誤
+  - [x] 後台工程規範遵循：自動化校驗腳本統一歸檔於 `_scripts/verify_workshop_site.py`，全數 PASS
+  - [x] GitHub Pages 自動構建與全球 CDN 即時同步
 
 ---
 
 ## 3. 功能特徵清單 (Features Checklist)
 
 ### 課堂授課與黑板投影工具 (Classroom Teaching Tools)
-- [x] **85% 視窗單欄全景黑板儀表板 (Expansive Classroom Blackboard Dashboard)**：20 頁完整投影片系統，畫面聚焦第 1 區域（標題、引導、5大重點與金句標註盒，垂直覆蓋率 > 80%），取消右側雙卡片，支援 ←、→、Space、Enter、PageDown、PageUp、Esc 快捷鍵與實體簡報筆相容。
-- [x] **紅色呼吸發光雷射筆 (L)**：模擬實體雷射筆，滑鼠移動處自動投射發光點引導視線。
-- [x] **全螢幕課堂畫筆與塗鴉層 (P)**：提供全螢幕高解析 Canvas，支援黃、紅、藍、綠四色隨選標註。
-- [x] **一鍵清空塗鴉 (C)**。
-- [x] **瀏覽器全螢幕滿版切換 (F)**。
-- [x] **快捷鍵指南彈窗 (?)**。
-- [x] **所有核心卡片支援點擊放大 (clickable-card)**：開頭 4 大數字、4 大架構支柱、4 大成果 + 1 個離場憑證、學習迴圈圖、專案目錄與邊界圖。
-
-### 教學設計與內容模組
-- [x] **首頁**：校訓標語、4 大支柱、4 大成果、學習迴圈、Chatbot vs Agent 差異、課前 4 件事、錯峰發布時程表、GitHub 部署指南。
-- [x] **120 分鐘流程頁**：10 個時段精準劃分、講師示範與學員操作、第 60 分鐘成果里程碑、9 大驗收標準。
-- [x] **提示詞庫頁**：8 大核心階段 Prompt、V2 旗艦整合任務、一鍵複製與 Toast 提示。
-- [x] **疑難排解頁**：10 大高頻問題四步解決法、40 人現場突發技術處置表（429 限流、備援模型、PowerShell 權限）。
+- [x] **85% 視窗單欄全景黑板儀表板 (Expansive Classroom Blackboard Dashboard)**：12 頁投影簡報系統（P01~P12），深翠黑板底色 `#13322B` 搭配象牙白粉筆字 `#FFFDF6`、古金標章 `#E5BE58` 與薄荷綠高對比重點 `#59E5B3`。頂部導航列常駐「🏛️ 毅誠勤樸 ｜ AI 加速流程，教師把握靈魂」，底部提示直達短網址。
+- [x] **直達短網址分享卡片 (Classroom Direct Short URL Cards)**：
+  - 首頁與各子頁整合：`https://www.daydaystudy.top/cdsj5`
+  - 提示詞庫獨立分享卡片：`https://www.daydaystudy.top/prompt`，專供學員免打字直達複製。
+- [x] **金色教育信念標章 (Golden Educational Belief Seal)**：以金色漸層邊框與立體標章醒目呈現校訓精神「AI 時代守本心，毅誠勤樸篤前行」與承諾「AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生」。
+- [x] **全域輔助工程歸檔 (`_scripts/`)**：遵循使用者全域規範，測試與校驗腳本一律收納於 `_scripts/`，專案根目錄保持純發布成果。
 
 ---
 
 ## 4. 跨電腦交接日誌 (Session Handover Logs)
 
-### 2026-10-01 23:05 (GMT+8) — 頁面雜亂清理：徹底移除短網址、刪除跑版浮動教具、黑板系統專注純淨
+### 2026-10-02 00:38 (GMT+8) — DayDayStudy 短網址整合、金色教育精神標章與大螢幕高對比投影演練
+- **使用者核心需求落地**：
+  1. **短網址建置與獨立分享**：
+     - 工作坊首頁短網址：`https://www.daydaystudy.top/cdsj5` -> 導向官方 GitHub Pages 主頁。
+     - 提示詞庫獨立短網址：`https://www.daydaystudy.top/prompt` -> 專為學員上課免打字直接複製 10 大 Prompt 設計。
+     - 各頁均配置專屬快速複製按鈕與直覺式 Toast 反饋。
+  2. **金色精神信念標章**：
+     - 醒目呈現融合聖五「毅誠勤樸」校訓精神：「AI 時代守本心，毅誠勤樸篤前行」。
+     - 核心信念標語：「AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生。」
+  3. **課堂實地投影優化**：
+     - 黑板全屏投影簡報（按 `B` 鍵）頂部嵌入「🏛️ 毅誠勤樸 ｜ AI 加速流程，教師把握靈魂」金色標籤，底部標註直達短網址。
+     - 第一頁（P01）與第十二頁（P12）底部 Callout 金句全面升級為校訓信念金句，高對比粉筆字呈現，確保教室後排學員清晰可見。
+  4. **全域工程規範遵循**：
+     - 建立 `_scripts/` 資料夾及 `README.md`，撰寫 `verify_workshop_site.py` 自動校驗 4 大頁面與短網址，全數通過。
 - **使用者核心反饋落地**：
   - **不要短網址**：全站 4 大頁面（Header、Hero、Footer、投影片頂部標籤）徹底清除所有 TinyURL 短網址及相關按鈕與外鏈，恢復純粹官方域名。
   - **頁面很亂之根源根治**：

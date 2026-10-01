@@ -225,6 +225,161 @@ header.site-header {
   margin-bottom: 20px;
 }
 
+/* Golden Educational Belief Seal (金色精神信念標章) */
+.motto-gold-seal {
+  background: linear-gradient(135deg, #FFFDF8 0%, #FFF9E8 45%, #FFF2C8 100%);
+  border: 2px solid #D4A017;
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  margin: 0 auto 24px;
+  max-width: 880px;
+  box-shadow: 0 6px 20px rgba(184, 138, 40, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.motto-gold-seal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #D4A017 0%, #B88A28 100%);
+}
+
+.motto-gold-badge {
+  background: linear-gradient(135deg, #B88A28 0%, #D4A017 50%, #B88A28 100%);
+  color: #FFFFFF;
+  font-weight: 900;
+  font-size: 0.92rem;
+  letter-spacing: 1.5px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(184, 138, 40, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.motto-gold-badge-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+.motto-gold-text {
+  flex: 1;
+}
+
+.motto-gold-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #7A5710;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+}
+
+.motto-gold-desc {
+  font-size: 0.96rem;
+  color: #5C4108;
+  margin: 0;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.motto-gold-desc strong {
+  color: #3D2B05;
+  font-weight: 800;
+}
+
+/* Classroom Short URL Direct Share Card */
+.shorturl-card {
+  background: #FFFFFF;
+  border: 2px solid var(--school-green);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  margin: 22px auto 0;
+  max-width: 880px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 4px 14px rgba(31, 89, 72, 0.08);
+  flex-wrap: wrap;
+}
+
+.shorturl-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.shorturl-tag {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(31, 89, 72, 0.2);
+}
+
+.shorturl-link {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--school-green-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  letter-spacing: 0.5px;
+}
+
+.shorturl-copy-btn {
+  background: var(--school-green);
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 8px rgba(31, 89, 72, 0.25);
+}
+
+.shorturl-copy-btn:hover {
+  background: var(--school-green-dark);
+  transform: translateY(-1px);
+}
+
+.deck-motto-badge {
+  background: rgba(229, 190, 88, 0.15);
+  border: 1px solid #E5BE58;
+  color: #F3CE6C;
+  font-size: 0.88rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
 .hero h1 {
   font-size: 2.35rem;
   font-weight: 800;
@@ -1128,6 +1283,22 @@ footer.site-footer {
   <!-- Hero Section -->
   <header class="hero">
     <div class="wrap">
+      <!-- Golden Educational Belief Badge -->
+      <div class="motto-gold-seal">
+        <div class="motto-gold-badge">
+          <span>毅誠勤樸</span>
+          <span class="motto-gold-badge-sub">CDSJ5</span>
+        </div>
+        <div class="motto-gold-text">
+          <div class="motto-gold-title">
+            <span>🏛️ 聖若瑟五校校訓精神：AI 時代守本心，毅誠勤樸篤前行</span>
+          </div>
+          <p class="motto-gold-desc">
+            ✨ <strong>金色承諾</strong>：AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生。
+          </p>
+        </div>
+      </div>
+
       <div class="hero-meta">
         <span class="hero-tag school">澳門聖若瑟教區中學第五校</span>
         <span class="hero-tag motto">校訓精神：毅誠勤樸</span>
@@ -1138,6 +1309,22 @@ footer.site-footer {
       <p class="lead">
         照時間碼往下走，嚴格遵守「<strong>真教材 → 真問題 → 真產出 → 真使用</strong>」主線。只有標示「<strong>全班 ENTER</strong>」的節點才要求所有學員同時送出，確保全班節奏同步、不脫節、不慌亂。
       </p>
+
+      <!-- Classroom Projection & Direct Short URL Card -->
+      <div class="shorturl-card">
+        <div class="shorturl-left">
+          <span class="shorturl-tag">🔗 現場投影與直達短網址</span>
+          <a href="https://www.daydaystudy.top/cdsj5" target="_blank" class="shorturl-link">https://www.daydaystudy.top/cdsj5</a>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="shorturl-copy-btn" onclick="copyShortUrl(this, 'https://www.daydaystudy.top/cdsj5')">
+            <span>📋 複製工作坊短網址</span>
+          </button>
+          <a href="https://www.daydaystudy.top/prompt" target="_blank" class="shorturl-tag" style="text-decoration:none; background:var(--ai-orange-soft); color:var(--ai-orange-dark); border:1px solid rgba(242,106,33,0.3); font-weight:700;">
+            ⚡ 提示詞庫免打字短網址：www.daydaystudy.top/prompt
+          </a>
+        </div>
+      </div>
 
       <div class="info-box">
         <strong>📖 欄位讀法指引：</strong>
@@ -2583,6 +2770,7 @@ footer.site-footer {
         <div class="deck-top-left">
           <span class="deck-category-badge" id="deck-cat">P01 ｜ 課堂啟動</span>
           <span class="deck-slide-count" id="deck-counter">[ 1 / 12 ]</span>
+          <span class="deck-motto-badge">🏛️ 毅誠勤樸 ｜ AI 加速流程，教師把握靈魂</span>
         </div>
         <div class="deck-nav-btns">
           <button class="deck-btn" onclick="prevSlide()" title="上一頁 (← 或 PageUp)">◀ 上一頁</button>
@@ -2599,8 +2787,8 @@ footer.site-footer {
         </div>
       </div>
       <div class="deck-bottom-bar">
-        <span>💡 投影提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或簡報筆 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板</span>
-        <span>聖若瑟教區中學第五校 ｜ 數學科校本教研</span>
+        <span>💡 投影提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板 ｜ 📱 學員免打字直達：<strong style="color:#59E5B3;">www.daydaystudy.top/prompt</strong></span>
+        <span>聖若瑟教區中學第五校 ｜ <strong style="color:#5AC2FF;">www.daydaystudy.top/cdsj5</strong></span>
       </div>
     </div>
   </div>
@@ -2610,7 +2798,7 @@ footer.site-footer {
     <div class="wrap footer-inner">
       <div>
         <div class="footer-title">聖若瑟教區中學第五校 ｜ 小學數學科校本教研</div>
-        <p class="footer-desc">AI 時代守本心，毅誠勤樸篤前行 ｜ 真教材 → 真問題 → 真產出 → 真使用</p>
+        <p class="footer-desc">AI 時代守本心，毅誠勤樸篤前行 ｜ AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生</p>
       </div>
       <div style="text-align:right;">
         <span style="font-size:0.86rem; color:rgba(255,255,255,0.65);">v2.3 OpenXML 官方實作標準 ｜ 專供校內 40 位教師教研實作使用</span>
@@ -2632,7 +2820,7 @@ footer.site-footer {
           "<span class='hl-badge purple'>新舊對比</span> 傳統 Chatbot 需反覆提示；AI Agent 能自主讀取教材並連續完成全套產出",
           "<span class='hl-badge rose'>今日目標</span> 120 分鐘內，每位老師在自己電腦上完整跑完一整套單元實戰"
         ],
-        callout: "🏛️ 傳承心法：以真實校本教材為根基，讓 AI 承擔繁瑣草稿，讓教師專注教學診斷與靈魂引導。"
+        callout: "🏛️ 聖五校訓精神：AI 時代守本心，毅誠勤樸篤前行 ｜ AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生。"
       },
       {
         id: "P02",
@@ -2786,7 +2974,7 @@ footer.site-footer {
           "<span class='hl-badge purple'>全班交流</span> 邀請 2 位老師現場投影分享自己的個性化成果與調優心得",
           "<span class='hl-badge rose'>圓滿收工</span> 完成培訓滿意度問卷，領取本次工作坊實踐認證證書"
         ],
-        callout: "🌟 總結心法：AI 時代守本心，毅誠勤樸篤前行。今天的一小步，是聖五數學科走向現代化的一大步！"
+        callout: "🌟 總結心法：AI 時代守本心，毅誠勤樸篤前行！AI 負責流程加速，教師專注教學判斷、算理本質與關懷學生。今天的一小步，是聖五數學科走向現代化的一大步！"
       }
     ];
 
@@ -2888,6 +3076,23 @@ footer.site-footer {
         }
       }
     });
+
+    // Copy Short URL Functionality
+    function copyShortUrl(btn, url) {
+      navigator.clipboard.writeText(url).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ 已複製短網址！';
+        btn.style.background = '#164235';
+        showToast('🔗 短網址已複製：' + url);
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+        }, 2000);
+      }).catch(err => {
+        console.error('複製短網址失敗：', err);
+        showToast('⚠️ 複製失敗，請手動選取：' + url);
+      });
+    }
 
     // Copy Prompt Functionality
     function copyPrompt(btn, text) {
