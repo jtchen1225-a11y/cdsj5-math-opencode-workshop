@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>聖若瑟教區中學第五校｜小學數學 × OpenCode — AI Agent 實作工作坊</title>
-  <meta name="description" content="澳門聖若瑟教區中學第五校小學數學科：AI 時代守本心，毅誠勤樸篤前行。120分鐘 OpenCode AI Agent 實作工作坊（講師現場執行版 V3）。核心主線：教材 PDF → 備課 → 分層 → 同步修改 → 重用 → 輸出成果。">
+  <title>聖若瑟教區中學第五校 ｜ 小學數學 × OpenCode AI Agent 入門工作坊</title>
+  <meta name="description" content="聖若瑟教區中學第五校小學中英文部：AI 時代守本心，毅誠勤樸篤前行。OpenCode 教師 AI Agent 入門工作坊 v2.3 OpenXML 官方正式版。今日唯一主線：真教材 → 真問題 → 真產出 → 真使用。">
   <style>
+
 
     :root {
       /* Foundation - 70% Ivory Warm White */
@@ -724,427 +725,698 @@
       border-top: 2px solid #2B6154;
     }
 
+  
+
+    /* Additional Styles for Short URL and Index Highlights */
+    .header-short-link {
+      display: flex;
+      align-items: center;
+    }
+    .short-url-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ai-orange);
+      color: #FFFFFF !important;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.35);
+      transition: all 180ms ease;
+      letter-spacing: 0.3px;
+    }
+    .short-url-pill:hover {
+      background: var(--ai-orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 106, 33, 0.5);
+    }
+    .deck-short-url-tag {
+      background: rgba(242, 106, 33, 0.25);
+      color: #FF8D4D;
+      border: 1px solid rgba(242, 106, 33, 0.5);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .hero-short-url-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--soft-orange) 0%, var(--soft-gold) 100%);
+      border: 1.5px solid rgba(242, 106, 33, 0.4);
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin: 12px 0 20px 0;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--school-navy);
+      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.15);
+    }
+    .hero-short-url-banner a {
+      color: var(--ai-orange);
+      text-decoration: underline;
+    }
+    .p-slide-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 180ms ease;
+    }
+    .p-slide-card:hover {
+      border-color: var(--school-green);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(24, 36, 54, 0.12);
+    }
+    .p-slide-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--school-green-soft);
+      color: var(--school-green-dark);
+      margin-bottom: 8px;
+    }
+    .p-slide-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--school-navy);
+      margin: 0 0 8px 0;
+    }
+    .p-slide-desc {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
   </style>
 </head>
 <body>
 
+  <!-- Spotlight Overlay -->
+  <div id="spotlight-overlay"></div>
+
+  <!-- Laser Dot -->
+  <div id="laser-dot"></div>
+
+  <!-- Fullscreen Chalkboard Canvas -->
+  <canvas id="chalk-canvas"></canvas>
+
+  <!-- Pen Color Palette -->
+  <div id="pen-palette" class="pen-palette">
+    <span style="font-size:0.8rem; font-weight:700; color:#FFFDF6; margin-right:4px;">畫筆顏色：</span>
+    <div class="pen-color-dot active" style="background:#FFE600;" onclick="setPenColor('#FFE600', this)" title="螢光黃"></div>
+    <div class="pen-color-dot" style="background:#FF4444;" onclick="setPenColor('#FF4444', this)" title="粉筆紅"></div>
+    <div class="pen-color-dot" style="background:#38BDF8;" onclick="setPenColor('#38BDF8', this)" title="科技藍"></div>
+    <div class="pen-color-dot" style="background:#52D1A1;" onclick="setPenColor('#52D1A1', this)" title="算理綠"></div>
+  </div>
+
+  <!-- Blackboard Deck Modal (單欄全景投影，>85% 視窗利用率) -->
+  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
+    <div class="deck-modal-container">
+      <div class="deck-header">
+        <div class="deck-title-area">
+          <span class="deck-tag" id="deck-cat">P01 ｜ 課堂啟動</span>
+          <span class="deck-short-url-tag">🌐 tinyurl.com/25kekzvv</span>
+        </div>
+        <div class="deck-controls-top">
+          <span class="deck-counter" id="deck-counter">[ 1 / 12 ]</span>
+          <button class="deck-icon-btn" onclick="prevSlide()" title="上一頁 (← 或 PageUp)">◀</button>
+          <button class="deck-icon-btn" onclick="nextSlide()" title="下一頁 (→ / Space / Enter / PageDown)">▶</button>
+          <button class="deck-icon-btn" onclick="toggleFullscreen()" title="全螢幕 (F)">⛶</button>
+          <button class="deck-icon-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖</button>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div class="deck-slide-card">
+          <div id="deck-slide-content">
+            <!-- Dynamically populated by renderSlide() -->
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tip">💡 提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或簡報筆 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板</span>
+        <button class="deck-close-btn" onclick="closeDeck()">關閉投影 (Esc)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classroom Floating Toolbar -->
+  <div class="classroom-toolbar">
+    <button class="tool-btn" id="btn-deck" onclick="toggleBlackboard()" title="開啟黑板投影片 (B)">
+      <span class="tool-icon">🖥️</span><span class="tool-text">黑板投影</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" id="btn-laser" onclick="toggleLaser()" title="雷射筆指標 (L)">
+      <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
+    </button>
+    <button class="tool-btn" id="btn-pen" onclick="togglePaint()" title="全螢幕塗鴉 (P)">
+      <span class="tool-icon">✏️</span><span class="tool-text">畫筆</span>
+    </button>
+    <button class="tool-btn" id="btn-clear" onclick="clearCanvas()" title="清除筆跡 (C)">
+      <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" id="btn-spotlight" onclick="toggleSpotlight()" title="聚光燈 (S)">
+      <span class="tool-icon">🔦</span><span class="tool-text">聚光燈</span>
+    </button>
+    <button class="tool-btn" id="btn-fs" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">
+      <span class="tool-icon">⛶</span><span class="tool-text">全螢幕</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" onclick="toggleHelp()" title="快捷鍵指南 (?)">
+      <span class="tool-icon">❓</span><span class="tool-text">指南</span>
+    </button>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="help-modal">
+    <h3>⌨️ 課堂授課教具快捷鍵指南</h3>
+    <table>
+      <tr><td><kbd>B</kbd></td><td>開啟／關閉黑板全景簡報</td></tr>
+      <tr><td><kbd>→</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> / <kbd>PgDn</kbd></td><td>投影片下一頁</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>PgUp</kbd></td><td>投影片上一頁</td></tr>
+      <tr><td><kbd>L</kbd></td><td>開啟／關閉紅色呼吸雷射筆</td></tr>
+      <tr><td><kbd>P</kbd></td><td>開啟／關閉全螢幕畫筆塗鴉</td></tr>
+      <tr><td><kbd>C</kbd></td><td>一鍵清除畫筆塗鴉</td></tr>
+      <tr><td><kbd>S</kbd></td><td>開啟／關閉聚光燈遮罩</td></tr>
+      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>?</kbd></td><td>開啟本快捷鍵指南</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>退出目前模式／關閉彈窗</td></tr>
+    </table>
+    <div style="text-align:right; margin-top:16px;">
+      <button class="btn btn-secondary" onclick="toggleHelp()" style="padding:6px 16px;">我知道了</button>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">CDSJ5 × OpenCode V3</span>
-        <span>聖若瑟教區中學第五校｜小學數學 AI Agent 工作坊</span>
+        <span class="brand-badge">CDSJ5</span>
+        <span>聖若瑟五校 ｜ OpenCode AI Agent 入門工作坊</span>
       </a>
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link active">🏠 培訓首頁</a>
-<a href="workshop-flow.html" class="nav-link ">⏱️ 120分鐘流程</a>
-<a href="prompts.html" class="nav-link ">💬 實操提示詞庫</a>
-<a href="troubleshooting.html" class="nav-link ">🛠️ 疑難排解與SOP</a>
-
-        <div class="nav-btn-deck" onclick="openDeck(0)" title="快捷鍵：Space / B">
-          <span>🖥️ 黑板簡報</span>
-        </div>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首頁概覽</a></li>
+        <li><a href="workshop-flow.html">120分鐘流程</a></li>
+        <li><a href="prompts.html">實操提示詞庫</a></li>
+        <li><a href="troubleshooting.html">疑難排解SOP</a></li>
+      </ul>
+      <div class="header-short-link">
+        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" title="課堂專屬短網址，點擊直接前往或分享">
+          <span class="short-icon">🌐</span>
+          <span class="short-text">tinyurl.com/25kekzvv</span>
+        </a>
+      </div>
     </div>
   </header>
 
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-meta">
+        <span class="hero-tag school">澳門聖若瑟教區中學第五校</span>
+        <span class="hero-tag motto">校訓精神：毅誠勤樸</span>
+        <span class="hero-tag">小學中英文部數學教師 (約40人)</span>
+        <span class="hero-tag" style="background:#FEE2E2; color:#DC2626; border-color:#F87171;">第一堂：只學 Agent</span>
+      </div>
+
+      <h1>小學數學 × OpenCode<br><span class="key-text">---AI Agent 實作工作坊</span></h1>
+
+      <!-- Short URL Banner -->
+      <div>
+        <div class="hero-short-url-banner">
+          <span>📲 課堂專屬短網址：</span>
+          <a href="https://tinyurl.com/25kekzvv" target="_blank">https://tinyurl.com/25kekzvv</a>
+          <span style="font-size:0.8rem; font-weight:normal; color:var(--text-secondary);">（手機／筆電即刻免登入查閱）</span>
+        </div>
+      </div>
+
+      <!-- Core Motto Banner -->
+      <div class="motto-banner clickable-card" onclick="openDeck(1)" title="點擊放大至黑板展示今日主線">
+        <span class="card-zoom-badge">放大授課 ↗</span>
+        <span class="motto-icon">🌟</span>
+        <div class="motto-text">
+          <strong>今日唯一主線：真教材 → 真問題 → 真產出 → 真使用</strong>
+          <p>以聖若瑟五校校訓「毅誠勤樸」為精神底色：<strong>AI 做草稿，教師做判斷！</strong>這不是比誰生成得多，而是看誰能讓 Agent 更懂你的真實課堂。</p>
+        </div>
+      </div>
+
+      <!-- 4 Core Pillars of Workshop -->
+      <div class="pillars-grid" id="pillars">
+        <div class="pillar-card" onclick="openDeck(0)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <div class="pillar-num">2 小時</div>
+          <div class="pillar-title">⏱️ 逐分精準節奏</div>
+          <p class="pillar-desc">12 個 10 分鐘區段嚴格時間控制，只在指定節點全班同步 ENTER，不拖泥帶水。</p>
+        </div>
+        <div class="pillar-card" onclick="openDeck(5)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <div class="pillar-num">1 個教材</div>
+          <div class="pillar-title">📄 未來真實材料</div>
+          <p class="pillar-desc">以未來 1–2 週真實教材為依據，不放個資、不用虛構 Demo，恪守概念邊界。</p>
+        </div>
+        <div class="pillar-card" onclick="openDeck(2)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <div class="pillar-num">4 次循環</div>
+          <div class="pillar-title">🔄 Agent 備課循環</div>
+          <p class="pillar-desc">完整經歷 RDQ 診斷 → 第一版內容 → DOCX/PDF 匯出 → 分層修訂 → 換教材 Reuse。</p>
+        </div>
+        <div class="pillar-card" onclick="openDeck(4)" title="點擊放大至黑板翻頁">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <div class="pillar-num">1 個專案</div>
+          <div class="pillar-title">📦 長期校本資產</div>
+          <p class="pillar-desc">建立具備 AGENTS.md 規範的永久專案架構，換課題換單元隨時成熟重用。</p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn" onclick="openDeck(0)">🖥️ 開啟黑板全景投影片 (B)</button>
+        <a href="workshop-flow.html" class="btn btn-secondary">⏱️ 進入 120 分鐘逐分鐘流程</a>
+        <a href="prompts.html" class="btn btn-secondary">📋 複製 10 大實操 Prompt</a>
+        <a href="troubleshooting.html" class="btn btn-outline">🛠️ 13 大故障排查 SOP</a>
+      </div>
+    </div>
+  </div>
 
   <main class="wrap">
-    <!-- 英雄橫幅 -->
-    <section class="hero-banner">
-      <div class="hero-motto">AI 時代守本心，毅誠勤樸篤前行</div>
-      <h1 class="hero-title">聖若瑟教區中學第五校<br>小學數學 × OpenCode — AI Agent 實作工作坊</h1>
-      <div class="hero-line">
-        <span>📍 核心主線：</span>
-        <span style="color:var(--school-green);">教材 PDF</span> ➔
-        <span style="color:var(--school-navy);">備課</span> ➔
-        <span style="color:var(--heritage-gold);">分層</span> ➔
-        <span style="color:var(--tech-blue);">同步修改</span> ➔
-        <span style="color:var(--ai-orange);">重用</span> ➔
-        <span style="color:var(--school-green);">輸出成果</span>
-      </div>
-      <p class="hero-desc">
-        這不是「教你十條神奇 Prompt」的聊天技巧課，而是專為數學科教師量身打造的<strong>專案級備課工作流</strong>！
-        每一位老師將在 120 分鐘內，把真實示範教材交給 OpenCode，制定校本 AI 助教守則，完成教案起草、A/B/C 三層練習、跨檔案連鎖修訂、新教材秒級重用，並最終導出符合教學規範的交付文件。
-      </p>
-    </section>
 
-    <!-- 課堂四色標記提示 -->
+    <!-- Section 1: 今日唯一主線 -->
+    <section class="section">
+      <h2 class="section-title">🌟 今日唯一主線：真教材 → 真問題 → 真產出 → 真使用</h2>
+      <span class="section-accent-line"></span>
+      <p class="section-subtitle">拒絕泛理論演講與虛構 Demo；這不是工具安裝課，而是真實教學備課落地實戰。</p>
 
-    <div class="color-pills-bar">
-      <span class="pill pill-a">🟢 A 組操作 (1–20號老師)</span>
-      <span class="pill pill-b">🔵 B 組操作 (21–40號老師)</span>
-      <span class="pill pill-all">🟡 全體觀看 (看講師投影)</span>
-      <span class="pill pill-pause">🔴 暫停操作 (全班切紅燈停手)</span>
-    </div>
-
-
-    <!-- 核心流程大圖 (點擊放大黑板) -->
-    <section class="prominent-map" onclick="openDeck(1)" title="點擊放大至黑板全螢幕簡報">
-      <span class="zoom-badge">🔍 點擊放大黑板</span>
-      <div style="font-weight:800; color:var(--school-green-dark); font-size:1.15rem; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:8px;">
-        <span>🗺️ 2 小時 AI Agent 備課學習迴圈總覽圖</span>
-      </div>
-      <img src="images/00-workshop-map.svg" alt="2小時學習迴圈圖解">
-      <div style="font-size:0.88rem; color:var(--text-muted); margin-top:10px;">
-        💡 提示：在投影幕前點擊此圖，可直接切換至 85% 視窗雙欄黑板控制台，配合雷射筆 (L) 與畫筆 (P) 進行全班引導。
-      </div>
-    </section>
-
-    <!-- 四大核心數字柱 -->
-    <section style="margin: 36px 0;">
-      <h2 style="font-size:1.5rem; color:var(--school-navy); margin-bottom:18px; display:flex; align-items:center; gap:8px;">
-        <span>🏛️ 工作坊四大核心基石</span>
-      </h2>
-      <div class="grid-4">
-        <div class="card card-zoomable" onclick="openDeck(3)">
-          <span class="zoom-badge">🔍 放大</span>
-          <div style="font-size:2.2rem; font-weight:900; color:var(--heritage-gold); margin-bottom:4px;">⏱️ 2 小時</div>
-          <div style="font-weight:800; color:var(--school-navy); font-size:1.05rem; margin-bottom:8px;">精準實操節奏</div>
-          <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-            120 分鐘精確切分為 11 階段，拒絕空洞理論宣講。第 60 分鐘全員跨越備課合格線，前呼後應步步留痕。
-          </p>
+      <div class="grid">
+        <div class="card clickable-card" onclick="openDeck(5)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge key">1. 輸入端</span>
+          <h3>📄 真教材 (Real Materials)</h3>
+          <p>拿未來 1–2 週真實會教的教學材料放入 <code>materials/</code>，絕不放學生個資，不用虛假 Demo。</p>
         </div>
-
-        <div class="card card-zoomable" onclick="openDeck(2)">
-          <span class="zoom-badge">🔍 放大</span>
-          <div style="font-size:2.2rem; font-weight:900; color:var(--school-green); margin-bottom:4px;">📄 1 個教材</div>
-          <div style="font-weight:800; color:var(--school-navy); font-size:1.05rem; margin-bottom:8px;">守住數學事實</div>
-          <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-            以校本真實教材 <code>P5-分數加減法.pdf</code> 為唯一事實源。嚴禁超綱與憑空捏造，牢守數學概念與算理本質。
-          </p>
+        <div class="card clickable-card" onclick="openDeck(7)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge hi">2. 審查端</span>
+          <h3>🔍 真問題 (Real Problems)</h3>
+          <p>直面認知難點、題量與作答留白；透過三種證據標記與「三問審核」嚴格把關教學品質。</p>
         </div>
-
-        <div class="card card-zoomable" onclick="openDeck(3)">
-          <span class="zoom-badge">🔍 放大</span>
-          <div style="font-size:2.2rem; font-weight:900; color:var(--ai-orange); margin-bottom:4px;">🔄 4 次循環</div>
-          <div style="font-weight:800; color:var(--school-navy); font-size:1.05rem; margin-bottom:8px;">Agent 備課迭代</div>
-          <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-            ①第一次備課 ➔ ②同一目標分層 ➔ ③跨檔案同步修訂 ➔ ④換教材秒級重用。經歷完整的工程級工作循環。
-          </p>
+        <div class="card clickable-card" onclick="openDeck(2)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge blue">3. 產出端</span>
+          <h3>📦 真產出 (Real Output)</h3>
+          <p>透過 v2.3 OpenXML 穩定生成標準 A4 DOCX 學習單與教師詳解，杜絕 Word COM 當機卡死。</p>
         </div>
-
-        <div class="card card-zoomable" onclick="openDeck(4)">
-          <span class="zoom-badge">🔍 放大</span>
-          <div style="font-size:2.2rem; font-weight:900; color:var(--tech-blue); margin-bottom:4px;">📦 1 個專案</div>
-          <div style="font-weight:800; color:var(--school-navy); font-size:1.05rem; margin-bottom:8px;">長效校本資產</div>
-          <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-            擺脫一次性聊天，建立以 <code>AGENTS.md</code> 為守則的結構化專案。日後換新單元直接繼承成熟備課流水線！
-          </p>
+        <div class="card clickable-card" onclick="openDeck(11)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge">4. 應用端</span>
+          <h3>🏫 真使用 (Real Teaching)</h3>
+          <p>下週直接列印帶進課堂發給學生使用，課後透過 Exit Ticket 反思觀察，持續修訂累積資產。</p>
         </div>
       </div>
     </section>
 
-    <!-- 標準專案產出物 -->
-    <section class="card" style="border-left: 5px solid var(--school-green); background:#FFFFFF;">
-      <h2 style="font-size:1.35rem; color:var(--school-green-dark); margin-top:0; display:flex; align-items:center; gap:8px;">
-        <span>🎯 本次工作坊標準產出物清單 (output/ 目錄)</span>
-      </h2>
-      <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:18px;">
-        老師離場時，專案資料夾內將累積一套完整、真實、明天就能拿進課堂的校本教學資產：
-      </p>
-      <div class="tw">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>產出階段</th>
-              <th>成果檔案路徑</th>
-              <th>主要內容與教師驗收標準</th>
-              <th>備註</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>TASK 1｜第一次備課</strong></td>
-              <td><code>output/01_課堂備課草案.md</code></td>
-              <td>40分鐘流程（導入、講解、引導、練習、總結、Exit Ticket）、3-4個學習目標、常見錯誤迷思</td>
-              <td><span class="pill pill-a" style="padding:2px 8px; font-size:0.75rem;">第60分鐘合格線</span></td>
-            </tr>
-            <tr>
-              <td><strong>TASK 2｜學生分層</strong></td>
-              <td><code>output/02_三層學生工作紙.md</code></td>
-              <td>A 基礎層（多支架）、B 標準層（本課目標）、C 挑戰層（推理與解釋，不超綱）</td>
-              <td>對應同一核心算理</td>
-            </tr>
-            <tr>
-              <td><strong>TASK 2｜教師答案</strong></td>
-              <td><code>output/03_教師答案及錯因.md</code></td>
-              <td>正確答案、解題方法、常見錯誤、教師追問句；題號與學生版 100% 對齊</td>
-              <td>左右分屏核對</td>
-            </tr>
-            <tr>
-              <td><strong>TASK 3｜同步修訂</strong></td>
-              <td><code>output/04_同步修改紀錄.md</code></td>
-              <td>試教回饋修訂紀錄（第3題降難度、第6題簡化語言、C層加推理題），記錄連鎖影響範圍</td>
-              <td>跨檔案連鎖同步</td>
-            </tr>
-            <tr>
-              <td><strong>TASK 4｜新教材重用</strong></td>
-              <td><code>output/reuse/*.md</code></td>
-              <td>換入 <code>P5-小數乘法.pdf</code>，重用相同架構產出新課教案、三層工作紙、答案版</td>
-              <td>驗證工作流重用性</td>
-            </tr>
-            <tr>
-              <td><strong>成果封裝｜交付文件</strong></td>
-              <td><code>output/final/*.docx</code></td>
-              <td>三份 Word 檔案（教案、學生工作紙、答案版），適合 A4 列印，學生版絕無答案</td>
-              <td>若Word故障保留MD</td>
-            </tr>
-            <tr>
-              <td><strong>離場憑證｜真實痛點</strong></td>
-              <td><code>MY-NEXT-TASK.md</code></td>
-              <td>回答 3 個問題：最花時間的教學工作、下次交給 Agent 的任務、第二場所帶真實教材</td>
-              <td>第二場培訓直接輸入</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <!-- Section 2: 120 分鐘實作成功標準 -->
+    <section class="section">
+      <h2 class="section-title">🎯 120 分鐘成功標準（六大實作里程碑）</h2>
+      <span class="section-accent-line green"></span>
+      <p class="section-subtitle">第一堂課的成功不是學會最多名詞，而是完成一次真實、可審核、可重用的 Agent 工作循環。</p>
 
-    <!-- 三大核心教學轉折對比 -->
-    <section style="margin: 40px 0;">
-      <h2 style="font-size:1.5rem; color:var(--school-navy); margin-bottom:20px;">💡 三大教學思維關鍵轉折</h2>
-      <div class="grid-2">
-        <!-- 對比 1 -->
-        <div class="card card-zoomable" onclick="openDeck(7)">
-          <span class="zoom-badge">🔍 放大黑板</span>
-          <div style="font-weight:800; font-size:1.15rem; color:var(--school-green); margin-bottom:12px;">
-            轉折 ①：普通聊天 vs Agent 專案
-          </div>
-          <div style="background:#FDF2F2; border-left:4px solid #D9383A; padding:12px 14px; border-radius:6px; margin-bottom:12px; font-size:0.9rem;">
-            <strong>❌ 普通聊天視窗：</strong>每次開新對話都要重打「我是小學數學老師、請用繁體中文、不要超綱、請記得A層要有提示…」。用完即忘，無法跨對話累積。
-          </div>
-          <div style="background:#EDF7F2; border-left:4px solid #1F5948; padding:12px 14px; border-radius:6px; font-size:0.9rem;">
-            <strong>✅ OpenCode Agent 專案：</strong>所有校本規範寫入 <code>AGENTS.md</code> 作為「AI 助教長期守則」。無論開啟幾次對話，AI 永久遵守規則，越用越省心！
-          </div>
+      <div class="grid">
+        <div class="card clickable-card" onclick="openDeck(6)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge">里程碑 1</span>
+          <h3>① RDQ 診斷</h3>
+          <p>先列出讀取檔名，完成教材診斷與學生迷思分析，最多提 5 個問題後停下等審核。</p>
         </div>
-
-        <!-- 對比 2 -->
-        <div class="card card-zoomable" onclick="openDeck(10)">
-          <span class="zoom-badge">🔍 放大黑板</span>
-          <div style="font-weight:800; font-size:1.15rem; color:var(--heritage-gold-dark); margin-bottom:12px;">
-            轉折 ②：假分層 vs 真分層
-          </div>
-          <div style="background:#FDF2F2; border-left:4px solid #D9383A; padding:12px 14px; border-radius:6px; margin-bottom:12px; font-size:0.9rem;">
-            <strong>❌ 假分層（偷懶模式）：</strong>基礎題是「1/4 + 1/6」，挑戰題只是把數字改成「1/99 + 1/100」。計算更折磨，但認知深度與思維層次毫無提升！
-          </div>
-          <div style="background:#EDF7F2; border-left:4px solid #1F5948; padding:12px 14px; border-radius:6px; font-size:0.9rem;">
-            <strong>✅ 真分層（教學思維）：</strong>三層對應同一核心算理！A層給予幾何圖形支架；B層掌握正常運算；C層增加推理、解釋、錯誤診斷與情境判斷。
-          </div>
+        <div class="card clickable-card" onclick="openDeck(8)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge key">里程碑 2</span>
+          <h3>② 第一版內容草稿</h3>
+          <p>產出 5 部分內容草稿（基礎、核心、應用、說理、Exit Ticket），經三問審核與局部修改。</p>
         </div>
-
-        <!-- 對比 3 -->
-        <div class="card card-zoomable" onclick="openDeck(13)">
-          <span class="zoom-badge">🔍 放大黑板</span>
-          <div style="font-weight:800; font-size:1.15rem; color:var(--tech-blue-dark); margin-bottom:12px;">
-            轉折 ③：錯誤修改 vs Agent 同步
-          </div>
-          <div style="background:#FDF2F2; border-left:4px solid #D9383A; padding:12px 14px; border-radius:6px; margin-bottom:12px; font-size:0.9rem;">
-            <strong>❌ 傳統修改：</strong>試教後發現第 3 題太難，要求 AI 重新生成。結果題號大亂、答案不同步、原本優秀的第 5 題也被改掉，教師苦不堪言。
-          </div>
-          <div style="background:#EDF7F2; border-left:4px solid #1F5948; padding:12px 14px; border-radius:6px; font-size:0.9rem;">
-            <strong>✅ Agent 同步修改：</strong>先要求 AI 出具「變更影響清單」，確認牽動範圍後，只修訂受影響位置，並跨文件同步更新學生版、答案版與教案！
-          </div>
+        <div class="card clickable-card" onclick="openDeck(2)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge blue">里程碑 3</span>
+          <h3>③ 實體 DOCX 匯出</h3>
+          <p>執行 v2.3 OpenXML 匯出工具，驗證 <code>output/02-worksheet/</code> 產生大於 0 位元組的真實檔案。</p>
         </div>
-
-        <!-- 對比 4 -->
-        <div class="card card-zoomable" onclick="openDeck(15)">
-          <span class="zoom-badge">🔍 放大黑板</span>
-          <div style="font-weight:800; font-size:1.15rem; color:var(--ai-orange); margin-bottom:12px;">
-            轉折 ④：複製提示詞 vs 重用工作流
-          </div>
-          <div style="background:#FDF2F2; border-left:4px solid #D9383A; padding:12px 14px; border-radius:6px; margin-bottom:12px; font-size:0.9rem;">
-            <strong>❌ 單純背 Prompt：</strong>離開工作坊後只剩下一堆零散指令，一旦換了教學課題就不知道如何拼裝，遇到問題依舊卡關。
-          </div>
-          <div style="background:#EDF7F2; border-left:4px solid #1F5948; padding:12px 14px; border-radius:6px; font-size:0.9rem;">
-            <strong>✅ 重用成熟 Workflow：</strong>教材會換、單元會換；但備課結構、分層理念與質檢方法完全可以複用。換上新 PDF，5 分鐘搞定整套新課材料！
-          </div>
+        <div class="card clickable-card" onclick="openDeck(9)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge hi">里程碑 4</span>
+          <h3>④ A/B/C 分層設計</h3>
+          <p>同一目的地不同支架；產出差異表與同一組 2 題三層示範，A 加支架、B 核心、C 增推理。</p>
+        </div>
+        <div class="card clickable-card" onclick="openDeck(10)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge">里程碑 5</span>
+          <h3>⑤ 同步修訂多版本維護</h3>
+          <p>針對真實課堂問題只改指定部分，Agent 先列修改前後摘要，再重新匯出更新檔案。</p>
+        </div>
+        <div class="card clickable-card" onclick="openDeck(11)">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="card-badge key">里程碑 6</span>
+          <h3>⑥ 換教材 Reuse</h3>
+          <p>指定第二份真實教材，驗證無舊課殘留、重啟 RDQ，證明工作流可複製、越備越快！</p>
         </div>
       </div>
     </section>
 
-    <!-- 專案結構與權限圖 (點擊放大黑板) -->
-    <section class="prominent-map" onclick="openDeck(4)" title="點擊放大至黑板全螢幕簡報" style="border-color:var(--tech-blue);">
-      <span class="zoom-badge">🔍 點擊放大黑板</span>
-      <div style="font-weight:800; color:var(--tech-blue-dark); font-size:1.15rem; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:8px;">
-        <span>📁 Math-Agent-Workshop 專案結構與權限邊界</span>
-      </div>
-      <img src="images/01-project-structure.svg" alt="專案目錄與權限邊界圖解">
-      <div style="font-size:0.88rem; color:var(--text-muted); margin-top:10px;">
-        🔒 安全約束：<code>materials/</code> 唯讀保護原始教材；<code>output/</code> 為唯一寫入目錄；<code>AGENTS.md</code> 定義長期守則。
+    <!-- Section 3: 12 頁黑板投影地圖概覽 -->
+    <section class="section">
+      <h2 class="section-title">🖥️ 12 頁黑板投影地圖 (P01~P12) 概覽</h2>
+      <span class="section-accent-line gold"></span>
+      <p class="section-subtitle">點擊任意卡片可直接以 85% 視窗單欄全景黑板模式展示，支援實體簡報筆翻頁操作。</p>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="p-slide-card" onclick="openDeck(0)" title="點擊投影 P01">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P01 投影</span>
+          <div class="p-slide-title">封面：只學 Agent</div>
+          <p class="p-slide-desc">第一堂專注於 Agent 核心機制；課前 Preflight 就緒，課堂不處理安裝環境。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(1)" title="點擊投影 P02">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P02 投影</span>
+          <div class="p-slide-title">今日唯一主線</div>
+          <p class="p-slide-desc">真教材 → 真問題 → 真產出 → 真使用；拒絕泛理論演講與虛構 Demo。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(2)" title="點擊投影 P03">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P03 投影</span>
+          <div class="p-slide-title">120 分鐘成功標準</div>
+          <p class="p-slide-desc">RDQ、第一版、DOCX/PDF、A/B/C 分層、同步修訂、換教材 Reuse 六大里程碑。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(3)" title="點擊投影 P04">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P04 投影</span>
+          <div class="p-slide-title">專案結構地圖</div>
+          <p class="p-slide-desc">AGENTS.md、materials/、requirements/、output/、tools/ 清楚分工。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(4)" title="點擊投影 P05">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P05 投影</span>
+          <div class="p-slide-title">AGENTS.md 長期規則</div>
+          <p class="p-slide-desc">長期規則 ≠ 一次性 Prompt；真實性原則與順序鐵律，教師保留最終判斷。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(5)" title="點擊投影 P06">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P06 投影</span>
+          <div class="p-slide-title">真教材規則</div>
+          <p class="p-slide-desc">未來 1–2 週真實課堂教材；絕不放學生個資，另備第二份備用。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(6)" title="點擊投影 P07">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P07 投影</span>
+          <div class="p-slide-title">RDQ：先理解後生成</div>
+          <p class="p-slide-desc">READ → DIAGNOSE → QUESTION；深度分析概念與迷思，提問後停下等審核。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(7)" title="點擊投影 P08">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P08 投影</span>
+          <div class="p-slide-title">三種證據標記</div>
+          <p class="p-slide-desc">MATERIAL-SUPPORTED / INFERRED / NEEDS-TEACHER-CONFIRMATION，審核邊界。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(8)" title="點擊投影 P09">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P09 投影</span>
+          <div class="p-slide-title">三問審核標準</div>
+          <p class="p-slide-desc">對教材嗎？對學生嗎？明天敢用嗎？以局部修改句替代整份重做。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(9)" title="點擊投影 P010">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P10 投影</span>
+          <div class="p-slide-title">差異化分層原則</div>
+          <p class="p-slide-desc">同一目的地不同支架；A 版加提示鷹架，B 版核心，C 版開放推理，同題示範。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(10)" title="點擊投影 P011">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P11 投影</span>
+          <div class="p-slide-title">一次判斷同步修訂</div>
+          <p class="p-slide-desc">只改指定部分，Agent 先列前後摘要，再以 OpenXML 重新匯出，極速維護。</p>
+        </div>
+        <div class="p-slide-card" onclick="openDeck(11)" title="點擊投影 P012">
+          <span class="card-zoom-badge">放大授課 ↗</span>
+          <span class="p-slide-tag">P12 投影</span>
+          <div class="p-slide-title">Reuse 與真使用</div>
+          <p class="p-slide-desc">換教材、不換規則；重啟 RDQ 無舊課殘留；選定一份真教材進課堂實踐！</p>
+        </div>
       </div>
     </section>
 
-    <!-- 快速進入其他分頁導覽 -->
-    <section style="margin: 40px 0 20px;">
-      <h2 style="font-size:1.5rem; color:var(--school-navy); margin-bottom:18px;">🚀 快速導航與課堂入口</h2>
-      <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
-        <a href="workshop-flow.html" style="text-decoration:none;">
-          <div class="card" style="height:100%;">
-            <div style="font-size:1.2rem; font-weight:800; color:var(--school-green); margin-bottom:6px;">⏱️ 120 分鐘實操流程</div>
-            <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-              逐分鐘導航、講師四象限引導卡、學員操作色標與錯峰時間表。
-            </p>
-          </div>
-        </a>
+    <!-- Section 4: 第一堂最低完成證據 -->
+    <section class="section">
+      <h2 class="section-title">☑️ 第一堂最低完成證據（8 大驗收清單）</h2>
+      <span class="section-accent-line"></span>
+      <p class="section-subtitle">研討會結束時，每位教師電腦中應具備的真實成果檢驗清單：</p>
 
-        <a href="prompts.html" style="text-decoration:none;">
-          <div class="card" style="height:100%;">
-            <div style="font-size:1.2rem; font-weight:800; color:var(--ai-orange); margin-bottom:6px;">💬 實操提示詞庫</div>
-            <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-              V3 標準 13 大提示詞＋5 大現場救援指令，一鍵複製直接貼入。
-            </p>
-          </div>
-        </a>
-
-        <a href="troubleshooting.html" style="text-decoration:none;">
-          <div class="card" style="height:100%;">
-            <div style="font-size:1.2rem; font-weight:800; color:var(--tech-blue); margin-bottom:6px;">🛠️ 疑難排解與 SOP</div>
-            <p style="color:var(--text-secondary); font-size:0.9rem; margin:0; line-height:1.6;">
-              不拖慢全班的 9 種處理法（A~I 級）、落後階梯與課前 24 小時清單。
-            </p>
-          </div>
-        </a>
+      <div class="check">
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>materials 中有真實教材：</strong>Agent 能明確列出實際成功讀取的檔名，絕非虛構材料。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>完成完整 RDQ 流程：</strong>完成 READ → DIAGNOSE → QUESTION，且任課教師至少介入糾正／補充 Agent 一次。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>第一版內容經三問審核：</strong>切實回答「對教材嗎？對學生嗎？明天敢用嗎？」並完成局部修訂。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>實體 DOCX 匯出：</strong><code>output/02-worksheet/</code> 內至少產生一份真正大於 0 位元組的 DOCX；PDF 有則更好。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>分層示範完成：</strong>產出 A/B/C 差異表 ＋ 同一組 2 題三層示範文件（output/03-differentiated/）。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>同步修訂落地：</strong>完成一次「只改指定部分」的同步修訂，並重新輸出至 output/04-revised/。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>第二教材 Reuse 成功：</strong>指定第二份真實教材，重新完成 READ → DIAGNOSE → QUESTION，驗證工作流重用。</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">☑</span>
+          <div><strong>Exit Ticket 反思：</strong>選定一份未來 1–2 週真正會印出進課堂使用的產物，完成課後實踐約定。</div>
+        </div>
       </div>
     </section>
+
   </main>
 
-
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
       <div>
-        <div style="font-weight:800; color:#FFFFFF; font-size:1.05rem; margin-bottom:4px;">澳門聖若瑟教區中學第五校｜小學數學科組</div>
-        <div style="color:#8FD8C4; font-size:0.9rem;">校訓底色：AI 時代守本心，毅誠勤樸篤前行 ｜ 120 分鐘講師執行版 V3</div>
+        <p class="footer-title">聖若瑟教區中學第五校 ｜ 小學數學科校本教研</p>
+        <p class="footer-motto">AI 時代守本心，毅誠勤樸篤前行 ｜ 真教材 → 真問題 → 真產出 → 真使用</p>
+        <p class="footer-note">v2.3 OpenXML 實作標準 ｜ 專供校內 40 位數學教師教學實作使用</p>
       </div>
-      <div style="display:flex; gap:14px; align-items:center;">
-        <a href="https://github.com/jtchen1225-a11y/cdsj5-math-opencode-workshop" target="_blank" rel="noopener" style="color:#E5BE58; text-decoration:none; font-weight:700;">GitHub 儲存庫 ↗</a>
-        <a href="javascript:void(0)" onclick="openDeck(0)" style="color:#59E5B3; text-decoration:none; font-weight:700;">🖥️ 投影黑板</a>
+      <div style="text-align:right;">
+        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" style="display:inline-flex;">
+          <span class="short-icon">🌐</span>
+          <span>tinyurl.com/25kekzvv</span>
+        </a>
       </div>
     </div>
   </footer>
 
-
-  <!-- 課堂授課浮動工具列 -->
-  <div id="classroom-toolbar">
-    <button class="tool-btn" onclick="toggleDeckModal()" title="開關黑板簡報 (快捷鍵: B 或 Space)">
-      <span>🖥️ 黑板 (B)</span>
-    </button>
-    <button class="tool-btn" id="btn-laser" onclick="toggleLaser()" title="紅色發光雷射筆 (快捷鍵: L)">
-      <span>🔴 雷射筆 (L)</span>
-    </button>
-    <button class="tool-btn" id="btn-paint" onclick="togglePaint()" title="課堂畫筆塗鴉 (快捷鍵: P)">
-      <span>✏️ 畫筆 (P)</span>
-    </button>
-    <div class="color-picker-group" id="color-pickers">
-      <div class="color-dot active" style="background:#FFE600;" onclick="setDrawColor('#FFE600', this)" title="粉筆黃"></div>
-      <div class="color-dot" style="background:#FF3B30;" onclick="setDrawColor('#FF3B30', this)" title="警示紅"></div>
-      <div class="color-dot" style="background:#00D1FF;" onclick="setDrawColor('#00D1FF', this)" title="科技藍"></div>
-      <div class="color-dot" style="background:#00FF66;" onclick="setDrawColor('#00FF66', this)" title="算理綠"></div>
-    </div>
-    <button class="tool-btn" onclick="clearCanvas()" title="清空螢幕塗鴉 (快捷鍵: C)">
-      <span>🧹 清空 (C)</span>
-    </button>
-    <button class="tool-btn" onclick="toggleFullscreen()" title="全螢幕滿版 (快捷鍵: F)">
-      <span>⛶ 全螢幕 (F)</span>
-    </button>
-    <button class="tool-btn" onclick="toggleShortcutsModal()" title="查看鍵盤快捷鍵 (快捷鍵: ?)">
-      <span>⌨️ 快捷鍵 (?)</span>
-    </button>
-  </div>
-
-  <!-- 雷射筆發光點 -->
-  <div id="laser-dot"></div>
-
-  <!-- 全螢幕繪圖 Canvas -->
-  <canvas id="paint-canvas"></canvas>
-
-  <!-- 黑板全螢幕簡報 (85% 視窗主課堂儀表板) -->
-  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
-    <div class="deck-container">
-      <div class="deck-topbar">
-        <div class="deck-top-left">
-          <span class="deck-category-badge" id="deck-cat">開場核心理念</span>
-          <span class="deck-slide-count" id="deck-counter">[ 1 / 20 ]</span>
-        </div>
-        <div class="deck-nav-btns">
-          <button class="deck-btn" id="deck-prev-btn" onclick="prevSlide()" title="快捷鍵: ←">◀ 上一頁 (←)</button>
-          <button class="deck-btn deck-next-btn" id="deck-next-btn" onclick="nextSlide()" title="快捷鍵: → / Space / Enter">下一頁 ▶ (→ / Space)</button>
-          <button class="deck-btn deck-close-btn" onclick="closeDeck()" title="快捷鍵: Esc">✕ 關閉 (Esc)</button>
-        </div>
-      </div>
-      <div class="deck-main-body">
-        <div class="deck-slide-card" id="deck-slide-content">
-          <!-- Slide Title, Desc, List, Callout -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 快捷鍵指南彈窗 -->
-  <div id="shortcuts-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:3000; justify-content:center; align-items:center;" onclick="toggleShortcutsModal()">
-    <div style="background:#13322B; border:2px solid #59E5B3; border-radius:14px; padding:28px 36px; max-width:520px; width:90%; color:#FFFDF6; box-shadow:0 14px 40px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
-      <h3 style="margin-top:0; color:#E5BE58; font-size:1.3rem;">⌨️ 課堂授課鍵盤快捷鍵指南</h3>
-      <ul style="line-height:2.1; font-size:0.96rem; padding-left:20px; color:#EAF5F0; margin-bottom:18px;">
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Space</kbd> / <kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">→</kbd> / <kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Enter</kbd> ：<strong>切換下一頁投影片</strong></li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">←</kbd> ：切換上一頁投影片</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">B</kbd> ：開啟 / 關閉黑板投影簡報</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">L</kbd> ：開啟 / 關閉紅色發光雷射筆</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">P</kbd> ：開啟 / 關閉課堂手繪畫筆</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">C</kbd> ：一鍵清空螢幕上手繪塗鴉</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">F</kbd> ：切換全螢幕滿版投影模式</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Esc</kbd> ：關閉彈窗或黑板簡報</li>
-      </ul>
-      <button onclick="toggleShortcutsModal()" style="width:100%; background:#E5BE58; color:#122E27; border:none; padding:10px; border-radius:8px; font-weight:800; cursor:pointer;">我知道了</button>
-    </div>
-  </div>
-
-  <!-- Toast 複製成功提示 -->
-  <div id="copy-toast">✓ 已複製到剪貼簿！可直接貼入 OpenCode</div>
-
-
   <script>
-    // --- 1. Blackboard Deck Modal Logic ---
-    const slidesData = [{"category": "開場核心理念", "title": "AI 時代守本心，<span class='hl-gold'>毅誠勤樸篤前行</span>", "desc": "澳門聖若瑟教區中學第五校 — 小學數學科 AI Agent 實作工作坊：", "points": ["<span class='hl-badge cyan'>核心主線</span><span class='hl-cyan'>教材 PDF → 備課 → 分層 → 同步修改 → 重用 → 輸出成果</span>。", "<span class='hl-badge gold'>講師原則</span>每一段只抓四件事：<span class='hl-gold'>投影甚麼、老師何時操作、你要觀察甚麼、出錯時怎樣不拖慢全班</span>。", "<span class='hl-badge green'>本質守護</span><span class='hl-green'>這不是學 Prompt，而是建立工作流</span>；技術服務教學，把時間還給師生互動！", "<span class='hl-badge rose'>責任邊界</span><span class='hl-rose'>AI 負責繁瑣的格式、排版與多檔案連動更新</span>；教師把關數學算理正誤、認知坡度與情感溫度。", "<span class='hl-badge purple'>交付規格</span>課堂產出均放入 <code>output/</code> 資料夾，建立永續可用的校本教學資產。"], "callout": "堅守聖五教育底色：以真實教材為錨，嚴禁超綱與盲目生成，將工程級 AI 轉化為溫暖教學力！", "teamNote": "<strong>【百年樹人，精神傳承】</strong>「毅誠勤樸」是聖五教育底色。AI 負責格式排版與多檔維護，教師把關算理正確性與認知坡度，守護課堂溫度。老中青教師同儕共備，以工程化工作流沉澱校本智慧。", "detailNote": "<strong>【正式課堂不處理環境安裝】</strong>所有環境於培訓前 24 小時整備完畢。正式工作坊分秒必爭，課堂專注於真實數學工作流程的實踐、連鎖修訂與資產重用。"}, {"category": "課堂操作色標", "title": "全程固定 <span class='hl-green'>4 大操作色標</span>", "desc": "40 人大規模實操，台上台下節奏高度默契，一眼即知當前誰動作：", "points": ["<span class='hl-badge green'>🟢 A 組操作</span>學員編號 <span class='hl-green'>1–20 號老師</span> 執行指令或按下 Enter。", "<span class='hl-badge blue'>🔵 B 組操作</span>學員編號 <span class='hl-blue'>21–40 號老師</span> 執行指令或按下 Enter（錯峰間隔 30–60 秒）。", "<span class='hl-badge gold'>🟡 全體觀看</span>全體停手，<span class='hl-gold'>目光聚焦講師投影幕</span>，觀察示範與關鍵概念。", "<span class='hl-badge rose'>🔴 暫停操作</span><span class='hl-rose'>全員切紅燈立即停手</span>，聆聽重要概念轉折或故障急停處置！", "<span class='hl-badge purple'>默契守則</span>投影右上即時顯示當前色標，看到紅燈自覺離鍵盤，切勿搶跑。"], "callout": "嚴格遵循錯峰與紅綠燈信號，徹底規避模型 429 限流與集體卡頓，確保 40 人整齊前行！", "teamNote": "<strong>【錯峰發送，集體前行】</strong>40 人同時向大模型發送大型 Prompt 極易遭遇 429 限流。A/B 組錯峰送出是工程級課堂防護，確保全員不掉隊，展現團隊協同作戰力量。", "detailNote": "<strong>【紅綠燈嚴格執行】</strong>看到 🔴 暫停操作 時，全班雙手離開鍵盤。概念講通再動手，比盲目狂按高效十倍。講師透過切換畫面引領全場注意力。"}, {"category": "0:00–0:06 開場與 Demo", "title": "先看成果：<span class='hl-gold'>如果一份教材 PDF 變成這些？</span>", "desc": "不要先介紹 OpenCode，先看兩分鐘真實成果：", "points": ["<span class='hl-badge cyan'>示範教材</span>以校本 <code>materials/P5-分數加減法-示範教材.pdf</code> 作為唯一真實輸入源。", "<span class='hl-badge gold'>完成版展示</span><code>01_課堂備課草案.md</code>、<code>02_三層學生工作紙.md</code>、<code>03_教師答案及錯因.md</code>。", "<span class='hl-badge rose'>傳統痛點</span>傳統聊天視窗最容易出現：<span class='hl-rose'>工作紙改了、答案沒改、教案忘了改</span>！", "<span class='hl-badge green'>專案價值</span>今天處理的是<span class='hl-green'>同一專案內多份相關文件的連動關係</span>。", "<span class='hl-badge purple'>真實轉化</span>將零碎的碎片化問答，昇華為可沉澱、可交付的校本數位教學資產包。"], "callout": "讓老師親眼看見「教材到成套教案與三層工作紙」的完整樣貌，激發深層教學共鳴！", "teamNote": "<strong>【先看成果，建立期待】</strong>開場 2 分鐘不講任何技術名詞。讓老師親眼看到「教材能變成整套教案與三層工作紙」，直接激發同儕共備熱情。", "detailNote": "<strong>【展示三份成果的連鎖關係】</strong>現場快速切換教案、工作紙與答案版，指出三者題號、算理與教學流程的精準對應，展示專案管理細節。"}, {"category": "0:06–0:10 今天的四件事", "title": "聚焦 Workflow：<span class='hl-purple'>今天只做四件事</span>", "desc": "拒絕堆砌名詞，專注於可落地的真實數學教師工作流：", "points": ["<span class='hl-badge rose'>今天不教</span><span class='hl-rose'>不教 Prompt 技巧大全、不教 MCP、不教 API、不教 GitHub、不教資料庫</span>。", "<span class='hl-badge gold'>今天只做</span>① <span class='hl-gold'>備課</span> ➔ ② <span class='hl-purple'>分層</span> ➔ ③ <span class='hl-cyan'>同步修改</span> ➔ ④ <span class='hl-green'>換教材重用</span>。", "<span class='hl-badge green'>成功標準</span>兩小時後若只記住十條 Prompt 算失敗；<span class='hl-green'>能換自己的教材重跑流程才算成功</span>！", "<span class='hl-badge cyan'>工作主菜</span>教師的備課專業才是主菜，AI 僅是輔助減負的廚房流水線。", "<span class='hl-badge purple'>起跑動作</span>在學習單寫下自己平時最花時間的一項備課工作，帶著真實問題出發！"], "callout": "教學設計是主菜，AI 工具是配菜。今天只練能帶回學校、明天能用的核心能力！", "teamNote": "<strong>【老師的真實工作是主菜】</strong>AI 工具只是配菜，教學設計才是主菜。讓老師在學習單寫下平時備課最花時間的一件事，帶著問題出發，體會科技賦能本質。", "detailNote": "<strong>【四件事貫穿全場】</strong>從第 1 版教案，到 A/B/C 分層，到一次要求改多檔，到換教材秒級重用，層層遞進，節奏緊湊分明。"}, {"category": "0:10–0:18 認識工作區", "title": "打開 Starter Pack：<span class='hl-cyan'>交出整個專案資料夾</span>", "desc": "不是在聊天視窗丟檔案，而是讓 AI 接管整個備課專案：", "points": ["<span class='hl-badge cyan'>統一目錄</span>全班統一在 <code>Math-Agent-Workshop/</code> 根目錄下操作，絕不開錯子層級。", "<span class='hl-badge gold'>四個核心要素</span><code>AGENTS.md</code>（規則）、<code>materials/</code>（教材）、<code>output/</code>（產出）、<code>templates/</code>（模板）。", "<span class='hl-badge green'>首次檢查</span>A 組 0:16 Enter，B 組 0:17 Enter，確認 AI 能說出資料夾結構與教材名稱。", "<span class='hl-badge purple'>嚴格約束</span>Prompt 特別要求「不要修改任何文件，只回報看到的結構」。", "<span class='hl-badge rose'>邊界防護</span><code>materials/</code> 唯讀鎖定，嚴防大模型誤改或覆蓋原始教科書檔案。"], "callout": "專案資料夾是 Agent 的工作邊界。確認所有人 Workspace 頂部均顯示 Math-Agent-Workshop！", "teamNote": "<strong>【專案根目錄意識】</strong>新手最常犯的錯誤是開錯子資料夾。講師務必確認所有人 Workspace 頂部顯示 Math-Agent-Workshop，維持團隊步調一致。", "detailNote": "<strong>【只讀不改安全原則】</strong>首次 Prompt 特別強調「不要修改任何文件，只回報看到的結構」，建立受控操作信任感與工程化邊界意識。"}, {"category": "0:18–0:33 實作一：備課", "title": "TASK 1｜第一次備課：<span class='hl-gold'>分析先於生成</span>", "desc": "讀取 materials/P5-分數加減法-示範教材.pdf 產出完整備課草案：", "points": ["<span class='hl-badge gold'>嚴格要求</span>列出 3–4 個學習目標、前置知識、3–5 個常見錯誤迷思、40 分鐘 6 階段流程。", "<span class='hl-badge cyan'>儲存規範</span>暫時不製作 Word，結果直接保存為 <code>output/01_課堂備課草案.md</code>。", "<span class='hl-badge green'>回報約束</span>完成後用不超過 8 行回報：讀取了甚麼、建立了甚麼、最值得檢查的 3 個位置。", "<span class='hl-badge purple'>課堂提問</span>提問設計要求「不能只有計算答案，要能引導學生說明理由」。", "<span class='hl-badge rose'>依據原則</span>嚴禁自行加入教材沒有依據的重要知識，守住數學事實源頭。"], "callout": "0:20 貼 Prompt ➔ 0:22 A 組 Enter ➔ 0:23 B 組 Enter ➔ 0:26 看成果 ➔ 0:29 自我檢查！", "teamNote": "<strong>【拒絕空泛提問】</strong>提問設計要求「不能只有計算答案，要能引導學生說明理由」，直接將優質教學法固化在 Prompt 內，傳承科組嚴謹學風。", "detailNote": "<strong>【節奏精確控制】</strong>0:20 貼 Prompt，0:22 A 組 Enter，0:23 B 組 Enter，0:26 看成果，0:29 自我檢查。講師巡視前置知識與迷思診斷是否精準。"}, {"category": "TASK 1 教師專業判斷", "title": "AI 自我檢查：<span class='hl-rose'>哪些內容最需要任課教師確認？</span>", "desc": "先不要修改文件，請站在任課教師角度進行自我反思：", "points": ["<span class='hl-badge cyan'>依據核實</span>1. 哪些內容是直接來自教材？", "<span class='hl-badge gold'>推論區分</span>2. 哪些內容是你的教學推論？", "<span class='hl-badge rose'>教師把關</span>3. 哪些地方最需要真正的任課教師確認？", "<span class='hl-badge purple'>難度檢查</span>4. 有沒有可能超出學生目前程度？", "<span class='hl-badge green'>只審不改</span>只做自我剖析與邊界回報，不產生任何檔案覆寫。"], "callout": "AI 可以快速起草整理，但教學取捨、認知坡度與難度把控永遠由任課教師最終拍板！", "teamNote": "<strong>【AI 可以起草，教師必須把關】</strong>教材依據是否充分、難度是否適切、教學取捨是否合理，永遠由聖若瑟五校教師主導，體現教師專業價值不可替代。", "detailNote": "<strong>【只回報，不修改】</strong>此步驟旨在培養教師的批判性審視習慣，區分「教材事實」與「AI 自由發揮」。邀請 2 位老師公開點評 AI 推論合理性。"}, {"category": "0:33–0:43 概念轉折", "title": "🔴 暫停操作：<span class='hl-rose'>現在才講 AGENTS.md</span>", "desc": "全體切紅燈停手！這是本場第一個核心認知躍遷：", "points": ["<span class='hl-badge rose'>普通聊天</span>每次開新對話都要重打：「請你記得我們是小學、請用澳門繁體、請不要超綱…」。", "<span class='hl-badge green'>Agent 專案</span>寫入 <code>AGENTS.md</code> 作為「AI 助教長期工作守則」，每次開工自動遵守！", "<span class='hl-badge gold'>三大核心原則</span>① 重複要求放進規則；② 規則服務教師工作，不取代判斷；③ 涉及學生個資，嚴格去識別化。", "<span class='hl-badge cyan'>跨對話有效</span>開新對話測試：「這個專案要求你進行學生分層時，最重要的三項規則是甚麼？」", "<span class='hl-badge purple'>校本標準</span>澳門繁體、分母限制、不因分層降低核心目標，全面載入守則。"], "callout": "先體會一次備課產出，再揭示規則邊界，讓「長期規則 vs 單次需求」刻進教學記憶！", "teamNote": "<strong>【為什麼現在才講？】</strong>讓老師先體會過一次備課的產出，再揭曉背後的規則約束，比一上來背誦概念深刻十倍！以具體體驗帶動認知飛躍。", "detailNote": "<strong>【新對話測試】</strong>讓學員開新對話問 AI：「這個專案要求你進行分層時，最重要的三項規則是甚麼？」親眼見證規則跨對話生效，確立守則權威。"}, {"category": "0:43–1:08 實作二：分層", "title": "TASK 2｜同一核心目標下的分層：<span class='hl-purple'>A/B/C 三層材料</span>", "desc": "根據 01_課堂備課草案.md 與示範教材，設計同一目標下的分層材料：", "points": ["<span class='hl-badge green'>A 基礎層</span>支架較多、數據較簡單，幫助學生建立基本算理概念。", "<span class='hl-badge blue'>B 標準層</span>達成本課正常學習要求，包含基本應用。", "<span class='hl-badge purple'>C 挑戰層</span>增加推理、解釋或較複雜情境，<span class='hl-rose'>不提前教授下一個單元</span>！", "<span class='hl-badge gold'>雙份產出</span>學生版 <code>output/02_三層學生工作紙.md</code> ＋ <code>output/03_教師答案及錯因.md</code>。", "<span class='hl-badge cyan'>題號對齊</span>教師版含正確答案、解題步驟、常見錯誤與教師追問句，題號 100% 一致。"], "callout": "0:48 A 組 Enter ➔ 0:49 B 組 Enter。左右分屏同時打開 02 與 03 進行對照檢查！", "teamNote": "<strong>【分層不是孤立出題】</strong>教師版必須包含：正確答案、主要解題方法、常見錯誤、教師追問句，題號與學生版完全一致，確保課堂教學精準落地。", "detailNote": "<strong>【Enter 節奏】</strong>0:48 A 組 Enter，0:49 B 組 Enter。左右分屏同時打開 02 與 03 進行對照檢查。若有題號錯位，立即利用質檢指令介入修正。"}, {"category": "分層質檢與教學對比", "title": "真分層 vs 假分層：<span class='hl-rose'>拒絕只把數字變大！</span>", "desc": "數學科最容易出現的偽分層現象剖析：", "points": ["<span class='hl-badge rose'>假分層</span>基礎題分母 4 和 6，挑戰題只是把分母換成 99 和 100。<span class='hl-rose'>認知要求毫無變化，只是折磨計算！</span>", "<span class='hl-badge green'>真分層</span><span class='hl-green'>核心概念相同、支架不同、認知要求不同、解釋深度不同</span>。", "<span class='hl-badge cyan'>五大認知維度</span>圖形表徵、語言解釋、比較不同策略、錯誤診斷、情境應用。", "<span class='hl-badge gold'>現場只改一題</span>指令：只修改 C3 題，保持挑戰性但不超綱，並同步更新答案版中的 C3！", "<span class='hl-badge purple'>思維昇華</span>讓基礎弱的孩子有梯子爬，讓思維敏捷的孩子有深度探究空間。"], "callout": "分層不是計算折磨，更不是盲目拔高。善用五大認知維度，讓不同起點的孩子都能登頂！", "teamNote": "<strong>【質檢 Prompt 實時驗收】</strong>執行分層質檢 Prompt，要求 AI 用表格對比 A/B/C 三層的認知要求，主動抓出「假分層」題目，守護數學思維本質。", "detailNote": "<strong>【現場只改一題】</strong>實施局部精修指令：只修改 C3 題，保持挑戰性但不超綱，並同步更新教師答案版中的 C3。其他題目完全不動，體現精確掌控。"}, {"category": "1:05–1:08 中段整理", "title": "合格線檢查：<span class='hl-gold'>確認 output 累積三份文件</span>", "desc": "第 60 分鐘關鍵里程碑，全班齊步走：", "points": ["<span class='hl-badge gold'>文件 1</span><code>output/01_課堂備課草案.md</code>（40分鐘教案與目標）", "<span class='hl-badge purple'>文件 2</span><code>output/02_三層學生工作紙.md</code>（A/B/C 三層練習）", "<span class='hl-badge green'>文件 3</span><code>output/03_教師答案及錯因.md</code>（答案、解法、錯因與追問）", "<span class='hl-badge rose'>技術救援</span>缺文件者立即舉手，由助教個別處理，<span class='hl-rose'>全班絕不等待停滯</span>。", "<span class='hl-badge cyan'>下半場基石</span>這三份文件是下半場進行同步修訂與新教材重用的唯一事實來源。"], "callout": "「現在開始，我們不是在生成新東西，而是在管理已有的教學成果！」", "teamNote": "<strong>【全員過關合格線】</strong>這三份文件是下半場進行同步修改與重用的基礎。中段 3 分鐘排查是大型工作坊不崩盤的核心樞紐，確保全員穩健達標。", "detailNote": "<strong>【講師轉折句】</strong>「現在開始，我們不是在生成新東西，而是在管理已有的教學成果！」助教迅速清點各排完成狀況，缺件者由 backup 導入。"}, {"category": "1:08–1:27 實作三：同步修改", "title": "TASK 3A｜先分析「變更影響」：<span class='hl-cyan'>先分析，再動手</span>", "desc": "收到試教後的三項修改要求：①第3題太難 ②第6題文字太長 ③C層缺reasoning：", "points": ["<span class='hl-badge rose'>錯誤做法</span><span class='hl-rose'>有一點要改就整篇重寫</span>，導致題號亂套、答案丟失、教案不同步！", "<span class='hl-badge cyan'>Agent 做法</span>提出變更 ➔ <span class='hl-cyan'>分析連鎖影響</span> ➔ 修改受影響位置 ➔ 執行一致性檢查。", "<span class='hl-badge gold'>影響清單</span>要求 AI 產出清單：哪些文件受影響、各需改甚麼、題號/答案/流程牽動、哪些文件不需要改。", "<span class='hl-badge green'>受控原則</span>Prompt 明確要求「先產生清單，不要修改任何文件」。", "<span class='hl-badge purple'>思維訓練</span>看清局部改動對全局體系的牽引，杜絕隨意改動帶來的連帶混亂。"], "callout": "培養工程級修改習慣：動手前先看清牽連網絡，杜絕牽一髮而動全身引發的混亂！", "teamNote": "<strong>【培養工程思維習慣】</strong>講師必須抓住這個教學重點：老師要看 AI 是否主動提及工作紙、答案版、教案、題號的連鎖反應，深化工程素養。", "detailNote": "<strong>【先不要修改文件】</strong>Prompt 明確規定「只產生變更影響清單，不要修改任何文件」，確保思考周密再執行。講師投影展示標準變更清單。"}, {"category": "TASK 3B 正式同步修改", "title": "TASK 3B｜跨檔案同步修改：<span class='hl-green'>牽一髮而動全身</span>", "desc": "確認執行修改，嚴格按照影響清單連動更新：", "points": ["<span class='hl-badge green'>要求 1</span>第 3 題降低一級難度，但保持原核心算理。", "<span class='hl-badge green'>要求 2</span>第 6 題簡化語言，避免小學生不必要閱讀負荷。", "<span class='hl-badge green'>要求 3</span>C 層新增一道 reasoning 題，學生必須以文字或算式說明理由。", "<span class='hl-badge gold'>核心連動</span>題號改變時：<span class='hl-gold'>學生版、答案版、教案引用的題號必須完全同步</span>！", "<span class='hl-badge cyan'>產出紀錄</span>最後建立 <code>output/04_同步修改紀錄.md</code>，說明修改理由與影響範圍。"], "callout": "1:18 A 組 Enter ➔ 1:19 B 組 Enter。核對 02、03、04 文件，體會連鎖同步力量！", "teamNote": "<strong>【核心關鍵詞：同步】</strong>重點不是「AI 幫我改了題目」，而是「AI 知道改動一個地方會牽動哪些文件與答案」，這正是 Agent 專案的價值高光。", "detailNote": "<strong>【Enter 節奏】</strong>1:18 A 組 Enter，1:19 B 組 Enter。完成後打開 02、03、04 核對題號與答案的一致性。驗證紀錄檔是否清晰客觀。"}, {"category": "1:27–1:45 實作四：重用", "title": "TASK 4｜換教材，不換工作方法：<span class='hl-gold'>體驗資產複用價值</span>", "desc": "換入第二份示範教材 materials/P5-小數乘法-重用教材.pdf：", "points": ["<span class='hl-badge cyan'>TASK 4A 說出流程</span>先讓 Agent 說出應該沿用哪套流程，只列步驟不執行。", "<span class='hl-badge gold'>TASK 4B 完整重用</span>重用專案規則、教案結構、分層原則、命名邏輯、答案錯因與檢查方法！", "<span class='hl-badge green'>存入獨立目錄</span>所有新成果存入 <code>output/reuse/</code>（01_小數乘法教案.md、02_三層工作紙.md、03_教師答案.md）。", "<span class='hl-badge rose'>嚴防搬移錯誤</span>以新教材為準，<span class='hl-rose'>嚴禁把上一課的分數內容誤搬過來</span>！", "<span class='hl-badge purple'>秒級切換</span>5 分鐘之內完成新課題的全套備課，體驗數位資產的驚人威力。"], "callout": "第四個 Aha Moment！教材會換、單元會換；好的工作方法不需要每次重新發明！", "teamNote": "<strong>【第四個 Aha Moment】</strong>教材會換、班級會換、單元會換；但好的工作方法不需要每次重新發明。Prompt 可以複製，Workflow 可以重用！資產沉澱方能代代傳承。", "detailNote": "<strong>【Enter 節奏】</strong>1:34 A 組 Enter，1:35 B 組 Enter。比較 output/ 與 output/reuse/，體會不變的架構與變動的學科內容，確認無跨單元概念污染。"}, {"category": "1:45–1:53 成果封裝", "title": "輸出 Word：<span class='hl-green'>最後才封裝為交付文件</span>", "desc": "草稿階段用 Markdown 高效管理，最終交付才轉換 Word：", "points": ["<span class='hl-badge green'>交付目錄</span>建立 <code>output/final/</code> 資料夾。", "<span class='hl-badge gold'>三份 Word</span>分數加減法_教師教案.docx、學生工作紙.docx、教師答案版.docx。", "<span class='hl-badge cyan'>排版規範</span>不改變已確認數學內容、學生版絕無答案、題號完全一致、適合 A4 列印。", "<span class='hl-badge rose'>容錯原則</span>若 Word 工具故障，<span class='hl-rose'>不在最後十分鐘大修環境，保留 Markdown 即算圓滿完成</span>！", "<span class='hl-badge purple'>課堂落地</span>走出培訓室，隨時可以列印工作紙送進課堂。"], "callout": "只驗三件事：①Word 存在能開；②學生版沒有答案；③教師版題號與學生版完全一致！", "teamNote": "<strong>【明天能拿進課堂的文件】</strong>今天的成果不是瀏覽器聊天紀錄，而是可直接列印給學生、交給科組審批的真實文件，讓備課成果具備落地生命力。", "detailNote": "<strong>【只驗三件事】</strong>①Word 真的存在且能打開；②學生版沒有答案；③教師版題號與學生版完全一致。若出現格式微瑕，課後微調即可，不拖延下課。"}, {"category": "1:53–1:58 工作流提升", "title": "回看今天用了甚麼：<span class='hl-purple'>理解分工，持續進化</span>", "desc": "拆解背後的技術分工，為第二場工作坊鋪路：", "points": ["<span class='hl-badge cyan'>OpenCode</span>本地執行的 AI 工作台，接管專案資料夾。", "<span class='hl-badge gold'>AGENTS.md</span>這個專案長期要遵守的校本憲法與安全邊界。", "<span class='hl-badge purple'>Skill</span>遇到某類特定工作時（如分析教材、生成工作紙），知道標準做法。", "<span class='hl-badge green'>Workflow</span>將多個步驟串連成自動化或半自動化的備課流水線。", "<span class='hl-badge rose'>極簡架構</span>無外部資料庫、無繁複雲端 API，純靠資料夾與規則，安全可靠。"], "callout": "今天完成的是單次備課循環；第二場我們將建立個人專屬的持續 AI 備課工作台！", "teamNote": "<strong>【極簡主義技術觀】</strong>沒有資料庫、沒有複雜 API、沒有雲端伺服器。純粹依託資料夾、Markdown 與本地規則，安全可控，守護學校資料資產。", "detailNote": "<strong>【從一次性到持續性】</strong>下一場培訓將把今天的一次性工作坊體驗，升級為日常教學的持續工作流。引導教師預覽個人化 Skill 定制前景。"}, {"category": "1:58–2:00 離場憑證", "title": "Exit Ticket：<span class='hl-gold'>把真實問題帶進第二場</span>", "desc": "執行 Exit Ticket Prompt，回答 3 個問題並記錄於 <code>MY-NEXT-TASK.md</code>：", "points": ["<span class='hl-badge gold'>問題 1</span>我目前最花時間的數學教學工作是甚麼？", "<span class='hl-badge cyan'>問題 2</span>哪一項工作最適合下一次交給 Agent 協助？", "<span class='hl-badge green'>問題 3</span>下一場培訓我準備帶哪一份真實教材來？", "<span class='hl-badge purple'>帶回清單</span>正在教的教材 PDF、平時工作紙、學校教案模板、最花時間的真實痛點。", "<span class='hl-badge rose'>結語定調</span>「下一場，我們不再用示範教材；開始用你自己的真實工作！」"], "callout": "帶走滿載成果的資料夾，留下一張第二場門票。教學技術的終點，是師生真實的成長！", "teamNote": "<strong>【最後一句話結尾】</strong>「下一場，我們不再用我的教材；開始用你自己的真實工作！」完美收尾，激發後續期待，確立持續共備機制。", "detailNote": "<strong>【真實憑證存檔】</strong>每位老師在專案中保存 MY-NEXT-TASK.md，作為第二場進階培訓的直接輸入入口。講師確認全場已保存該文件。"}, {"category": "現場技術救援", "title": "不拖慢全班的 <span class='hl-rose'>9 大故障處理 SOP</span>", "desc": "40 人現場突發技術狀況快速處置指南（講師與助教必備）：", "points": ["<span class='hl-badge cyan'>A｜無回應</span>先試「你好，只回覆 OK。」失敗檢查連接，個別處理不停全班。", "<span class='hl-badge rose'>B｜讀不到 PDF</span>嚴禁猜測！立刻改用同內容純文字 .txt 備援。", "<span class='hl-badge gold'>C｜開錯資料夾</span>檢查目前工作目錄，非 Math-Agent-Workshop 即重開 Workspace。", "<span class='hl-badge purple'>D｜只聊不寫檔</span>指令：「不要重生成，把結果保存到指定路徑，只回報路徑。」", "<span class='hl-badge green'>G｜AI 改多了</span>指令：「停止！先分析改了甚麼、撤回哪些，不要再次修改。」"], "callout": "學 Workflow 比現場修 parser 更重要！少數人落後迅速啟用分級保護，絕不停頓全班！", "teamNote": "<strong>【學 Workflow 比現場修 parser 更重要】</strong>遇到工具障礙迅速降級備援，絕不把 40 人的課堂變成個別除錯秀，守護全員學習體驗與課堂秩序。", "detailNote": "<strong>【落後學員分級保護】</strong>Level 1：備課＋分層；Level 2：＋同步修改；Level 3：＋重用＋Word。全員皆有成就感，助教落實定向幫扶。"}, {"category": "講師最後驗收", "title": "講師最後驗收與 <span class='hl-gold'>四大核心能力確認</span>", "desc": "下課前 3 分鐘講師巡視檢核清單：", "points": ["<span class='hl-badge gold'>專案成果確認</span>01、02、03、04 與 output/reuse/ 均已存在。", "<span class='hl-badge green'>Word/Markdown</span>多數老師能開 Word；Word 失敗者保留 Markdown 同樣算成功！", "<span class='hl-badge purple'>能力 1 & 2</span>把 AI 從聊天視窗搬進工作資料夾；把重複要求寫成規則。", "<span class='hl-badge cyan'>能力 3 & 4</span>學會管理修改與連鎖影響；把好方法重用到下一份教材。", "<span class='hl-badge rose'>第二場方向</span>正式進入「我的教材 → 我的 AGENTS.md → 我的工作流 → 我的 AI 教師工作台」。"], "callout": "成果留痕，信心滿滿。聖若瑟五校百年團隊，以極致細節引領智慧教育新篇章！", "teamNote": "<strong>【成果留痕，信心滿滿】</strong>老師離開時帶走的是一個滿載成果的資料夾，而不是空洞的筆記。這就是聖五科技教育的扎實作風，傳承百年底蘊。", "detailNote": "<strong>【第二場方向確認】</strong>正式進入「我的教材 → 我的 AGENTS.md → 我的工作流 → 我的 AI 教師工作台」。講師最後巡視確認成果保存無虞。"}];
+
+    // --- 1. Blackboard Slides System ---
+    const slidesData = [
+      {
+        category: "P01 ｜ 課堂啟動",
+        title: "OpenCode 教師 AI Agent 入門",
+        desc: "第一堂：只學 Agent — 零編程門檻，做一份真正能進課堂的教學資產",
+        points: [
+          "<span class='hl-gold'>【唯一前設】</span>OpenCode Desktop 已可用、指定模型已連接、Preflight 課前完成。",
+          "<span class='hl-cyan'>【課堂原則】</span>正式 120 分鐘不處理安裝、CLI、Node、Git；單機故障兩人共用。",
+          "<span class='hl-green'>【學習心態】</span>不是比誰生成得多，而是看誰能讓 Agent 更懂你的真實課堂。",
+          "<span class='hl-rose'>【現場專屬短網址】</span>https://tinyurl.com/25kekzvv（手機或筆電直接開啟講義）。"
+        ],
+        callout: "🌟 今日唯一主線：真教材 → 真問題 → 真產出 → 真使用"
+      },
+      {
+        category: "P02 ｜ 唯一主線",
+        title: "真教材 → 真問題 → 真產出 → 真使用",
+        desc: "四字主線貫穿 120 分鐘，拒絕泛理論演講與虛構 Demo：",
+        points: [
+          "<span class='hl-gold'>【真教材】</span>拿未來 1–2 週真實會教的教學材料，不放學生個資。",
+          "<span class='hl-cyan'>【真問題】</span>直面認知難點、題量、作答空間與學生常見迷思。",
+          "<span class='hl-green'>【真產出】</span>產出符合 OpenXML 標準的真正 DOCX 學習單與教師解答。",
+          "<span class='hl-purple'>【真使用】</span>下週直接印出來進課堂，課後反思觀察再改進。"
+        ],
+        callout: "💡 一句 Prompt 也能出題目，但唯有真教材與真要求，才能產出真正能用的教學材料！"
+      },
+      {
+        category: "P03 ｜ 成功標準",
+        title: "120 分鐘實作成功標準",
+        desc: "今天每位老師必達的六大實作里程碑：",
+        points: [
+          "<span class='hl-cyan'>①【RDQ 診斷】</span>READ → DIAGNOSE → QUESTION，先理解、後生成。",
+          "<span class='hl-gold'>②【第一版內容】</span>經三問審核：對教材嗎？對學生嗎？明天敢用嗎？",
+          "<span class='hl-green'>③【真正 DOCX/PDF】</span>v2.3 OpenXML 雙軌匯出，拒絕 COM 當機。",
+          "<span class='hl-purple'>④【A/B/C 分層與同步修訂】</span>同目標不同支架；一次教師介入多檔同步維護。"
+        ],
+        callout: "🎯 慢組保底：RDQ、第一版、DOCX、分層示範、一次修訂、Reuse；快組深化審核！"
+      },
+      {
+        category: "P04 ｜ 專案地圖",
+        title: "01-Agent-Project 專案結構地圖",
+        desc: "材料是 Context，requirements 是工作步驟，output 是證據：",
+        points: [
+          "<span class='hl-gold'>📂 AGENTS.md</span>：這個 Agent 長期工作的校規與底線（Project Rules）。",
+          "<span class='hl-cyan'>📂 materials/</span>：你的真實教材 PDF / Word（教學 Context 輸入端）。",
+          "<span class='hl-green'>📂 requirements/</span>：01-RDQ 到 05-Reuse 的具體任務步驟指引。",
+          "<span class='hl-purple'>📂 output/ 與 tools/</span>：02-worksheet 等正式產物與輕量排版工具。"
+        ],
+        callout: "🗺️ 打開資料夾，看懂目錄角色，這就是專業 Agent 備課的標準工作空間！"
+      },
+      {
+        category: "P05 ｜ 核心規則",
+        title: "AGENTS.md：長期規則 ≠ 一次性 Prompt",
+        desc: "它是整個專案的校規，約束 Agent 不隨意腦補、恪守教學邊界：",
+        points: [
+          "<span class='hl-gold'>【長期規則】</span>每次對話自動繼承，不需要在 Prompt 裡重複碎念。",
+          "<span class='hl-rose'>【真實性原則】</span>嚴禁杜撰教材內容、學生情況或評量標準。",
+          "<span class='hl-cyan'>【順序鐵律】</span>必須遵守 READ → DIAGNOSE → QUESTION 嚴禁搶跑生成。",
+          "<span class='hl-green'>【教師主導】</span>AI 做草稿，教師做判斷；教師保留最終裁判權。"
+        ],
+        callout: "📜 AGENTS.md 是 AI 的工作邊界守護者，把教學主控權牢牢留在教師手中！"
+      },
+      {
+        category: "P06 ｜ 真教材原則",
+        title: "真教材規則：杜絕虛構 Demo",
+        desc: "今天只用真正要教的內容，嚴防個資與失真：",
+        points: [
+          "<span class='hl-gold'>【選材原則】</span>選擇未來 1–2 週真正要進課堂的數學教材單元。",
+          "<span class='hl-rose'>【隱私紅線】</span>絕不放學生姓名、座號、成績或任何隱私個資。",
+          "<span class='hl-cyan'>【檔名清晰】</span>如 01-課本.pdf、02-現有練習.docx、03-教師指引.pdf。",
+          "<span class='hl-purple'>【備用材料】</span>另備第二份教材放入資料夾，第 11 區段 Reuse 時使用。"
+        ],
+        callout: "⚠️ 沒帶材料可與同級科組共用；真實教材是檢驗 Agent 質量的唯一標準！"
+      },
+      {
+        category: "P07 ｜ RDQ 流程",
+        title: "RDQ：先理解，後生成",
+        desc: "第一個 Prompt 最大要求：不要生成學習單！",
+        points: [
+          "<span class='hl-cyan'>📖 READ</span>：先列出實際讀取的檔名，確認 Context 真正讀入。",
+          "<span class='hl-gold'>🔍 DIAGNOSE</span>：深度分析學習重點、前置概念、學生常見迷思。",
+          "<span class='hl-purple'>❓ QUESTION</span>：最多只提出 5 個真正會影響設計的澄清問題。",
+          "<span class='hl-rose'>🛑 提問後停下</span>：等候教師回答，不擅自展開生成。"
+        ],
+        callout: "🧱 先把教學地基打穩，才能蓋出扎實的課堂練習；這就是 Context Engineering！"
+      },
+      {
+        category: "P08 ｜ 證據邊界",
+        title: "三種證據標記：審核 AI 判斷",
+        desc: "這一步不是挑 AI 錯字，而是嚴格挑出證據邊界：",
+        points: [
+          "<span class='hl-green'>🟢 MATERIAL-SUPPORTED</span>：教材有明確文字或圖形直接支持的事實。",
+          "<span class='hl-gold'>🟡 INFERRED</span>：根據教材合理推論，但教材並未明示之觀點。",
+          "<span class='hl-rose'>🔴 NEEDS-TEACHER-CONFIRMATION</span>：AI 不得代猜、必須由任課教師確認之條件。",
+          "<span class='hl-cyan'>【邊界清查】</span>無教材證據者主動更正，只保留 5 個核心問題。"
+        ],
+        callout: "🧐 學會分辨事實與推測，教師才能從被動接收者轉化為主動審查官！"
+      },
+      {
+        category: "P09 ｜ 審核標準",
+        title: "三問審核：教學可用性檢驗",
+        desc: "第一版草稿產出後，啟動最嚴格的教師專業三問：",
+        points: [
+          "<span class='hl-cyan'>❓ 問 1：真的對教材嗎？</span>（是否超出範圍？核心知識點是否精準扣合？）",
+          "<span class='hl-gold'>❓ 問 2：真的對學生嗎？</span>（語文難度是否合宜？認知坡度是否過陡？）",
+          "<span class='hl-rose'>❓ 問 3：明天真的敢用嗎？</span>（這份工作紙明天印出來，你敢發給全班嗎？）",
+          "<span class='hl-green'>【局部修訂】</span>挑出一個必改問題，給出具體指令，不讓 AI 重做整份。"
+        ],
+        callout: "⚖️ 三問過關，才算真正能進課堂的真產出！"
+      },
+      {
+        category: "P10 ｜ 差異化分層",
+        title: "分層原則：同一目的地，不同支架",
+        desc: "分層不是降低目標，而是提供不同梯子通往同一個高度：",
+        points: [
+          "<span class='hl-green'>🪜 A 版（基礎支架）</span>：增加圖解、提示、步驟鷹架；⚠️ 絕非單純數字變小。",
+          "<span class='hl-cyan'>🎯 B 版（核心標準）</span>：維持全班核心學習標準與標準題量。",
+          "<span class='hl-purple'>🚀 C 版（挑戰推理）</span>：增加比較、解釋、策略、開放探究；⚠️ 絕非單純增加題量。",
+          "<span class='hl-gold'>【同題示範】</span>以同一組 2 題改寫為 A/B/C 三層，比較支架差異。"
+        ],
+        callout: "🚨 警報：A 版不是降級做低年級題，C 版不是題海加量！"
+      },
+      {
+        category: "P11 ｜ 同步修訂",
+        title: "一次教師判斷，多版本同步維護",
+        desc: "真正為老師省時間的不是第一次生成，而是後續維護：",
+        points: [
+          "<span class='hl-cyan'>【真情境修改】</span>如發現第 3 題文字太難或課時縮減，指定局部修改。",
+          "<span class='hl-gold'>【只改指定部分】</span>保留未修改題目的穩定性，不允許整份重寫。",
+          "<span class='hl-purple'>【修改前後摘要】</span>Agent 先列修改對照表，經確認後再重新輸出。",
+          "<span class='hl-green'>【v2.3 重新匯出】</span>一鍵同步更新 output/04-revised/ 中的 DOCX/PDF。"
+        ],
+        callout: "🔄 學會精準維護，才能讓備課成果代代相傳、越用越順！"
+      },
+      {
+        category: "P12 ｜ 重用與真使用",
+        title: "換教材、不換規則：工作流重用",
+        desc: "如果換一課就失效，那只是次性 Prompt，不是成熟 Agent 工作流：",
+        points: [
+          "<span class='hl-cyan'>【換教材不換規則】</span>放入第二份教材，保留 AGENTS.md 完整規則。",
+          "<span class='hl-gold'>【重啟 RDQ】</span>重新列出第二教材檔名，重新完成診斷與 5 提問。",
+          "<span class='hl-green'>【無舊課殘留】</span>徹底驗證無上一課知識殘留，證明流程可複製。",
+          "<span class='hl-purple'>【Exit Ticket 反思】</span>選定一份未來 1–2 週真正進課堂的材料。"
+        ],
+        callout: "🌟 完整閉環：教材 → Agent → 產出 → 課堂 → 反思 → 再改！"
+      }
+    ];
+
     let currentSlide = 0;
 
     function openDeck(index) {
-      if (index >= 0 && index < slidesData.length) {
+      if (typeof index === 'number' && index >= 0 && index < slidesData.length) {
         currentSlide = index;
       }
       renderSlide();
-      document.getElementById('deck-modal').style.display = 'flex';
+      document.getElementById('deck-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDeck() {
-      document.getElementById('deck-modal').style.display = 'none';
+      document.getElementById('deck-modal').classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    function toggleDeckModal() {
-      const m = document.getElementById('deck-modal');
-      if (m.style.display === 'flex') {
-        closeDeck();
-      } else {
-        openDeck(currentSlide);
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+        renderSlide();
       }
     }
 
     function prevSlide() {
       if (currentSlide > 0) {
         currentSlide--;
-      } else {
-        currentSlide = slidesData.length - 1;
+        renderSlide();
       }
-      renderSlide();
     }
 
-    function nextSlide() {
-      if (currentSlide < slidesData.length - 1) {
-        currentSlide++;
-      } else {
-        currentSlide = 0;
-      }
-      renderSlide();
+    function toggleBlackboard() {
+      const modal = document.getElementById('deck-modal');
+      if (modal.classList.contains('active')) closeDeck();
+      else openDeck(currentSlide);
     }
 
     function renderSlide() {
@@ -1192,32 +1464,36 @@
       }
     }
 
-    document.addEventListener('mousemove', e => {
-      if (laserActive) {
-        const dot = document.getElementById('laser-dot');
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
+    function togglePaint() {
+      paintActive = !paintActive;
+      const palette = document.getElementById('pen-palette');
+      const btn = document.getElementById('btn-pen');
+      if (!canvas) initCanvas();
+
+      if (paintActive) {
+        canvas.style.pointerEvents = 'auto';
+        palette.classList.add('show');
+        btn.classList.add('active');
+        if (laserActive) toggleLaser();
+      } else {
+        canvas.style.pointerEvents = 'none';
+        palette.classList.remove('show');
+        btn.classList.remove('active');
       }
-    });
+    }
 
     function initCanvas() {
-      canvas = document.getElementById('paint-canvas');
+      canvas = document.getElementById('chalk-canvas');
       ctx = canvas.getContext('2d');
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
       canvas.addEventListener('mousedown', startPosition);
-      canvas.addEventListener('mouseup', endPosition);
+      canvas.addEventListener('mouseup', finishedPosition);
       canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('touchstart', e => {
-        e.preventDefault();
-        startPosition(e.touches[0]);
-      });
-      canvas.addEventListener('touchend', endPosition);
-      canvas.addEventListener('touchmove', e => {
-        e.preventDefault();
-        draw(e.touches[0]);
-      });
+      canvas.addEventListener('touchstart', handleTouchStart);
+      canvas.addEventListener('touchend', finishedPosition);
+      canvas.addEventListener('touchmove', handleTouchMove);
     }
 
     function resizeCanvas() {
@@ -1226,41 +1502,25 @@
       canvas.height = window.innerHeight;
     }
 
-    function togglePaint() {
-      paintActive = !paintActive;
-      const btn = document.getElementById('btn-paint');
-      const pickers = document.getElementById('color-pickers');
-      if (!canvas) initCanvas();
-      if (paintActive) {
-        canvas.style.display = 'block';
-        btn.classList.add('active');
-        pickers.style.display = 'flex';
-        if (laserActive) toggleLaser();
-      } else {
-        canvas.style.display = 'none';
-        btn.classList.remove('active');
-        pickers.style.display = 'none';
-      }
-    }
-
-    function setDrawColor(color, el) {
+    function setPenColor(color, el) {
       currentColor = color;
-      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-      el.classList.add('active');
+      document.querySelectorAll('.pen-color-dot').forEach(d => d.classList.remove('active'));
+      if (el) el.classList.add('active');
     }
 
     function startPosition(e) {
+      if (!paintActive) return;
       painting = true;
       draw(e);
     }
 
-    function endPosition() {
+    function finishedPosition() {
       painting = false;
-      ctx.beginPath();
+      if (ctx) ctx.beginPath();
     }
 
     function draw(e) {
-      if (!painting) return;
+      if (!painting || !paintActive) return;
       ctx.lineWidth = 4;
       ctx.lineCap = 'round';
       ctx.strokeStyle = currentColor;
@@ -1271,103 +1531,143 @@
       ctx.moveTo(e.clientX, e.clientY);
     }
 
+    function handleTouchStart(e) {
+      if (!paintActive) return;
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
+
+    function handleTouchMove(e) {
+      if (!paintActive) return;
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
+
     function clearCanvas() {
       if (ctx && canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
 
+    // --- 3. Spotlight Overlay ---
+    let spotlightActive = false;
+    function toggleSpotlight() {
+      spotlightActive = !spotlightActive;
+      const overlay = document.getElementById('spotlight-overlay');
+      const btn = document.getElementById('btn-spotlight');
+      if (spotlightActive) {
+        overlay.classList.add('active');
+        btn.classList.add('active');
+      } else {
+        overlay.classList.remove('active');
+        btn.classList.remove('active');
+      }
+    }
+
+    // Mouse Tracking for Laser & Spotlight
+    window.addEventListener('mousemove', function(e) {
+      if (laserActive) {
+        const dot = document.getElementById('laser-dot');
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+      }
+      if (spotlightActive) {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      }
+    });
+
+    // --- 4. Fullscreen & Help Modal ---
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
-    function toggleShortcutsModal() {
-      const m = document.getElementById('shortcuts-modal');
-      m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+    function toggleHelp() {
+      const hm = document.getElementById('help-modal');
+      hm.classList.toggle('show');
     }
 
-    // --- 3. Keyboard Shortcuts Listener ---
-    document.addEventListener('keydown', e => {
-      // Avoid triggering when focused on input
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-      const deckModal = document.getElementById('deck-modal');
-      const isDeckOpen = (deckModal.style.display === 'flex');
-
-      if (!isDeckOpen) {
-        if (e.key === ' ' || e.key === 'b' || e.key === 'B') {
-          e.preventDefault();
-          toggleDeckModal();
-        }
-      } else {
-        // Deck is open: presentation clicker & arrow navigation
-        if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key === 'PageDown') {
-          e.preventDefault();
-          nextSlide();
-        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-          e.preventDefault();
-          prevSlide();
-        } else if (e.key === 'b' || e.key === 'B' || e.key === 'Escape') {
-          e.preventDefault();
-          closeDeck();
-        }
-      }
+    // --- 5. Keyboard Navigation ---
+    window.addEventListener('keydown', function(e) {
+      const isDeckActive = document.getElementById('deck-modal').classList.contains('active');
 
       if (e.key === 'Escape') {
-        const sm = document.getElementById('shortcuts-modal');
-        if (sm && sm.style.display === 'flex') sm.style.display = 'none';
+        if (isDeckActive) closeDeck();
+        if (paintActive) togglePaint();
+        if (laserActive) toggleLaser();
+        if (spotlightActive) toggleSpotlight();
+        document.getElementById('help-modal').classList.remove('show');
+      } else if (e.key === 'b' || e.key === 'B') {
+        toggleBlackboard();
       } else if (e.key === 'l' || e.key === 'L') {
         toggleLaser();
       } else if (e.key === 'p' || e.key === 'P') {
         togglePaint();
       } else if (e.key === 'c' || e.key === 'C') {
         clearCanvas();
+      } else if (e.key === 's' || e.key === 'S') {
+        toggleSpotlight();
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullscreen();
-      } else if (e.key === '?') {
-        toggleShortcutsModal();
+      } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+        toggleHelp();
+      } else if (isDeckActive) {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          prevSlide();
+        }
       }
     });
 
-    // --- 4. Copy Prompt Helper ---
-    function copyPromptText(text, btn) {
+    // --- 6. One-Click Copy with Toast ---
+    function copyPrompt(btn, text) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast();
-        if (btn) {
-          const orig = btn.innerHTML;
-          btn.innerHTML = '✓ 已複製！';
-          btn.style.background = '#14352D';
-          setTimeout(() => {
-            btn.innerHTML = orig;
-            btn.style.background = '';
-          }, 2000);
-        }
-      }).catch(() => {
-        // Fallback
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast();
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ 已複製成功！';
+        btn.classList.add('copied');
+        showToast('📋 Prompt 指令已複製至剪貼簿！');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('複製失敗：', err);
+        showToast('⚠️ 複製失敗，請手動選取文字');
       });
     }
 
-    function showToast() {
-      const toast = document.getElementById('copy-toast');
+    function showToast(msg) {
+      let toast = document.getElementById('site-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'site-toast';
+        toast.className = 'site-toast';
+        document.body.appendChild(toast);
+      }
+      toast.innerText = msg;
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2400);
+      }, 2500);
     }
-  </script>
 
+  </script>
 </body>
 </html>

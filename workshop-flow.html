@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>120 分鐘逐分鐘實操流程｜小學數學教師 OpenCode 培訓</title>
-  <meta name="description" content="120 分鐘講師現場執行版 V3 逐分鐘操作手冊。涵蓋 11 大教學階段，提供投影甚麼、講師要說、老師操作、預期成效四象限指引，落實 A/B 組錯峰送出與不拖慢全班原則。">
+  <title>120分鐘講師逐分鐘教案 ｜ 聖若瑟教區中學第五校 OpenCode AI Agent 入門工作坊</title>
+  <meta name="description" content="OpenCode 教師 AI Agent 入門工作坊 v2.3 OpenXML 官方正式版 120 分鐘講師逐分鐘教案 (000:00–119:59)，涵蓋 12 個 10 分鐘區段七維度現場指引。">
   <style>
+
 
     :root {
       /* Foundation - 70% Ivory Warm White */
@@ -724,697 +725,1913 @@
       border-top: 2px solid #2B6154;
     }
 
+  
 
-    /* Flow Specific Styles */
-    .timeline-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
+    /* Additional Styles for Short URL and Timeline Tables */
+    .header-short-link {
+      display: flex;
+      align-items: center;
+    }
+    .short-url-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ai-orange);
+      color: #FFFFFF !important;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.35);
+      transition: all 180ms ease;
+      letter-spacing: 0.3px;
+    }
+    .short-url-pill:hover {
+      background: var(--ai-orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 106, 33, 0.5);
+    }
+    .deck-short-url-tag {
+      background: rgba(242, 106, 33, 0.25);
+      color: #FF8D4D;
+      border: 1px solid rgba(242, 106, 33, 0.5);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .site-toast {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      background: rgba(23, 63, 53, 0.95);
+      color: #FFFDF6;
+      border: 1px solid rgba(82, 209, 161, 0.5);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 200ms ease;
+      pointer-events: none;
+    }
+    .site-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .runsheet-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 24px 28px;
-      margin-bottom: 26px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      transition: all 0.2s ease;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      transition: all 180ms ease;
     }
-    .timeline-card:hover {
-      border-color: var(--border-medium);
-      box-shadow: var(--shadow-md);
+    .runsheet-card:hover {
+      border-color: var(--school-green);
+      box-shadow: 0 12px 28px rgba(24, 36, 54, 0.1);
     }
-    .timeline-card-header {
+    .runsheet-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
       flex-wrap: wrap;
-      gap: 10px;
-      border-bottom: 1px solid var(--border-light);
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--school-green-soft);
       padding-bottom: 12px;
     }
-    .time-badge {
-      background: var(--school-green-dark);
-      color: #FFFFFF;
-      font-size: 1rem;
-      font-weight: 800;
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-family: monospace;
-      letter-spacing: 0.5px;
-    }
-    .stage-title {
+    .runsheet-title {
       font-size: 1.25rem;
       font-weight: 800;
-      color: var(--school-navy);
-      flex: 1;
-      margin-left: 12px;
-    }
-
-    /* 4 Quadrants Grid */
-    .quad-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      margin-top: 14px;
-    }
-    .quad-box {
-      background: #FDFBF7;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      padding: 16px 18px;
-      font-size: 0.92rem;
-      line-height: 1.65;
-    }
-    .quad-box.proj {
-      border-left: 4px solid var(--tech-blue);
-      background: #F4F9FD;
-    }
-    .quad-box.say {
-      border-left: 4px solid var(--heritage-gold);
-      background: #FCF9F0;
-    }
-    .quad-box.act {
-      border-left: 4px solid var(--school-green);
-      background: #F2F8F4;
-    }
-    .quad-box.exp {
-      border-left: 4px solid var(--ai-orange);
-      background: #FEF6F0;
-    }
-    .quad-label {
-      font-weight: 800;
-      margin-bottom: 8px;
+      color: var(--school-green-dark);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
     }
-    .quad-label.proj { color: var(--tech-blue-dark); }
-    .quad-label.say { color: var(--heritage-gold-dark); }
-    .quad-label.act { color: var(--school-green-dark); }
-    .quad-label.exp { color: var(--ai-orange-dark); }
+    .runsheet-time-badge {
+      background: var(--school-green-soft);
+      color: var(--school-green);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      border: 1px solid rgba(31, 89, 72, 0.2);
+    }
+    .enter-badge {
+      display: inline-block;
+      background: var(--soft-orange);
+      color: var(--ai-orange);
+      border: 1.5px solid var(--ai-orange);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+    .enter-badge.active {
+      background: var(--ai-orange);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(242, 106, 33, 0.4);
+    }
+    .slide-badge-link {
+      display: inline-block;
+      background: var(--school-green-soft);
+      color: var(--school-green-dark);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(31, 89, 72, 0.2);
+      cursor: pointer;
+    }
+    .slide-badge-link:hover {
+      background: var(--school-green);
+      color: #FFFFFF;
+    }
+
   </style>
 </head>
 <body>
 
+  <!-- Spotlight Overlay -->
+  <div id="spotlight-overlay"></div>
+
+  <!-- Laser Dot -->
+  <div id="laser-dot"></div>
+
+  <!-- Fullscreen Chalkboard Canvas -->
+  <canvas id="chalk-canvas"></canvas>
+
+  <!-- Pen Color Palette -->
+  <div id="pen-palette" class="pen-palette">
+    <span style="font-size:0.8rem; font-weight:700; color:#FFFDF6; margin-right:4px;">畫筆顏色：</span>
+    <div class="pen-color-dot active" style="background:#FFE600;" onclick="setPenColor('#FFE600', this)" title="螢光黃"></div>
+    <div class="pen-color-dot" style="background:#FF4444;" onclick="setPenColor('#FF4444', this)" title="粉筆紅"></div>
+    <div class="pen-color-dot" style="background:#38BDF8;" onclick="setPenColor('#38BDF8', this)" title="科技藍"></div>
+    <div class="pen-color-dot" style="background:#52D1A1;" onclick="setPenColor('#52D1A1', this)" title="算理綠"></div>
+  </div>
+
+  <!-- Blackboard Deck Modal (單欄全景投影，>85% 視窗利用率) -->
+  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
+    <div class="deck-modal-container">
+      <div class="deck-header">
+        <div class="deck-title-area">
+          <span class="deck-tag" id="deck-cat">P01 ｜ 課堂啟動</span>
+          <span class="deck-short-url-tag">🌐 tinyurl.com/25kekzvv</span>
+        </div>
+        <div class="deck-controls-top">
+          <span class="deck-counter" id="deck-counter">[ 1 / 12 ]</span>
+          <button class="deck-icon-btn" onclick="prevSlide()" title="上一頁 (← 或 PageUp)">◀</button>
+          <button class="deck-icon-btn" onclick="nextSlide()" title="下一頁 (→ / Space / Enter / PageDown)">▶</button>
+          <button class="deck-icon-btn" onclick="toggleFullscreen()" title="全螢幕 (F)">⛶</button>
+          <button class="deck-icon-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖</button>
+        </div>
+      </div>
+      <div class="deck-body">
+        <div class="deck-slide-card">
+          <div id="deck-slide-content">
+            <!-- Dynamically populated by renderSlide() -->
+          </div>
+        </div>
+      </div>
+      <div class="deck-footer">
+        <span class="deck-tip">💡 提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或簡報筆 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板</span>
+        <button class="deck-close-btn" onclick="closeDeck()">關閉投影 (Esc)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classroom Floating Toolbar -->
+  <div class="classroom-toolbar">
+    <button class="tool-btn" id="btn-deck" onclick="toggleBlackboard()" title="開啟黑板投影片 (B)">
+      <span class="tool-icon">🖥️</span><span class="tool-text">黑板投影</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" id="btn-laser" onclick="toggleLaser()" title="雷射筆指標 (L)">
+      <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
+    </button>
+    <button class="tool-btn" id="btn-pen" onclick="togglePaint()" title="全螢幕塗鴉 (P)">
+      <span class="tool-icon">✏️</span><span class="tool-text">畫筆</span>
+    </button>
+    <button class="tool-btn" id="btn-clear" onclick="clearCanvas()" title="清除筆跡 (C)">
+      <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" id="btn-spotlight" onclick="toggleSpotlight()" title="聚光燈 (S)">
+      <span class="tool-icon">🔦</span><span class="tool-text">聚光燈</span>
+    </button>
+    <button class="tool-btn" id="btn-fs" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">
+      <span class="tool-icon">⛶</span><span class="tool-text">全螢幕</span>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="tool-btn" onclick="toggleHelp()" title="快捷鍵指南 (?)">
+      <span class="tool-icon">❓</span><span class="tool-text">指南</span>
+    </button>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="help-modal">
+    <h3>⌨️ 課堂授課教具快捷鍵指南</h3>
+    <table>
+      <tr><td><kbd>B</kbd></td><td>開啟／關閉黑板全景簡報</td></tr>
+      <tr><td><kbd>→</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> / <kbd>PgDn</kbd></td><td>投影片下一頁</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>PgUp</kbd></td><td>投影片上一頁</td></tr>
+      <tr><td><kbd>L</kbd></td><td>開啟／關閉紅色呼吸雷射筆</td></tr>
+      <tr><td><kbd>P</kbd></td><td>開啟／關閉全螢幕畫筆塗鴉</td></tr>
+      <tr><td><kbd>C</kbd></td><td>一鍵清除畫筆塗鴉</td></tr>
+      <tr><td><kbd>S</kbd></td><td>開啟／關閉聚光燈遮罩</td></tr>
+      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
+      <tr><td><kbd>?</kbd></td><td>開啟本快捷鍵指南</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>退出目前模式／關閉彈窗</td></tr>
+    </table>
+    <div style="text-align:right; margin-top:16px;">
+      <button class="btn btn-secondary" onclick="toggleHelp()" style="padding:6px 16px;">我知道了</button>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="wrap nav-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">CDSJ5 × OpenCode V3</span>
-        <span>聖若瑟教區中學第五校｜小學數學 AI Agent 工作坊</span>
+        <span class="brand-badge">CDSJ5</span>
+        <span>聖若瑟五校 ｜ OpenCode AI Agent 入門工作坊</span>
       </a>
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link ">🏠 培訓首頁</a>
-<a href="workshop-flow.html" class="nav-link active">⏱️ 120分鐘流程</a>
-<a href="prompts.html" class="nav-link ">💬 實操提示詞庫</a>
-<a href="troubleshooting.html" class="nav-link ">🛠️ 疑難排解與SOP</a>
-
-        <div class="nav-btn-deck" onclick="openDeck(0)" title="快捷鍵：Space / B">
-          <span>🖥️ 黑板簡報</span>
-        </div>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="index.html">首頁概覽</a></li>
+        <li><a href="workshop-flow.html" class="active">120分鐘流程</a></li>
+        <li><a href="prompts.html">實操提示詞庫</a></li>
+        <li><a href="troubleshooting.html">疑難排解SOP</a></li>
+      </ul>
+      <div class="header-short-link">
+        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" title="課堂專屬短網址，點擊直接前往或分享">
+          <span class="short-icon">🌐</span>
+          <span class="short-text">tinyurl.com/25kekzvv</span>
+        </a>
+      </div>
     </div>
   </header>
 
-
-  <main class="wrap">
-    <!-- 頂部引言 -->
-    <section class="hero-banner" style="padding:28px 30px; margin-top:24px;">
-      <div class="hero-motto">120 分鐘｜講師現場執行版 V3</div>
-      <h1 class="hero-title" style="font-size:1.85rem;">小學數學 AI Agent 工作坊 逐分鐘講師操作導航</h1>
-      <p class="hero-desc">
-        <strong>講師使用原則：</strong>這不是「照讀稿」。每一段只抓四件事：<span style="color:var(--tech-blue-dark); font-weight:700;">投影甚麼</span>、<span style="color:var(--school-green-dark); font-weight:700;">老師何時操作</span>、<span style="color:var(--heritage-gold-dark); font-weight:700;">你要觀察甚麼</span>、<span style="color:var(--ai-orange-dark); font-weight:700;">出錯時怎樣不拖慢全班</span>。正式課堂不處理環境安裝。
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-meta">
+        <span class="hero-tag school">澳門聖若瑟教區中學第五校</span>
+        <span class="hero-tag motto">校訓精神：毅誠勤樸</span>
+        <span class="hero-tag">v2.3 OpenXML 正式版</span>
+        <span class="hero-tag" style="background:#FEE2E2; color:#DC2626; border-color:#F87171;">12 個 10 分鐘區段 (000:00–119:59)</span>
+      </div>
+      <h1>⏱️ 120 分鐘講師逐分鐘教案<br><span class="key-text">七維度現場精準 Run Sheet</span></h1>
+      <p class="hero-p">
+        照時間碼往下走，嚴格遵守「<strong>真教材 → 真問題 → 真產出 → 真使用</strong>」主線。只有標示「<strong>全班 ENTER</strong>」的節點才要求所有學員同時送出，確保全班節奏同步、不脫節、不慌亂。
       </p>
-    </section>
 
-    <!-- 課堂色標 -->
+      <!-- Run sheet reading guide -->
+      <div class="out" style="margin:20px 0;">
+        <strong>📖 欄位讀法指引：</strong>
+        <strong>投影</strong>＝講師投影畫面（P01~P12） ｜ 
+        <strong>OpenCode</strong>＝輸入內容 ｜ 
+        <strong>ENTER</strong>＝真正送出時間 ｜ 
+        <strong>預期</strong>＝巡視查驗證據 ｜ 
+        <strong>故障備案</strong>＝不拖全班的最短處理。
+      </div>
 
-    <div class="color-pills-bar">
-      <span class="pill pill-a">🟢 A 組操作 (1–20號老師)</span>
-      <span class="pill pill-b">🔵 B 組操作 (21–40號老師)</span>
-      <span class="pill pill-all">🟡 全體觀看 (看講師投影)</span>
-      <span class="pill pill-pause">🔴 暫停操作 (全班切紅燈停手)</span>
+      <div class="hero-actions">
+        <button class="btn" onclick="openDeck(0)">🖥️ 開啟黑板全景投影片</button>
+        <a href="prompts.html" class="btn btn-secondary">📋 查看 10 大實操 Prompt</a>
+        <a href="troubleshooting.html" class="btn btn-outline">🛠️ 13 大故障排查 SOP</a>
+      </div>
     </div>
+  </div>
 
+  <main class="wrap" style="padding-top:32px;">
 
-    <!-- 120 分鐘總覽表 -->
-    <section class="card" style="margin-bottom:32px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
-        <h2 style="font-size:1.35rem; color:var(--school-navy); margin:0;">⏱️ 120 分鐘總覽時間表（11 階段）</h2>
-        <span class="pill pill-all">總計嚴格等於 120 分鐘</span>
-      </div>
-      <div class="tw">
-        <table class="data-table">
-          <thead>
+      <!-- Section 1 -->
+      <div class="runsheet-card" id="section-1">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 1 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">000:00–009:59（第 0–10 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">破冰宣導、四字主線、建立心智框架、明確 120 分鐘成功標準，全班同步開啟專案資料夾。</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
             <tr>
-              <th style="width:110px;">時間 (min)</th>
-              <th style="width:140px;">核心階段</th>
-              <th>主要內容與教師行動</th>
-              <th style="width:240px;">完成標準與里程碑</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>0–10 min</code></td>
-              <td><strong>先看成果</strong></td>
-              <td>開場 2 分鐘直觀展示 ➔ 完成版 Demo（教案、工作紙、答案版）➔ 宣佈今天的四件事</td>
-              <td>知道今天不是學 Prompt，而是建立工作流</td>
-            </tr>
-            <tr>
-              <td><code>10–18 min</code></td>
-              <td><strong>認識工作區</strong></td>
-              <td>打開 Starter Pack <code>Math-Agent-Workshop</code> ➔ 第一次讓 OpenCode 檢查專案</td>
-              <td>正確開啟根目錄，AI 回報資料夾結構</td>
-            </tr>
-            <tr>
-              <td><code>18–33 min</code></td>
-              <td><strong>實作一：備課</strong></td>
-              <td>TASK 1 備課：讀取示範教材 PDF ➔ 產出 40 分鐘教案 ➔ AI 自我專業檢查</td>
-              <td><span class="pill pill-a" style="padding:2px 8px; font-size:0.75rem;">產出 01_課堂備課草案.md</span></td>
-            </tr>
-            <tr>
-              <td><code>33–43 min</code></td>
-              <td><strong>停下講規則</strong></td>
-              <td><span class="pill pill-pause" style="padding:2px 8px; font-size:0.75rem;">🔴 暫停操作</span> 講授 <code>AGENTS.md</code> 作為「AI 助教長期守則」 ➔ 開新對話測試規則</td>
-              <td>理解「普通聊天每次重貼 vs 專案長期遵守」</td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">000:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(0)" title="點擊直接投影本頁投影片">P01 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">站在投影旁，不先開 OpenCode。說：『今日不是工具安裝課。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">電腦開好 OpenCode Desktop，但先不要操作。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：全班注意力在講師。 備案：若仍有人登入：安排鄰座共用，不停全班。</td>
             </tr>
             <tr>
-              <td><code>43–62 min</code></td>
-              <td><strong>實作二：分層</strong></td>
-              <td>TASK 2 同一核心目標下的分層 ➔ 產出 A/B/C 三層練習與教師答案版 ➔ 分層質檢 ➔ 現場只改 C3</td>
-              <td><span class="pill pill-a" style="padding:2px 8px; font-size:0.75rem;">產出 02_學生工作紙 ＋ 03_教師答案</span></td>
-            </tr>
-            <tr style="background:#FDFCF6;">
-              <td><code>62–68 min</code></td>
-              <td><strong>中段整理</strong></td>
-              <td><strong>第 60 分鐘合格線檢查</strong>：確認 output 內累積 01、02、03 三大文件；缺者助教個別補救</td>
-              <td><strong>全班不等待，確認基礎成果齊備</strong></td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">001:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(0)" title="點擊直接投影本頁投影片">P01 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">交代唯一前設：Desktop 已可用、模型已連接、Preflight 已課前完成。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認手上有 Starter Pack + 真教材。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：學員知道課堂不處理安裝。 備案：Preflight 未完成者先跟組員共用。</td>
             </tr>
             <tr>
-              <td><code>68–87 min</code></td>
-              <td><strong>實作三：同步修改</strong></td>
-              <td>試教回饋三項要求 ➔ TASK 3A 先分析變更影響清單 ➔ TASK 3B 跨檔案同步修訂並檢查一致性</td>
-              <td><span class="pill pill-a" style="padding:2px 8px; font-size:0.75rem;">產出 04_同步修改紀錄.md</span></td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">002:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(1)" title="點擊直接投影本頁投影片">P02 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影四字主線。逐字講：真教材、真問題、真產出、真使用。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">跟著看四字主線。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：建立全課心智框架。 備案：不要展開技術細節。</td>
             </tr>
             <tr>
-              <td><code>87–105 min</code></td>
-              <td><strong>實作四：重用</strong></td>
-              <td>換入新教材 <code>P5-小數乘法.pdf</code> ➔ TASK 4A 說出流程 ➔ TASK 4B 完整重用成熟架構</td>
-              <td><span class="pill pill-a" style="padding:2px 8px; font-size:0.75rem;">產出 output/reuse/ 三份新成果</span></td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">003:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(1)" title="點擊直接投影本頁投影片">P02 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">問：『一句 Prompt 能不能出工作紙？能。但它知道我們的教材嗎？』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">口頭回應／點頭。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：學員開始理解 Context 問題。 備案：若氣氛冷：直接舉一個『五年級分數』例。</td>
             </tr>
             <tr>
-              <td><code>105–113 min</code></td>
-              <td><strong>成果封裝</strong></td>
-              <td>執行 Word 輸出指令 ➔ 輸出教案、學生版、答案版 3 份 Word ➔ 教師只驗三件事</td>
-              <td>形成明天可直接列印交付的真實文件</td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">004:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影成功標準：今天每人至少完成一次完整 Agent 循環。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看成功標準。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：知道不是比誰生成得多。 備案：提醒：完整三層文件屬加分，不是必要。</td>
             </tr>
             <tr>
-              <td><code>113–118 min</code></td>
-              <td><strong>工作流提升</strong></td>
-              <td>回看今天用了甚麼 ➔ 拆解 OpenCode、AGENTS.md、Skill、Workflow 分工</td>
-              <td>理解專案規則與技能，為第二場鋪路</td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">005:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說明 120 分鐘節奏：前半先理解，後半才產出與修訂。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">不操作。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：學員不急著輸入。 備案：若有人已開始問 AI：請暫停。</td>
             </tr>
             <tr>
-              <td><code>118–120 min</code></td>
-              <td><strong>Exit Ticket</strong></td>
-              <td>回答 3 個問題 ➔ 寫入 <code>MY-NEXT-TASK.md</code> ➔ 宣佈第二場帶真實教材入場</td>
-              <td>帶走真實問題與教材，圓滿結課！</td>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">006:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">強調教師角色：『AI 做草稿，教師做判斷。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">記住三問審核會在後面使用。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成教師主導定位。 備案：—</td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 逐分鐘 11 階段詳細四象限卡片 -->
-    <section>
-      <h2 style="font-size:1.5rem; color:var(--school-navy); margin-bottom:22px;">📋 11 階段逐分鐘講師四象限卡片</h2>
-
-      <!-- 階段 1 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">0:00–0:10 min</span>
-          <span class="stage-title">階段 1｜先看成果：如果一份教材 PDF，可以變成這些東西？</span>
-          <button class="deck-btn" onclick="openDeck(2)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影開場</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>0:00–0:02 開場（不介紹技術） ➔ 0:02–0:06 完成版 Demo ➔ 0:06–0:10 今天的四件事。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            只放一句：「如果一份教材 PDF，可以變成這些東西呢？」並展示：示範教材 PDF ➔ 40 分鐘教案 ➔ 三層工作紙 ➔ 答案版 ➔ 同步修改 ➔ 換教材重用。快速切換展示三份成果。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「今天不先教技術名詞。先看兩分鐘，看看這件事值不值得你學。」指出傳統聊天最容易出現「工作紙改了、答案沒改、教案忘了改」；今天要處理的是文件之間的連鎖關係。
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-all" style="padding:1px 6px; font-size:0.75rem;">🟡 全體觀看</span></div>
-            前 6 分鐘老師只觀看投影。0:06–0:10 時，在學習單首頁寫下自己平時備課最花時間的一項工作（可留空到最後再填）。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            建立「今天是做真實數學教師工作，不是學軟件按鈕」的期待；聚焦 Workflow，而不是零散的 Prompt 清單。
-          </div>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">007:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說明課堂同步規則：『我說 Enter 才全班一起送出。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把游標停在輸入框，不送出。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：全班理解同步節奏。 備案：有人先送出：叫他停止後等待。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">008:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說明故障規則：單機故障不拖全班；兩人共用也算完成。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">與鄰座確認可互助。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：降低技術焦慮。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">009:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(3)" title="點擊直接投影本頁投影片">P04 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">轉入專案地圖：『現在才打開專案。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">開啟 01-Agent-Project</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">跟著打開同一資料夾。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：全班進入同一專案。 備案：找不到資料夾：用 README-START-HERE 定位。</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- 階段 2 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">0:10–0:18 min</span>
-          <span class="stage-title">階段 2｜認識工作區：打開 Starter Pack 專案資料夾</span>
-          <button class="deck-btn" onclick="openDeck(4)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影工作區</button>
+      <!-- Section 2 -->
+      <div class="runsheet-card" id="section-2">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 2 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">010:00–019:59（第 10–20 分鐘）</span>
         </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>0:10–0:15 打開專案 ➔ 0:15–0:18 第一次讓 OpenCode 看專案（A組 0:16 Enter，B組 0:17 Enter）。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            檔案總管中顯示 <code>Math-Agent-Workshop</code>，展示 <code>AGENTS.md</code>、<code>materials</code>、<code>output</code>、<code>templates</code> 四大核心要素。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「不是打開單一 PDF，而是把整個工作資料夾交給 OpenCode。<code>AGENTS.md</code> 等一下再揭曉。」引導大家依組別錯峰送出檢查指令。
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-a" style="padding:1px 6px; font-size:0.75rem;">🟢 A組 0:16</span> <span class="pill pill-b" style="padding:1px 6px; font-size:0.75rem;">🔵 B組 0:17</span></div>
-            用 OpenCode 開啟 <code>Math-Agent-Workshop</code> 專案資料夾。貼入專案檢查 Prompt，按組別錯峰 Enter，要求 AI 說明看到的目錄與教材。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            所有人看到同一專案根目錄；OpenCode 回報主要資料夾、教材與專案用途，建立受控操作的安全感。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 3 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">0:18–0:33 min</span>
-          <span class="stage-title">階段 3｜實作一：第一次備課（TASK 1：分析先於生成）</span>
-          <button class="deck-btn" onclick="openDeck(5)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影備課草案</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>0:20 貼 Prompt ➔ 0:22 A 組 Enter ➔ 0:23 B 組 Enter ➔ 0:26 看成果 ➔ 0:29 自我檢查。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            AI 正在執行：讀教材 ➔ 理解內容 ➔ 形成教學判斷 ➔ 建立文件。提醒：我們指定了輸出位置 <code>output/01_課堂備課草案.md</code>，不只是在聊天框拿一段答案。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「AI 可以快速整理與起草，但教材依據是否充分、難度是否適切、教學取捨是否合理，仍然由我們數學老師把關！」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-a" style="padding:1px 6px; font-size:0.75rem;">🟢 A組 0:22</span> <span class="pill pill-b" style="padding:1px 6px; font-size:0.75rem;">🔵 B組 0:23</span></div>
-            執行 TASK 1 Prompt。生成後打開 <code>output/01_課堂備課草案.md</code>，只看：①學習目標 ②常見錯誤 ③Exit Ticket。執行教師反思 Prompt。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            每位老師成功在 output 目錄保存第一份備課草案；體會「先分析教材、後設計教案」的 Agent 流程。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 4 -->
-      <div class="timeline-card" style="border-left: 5px solid #D9383A;">
-        <div class="timeline-card-header">
-          <span class="time-badge" style="background:#D9383A;">0:33–0:43 min</span>
-          <span class="stage-title">階段 4｜停下操作｜現在才講 AGENTS.md（概念轉折）</span>
-          <button class="deck-btn" onclick="openDeck(7)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影守則對比</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>重要提醒：</strong>先切紅燈 🔴 暫停操作，全體停手！這是本場第一個重大認知躍遷。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            對比投影：普通聊天（每次手動輸入「請你記得…」） vs Agent 專案（<code>AGENTS.md</code> 永遠遵守）。展示培訓版 <code>AGENTS.md</code> 長期工作守則。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            講師只講三點：① 重複要求放進規則，不必每次重貼；② 規則服務教師工作，不取代教師判斷；③ 涉及學生個資時，先去識別化。
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-pause" style="padding:1px 6px; font-size:0.75rem;">🔴 暫停 ➔ 測試</span></div>
-            先停止輸入聽講師講解。隨後開啟新對話，輸入測試 Prompt：「這個專案要求你進行學生分層時，最重要的三項規則是甚麼？」
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            AI 準確回答核心目標一致、支架不同、A/B/C 定位等分層規則。學員親眼見證規則在不同對話中依然有效。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 5 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">0:43–1:02 min</span>
-          <span class="stage-title">階段 5｜實作二：同一核心目標下的分層（TASK 2：真假分層）</span>
-          <button class="deck-btn" onclick="openDeck(8)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影分層結構</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>0:48 A 組 Enter ➔ 0:49 B 組 Enter ➔ 左右分屏驗收 ➔ 分層質檢 ➔ 現場只改 C3。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            等待期間投影「真假分層對比表」：假分層＝只把數字變大；真分層＝核心概念相同、支架不同、認知要求不同、解釋深度不同。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「同一班有人做完很快，也有人連第一步都不知道怎樣開始。分層是真實教學問題。如果 C 層只是數字變大，立即介入調整認知維度！」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-a" style="padding:1px 6px; font-size:0.75rem;">🟢 A組 0:48</span> <span class="pill pill-b" style="padding:1px 6px; font-size:0.75rem;">🔵 B組 0:49</span></div>
-            執行 TASK 2 Prompt。左右分屏打開 <code>02_三層學生工作紙.md</code> 與 <code>03_教師答案及錯因.md</code>。核對題號一致性，執行只改 C3 精修指令。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            產出學生版與答案版雙份文件；體會五大認知要求（表徵、解釋、比較策略、錯誤診斷、情境應用）的真正分層。
-          </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">專案地圖解說，逐一導讀 AGENTS.md 長期校規、真實性原則、證據標記與順序鐵律。</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">010:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(3)" title="點擊直接投影本頁投影片">P04 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">逐一指 project tree：AGENTS / materials / requirements / output / tools。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">只展開資料夾，不輸入。</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">同步查看左側專案樹。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：大家看到同一結構。 備案：若 Desktop 不顯示樹：用檔案總管配合。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">011:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(3)" title="點擊直接投影本頁投影片">P04 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『材料是 Context，requirements 是工作步驟，output 是證據。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">用滑鼠點選各資料夾。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解檔案角色。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">012:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">打開 AGENTS.md，停下，不急著滑。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">開啟 AGENTS.md</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班打開同一文件。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：看到第一堂定位與真實性原則。 備案：如果 OpenCode 自動分析：先不理它。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">013:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">重點講：AGENTS.md 是長期規則，不是一次 Prompt。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">只閱讀，不輸入。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解『Project rules』概念。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">014:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指第 3 節真實性原則：不得杜撰教材／學生／政策。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找到相同條文。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：建立 evidence discipline。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">015:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指第 4 節證據標記：三個狀態。先只認名字。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">圈／記三個標記。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：知道稍後用來審 Agent。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">016:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指第 5 節順序：READ→DIAGNOSE→QUESTION→…</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">沿流程看一次。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：知道不能直接跳到生成。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">017:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：AGENTS.md</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指第 6 節 v2.3 OpenXML：只說『後台會出 DOCX/PDF』，不講技術。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">知道正式產物可落地。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：不增加工具負荷。 備案：若有人問 OpenXML：說進階課再解釋。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">018:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(4)" title="點擊直接投影本頁投影片">P05 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影一句：『AGENTS.md = 這個 Agent 長期工作的校規。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把 AGENTS.md 留著。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成記憶點。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">019:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(5)" title="點擊直接投影本頁投影片">P06 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">轉到真教材規則。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備把教材放入 materials。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：進入實作前置。 備案：—</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- 階段 6 (中段整理) -->
-      <div class="timeline-card" style="border-left: 5px solid var(--heritage-gold); background:#FFFCF5;">
-        <div class="timeline-card-header">
-          <span class="time-badge" style="background:var(--heritage-gold-dark);">1:02–1:08 min</span>
-          <span class="stage-title">階段 6｜中段整理：第 60 分鐘成果里程碑檢查</span>
-          <button class="deck-btn" onclick="openDeck(10)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影合格線</button>
+      <!-- Section 3 -->
+      <div class="runsheet-card" id="section-3">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 3 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">020:00–029:59（第 20–30 分鐘）</span>
         </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>全班齊步走：</strong>1:05–1:08 所有老師只確認 output 內已有 01、02、03 三個文件。缺文件者舉手，由助教個別補救；全班不等待。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            展示 output 目錄結構：① <code>01_課堂備課草案.md</code> ② <code>02_三層學生工作紙.md</code> ③ <code>03_教師答案及錯因.md</code>。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「現在開始，我們不是在生成新東西，而是在管理已有的教學成果！下半場的所有修改與重用，都建立在這三份成果之上。」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-all" style="padding:1px 6px; font-size:0.75rem;">🟡 全員核查</span></div>
-            檢查 output 資料夾。如有缺失立刻舉手由助教協助從 backup 導入；進度正常者微休息或預覽文件排版。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            全體 40 位老師 100% 達成上半場基準合格線，確保下半場無縫推進。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 7 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">1:08–1:27 min</span>
-          <span class="stage-title">階段 7｜實作三：一次要求，多份文件同步修改（TASK 3）</span>
-          <button class="deck-btn" onclick="openDeck(11)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影連鎖影響</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>試教回饋 ➔ TASK 3A 影響清單 ➔ TASK 3B 跨檔同步（A組 1:18 Enter，B組 1:19 Enter）。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            對比投影：錯誤做法（有一點要改就全部重生成） vs Agent 做法（提出變更 ➔ 分析影響 ➔ 修改受影響位置 ➔ 一致性檢查）。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「核心詞是『同步』。重點不是 AI 幫我改了，而是 AI 知道改動一個地方會牽動教案、工作紙與答案哪些細節！」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-a" style="padding:1px 6px; font-size:0.75rem;">🟢 A組 1:18</span> <span class="pill pill-b" style="padding:1px 6px; font-size:0.75rem;">🔵 B組 1:19</span></div>
-            先執行 TASK 3A 取得變更影響清單；確認無誤後執行 TASK 3B 同步修改。核對 02、03、04 三份文件中的第 3 題、第 6 題與新 reasoning 題。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            產出 <code>output/04_同步修改紀錄.md</code>；學會掌控跨檔案連動修改，告別「改了工作紙忘了改答案」的歷史痛點。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 8 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">1:27–1:45 min</span>
-          <span class="stage-title">階段 8｜實作四：換教材，不換工作方法（TASK 4：資產重用）</span>
-          <button class="deck-btn" onclick="openDeck(13)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影重用流程</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>節奏劃分：</strong>換入新教材 <code>P5-小數乘法.pdf</code> ➔ TASK 4A 說出流程 ➔ TASK 4B 完整重用（A組 1:34 Enter，B組 1:35 Enter）。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            比較 <code>output/</code> 與 <code>output/reuse/</code> 兩個目錄：變的是數學內容；不變的是流程、分層理念、文件架構與檢查要求。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「第四個 Aha Moment！教材會換、班級會換、單元會換；但好的工作方法不需要每次重新發明。Prompt 可以複製，Workflow 可以重用！」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-a" style="padding:1px 6px; font-size:0.75rem;">🟢 A組 1:34</span> <span class="pill pill-b" style="padding:1px 6px; font-size:0.75rem;">🔵 B組 1:35</span></div>
-            執行 TASK 4A 檢驗 Agent 記憶；隨後執行 TASK 4B，產出 <code>output/reuse/</code> 資料夾下的三份新成果。檢查是否杜絕了上一課分數內容的誤搬。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            體驗到專案資產的長期價值，學會如何將一套成熟工作流複製到小學數學科所有教學單元。
-          </div>
-        </div>
-      </div>
-
-      <!-- 階段 9 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">1:45–1:53 min</span>
-          <span class="stage-title">階段 9｜成果封裝：最後才輸出 Word 可交付文件</span>
-          <button class="deck-btn" onclick="openDeck(14)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影 Word 驗收</button>
-        </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>容錯原則：</strong>今天的成果不是聊天紀錄，是可以明天拿進課堂的文件。若 Word 故障，不在最後十分鐘大修環境，保留 Markdown 即算圓滿完成。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            展示 <code>output/final/</code> 內的 Word 檔案：<code>分數加減法_教師教案.docx</code>、<code>學生工作紙.docx</code>、<code>教師答案版.docx</code>。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「草稿用 Markdown 管理，乾淨純粹；最後交付才轉 Word。老師只驗三件事：Word 能打開、學生版沒答案、題號完全一致。」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-all" style="padding:1px 6px; font-size:0.75rem;">🟡 全員執行</span></div>
-            執行 Word 輸出 Prompt。在 <code>output/final/</code> 打開 Word 檢查排版與 A4 列印適應性。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            獲得排版規範、結構清晰的正式 Word 教學材料，滿足教務與課堂印刷要求。
-          </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">放入真實教材、確認隱私紅線、RDQ 概念建立；講師貼 Prompt A，全班倒數 3、2、1 同步 ENTER！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">020:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(5)" title="點擊直接投影本頁投影片">P06 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『今天不用假教材；用未來 1–2 週真的會教的。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把第一份真教材複製到 materials。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：materials 內出現真實檔案。 備案：沒帶教材：與同科同級共用。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">021:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(5)" title="點擊直接投影本頁投影片">P06 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">提醒不放學生姓名、成績、個資。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">快速檢查教材是否含個資。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：私隱風險被控制。 備案：有個資：改用去識別版本。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">022:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(5)" title="點擊直接投影本頁投影片">P06 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">建議清楚檔名：01-課本、02-現有練習、03-教師資料。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">必要時重新命名。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 較容易辨認材料。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">023:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(5)" title="點擊直接投影本頁投影片">P06 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請另備第二份教材，最後 Reuse 用。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把第二份放入 materials 或桌面備用。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Reuse 有材料。 備案：沒有第二份：最後與鄰座交換。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">024:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(6)" title="點擊直接投影本頁投影片">P07 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影 RDQ。說：『第一個 Prompt 最大要求：不要生成。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">回到 OpenCode 輸入框。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：準備同步送出。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">025:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼上 Prompt A；講師逐行指給大家看，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt A</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼上 Prompt A，不送出。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：輸入框已完整貼好。 備案：貼錯：用 prompt-cards/01 找回。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">026:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">再次提醒：先列檔名；最多 5 問；提問後停。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt A 保留</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">檢查自己最後一句是『不要生成學習單』。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：輸入內容一致。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">027:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt A</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">同時按 Enter。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 開始讀專案與材料。 備案：若跳權限：只批准讀檔所需操作。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">028:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">不要解說，讓大家看 Agent 先做甚麼。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">觀察第一批輸出。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：應先見到讀檔／分析，而非 worksheet。 備案：若直接生成：立即用 Prompt R。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">029:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『先找它有沒有列實際檔名。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對檔名與自己的材料。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：至少看到 1–3 個真實檔名。 備案：漏讀：要求『先補讀 X，再繼續』。</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- 階段 10 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">1:53–1:58 min</span>
-          <span class="stage-title">階段 10｜工作流提升：回看今天用了甚麼</span>
-          <button class="deck-btn" onclick="openDeck(15)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影架構解析</button>
+      <!-- Section 4 -->
+      <div class="runsheet-card" id="section-4">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 4 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">030:00–039:59（第 30–40 分鐘）</span>
         </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>概念總結：</strong>第一次介紹 Skill。下一場才把一次性工作坊升級成持續工作流。
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            架構圖：OpenCode ＋ AGENTS.md ＋ 文件工具 ＋ 資料夾結構。指出我們沒有引入複雜資料庫或 API，安全可控。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「AGENTS.md 是專案長期要遵守的規則；Skill 是遇到特定工作時的執行技能。第二場我們將建立個人專屬 AI 教師工作台！」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-all" style="padding:1px 6px; font-size:0.75rem;">🟡 聆聽思考</span></div>
-            對照自己的專案架構，理解長期守則、單元教材與生成檔案的職責分離。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            建立工程級 AI 備課思維框架，為進階校本自動化流程奠定認知基礎。
-          </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">巡視讀檔清單、診斷分析概念、三種證據標記講解；Prompt B 證據邊界重整同步 ENTER！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">030:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場。第一個檢查只看：讀對檔沒有。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">逐份核對 Agent 列出的檔案。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：讀檔清單正確。 備案：PDF 讀不到：換同課另一份可讀檔。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">031:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">第二個檢查：有沒有先分析學習內容／核心概念。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">標記一項『它理解得對』。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：開始形成教材診斷。 備案：若太泛：叫它引用具體教材內容。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">032:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(7)" title="點擊直接投影本頁投影片">P08 + Live ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影三種證據標記，同時保留 OpenCode 視窗。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找輸出中三種標記。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：看到 MATERIAL-SUPPORTED 等。 備案：未使用標記：稍後 Prompt B 強制重整。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">033:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(7)" title="點擊直接投影本頁投影片">P08 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">解釋 MATERIAL-SUPPORTED：教材真的寫／呈現了甚麼。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">在自己輸出找一例。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：能分辨 evidence。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">034:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(7)" title="點擊直接投影本頁投影片">P08 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">解釋 INFERRED：合理，但不是教材原句／明示。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找一例推測。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：開始審 AI。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">035:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(7)" title="點擊直接投影本頁投影片">P08 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">解釋 NEEDS-TEACHER-CONFIRMATION：AI 不應替老師猜。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找一項要自己回答的資訊。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：教師角色回到中心。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">036:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">如果輸出已完成，請全班把游標回輸入框。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備 Prompt B。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：同一節奏重新同步。 備案：慢機先繼續，其他人等待。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">037:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt B，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt B</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：輸入框有證據重整 Prompt。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">038:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『這一步不是挑 AI 錯字，而是挑證據邊界。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt B</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">理解目的。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">039:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt B</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">同時按 Enter。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 重新分類判斷。 備案：模型慢：讓學員先讀上一版。</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- 階段 11 -->
-      <div class="timeline-card">
-        <div class="timeline-card-header">
-          <span class="time-badge">1:58–2:00 min</span>
-          <span class="stage-title">階段 11｜Exit Ticket：把真實問題帶進第二場</span>
-          <button class="deck-btn" onclick="openDeck(16)" style="font-size:0.8rem; padding:4px 10px;">🖥️ 投影離場憑證</button>
+      <!-- Section 5 -->
+      <div class="runsheet-card" id="section-5">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 5 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">040:00–049:59（第 40–50 分鐘）</span>
         </div>
-        <p style="color:var(--text-secondary); margin:0 0 12px; font-size:0.92rem;">
-          <strong>收尾金句：</strong>「下一場，我們不再用我的教材；開始用你自己的真實工作！」
-        </p>
-        <div class="quad-grid">
-          <div class="quad-box proj">
-            <div class="quad-label proj">🖥️ 投影甚麼</div>
-            Exit Ticket 三個問題，以及第二場自帶材料清單：正在教的教材 PDF、平時工作紙、學校教案模板、最花時間的教學工作。
-          </div>
-          <div class="quad-box say">
-            <div class="quad-label say">🗣️ 講師要說</div>
-            「今天我們帶著滿載成果的資料夾離開，同時留下一張通往下一場的門票。請認真寫下你自己的真實教學痛點。」
-          </div>
-          <div class="quad-box act">
-            <div class="quad-label act">👥 老師操作 <span class="pill pill-all" style="padding:1px 6px; font-size:0.75rem;">🟡 完成存檔</span></div>
-            執行 Exit Ticket Prompt，將三項回答保存在專案根目錄下的 <code>MY-NEXT-TASK.md</code>。收拾專案檔案，離場。
-          </div>
-          <div class="quad-box exp">
-            <div class="quad-label exp">🎯 預期成效</div>
-            完成離場憑證存檔；從「學員」心態轉變為「帶著真實業務問題來共備」的成熟專案主導者！
-          </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">巡視 Prompt B 結果、每人找一項專業糾正、Context Engineering 說明；Prompt C 教師確認同步 ENTER！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">040:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場看 Prompt B 結果。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">比較前後分析。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：推測與證據被分開。 備案：若仍混淆：點名一項要求它說明證據。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">041:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">要求每人找一項自己要糾正的地方。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">在紙／筆記記下 1 個修正。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：每位教師準備一次專業介入。 備案：找不到：從難點、課時、學生差異挑一項。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">042:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請 1–2 位老師口頭說：AI 哪裡理解得對／不夠。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">短分享。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：示範教師不是被動接受。 備案：時間超支：只分享 1 位。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">043:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">Agent 應只保留最多 5 個澄清問題。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">讀最後的問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：問題聚焦設計條件。 備案：若 &gt;5：輸入『只保留最重要 5 個』。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">044:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(6)" title="點擊直接投影本頁投影片">P07 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">講一分鐘：這就是 Context Engineering，不是 Prompt 花式寫法。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">停止操作聽講。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解 Agent 主動問教師。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">045:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備回答；顯示 Prompt C 模板。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt C</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把空格按自己真實情況填好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：每位學員答案不同。 備案：不知道某項：寫『未確定』。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">046:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">提醒：不要為了填滿而虛構學生情況。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt C</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">只填自己真正知道的。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：真實性保持。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">047:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">給 60 秒完成填寫。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt C</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">完成用途、時間、差異等。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：輸入框已準備。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">048:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt C</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">送出教師確認。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 回覆 5–8 行設計條件。 備案：若直接生成：Prompt R 拉回。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">049:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">檢查 Agent 是否停下。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對條件摘要是否正確。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：完成 Context freeze。 備案：若有錯：立即更正 1 句後再繼續。</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </section>
+
+      <!-- Section 6 -->
+      <div class="runsheet-card" id="section-6">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 6 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">050:00–059:59（第 50–60 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">預告三問審核標準、說明先產出草稿不匯出；Prompt D 第一版內容任務同步 ENTER！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">050:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(2)" title="點擊直接投影本頁投影片">P03 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影『現在才開始生成』。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">先不輸入。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：全班知道前 50 分鐘刻意沒出 worksheet。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">051:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影三問審核，先預告生成後要用。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">記住三問：教材／學生／敢用。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：有明確審核標準。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">052:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt D，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt D</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：內容草稿任務就緒。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">053:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指出 Prompt D 的『先停下，不匯出』。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt D</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認未要求立即做檔案。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：生成與匯出分兩步。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">054:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">提醒：第一版只求可用，不求漂亮。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt D</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備同步。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">055:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt D</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">送出第一版內容任務。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 開始生成五部分內容。 備案：模型慢：可先只做核心練習＋應用＋Exit Ticket。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">056:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場，提醒不要邊生成邊再下新命令。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">等待完成。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：內容逐步出現。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">057:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看是否超出教材範圍。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">快速圈出一題可能超綱的。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：開始審內容，不等完美。 備案：若超綱：稍後局部修正。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">058:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看題量是否符合剛才時間。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">估算學生完成量。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：與真實課時連接。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">059:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看說理題是否真的要求解釋，而非多做計算。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">標記 1 題說理題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：認知深度被檢查。 備案：—</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="runsheet-card" id="section-7">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 7 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">060:00–069:59（第 60–70 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">三問審核實踐、講師示範局部修改句、學員輸入自訂修訂；Prompt E 正式匯出 DOCX/PDF 同步 ENTER！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">060:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">正式啟動三問審核。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">逐問檢查第一版。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：每人找到至少 1 個要改之處。 備案：不知道改甚麼：先看題量／語言／提示／推理。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">061:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">問 1：真的對教材嗎？</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對學習目標與教材。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">062:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">問 2：真的對學生嗎？</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對年級語言與難度。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">063:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">問 3：明天真的敢用嗎？</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">決定一項必改問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成真實修改。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">064:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">講師示範一個局部修改，不叫 AI 重做整份。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">輸入自己的局部修改句；不使用固定 Prompt。</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">講師 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">學員先看示範，不跟按。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：看到只修改指定部分。 備案：若 AI 全重寫：加『其他內容不要修改』。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">065:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請學員各自輸入自己的局部修改。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">學員自訂 1–3 句修訂要求。</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">學員 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">每人送出自己的真問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：第一版經教師介入。 備案：時間慢：只改一題。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">066:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">檢查修改是否局部。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：教師主導修訂完成。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">067:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『內容確認後才做正式檔案。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備 Prompt E。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：生成與文件輸出分開。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">068:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt E，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt E</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：v2.3 OpenXML 匯出任務就緒。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">069:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt E</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">正式匯出 DOCX/PDF。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 建 JSON、呼叫工具。 備案：若 shell 權限提示：選 Allow once。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 8 -->
+      <div class="runsheet-card" id="section-8">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 8 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">070:00–079:59（第 70–80 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">權限提示處理、驗證 output 實體檔案、開啟 DOCX 檢驗版面與教學可用性；分層原則預告。</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">070:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">解釋權限：只允許這次，不開全域自動允許。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">如跳提示，按 Allow once。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：工具正常執行。 備案：拒絕了：重新執行 Prompt E。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">071:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">等待匯出，不講 OpenXML 技術。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">觀察 output/02-worksheet。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：應逐步出現 JSON / DOCX / PDF。 備案：PDF 慢：先看 DOCX 是否已成功。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">072:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">要求只相信實際檔案，不相信『我已完成』文字。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">在 output 確認檔案存在。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：看到 .docx / .pdf。 備案：只有 DOCX：仍可繼續主課。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">073:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認 Agent 分開報 DOCX/PDF 路徑。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對路徑。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：DOCX/PDF 狀態清楚。 備案：PDF fail：記下，不用回退 Word COM。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">074:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：檔案總管/Word</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">示範雙擊 DOCX。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">學員打開自己的 DOCX。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Word 能顯示題目、表格、作答線。 備案：沒有 Word：可先開 PDF。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">075:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：Word/PDF</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請看『技術上可開』與『教學上可用』是兩件事。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">檢查 A4、題號、作答空間。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：真產出被實際審核。 備案：版面小問題先記下，不現場做美工。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">076:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：Word/PDF</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找一項版面問題和一項內容問題。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">記下 2 點。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成下一輪修訂依據。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">077:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(8)" title="點擊直接投影本頁投影片">P09 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">回到三問審核，提醒：Word 出來才是真正開始審。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">關閉／縮小 Word，回 OpenCode。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">078:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(9)" title="點擊直接投影本頁投影片">P10 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">轉入分層：同一目的地，不同支架。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備分層。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成 differentiation 原則。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">079:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(9)" title="點擊直接投影本頁投影片">P10 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">講清 A、B、C 定義；C 不是加題量。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">只聽。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：避免錯誤分層。 備案：—</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 9 -->
+      <div class="runsheet-card" id="section-9">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 9 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">080:00–089:59（第 80–90 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">同一目的地不同支架（A/B/C）、Prompt F 分層任務同步 ENTER、Prompt G 匯出分層示範檔！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">080:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(9)" title="點擊直接投影本頁投影片">P10 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">用一題口頭示例：A 加提示、B 標準、C 要求比較策略。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">跟著判斷差異。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解支架 vs 難度。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">081:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt F，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt F</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：分層設計任務就緒。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">082:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">指出核心完成標準：差異表 + 同兩題三層，不必全套三份。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt F</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">理解時間管理。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：課內可完成。 備案：快組可課後擴展完整三版。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">083:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt F</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">送出分層任務。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 先出差異表。 備案：若直接做全套：允許，但不要等全班。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">084:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場只看差異表，不先看漂亮文字。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">比較 A/B/C。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：同一目標被保留。 備案：若 A 變低年級：要求恢復核心目標。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">085:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(9)" title="點擊直接投影本頁投影片">P10 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影兩個警報：A≠數字變小；C≠題量變多。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">用這兩句審自己結果。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：分層質量提高。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">086:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">要求學員挑同一題三層，比較支架／推理。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找 2 個真差異。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：有可解釋的分層邏輯。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">087:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">讓 1 位老師分享 A/B/C 差異。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">短分享。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：建立共同標準。 備案：時間緊：略過分享。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">088:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">若差異合理，貼 Prompt G。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼 Prompt G</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：準備輸出分層示範檔。 備案：慢組可不匯出，先保留內容。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">089:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt G</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">匯出分層示範 DOCX/PDF。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：output/03-differentiated 出檔。 備案：PDF 慢：DOCX 成功即可跟上。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 10 -->
+      <div class="runsheet-card" id="section-10">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 10 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">090:00–099:59（第 90–100 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">講解維護價值、Prompt H 同步修訂填空與全班 ENTER；並排檢驗修訂前後差異，杜絕整份重做。</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">090:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">等待分層文件，同時講：真正省時間的是維護，不是第一次生成。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">等待／查看 output。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：分層產物完成。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">091:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(10)" title="點擊直接投影本頁投影片">P11 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影『一次教師判斷 → 多版本同步維護』。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備同步修訂。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解下一步價值。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">092:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(10)" title="點擊直接投影本頁投影片">P11 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">給情境：第 3 題文字負荷太高；A/B/C 要不同處理。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">想自己的真問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：每人有修訂題材。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">093:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請每人選一個真實問題，不要抄示例。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">填 Prompt H 兩個括號。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：個人化修訂條件。 備案：沒有想法：從文字／提示／推理中選一。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">094:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt H，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt H 並填空</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">完成具體修改對象與問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：輸入框準備。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">095:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認 Prompt H 有『其他未指定部分不要重寫』。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt H</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">檢查。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：防止整份重做。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">096:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt H</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">送出同步修訂。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 先列修改前後摘要。 備案：若直接大改：Prompt R。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">097:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">巡場看摘要是否反映教師意圖。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對修改前後。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：教師判斷被正確翻譯。 備案：有偏差：立即更正一行。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">098:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">等待 v2.3 重新匯出。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">查看 output/04-revised。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：新 DOCX/PDF 產生。 備案：DOCX 成功即可；PDF 可分開報。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">099:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：Word/PDF</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">打開修訂版與原版並排看一處差異。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認未指定部分沒被亂改。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：同步修訂閉環完成。 備案：若被亂改：要求回復未指定部分。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 11 -->
+      <div class="runsheet-card" id="section-11">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 11 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">100:00–109:59（第 100–110 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">總結維護精神、換入第二份教材、Prompt I Reuse 任務同步 ENTER；檢驗 Context 切換無上一課殘留。</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">100:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(10)" title="點擊直接投影本頁投影片">P11 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">總結：『今天最重要的不是生成，是維護。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">停止輸入 30 秒。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：概念收束。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">101:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請快組把修訂版保存好，慢組只需確認 DOCX。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">整理 output。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：全班重新同步。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">102:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(11)" title="點擊直接投影本頁投影片">P12 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">轉到 Reuse：如果換課就失效，它只是 Prompt，不是 Agent。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">準備第二份教材。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：理解 reusable workflow。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">103:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(11)" title="點擊直接投影本頁投影片">P12 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">說：『換內容，不換規則。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">把第二份教材指定清楚。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">104:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：materials</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">如果第二份已在 materials，告訴 Agent 檔名；否則現在加入。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">加入／選第二份教材。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：材料準備完成。 備案：沒有：與鄰座交換另一課。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">105:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">貼 Prompt I，不按 Enter。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">貼上 Prompt I</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班貼好。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Reuse prompt 就緒。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">106:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">提醒：這一步不要出 worksheet，只重新 RDQ。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt I</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge">等待</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認最後一句『不要生成』。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：— 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">107:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">倒數 3、2、1。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">Prompt I</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="enter-badge active">🔥 全班 ENTER</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">送出 Reuse。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Agent 重新讀第二教材。 備案：若沿用上一課：立即指出並用 Prompt R。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">108:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找第一個證據：是否列出第二教材檔名。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">核對讀檔清單。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：真的換 Context。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">109:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">找第二個證據：是否出現上一課殘留。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">快速掃描。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：應無上一課知識殘留。 備案：有殘留：要求『清除上一課具體內容後重診斷』。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 12 -->
+      <div class="runsheet-card" id="section-12">
+        <div class="runsheet-header">
+          <div class="runsheet-title">
+            <span>⏱️ 第 12 個 10 分鐘區段</span>
+          </div>
+          <span class="runsheet-time-badge">110:00–119:59（第 110–120 分鐘）</span>
+        </div>
+        <p style="margin:0 0 16px 0; font-size:0.94rem; color:var(--text-secondary); line-height:1.65;">驗證新一輪診斷、反思 Exit Ticket、預告後續學習階梯；重溫四字主線圓滿結業！</p>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:75px;">時間碼</th>
+                <th style="width:70px; text-align:center;">投影</th>
+                <th style="min-width:200px;">🗣️ 講師做／說</th>
+                <th style="min-width:140px;">⌨️ 輸入內容</th>
+                <th style="width:100px; text-align:center;">ENTER 節點</th>
+                <th style="min-width:180px;">👥 學員動作</th>
+                <th style="min-width:210px;">🎯 預期畫面／故障備案</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">110:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看新一輪 DIAGNOSE 是否重建核心概念。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">比較兩課診斷不同。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：Reuse 成功。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">111:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：OpenCode</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">看 QUESTION 是否針對第二課重新問。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">確認不是複製上一課問題。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：工作流而非內容被重用。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">112:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(11)" title="點擊直接投影本頁投影片">P12 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">問全班：『我們重用的是甚麼？』答案：規則與流程，不是題目。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">口頭回答。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：核心概念被語言化。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">113:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(11)" title="點擊直接投影本頁投影片">P12 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">投影完整閉環：教材→Agent→產出→課堂→反思→再改。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">停止操作聽講。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：連回真使用。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">114:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：reflection</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">打開 reflection/第一堂Exit-Ticket.md。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">開啟 Exit Ticket</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">全班打開。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：看到 7 個反思問題。 備案：找不到：用專案樹定位。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">115:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：reflection</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">請只先填第 4、5、7 題：最後得到甚麼、哪份會用、今天轉變。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">開始填寫。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：每人選定真使用產物。 備案：時間不足只填 4、5、7。</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">116:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="font-size:0.8rem; font-weight:700;">Live：reflection</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">提醒：下次帶回『學生用了之後發生甚麼』。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">完成反思。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：真使用成為課後任務。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">117:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(11)" title="點擊直接投影本頁投影片">P12 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">預告後續 6 小時：CLI/Git/Skills/工具擴充，但今天不展開。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">知道學習階梯。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：不混入本課內容。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">118:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(1)" title="點擊直接投影本頁投影片">P02 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">回到四字主線，請學員跟著讀一次。</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">真教材 → 真問題 → 真產出 → 真使用。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：形成最後記憶。 備案：—</td>
+            </tr>
+            <tr>
+              <td style="font-family:monospace; font-weight:800; color:var(--school-green); white-space:nowrap;">119:00</td>
+              <td style="text-align:center; white-space:nowrap;"><span class="slide-badge-link" onclick="openDeck(0)" title="點擊直接投影本頁投影片">P01 ↗</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">結束句：『不是你生成了多少，而是你能否讓 Agent 更懂你的真實課堂。』</td>
+              <td style="font-family:monospace; font-size:0.85rem; color:var(--text-primary);">—</td>
+              <td style="text-align:center; white-space:nowrap;"><span style="color:var(--text-muted);">—</span></td>
+              <td style="font-size:0.9rem; line-height:1.6;">保存專案與產出。</td>
+              <td style="font-size:0.86rem; color:var(--text-secondary); line-height:1.55;">預期：120 分鐘準時結束。 備案：課後技術問題另行處理。</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
   </main>
 
-
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
       <div>
-        <div style="font-weight:800; color:#FFFFFF; font-size:1.05rem; margin-bottom:4px;">澳門聖若瑟教區中學第五校｜小學數學科組</div>
-        <div style="color:#8FD8C4; font-size:0.9rem;">校訓底色：AI 時代守本心，毅誠勤樸篤前行 ｜ 120 分鐘講師執行版 V3</div>
+        <p class="footer-title">聖若瑟教區中學第五校 ｜ 小學數學科校本教研</p>
+        <p class="footer-motto">AI 時代守本心，毅誠勤樸篤前行 ｜ 真教材 → 真問題 → 真產出 → 真使用</p>
+        <p class="footer-note">v2.3 OpenXML 實作標準 ｜ 專供校內 40 位數學教師教學實作使用</p>
       </div>
-      <div style="display:flex; gap:14px; align-items:center;">
-        <a href="https://github.com/jtchen1225-a11y/cdsj5-math-opencode-workshop" target="_blank" rel="noopener" style="color:#E5BE58; text-decoration:none; font-weight:700;">GitHub 儲存庫 ↗</a>
-        <a href="javascript:void(0)" onclick="openDeck(0)" style="color:#59E5B3; text-decoration:none; font-weight:700;">🖥️ 投影黑板</a>
+      <div style="text-align:right;">
+        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" style="display:inline-flex;">
+          <span class="short-icon">🌐</span>
+          <span>tinyurl.com/25kekzvv</span>
+        </a>
       </div>
     </div>
   </footer>
 
-
-  <!-- 課堂授課浮動工具列 -->
-  <div id="classroom-toolbar">
-    <button class="tool-btn" onclick="toggleDeckModal()" title="開關黑板簡報 (快捷鍵: B 或 Space)">
-      <span>🖥️ 黑板 (B)</span>
-    </button>
-    <button class="tool-btn" id="btn-laser" onclick="toggleLaser()" title="紅色發光雷射筆 (快捷鍵: L)">
-      <span>🔴 雷射筆 (L)</span>
-    </button>
-    <button class="tool-btn" id="btn-paint" onclick="togglePaint()" title="課堂畫筆塗鴉 (快捷鍵: P)">
-      <span>✏️ 畫筆 (P)</span>
-    </button>
-    <div class="color-picker-group" id="color-pickers">
-      <div class="color-dot active" style="background:#FFE600;" onclick="setDrawColor('#FFE600', this)" title="粉筆黃"></div>
-      <div class="color-dot" style="background:#FF3B30;" onclick="setDrawColor('#FF3B30', this)" title="警示紅"></div>
-      <div class="color-dot" style="background:#00D1FF;" onclick="setDrawColor('#00D1FF', this)" title="科技藍"></div>
-      <div class="color-dot" style="background:#00FF66;" onclick="setDrawColor('#00FF66', this)" title="算理綠"></div>
-    </div>
-    <button class="tool-btn" onclick="clearCanvas()" title="清空螢幕塗鴉 (快捷鍵: C)">
-      <span>🧹 清空 (C)</span>
-    </button>
-    <button class="tool-btn" onclick="toggleFullscreen()" title="全螢幕滿版 (快捷鍵: F)">
-      <span>⛶ 全螢幕 (F)</span>
-    </button>
-    <button class="tool-btn" onclick="toggleShortcutsModal()" title="查看鍵盤快捷鍵 (快捷鍵: ?)">
-      <span>⌨️ 快捷鍵 (?)</span>
-    </button>
-  </div>
-
-  <!-- 雷射筆發光點 -->
-  <div id="laser-dot"></div>
-
-  <!-- 全螢幕繪圖 Canvas -->
-  <canvas id="paint-canvas"></canvas>
-
-  <!-- 黑板全螢幕簡報 (85% 視窗主課堂儀表板) -->
-  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
-    <div class="deck-container">
-      <div class="deck-topbar">
-        <div class="deck-top-left">
-          <span class="deck-category-badge" id="deck-cat">開場核心理念</span>
-          <span class="deck-slide-count" id="deck-counter">[ 1 / 20 ]</span>
-        </div>
-        <div class="deck-nav-btns">
-          <button class="deck-btn" id="deck-prev-btn" onclick="prevSlide()" title="快捷鍵: ←">◀ 上一頁 (←)</button>
-          <button class="deck-btn deck-next-btn" id="deck-next-btn" onclick="nextSlide()" title="快捷鍵: → / Space / Enter">下一頁 ▶ (→ / Space)</button>
-          <button class="deck-btn deck-close-btn" onclick="closeDeck()" title="快捷鍵: Esc">✕ 關閉 (Esc)</button>
-        </div>
-      </div>
-      <div class="deck-main-body">
-        <div class="deck-slide-card" id="deck-slide-content">
-          <!-- Slide Title, Desc, List, Callout -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 快捷鍵指南彈窗 -->
-  <div id="shortcuts-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:3000; justify-content:center; align-items:center;" onclick="toggleShortcutsModal()">
-    <div style="background:#13322B; border:2px solid #59E5B3; border-radius:14px; padding:28px 36px; max-width:520px; width:90%; color:#FFFDF6; box-shadow:0 14px 40px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
-      <h3 style="margin-top:0; color:#E5BE58; font-size:1.3rem;">⌨️ 課堂授課鍵盤快捷鍵指南</h3>
-      <ul style="line-height:2.1; font-size:0.96rem; padding-left:20px; color:#EAF5F0; margin-bottom:18px;">
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Space</kbd> / <kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">→</kbd> / <kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Enter</kbd> ：<strong>切換下一頁投影片</strong></li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">←</kbd> ：切換上一頁投影片</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">B</kbd> ：開啟 / 關閉黑板投影簡報</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">L</kbd> ：開啟 / 關閉紅色發光雷射筆</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">P</kbd> ：開啟 / 關閉課堂手繪畫筆</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">C</kbd> ：一鍵清空螢幕上手繪塗鴉</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">F</kbd> ：切換全螢幕滿版投影模式</li>
-        <li><kbd style="background:#1F5948; padding:3px 8px; border-radius:4px; font-weight:700;">Esc</kbd> ：關閉彈窗或黑板簡報</li>
-      </ul>
-      <button onclick="toggleShortcutsModal()" style="width:100%; background:#E5BE58; color:#122E27; border:none; padding:10px; border-radius:8px; font-weight:800; cursor:pointer;">我知道了</button>
-    </div>
-  </div>
-
-  <!-- Toast 複製成功提示 -->
-  <div id="copy-toast">✓ 已複製到剪貼簿！可直接貼入 OpenCode</div>
-
-
   <script>
-    // --- 1. Blackboard Deck Modal Logic ---
-    const slidesData = [{"category": "開場核心理念", "title": "AI 時代守本心，<span class='hl-gold'>毅誠勤樸篤前行</span>", "desc": "澳門聖若瑟教區中學第五校 — 小學數學科 AI Agent 實作工作坊：", "points": ["<span class='hl-badge cyan'>核心主線</span><span class='hl-cyan'>教材 PDF → 備課 → 分層 → 同步修改 → 重用 → 輸出成果</span>。", "<span class='hl-badge gold'>講師原則</span>每一段只抓四件事：<span class='hl-gold'>投影甚麼、老師何時操作、你要觀察甚麼、出錯時怎樣不拖慢全班</span>。", "<span class='hl-badge green'>本質守護</span><span class='hl-green'>這不是學 Prompt，而是建立工作流</span>；技術服務教學，把時間還給師生互動！", "<span class='hl-badge rose'>責任邊界</span><span class='hl-rose'>AI 負責繁瑣的格式、排版與多檔案連動更新</span>；教師把關數學算理正誤、認知坡度與情感溫度。", "<span class='hl-badge purple'>交付規格</span>課堂產出均放入 <code>output/</code> 資料夾，建立永續可用的校本教學資產。"], "callout": "堅守聖五教育底色：以真實教材為錨，嚴禁超綱與盲目生成，將工程級 AI 轉化為溫暖教學力！", "teamNote": "<strong>【百年樹人，精神傳承】</strong>「毅誠勤樸」是聖五教育底色。AI 負責格式排版與多檔維護，教師把關算理正確性與認知坡度，守護課堂溫度。老中青教師同儕共備，以工程化工作流沉澱校本智慧。", "detailNote": "<strong>【正式課堂不處理環境安裝】</strong>所有環境於培訓前 24 小時整備完畢。正式工作坊分秒必爭，課堂專注於真實數學工作流程的實踐、連鎖修訂與資產重用。"}, {"category": "課堂操作色標", "title": "全程固定 <span class='hl-green'>4 大操作色標</span>", "desc": "40 人大規模實操，台上台下節奏高度默契，一眼即知當前誰動作：", "points": ["<span class='hl-badge green'>🟢 A 組操作</span>學員編號 <span class='hl-green'>1–20 號老師</span> 執行指令或按下 Enter。", "<span class='hl-badge blue'>🔵 B 組操作</span>學員編號 <span class='hl-blue'>21–40 號老師</span> 執行指令或按下 Enter（錯峰間隔 30–60 秒）。", "<span class='hl-badge gold'>🟡 全體觀看</span>全體停手，<span class='hl-gold'>目光聚焦講師投影幕</span>，觀察示範與關鍵概念。", "<span class='hl-badge rose'>🔴 暫停操作</span><span class='hl-rose'>全員切紅燈立即停手</span>，聆聽重要概念轉折或故障急停處置！", "<span class='hl-badge purple'>默契守則</span>投影右上即時顯示當前色標，看到紅燈自覺離鍵盤，切勿搶跑。"], "callout": "嚴格遵循錯峰與紅綠燈信號，徹底規避模型 429 限流與集體卡頓，確保 40 人整齊前行！", "teamNote": "<strong>【錯峰發送，集體前行】</strong>40 人同時向大模型發送大型 Prompt 極易遭遇 429 限流。A/B 組錯峰送出是工程級課堂防護，確保全員不掉隊，展現團隊協同作戰力量。", "detailNote": "<strong>【紅綠燈嚴格執行】</strong>看到 🔴 暫停操作 時，全班雙手離開鍵盤。概念講通再動手，比盲目狂按高效十倍。講師透過切換畫面引領全場注意力。"}, {"category": "0:00–0:06 開場與 Demo", "title": "先看成果：<span class='hl-gold'>如果一份教材 PDF 變成這些？</span>", "desc": "不要先介紹 OpenCode，先看兩分鐘真實成果：", "points": ["<span class='hl-badge cyan'>示範教材</span>以校本 <code>materials/P5-分數加減法-示範教材.pdf</code> 作為唯一真實輸入源。", "<span class='hl-badge gold'>完成版展示</span><code>01_課堂備課草案.md</code>、<code>02_三層學生工作紙.md</code>、<code>03_教師答案及錯因.md</code>。", "<span class='hl-badge rose'>傳統痛點</span>傳統聊天視窗最容易出現：<span class='hl-rose'>工作紙改了、答案沒改、教案忘了改</span>！", "<span class='hl-badge green'>專案價值</span>今天處理的是<span class='hl-green'>同一專案內多份相關文件的連動關係</span>。", "<span class='hl-badge purple'>真實轉化</span>將零碎的碎片化問答，昇華為可沉澱、可交付的校本數位教學資產包。"], "callout": "讓老師親眼看見「教材到成套教案與三層工作紙」的完整樣貌，激發深層教學共鳴！", "teamNote": "<strong>【先看成果，建立期待】</strong>開場 2 分鐘不講任何技術名詞。讓老師親眼看到「教材能變成整套教案與三層工作紙」，直接激發同儕共備熱情。", "detailNote": "<strong>【展示三份成果的連鎖關係】</strong>現場快速切換教案、工作紙與答案版，指出三者題號、算理與教學流程的精準對應，展示專案管理細節。"}, {"category": "0:06–0:10 今天的四件事", "title": "聚焦 Workflow：<span class='hl-purple'>今天只做四件事</span>", "desc": "拒絕堆砌名詞，專注於可落地的真實數學教師工作流：", "points": ["<span class='hl-badge rose'>今天不教</span><span class='hl-rose'>不教 Prompt 技巧大全、不教 MCP、不教 API、不教 GitHub、不教資料庫</span>。", "<span class='hl-badge gold'>今天只做</span>① <span class='hl-gold'>備課</span> ➔ ② <span class='hl-purple'>分層</span> ➔ ③ <span class='hl-cyan'>同步修改</span> ➔ ④ <span class='hl-green'>換教材重用</span>。", "<span class='hl-badge green'>成功標準</span>兩小時後若只記住十條 Prompt 算失敗；<span class='hl-green'>能換自己的教材重跑流程才算成功</span>！", "<span class='hl-badge cyan'>工作主菜</span>教師的備課專業才是主菜，AI 僅是輔助減負的廚房流水線。", "<span class='hl-badge purple'>起跑動作</span>在學習單寫下自己平時最花時間的一項備課工作，帶著真實問題出發！"], "callout": "教學設計是主菜，AI 工具是配菜。今天只練能帶回學校、明天能用的核心能力！", "teamNote": "<strong>【老師的真實工作是主菜】</strong>AI 工具只是配菜，教學設計才是主菜。讓老師在學習單寫下平時備課最花時間的一件事，帶著問題出發，體會科技賦能本質。", "detailNote": "<strong>【四件事貫穿全場】</strong>從第 1 版教案，到 A/B/C 分層，到一次要求改多檔，到換教材秒級重用，層層遞進，節奏緊湊分明。"}, {"category": "0:10–0:18 認識工作區", "title": "打開 Starter Pack：<span class='hl-cyan'>交出整個專案資料夾</span>", "desc": "不是在聊天視窗丟檔案，而是讓 AI 接管整個備課專案：", "points": ["<span class='hl-badge cyan'>統一目錄</span>全班統一在 <code>Math-Agent-Workshop/</code> 根目錄下操作，絕不開錯子層級。", "<span class='hl-badge gold'>四個核心要素</span><code>AGENTS.md</code>（規則）、<code>materials/</code>（教材）、<code>output/</code>（產出）、<code>templates/</code>（模板）。", "<span class='hl-badge green'>首次檢查</span>A 組 0:16 Enter，B 組 0:17 Enter，確認 AI 能說出資料夾結構與教材名稱。", "<span class='hl-badge purple'>嚴格約束</span>Prompt 特別要求「不要修改任何文件，只回報看到的結構」。", "<span class='hl-badge rose'>邊界防護</span><code>materials/</code> 唯讀鎖定，嚴防大模型誤改或覆蓋原始教科書檔案。"], "callout": "專案資料夾是 Agent 的工作邊界。確認所有人 Workspace 頂部均顯示 Math-Agent-Workshop！", "teamNote": "<strong>【專案根目錄意識】</strong>新手最常犯的錯誤是開錯子資料夾。講師務必確認所有人 Workspace 頂部顯示 Math-Agent-Workshop，維持團隊步調一致。", "detailNote": "<strong>【只讀不改安全原則】</strong>首次 Prompt 特別強調「不要修改任何文件，只回報看到的結構」，建立受控操作信任感與工程化邊界意識。"}, {"category": "0:18–0:33 實作一：備課", "title": "TASK 1｜第一次備課：<span class='hl-gold'>分析先於生成</span>", "desc": "讀取 materials/P5-分數加減法-示範教材.pdf 產出完整備課草案：", "points": ["<span class='hl-badge gold'>嚴格要求</span>列出 3–4 個學習目標、前置知識、3–5 個常見錯誤迷思、40 分鐘 6 階段流程。", "<span class='hl-badge cyan'>儲存規範</span>暫時不製作 Word，結果直接保存為 <code>output/01_課堂備課草案.md</code>。", "<span class='hl-badge green'>回報約束</span>完成後用不超過 8 行回報：讀取了甚麼、建立了甚麼、最值得檢查的 3 個位置。", "<span class='hl-badge purple'>課堂提問</span>提問設計要求「不能只有計算答案，要能引導學生說明理由」。", "<span class='hl-badge rose'>依據原則</span>嚴禁自行加入教材沒有依據的重要知識，守住數學事實源頭。"], "callout": "0:20 貼 Prompt ➔ 0:22 A 組 Enter ➔ 0:23 B 組 Enter ➔ 0:26 看成果 ➔ 0:29 自我檢查！", "teamNote": "<strong>【拒絕空泛提問】</strong>提問設計要求「不能只有計算答案，要能引導學生說明理由」，直接將優質教學法固化在 Prompt 內，傳承科組嚴謹學風。", "detailNote": "<strong>【節奏精確控制】</strong>0:20 貼 Prompt，0:22 A 組 Enter，0:23 B 組 Enter，0:26 看成果，0:29 自我檢查。講師巡視前置知識與迷思診斷是否精準。"}, {"category": "TASK 1 教師專業判斷", "title": "AI 自我檢查：<span class='hl-rose'>哪些內容最需要任課教師確認？</span>", "desc": "先不要修改文件，請站在任課教師角度進行自我反思：", "points": ["<span class='hl-badge cyan'>依據核實</span>1. 哪些內容是直接來自教材？", "<span class='hl-badge gold'>推論區分</span>2. 哪些內容是你的教學推論？", "<span class='hl-badge rose'>教師把關</span>3. 哪些地方最需要真正的任課教師確認？", "<span class='hl-badge purple'>難度檢查</span>4. 有沒有可能超出學生目前程度？", "<span class='hl-badge green'>只審不改</span>只做自我剖析與邊界回報，不產生任何檔案覆寫。"], "callout": "AI 可以快速起草整理，但教學取捨、認知坡度與難度把控永遠由任課教師最終拍板！", "teamNote": "<strong>【AI 可以起草，教師必須把關】</strong>教材依據是否充分、難度是否適切、教學取捨是否合理，永遠由聖若瑟五校教師主導，體現教師專業價值不可替代。", "detailNote": "<strong>【只回報，不修改】</strong>此步驟旨在培養教師的批判性審視習慣，區分「教材事實」與「AI 自由發揮」。邀請 2 位老師公開點評 AI 推論合理性。"}, {"category": "0:33–0:43 概念轉折", "title": "🔴 暫停操作：<span class='hl-rose'>現在才講 AGENTS.md</span>", "desc": "全體切紅燈停手！這是本場第一個核心認知躍遷：", "points": ["<span class='hl-badge rose'>普通聊天</span>每次開新對話都要重打：「請你記得我們是小學、請用澳門繁體、請不要超綱…」。", "<span class='hl-badge green'>Agent 專案</span>寫入 <code>AGENTS.md</code> 作為「AI 助教長期工作守則」，每次開工自動遵守！", "<span class='hl-badge gold'>三大核心原則</span>① 重複要求放進規則；② 規則服務教師工作，不取代判斷；③ 涉及學生個資，嚴格去識別化。", "<span class='hl-badge cyan'>跨對話有效</span>開新對話測試：「這個專案要求你進行學生分層時，最重要的三項規則是甚麼？」", "<span class='hl-badge purple'>校本標準</span>澳門繁體、分母限制、不因分層降低核心目標，全面載入守則。"], "callout": "先體會一次備課產出，再揭示規則邊界，讓「長期規則 vs 單次需求」刻進教學記憶！", "teamNote": "<strong>【為什麼現在才講？】</strong>讓老師先體會過一次備課的產出，再揭曉背後的規則約束，比一上來背誦概念深刻十倍！以具體體驗帶動認知飛躍。", "detailNote": "<strong>【新對話測試】</strong>讓學員開新對話問 AI：「這個專案要求你進行分層時，最重要的三項規則是甚麼？」親眼見證規則跨對話生效，確立守則權威。"}, {"category": "0:43–1:08 實作二：分層", "title": "TASK 2｜同一核心目標下的分層：<span class='hl-purple'>A/B/C 三層材料</span>", "desc": "根據 01_課堂備課草案.md 與示範教材，設計同一目標下的分層材料：", "points": ["<span class='hl-badge green'>A 基礎層</span>支架較多、數據較簡單，幫助學生建立基本算理概念。", "<span class='hl-badge blue'>B 標準層</span>達成本課正常學習要求，包含基本應用。", "<span class='hl-badge purple'>C 挑戰層</span>增加推理、解釋或較複雜情境，<span class='hl-rose'>不提前教授下一個單元</span>！", "<span class='hl-badge gold'>雙份產出</span>學生版 <code>output/02_三層學生工作紙.md</code> ＋ <code>output/03_教師答案及錯因.md</code>。", "<span class='hl-badge cyan'>題號對齊</span>教師版含正確答案、解題步驟、常見錯誤與教師追問句，題號 100% 一致。"], "callout": "0:48 A 組 Enter ➔ 0:49 B 組 Enter。左右分屏同時打開 02 與 03 進行對照檢查！", "teamNote": "<strong>【分層不是孤立出題】</strong>教師版必須包含：正確答案、主要解題方法、常見錯誤、教師追問句，題號與學生版完全一致，確保課堂教學精準落地。", "detailNote": "<strong>【Enter 節奏】</strong>0:48 A 組 Enter，0:49 B 組 Enter。左右分屏同時打開 02 與 03 進行對照檢查。若有題號錯位，立即利用質檢指令介入修正。"}, {"category": "分層質檢與教學對比", "title": "真分層 vs 假分層：<span class='hl-rose'>拒絕只把數字變大！</span>", "desc": "數學科最容易出現的偽分層現象剖析：", "points": ["<span class='hl-badge rose'>假分層</span>基礎題分母 4 和 6，挑戰題只是把分母換成 99 和 100。<span class='hl-rose'>認知要求毫無變化，只是折磨計算！</span>", "<span class='hl-badge green'>真分層</span><span class='hl-green'>核心概念相同、支架不同、認知要求不同、解釋深度不同</span>。", "<span class='hl-badge cyan'>五大認知維度</span>圖形表徵、語言解釋、比較不同策略、錯誤診斷、情境應用。", "<span class='hl-badge gold'>現場只改一題</span>指令：只修改 C3 題，保持挑戰性但不超綱，並同步更新答案版中的 C3！", "<span class='hl-badge purple'>思維昇華</span>讓基礎弱的孩子有梯子爬，讓思維敏捷的孩子有深度探究空間。"], "callout": "分層不是計算折磨，更不是盲目拔高。善用五大認知維度，讓不同起點的孩子都能登頂！", "teamNote": "<strong>【質檢 Prompt 實時驗收】</strong>執行分層質檢 Prompt，要求 AI 用表格對比 A/B/C 三層的認知要求，主動抓出「假分層」題目，守護數學思維本質。", "detailNote": "<strong>【現場只改一題】</strong>實施局部精修指令：只修改 C3 題，保持挑戰性但不超綱，並同步更新教師答案版中的 C3。其他題目完全不動，體現精確掌控。"}, {"category": "1:05–1:08 中段整理", "title": "合格線檢查：<span class='hl-gold'>確認 output 累積三份文件</span>", "desc": "第 60 分鐘關鍵里程碑，全班齊步走：", "points": ["<span class='hl-badge gold'>文件 1</span><code>output/01_課堂備課草案.md</code>（40分鐘教案與目標）", "<span class='hl-badge purple'>文件 2</span><code>output/02_三層學生工作紙.md</code>（A/B/C 三層練習）", "<span class='hl-badge green'>文件 3</span><code>output/03_教師答案及錯因.md</code>（答案、解法、錯因與追問）", "<span class='hl-badge rose'>技術救援</span>缺文件者立即舉手，由助教個別處理，<span class='hl-rose'>全班絕不等待停滯</span>。", "<span class='hl-badge cyan'>下半場基石</span>這三份文件是下半場進行同步修訂與新教材重用的唯一事實來源。"], "callout": "「現在開始，我們不是在生成新東西，而是在管理已有的教學成果！」", "teamNote": "<strong>【全員過關合格線】</strong>這三份文件是下半場進行同步修改與重用的基礎。中段 3 分鐘排查是大型工作坊不崩盤的核心樞紐，確保全員穩健達標。", "detailNote": "<strong>【講師轉折句】</strong>「現在開始，我們不是在生成新東西，而是在管理已有的教學成果！」助教迅速清點各排完成狀況，缺件者由 backup 導入。"}, {"category": "1:08–1:27 實作三：同步修改", "title": "TASK 3A｜先分析「變更影響」：<span class='hl-cyan'>先分析，再動手</span>", "desc": "收到試教後的三項修改要求：①第3題太難 ②第6題文字太長 ③C層缺reasoning：", "points": ["<span class='hl-badge rose'>錯誤做法</span><span class='hl-rose'>有一點要改就整篇重寫</span>，導致題號亂套、答案丟失、教案不同步！", "<span class='hl-badge cyan'>Agent 做法</span>提出變更 ➔ <span class='hl-cyan'>分析連鎖影響</span> ➔ 修改受影響位置 ➔ 執行一致性檢查。", "<span class='hl-badge gold'>影響清單</span>要求 AI 產出清單：哪些文件受影響、各需改甚麼、題號/答案/流程牽動、哪些文件不需要改。", "<span class='hl-badge green'>受控原則</span>Prompt 明確要求「先產生清單，不要修改任何文件」。", "<span class='hl-badge purple'>思維訓練</span>看清局部改動對全局體系的牽引，杜絕隨意改動帶來的連帶混亂。"], "callout": "培養工程級修改習慣：動手前先看清牽連網絡，杜絕牽一髮而動全身引發的混亂！", "teamNote": "<strong>【培養工程思維習慣】</strong>講師必須抓住這個教學重點：老師要看 AI 是否主動提及工作紙、答案版、教案、題號的連鎖反應，深化工程素養。", "detailNote": "<strong>【先不要修改文件】</strong>Prompt 明確規定「只產生變更影響清單，不要修改任何文件」，確保思考周密再執行。講師投影展示標準變更清單。"}, {"category": "TASK 3B 正式同步修改", "title": "TASK 3B｜跨檔案同步修改：<span class='hl-green'>牽一髮而動全身</span>", "desc": "確認執行修改，嚴格按照影響清單連動更新：", "points": ["<span class='hl-badge green'>要求 1</span>第 3 題降低一級難度，但保持原核心算理。", "<span class='hl-badge green'>要求 2</span>第 6 題簡化語言，避免小學生不必要閱讀負荷。", "<span class='hl-badge green'>要求 3</span>C 層新增一道 reasoning 題，學生必須以文字或算式說明理由。", "<span class='hl-badge gold'>核心連動</span>題號改變時：<span class='hl-gold'>學生版、答案版、教案引用的題號必須完全同步</span>！", "<span class='hl-badge cyan'>產出紀錄</span>最後建立 <code>output/04_同步修改紀錄.md</code>，說明修改理由與影響範圍。"], "callout": "1:18 A 組 Enter ➔ 1:19 B 組 Enter。核對 02、03、04 文件，體會連鎖同步力量！", "teamNote": "<strong>【核心關鍵詞：同步】</strong>重點不是「AI 幫我改了題目」，而是「AI 知道改動一個地方會牽動哪些文件與答案」，這正是 Agent 專案的價值高光。", "detailNote": "<strong>【Enter 節奏】</strong>1:18 A 組 Enter，1:19 B 組 Enter。完成後打開 02、03、04 核對題號與答案的一致性。驗證紀錄檔是否清晰客觀。"}, {"category": "1:27–1:45 實作四：重用", "title": "TASK 4｜換教材，不換工作方法：<span class='hl-gold'>體驗資產複用價值</span>", "desc": "換入第二份示範教材 materials/P5-小數乘法-重用教材.pdf：", "points": ["<span class='hl-badge cyan'>TASK 4A 說出流程</span>先讓 Agent 說出應該沿用哪套流程，只列步驟不執行。", "<span class='hl-badge gold'>TASK 4B 完整重用</span>重用專案規則、教案結構、分層原則、命名邏輯、答案錯因與檢查方法！", "<span class='hl-badge green'>存入獨立目錄</span>所有新成果存入 <code>output/reuse/</code>（01_小數乘法教案.md、02_三層工作紙.md、03_教師答案.md）。", "<span class='hl-badge rose'>嚴防搬移錯誤</span>以新教材為準，<span class='hl-rose'>嚴禁把上一課的分數內容誤搬過來</span>！", "<span class='hl-badge purple'>秒級切換</span>5 分鐘之內完成新課題的全套備課，體驗數位資產的驚人威力。"], "callout": "第四個 Aha Moment！教材會換、單元會換；好的工作方法不需要每次重新發明！", "teamNote": "<strong>【第四個 Aha Moment】</strong>教材會換、班級會換、單元會換；但好的工作方法不需要每次重新發明。Prompt 可以複製，Workflow 可以重用！資產沉澱方能代代傳承。", "detailNote": "<strong>【Enter 節奏】</strong>1:34 A 組 Enter，1:35 B 組 Enter。比較 output/ 與 output/reuse/，體會不變的架構與變動的學科內容，確認無跨單元概念污染。"}, {"category": "1:45–1:53 成果封裝", "title": "輸出 Word：<span class='hl-green'>最後才封裝為交付文件</span>", "desc": "草稿階段用 Markdown 高效管理，最終交付才轉換 Word：", "points": ["<span class='hl-badge green'>交付目錄</span>建立 <code>output/final/</code> 資料夾。", "<span class='hl-badge gold'>三份 Word</span>分數加減法_教師教案.docx、學生工作紙.docx、教師答案版.docx。", "<span class='hl-badge cyan'>排版規範</span>不改變已確認數學內容、學生版絕無答案、題號完全一致、適合 A4 列印。", "<span class='hl-badge rose'>容錯原則</span>若 Word 工具故障，<span class='hl-rose'>不在最後十分鐘大修環境，保留 Markdown 即算圓滿完成</span>！", "<span class='hl-badge purple'>課堂落地</span>走出培訓室，隨時可以列印工作紙送進課堂。"], "callout": "只驗三件事：①Word 存在能開；②學生版沒有答案；③教師版題號與學生版完全一致！", "teamNote": "<strong>【明天能拿進課堂的文件】</strong>今天的成果不是瀏覽器聊天紀錄，而是可直接列印給學生、交給科組審批的真實文件，讓備課成果具備落地生命力。", "detailNote": "<strong>【只驗三件事】</strong>①Word 真的存在且能打開；②學生版沒有答案；③教師版題號與學生版完全一致。若出現格式微瑕，課後微調即可，不拖延下課。"}, {"category": "1:53–1:58 工作流提升", "title": "回看今天用了甚麼：<span class='hl-purple'>理解分工，持續進化</span>", "desc": "拆解背後的技術分工，為第二場工作坊鋪路：", "points": ["<span class='hl-badge cyan'>OpenCode</span>本地執行的 AI 工作台，接管專案資料夾。", "<span class='hl-badge gold'>AGENTS.md</span>這個專案長期要遵守的校本憲法與安全邊界。", "<span class='hl-badge purple'>Skill</span>遇到某類特定工作時（如分析教材、生成工作紙），知道標準做法。", "<span class='hl-badge green'>Workflow</span>將多個步驟串連成自動化或半自動化的備課流水線。", "<span class='hl-badge rose'>極簡架構</span>無外部資料庫、無繁複雲端 API，純靠資料夾與規則，安全可靠。"], "callout": "今天完成的是單次備課循環；第二場我們將建立個人專屬的持續 AI 備課工作台！", "teamNote": "<strong>【極簡主義技術觀】</strong>沒有資料庫、沒有複雜 API、沒有雲端伺服器。純粹依託資料夾、Markdown 與本地規則，安全可控，守護學校資料資產。", "detailNote": "<strong>【從一次性到持續性】</strong>下一場培訓將把今天的一次性工作坊體驗，升級為日常教學的持續工作流。引導教師預覽個人化 Skill 定制前景。"}, {"category": "1:58–2:00 離場憑證", "title": "Exit Ticket：<span class='hl-gold'>把真實問題帶進第二場</span>", "desc": "執行 Exit Ticket Prompt，回答 3 個問題並記錄於 <code>MY-NEXT-TASK.md</code>：", "points": ["<span class='hl-badge gold'>問題 1</span>我目前最花時間的數學教學工作是甚麼？", "<span class='hl-badge cyan'>問題 2</span>哪一項工作最適合下一次交給 Agent 協助？", "<span class='hl-badge green'>問題 3</span>下一場培訓我準備帶哪一份真實教材來？", "<span class='hl-badge purple'>帶回清單</span>正在教的教材 PDF、平時工作紙、學校教案模板、最花時間的真實痛點。", "<span class='hl-badge rose'>結語定調</span>「下一場，我們不再用示範教材；開始用你自己的真實工作！」"], "callout": "帶走滿載成果的資料夾，留下一張第二場門票。教學技術的終點，是師生真實的成長！", "teamNote": "<strong>【最後一句話結尾】</strong>「下一場，我們不再用我的教材；開始用你自己的真實工作！」完美收尾，激發後續期待，確立持續共備機制。", "detailNote": "<strong>【真實憑證存檔】</strong>每位老師在專案中保存 MY-NEXT-TASK.md，作為第二場進階培訓的直接輸入入口。講師確認全場已保存該文件。"}, {"category": "現場技術救援", "title": "不拖慢全班的 <span class='hl-rose'>9 大故障處理 SOP</span>", "desc": "40 人現場突發技術狀況快速處置指南（講師與助教必備）：", "points": ["<span class='hl-badge cyan'>A｜無回應</span>先試「你好，只回覆 OK。」失敗檢查連接，個別處理不停全班。", "<span class='hl-badge rose'>B｜讀不到 PDF</span>嚴禁猜測！立刻改用同內容純文字 .txt 備援。", "<span class='hl-badge gold'>C｜開錯資料夾</span>檢查目前工作目錄，非 Math-Agent-Workshop 即重開 Workspace。", "<span class='hl-badge purple'>D｜只聊不寫檔</span>指令：「不要重生成，把結果保存到指定路徑，只回報路徑。」", "<span class='hl-badge green'>G｜AI 改多了</span>指令：「停止！先分析改了甚麼、撤回哪些，不要再次修改。」"], "callout": "學 Workflow 比現場修 parser 更重要！少數人落後迅速啟用分級保護，絕不停頓全班！", "teamNote": "<strong>【學 Workflow 比現場修 parser 更重要】</strong>遇到工具障礙迅速降級備援，絕不把 40 人的課堂變成個別除錯秀，守護全員學習體驗與課堂秩序。", "detailNote": "<strong>【落後學員分級保護】</strong>Level 1：備課＋分層；Level 2：＋同步修改；Level 3：＋重用＋Word。全員皆有成就感，助教落實定向幫扶。"}, {"category": "講師最後驗收", "title": "講師最後驗收與 <span class='hl-gold'>四大核心能力確認</span>", "desc": "下課前 3 分鐘講師巡視檢核清單：", "points": ["<span class='hl-badge gold'>專案成果確認</span>01、02、03、04 與 output/reuse/ 均已存在。", "<span class='hl-badge green'>Word/Markdown</span>多數老師能開 Word；Word 失敗者保留 Markdown 同樣算成功！", "<span class='hl-badge purple'>能力 1 & 2</span>把 AI 從聊天視窗搬進工作資料夾；把重複要求寫成規則。", "<span class='hl-badge cyan'>能力 3 & 4</span>學會管理修改與連鎖影響；把好方法重用到下一份教材。", "<span class='hl-badge rose'>第二場方向</span>正式進入「我的教材 → 我的 AGENTS.md → 我的工作流 → 我的 AI 教師工作台」。"], "callout": "成果留痕，信心滿滿。聖若瑟五校百年團隊，以極致細節引領智慧教育新篇章！", "teamNote": "<strong>【成果留痕，信心滿滿】</strong>老師離開時帶走的是一個滿載成果的資料夾，而不是空洞的筆記。這就是聖五科技教育的扎實作風，傳承百年底蘊。", "detailNote": "<strong>【第二場方向確認】</strong>正式進入「我的教材 → 我的 AGENTS.md → 我的工作流 → 我的 AI 教師工作台」。講師最後巡視確認成果保存無虞。"}];
+
+    // --- 1. Blackboard Slides System ---
+    const slidesData = [
+      {
+        category: "P01 ｜ 課堂啟動",
+        title: "OpenCode 教師 AI Agent 入門",
+        desc: "第一堂：只學 Agent — 零編程門檻，做一份真正能進課堂的教學資產",
+        points: [
+          "<span class='hl-gold'>【唯一前設】</span>OpenCode Desktop 已可用、指定模型已連接、Preflight 課前完成。",
+          "<span class='hl-cyan'>【課堂原則】</span>正式 120 分鐘不處理安裝、CLI、Node、Git；單機故障兩人共用。",
+          "<span class='hl-green'>【學習心態】</span>不是比誰生成得多，而是看誰能讓 Agent 更懂你的真實課堂。",
+          "<span class='hl-rose'>【現場專屬短網址】</span>https://tinyurl.com/25kekzvv（手機或筆電直接開啟講義）。"
+        ],
+        callout: "🌟 今日唯一主線：真教材 → 真問題 → 真產出 → 真使用"
+      },
+      {
+        category: "P02 ｜ 唯一主線",
+        title: "真教材 → 真問題 → 真產出 → 真使用",
+        desc: "四字主線貫穿 120 分鐘，拒絕泛理論演講與虛構 Demo：",
+        points: [
+          "<span class='hl-gold'>【真教材】</span>拿未來 1–2 週真實會教的教學材料，不放學生個資。",
+          "<span class='hl-cyan'>【真問題】</span>直面認知難點、題量、作答空間與學生常見迷思。",
+          "<span class='hl-green'>【真產出】</span>產出符合 OpenXML 標準的真正 DOCX 學習單與教師解答。",
+          "<span class='hl-purple'>【真使用】</span>下週直接印出來進課堂，課後反思觀察再改進。"
+        ],
+        callout: "💡 一句 Prompt 也能出題目，但唯有真教材與真要求，才能產出真正能用的教學材料！"
+      },
+      {
+        category: "P03 ｜ 成功標準",
+        title: "120 分鐘實作成功標準",
+        desc: "今天每位老師必達的六大實作里程碑：",
+        points: [
+          "<span class='hl-cyan'>①【RDQ 診斷】</span>READ → DIAGNOSE → QUESTION，先理解、後生成。",
+          "<span class='hl-gold'>②【第一版內容】</span>經三問審核：對教材嗎？對學生嗎？明天敢用嗎？",
+          "<span class='hl-green'>③【真正 DOCX/PDF】</span>v2.3 OpenXML 雙軌匯出，拒絕 COM 當機。",
+          "<span class='hl-purple'>④【A/B/C 分層與同步修訂】</span>同目標不同支架；一次教師介入多檔同步維護。"
+        ],
+        callout: "🎯 慢組保底：RDQ、第一版、DOCX、分層示範、一次修訂、Reuse；快組深化審核！"
+      },
+      {
+        category: "P04 ｜ 專案地圖",
+        title: "01-Agent-Project 專案結構地圖",
+        desc: "材料是 Context，requirements 是工作步驟，output 是證據：",
+        points: [
+          "<span class='hl-gold'>📂 AGENTS.md</span>：這個 Agent 長期工作的校規與底線（Project Rules）。",
+          "<span class='hl-cyan'>📂 materials/</span>：你的真實教材 PDF / Word（教學 Context 輸入端）。",
+          "<span class='hl-green'>📂 requirements/</span>：01-RDQ 到 05-Reuse 的具體任務步驟指引。",
+          "<span class='hl-purple'>📂 output/ 與 tools/</span>：02-worksheet 等正式產物與輕量排版工具。"
+        ],
+        callout: "🗺️ 打開資料夾，看懂目錄角色，這就是專業 Agent 備課的標準工作空間！"
+      },
+      {
+        category: "P05 ｜ 核心規則",
+        title: "AGENTS.md：長期規則 ≠ 一次性 Prompt",
+        desc: "它是整個專案的校規，約束 Agent 不隨意腦補、恪守教學邊界：",
+        points: [
+          "<span class='hl-gold'>【長期規則】</span>每次對話自動繼承，不需要在 Prompt 裡重複碎念。",
+          "<span class='hl-rose'>【真實性原則】</span>嚴禁杜撰教材內容、學生情況或評量標準。",
+          "<span class='hl-cyan'>【順序鐵律】</span>必須遵守 READ → DIAGNOSE → QUESTION 嚴禁搶跑生成。",
+          "<span class='hl-green'>【教師主導】</span>AI 做草稿，教師做判斷；教師保留最終裁判權。"
+        ],
+        callout: "📜 AGENTS.md 是 AI 的工作邊界守護者，把教學主控權牢牢留在教師手中！"
+      },
+      {
+        category: "P06 ｜ 真教材原則",
+        title: "真教材規則：杜絕虛構 Demo",
+        desc: "今天只用真正要教的內容，嚴防個資與失真：",
+        points: [
+          "<span class='hl-gold'>【選材原則】</span>選擇未來 1–2 週真正要進課堂的數學教材單元。",
+          "<span class='hl-rose'>【隱私紅線】</span>絕不放學生姓名、座號、成績或任何隱私個資。",
+          "<span class='hl-cyan'>【檔名清晰】</span>如 01-課本.pdf、02-現有練習.docx、03-教師指引.pdf。",
+          "<span class='hl-purple'>【備用材料】</span>另備第二份教材放入資料夾，第 11 區段 Reuse 時使用。"
+        ],
+        callout: "⚠️ 沒帶材料可與同級科組共用；真實教材是檢驗 Agent 質量的唯一標準！"
+      },
+      {
+        category: "P07 ｜ RDQ 流程",
+        title: "RDQ：先理解，後生成",
+        desc: "第一個 Prompt 最大要求：不要生成學習單！",
+        points: [
+          "<span class='hl-cyan'>📖 READ</span>：先列出實際讀取的檔名，確認 Context 真正讀入。",
+          "<span class='hl-gold'>🔍 DIAGNOSE</span>：深度分析學習重點、前置概念、學生常見迷思。",
+          "<span class='hl-purple'>❓ QUESTION</span>：最多只提出 5 個真正會影響設計的澄清問題。",
+          "<span class='hl-rose'>🛑 提問後停下</span>：等候教師回答，不擅自展開生成。"
+        ],
+        callout: "🧱 先把教學地基打穩，才能蓋出扎實的課堂練習；這就是 Context Engineering！"
+      },
+      {
+        category: "P08 ｜ 證據邊界",
+        title: "三種證據標記：審核 AI 判斷",
+        desc: "這一步不是挑 AI 錯字，而是嚴格挑出證據邊界：",
+        points: [
+          "<span class='hl-green'>🟢 MATERIAL-SUPPORTED</span>：教材有明確文字或圖形直接支持的事實。",
+          "<span class='hl-gold'>🟡 INFERRED</span>：根據教材合理推論，但教材並未明示之觀點。",
+          "<span class='hl-rose'>🔴 NEEDS-TEACHER-CONFIRMATION</span>：AI 不得代猜、必須由任課教師確認之條件。",
+          "<span class='hl-cyan'>【邊界清查】</span>無教材證據者主動更正，只保留 5 個核心問題。"
+        ],
+        callout: "🧐 學會分辨事實與推測，教師才能從被動接收者轉化為主動審查官！"
+      },
+      {
+        category: "P09 ｜ 審核標準",
+        title: "三問審核：教學可用性檢驗",
+        desc: "第一版草稿產出後，啟動最嚴格的教師專業三問：",
+        points: [
+          "<span class='hl-cyan'>❓ 問 1：真的對教材嗎？</span>（是否超出範圍？核心知識點是否精準扣合？）",
+          "<span class='hl-gold'>❓ 問 2：真的對學生嗎？</span>（語文難度是否合宜？認知坡度是否過陡？）",
+          "<span class='hl-rose'>❓ 問 3：明天真的敢用嗎？</span>（這份工作紙明天印出來，你敢發給全班嗎？）",
+          "<span class='hl-green'>【局部修訂】</span>挑出一個必改問題，給出具體指令，不讓 AI 重做整份。"
+        ],
+        callout: "⚖️ 三問過關，才算真正能進課堂的真產出！"
+      },
+      {
+        category: "P10 ｜ 差異化分層",
+        title: "分層原則：同一目的地，不同支架",
+        desc: "分層不是降低目標，而是提供不同梯子通往同一個高度：",
+        points: [
+          "<span class='hl-green'>🪜 A 版（基礎支架）</span>：增加圖解、提示、步驟鷹架；⚠️ 絕非單純數字變小。",
+          "<span class='hl-cyan'>🎯 B 版（核心標準）</span>：維持全班核心學習標準與標準題量。",
+          "<span class='hl-purple'>🚀 C 版（挑戰推理）</span>：增加比較、解釋、策略、開放探究；⚠️ 絕非單純增加題量。",
+          "<span class='hl-gold'>【同題示範】</span>以同一組 2 題改寫為 A/B/C 三層，比較支架差異。"
+        ],
+        callout: "🚨 警報：A 版不是降級做低年級題，C 版不是題海加量！"
+      },
+      {
+        category: "P11 ｜ 同步修訂",
+        title: "一次教師判斷，多版本同步維護",
+        desc: "真正為老師省時間的不是第一次生成，而是後續維護：",
+        points: [
+          "<span class='hl-cyan'>【真情境修改】</span>如發現第 3 題文字太難或課時縮減，指定局部修改。",
+          "<span class='hl-gold'>【只改指定部分】</span>保留未修改題目的穩定性，不允許整份重寫。",
+          "<span class='hl-purple'>【修改前後摘要】</span>Agent 先列修改對照表，經確認後再重新輸出。",
+          "<span class='hl-green'>【v2.3 重新匯出】</span>一鍵同步更新 output/04-revised/ 中的 DOCX/PDF。"
+        ],
+        callout: "🔄 學會精準維護，才能讓備課成果代代相傳、越用越順！"
+      },
+      {
+        category: "P12 ｜ 重用與真使用",
+        title: "換教材、不換規則：工作流重用",
+        desc: "如果換一課就失效，那只是次性 Prompt，不是成熟 Agent 工作流：",
+        points: [
+          "<span class='hl-cyan'>【換教材不換規則】</span>放入第二份教材，保留 AGENTS.md 完整規則。",
+          "<span class='hl-gold'>【重啟 RDQ】</span>重新列出第二教材檔名，重新完成診斷與 5 提問。",
+          "<span class='hl-green'>【無舊課殘留】</span>徹底驗證無上一課知識殘留，證明流程可複製。",
+          "<span class='hl-purple'>【Exit Ticket 反思】</span>選定一份未來 1–2 週真正進課堂的材料。"
+        ],
+        callout: "🌟 完整閉環：教材 → Agent → 產出 → 課堂 → 反思 → 再改！"
+      }
+    ];
+
     let currentSlide = 0;
 
     function openDeck(index) {
-      if (index >= 0 && index < slidesData.length) {
+      if (typeof index === 'number' && index >= 0 && index < slidesData.length) {
         currentSlide = index;
       }
       renderSlide();
-      document.getElementById('deck-modal').style.display = 'flex';
+      document.getElementById('deck-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDeck() {
-      document.getElementById('deck-modal').style.display = 'none';
+      document.getElementById('deck-modal').classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    function toggleDeckModal() {
-      const m = document.getElementById('deck-modal');
-      if (m.style.display === 'flex') {
-        closeDeck();
-      } else {
-        openDeck(currentSlide);
+    function nextSlide() {
+      if (currentSlide < slidesData.length - 1) {
+        currentSlide++;
+        renderSlide();
       }
     }
 
     function prevSlide() {
       if (currentSlide > 0) {
         currentSlide--;
-      } else {
-        currentSlide = slidesData.length - 1;
+        renderSlide();
       }
-      renderSlide();
     }
 
-    function nextSlide() {
-      if (currentSlide < slidesData.length - 1) {
-        currentSlide++;
-      } else {
-        currentSlide = 0;
-      }
-      renderSlide();
+    function toggleBlackboard() {
+      const modal = document.getElementById('deck-modal');
+      if (modal.classList.contains('active')) closeDeck();
+      else openDeck(currentSlide);
     }
 
     function renderSlide() {
@@ -1462,32 +2679,36 @@
       }
     }
 
-    document.addEventListener('mousemove', e => {
-      if (laserActive) {
-        const dot = document.getElementById('laser-dot');
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
+    function togglePaint() {
+      paintActive = !paintActive;
+      const palette = document.getElementById('pen-palette');
+      const btn = document.getElementById('btn-pen');
+      if (!canvas) initCanvas();
+
+      if (paintActive) {
+        canvas.style.pointerEvents = 'auto';
+        palette.classList.add('show');
+        btn.classList.add('active');
+        if (laserActive) toggleLaser();
+      } else {
+        canvas.style.pointerEvents = 'none';
+        palette.classList.remove('show');
+        btn.classList.remove('active');
       }
-    });
+    }
 
     function initCanvas() {
-      canvas = document.getElementById('paint-canvas');
+      canvas = document.getElementById('chalk-canvas');
       ctx = canvas.getContext('2d');
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
       canvas.addEventListener('mousedown', startPosition);
-      canvas.addEventListener('mouseup', endPosition);
+      canvas.addEventListener('mouseup', finishedPosition);
       canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('touchstart', e => {
-        e.preventDefault();
-        startPosition(e.touches[0]);
-      });
-      canvas.addEventListener('touchend', endPosition);
-      canvas.addEventListener('touchmove', e => {
-        e.preventDefault();
-        draw(e.touches[0]);
-      });
+      canvas.addEventListener('touchstart', handleTouchStart);
+      canvas.addEventListener('touchend', finishedPosition);
+      canvas.addEventListener('touchmove', handleTouchMove);
     }
 
     function resizeCanvas() {
@@ -1496,41 +2717,25 @@
       canvas.height = window.innerHeight;
     }
 
-    function togglePaint() {
-      paintActive = !paintActive;
-      const btn = document.getElementById('btn-paint');
-      const pickers = document.getElementById('color-pickers');
-      if (!canvas) initCanvas();
-      if (paintActive) {
-        canvas.style.display = 'block';
-        btn.classList.add('active');
-        pickers.style.display = 'flex';
-        if (laserActive) toggleLaser();
-      } else {
-        canvas.style.display = 'none';
-        btn.classList.remove('active');
-        pickers.style.display = 'none';
-      }
-    }
-
-    function setDrawColor(color, el) {
+    function setPenColor(color, el) {
       currentColor = color;
-      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-      el.classList.add('active');
+      document.querySelectorAll('.pen-color-dot').forEach(d => d.classList.remove('active'));
+      if (el) el.classList.add('active');
     }
 
     function startPosition(e) {
+      if (!paintActive) return;
       painting = true;
       draw(e);
     }
 
-    function endPosition() {
+    function finishedPosition() {
       painting = false;
-      ctx.beginPath();
+      if (ctx) ctx.beginPath();
     }
 
     function draw(e) {
-      if (!painting) return;
+      if (!painting || !paintActive) return;
       ctx.lineWidth = 4;
       ctx.lineCap = 'round';
       ctx.strokeStyle = currentColor;
@@ -1541,103 +2746,143 @@
       ctx.moveTo(e.clientX, e.clientY);
     }
 
+    function handleTouchStart(e) {
+      if (!paintActive) return;
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
+
+    function handleTouchMove(e) {
+      if (!paintActive) return;
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
+
     function clearCanvas() {
       if (ctx && canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
 
+    // --- 3. Spotlight Overlay ---
+    let spotlightActive = false;
+    function toggleSpotlight() {
+      spotlightActive = !spotlightActive;
+      const overlay = document.getElementById('spotlight-overlay');
+      const btn = document.getElementById('btn-spotlight');
+      if (spotlightActive) {
+        overlay.classList.add('active');
+        btn.classList.add('active');
+      } else {
+        overlay.classList.remove('active');
+        btn.classList.remove('active');
+      }
+    }
+
+    // Mouse Tracking for Laser & Spotlight
+    window.addEventListener('mousemove', function(e) {
+      if (laserActive) {
+        const dot = document.getElementById('laser-dot');
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+      }
+      if (spotlightActive) {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      }
+    });
+
+    // --- 4. Fullscreen & Help Modal ---
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
-    function toggleShortcutsModal() {
-      const m = document.getElementById('shortcuts-modal');
-      m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+    function toggleHelp() {
+      const hm = document.getElementById('help-modal');
+      hm.classList.toggle('show');
     }
 
-    // --- 3. Keyboard Shortcuts Listener ---
-    document.addEventListener('keydown', e => {
-      // Avoid triggering when focused on input
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-      const deckModal = document.getElementById('deck-modal');
-      const isDeckOpen = (deckModal.style.display === 'flex');
-
-      if (!isDeckOpen) {
-        if (e.key === ' ' || e.key === 'b' || e.key === 'B') {
-          e.preventDefault();
-          toggleDeckModal();
-        }
-      } else {
-        // Deck is open: presentation clicker & arrow navigation
-        if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key === 'PageDown') {
-          e.preventDefault();
-          nextSlide();
-        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-          e.preventDefault();
-          prevSlide();
-        } else if (e.key === 'b' || e.key === 'B' || e.key === 'Escape') {
-          e.preventDefault();
-          closeDeck();
-        }
-      }
+    // --- 5. Keyboard Navigation ---
+    window.addEventListener('keydown', function(e) {
+      const isDeckActive = document.getElementById('deck-modal').classList.contains('active');
 
       if (e.key === 'Escape') {
-        const sm = document.getElementById('shortcuts-modal');
-        if (sm && sm.style.display === 'flex') sm.style.display = 'none';
+        if (isDeckActive) closeDeck();
+        if (paintActive) togglePaint();
+        if (laserActive) toggleLaser();
+        if (spotlightActive) toggleSpotlight();
+        document.getElementById('help-modal').classList.remove('show');
+      } else if (e.key === 'b' || e.key === 'B') {
+        toggleBlackboard();
       } else if (e.key === 'l' || e.key === 'L') {
         toggleLaser();
       } else if (e.key === 'p' || e.key === 'P') {
         togglePaint();
       } else if (e.key === 'c' || e.key === 'C') {
         clearCanvas();
+      } else if (e.key === 's' || e.key === 'S') {
+        toggleSpotlight();
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullscreen();
-      } else if (e.key === '?') {
-        toggleShortcutsModal();
+      } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+        toggleHelp();
+      } else if (isDeckActive) {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          prevSlide();
+        }
       }
     });
 
-    // --- 4. Copy Prompt Helper ---
-    function copyPromptText(text, btn) {
+    // --- 6. One-Click Copy with Toast ---
+    function copyPrompt(btn, text) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast();
-        if (btn) {
-          const orig = btn.innerHTML;
-          btn.innerHTML = '✓ 已複製！';
-          btn.style.background = '#14352D';
-          setTimeout(() => {
-            btn.innerHTML = orig;
-            btn.style.background = '';
-          }, 2000);
-        }
-      }).catch(() => {
-        // Fallback
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast();
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ 已複製成功！';
+        btn.classList.add('copied');
+        showToast('📋 Prompt 指令已複製至剪貼簿！');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('複製失敗：', err);
+        showToast('⚠️ 複製失敗，請手動選取文字');
       });
     }
 
-    function showToast() {
-      const toast = document.getElementById('copy-toast');
+    function showToast(msg) {
+      let toast = document.getElementById('site-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'site-toast';
+        toast.className = 'site-toast';
+        document.body.appendChild(toast);
+      }
+      toast.innerText = msg;
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2400);
+      }, 2500);
     }
-  </script>
 
+  </script>
 </body>
 </html>
