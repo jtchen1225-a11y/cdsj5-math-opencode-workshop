@@ -4,921 +4,1111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>聖若瑟教區中學第五校 ｜ 小學數學 × OpenCode AI Agent 入門工作坊</title>
-  <meta name="description" content="聖若瑟教區中學第五校小學中英文部：AI 時代守本心，毅誠勤樸篤前行。OpenCode 教師 AI Agent 入門工作坊 v2.3 OpenXML 官方正式版。今日唯一主線：真教材 → 真問題 → 真產出 → 真使用。">
+  <meta name="description" content="聖若瑟教區中學第五校小學中英文部：AI 時代守本心，毅誠勤樸篤前行。OpenCode 教師 AI Agent 入門工作坊 v2.3 官方正式版。唯一主線：真教材 → 真問題 → 真產出 → 真使用。">
   <style>
+/* ==========================================================================
+   聖若瑟教區中學第五校 — 小學數學 × OpenCode AI Agent 入門工作坊
+   Visual Design System — Heritage Academic Ivory & School Green
+   ========================================================================== */
 
+:root {
+  /* Foundation - 70% Ivory Warm White */
+  --bg-main: #F7F4EC;
+  --bg-surface: #FFFDF8;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F0ECE1;
 
-    :root {
-      /* Foundation - 70% Ivory Warm White */
-      --bg-main: #F7F4EC;
-      --bg-surface: #FFFDF8;
-      --bg-card: #FFFFFF;
-      --bg-soft: #F3F0E8;
+  /* School Identity - 20% Campus Green & Deep Navy */
+  --school-green: #1F5948;
+  --school-green-dark: #164235;
+  --school-green-light: #2A755F;
+  --school-green-soft: #EAF3EF;
+  --school-navy: #172437;
+  --school-navy-light: #24364F;
 
-      /* School Identity - 20% Campus Green & Deep Navy */
-      --school-green: #1F5948;
-      --school-green-dark: #173F35;
-      --school-green-soft: #EAF2EE;
-      --school-navy: #172437;
+  /* Typography */
+  --text-primary: #182436;
+  --text-secondary: #52606D;
+  --text-muted: #7E8B97;
 
-      /* Typography */
-      --text-primary: #182436;
-      --text-secondary: #59636E;
-      --text-muted: #7A817F;
+  /* Accents - 10% AI Orange, Heritage Gold, Tech Blue */
+  --ai-orange: #F26A21;
+  --ai-orange-dark: #D45410;
+  --ai-orange-soft: #FFF2EB;
 
-      /* Accents - 10% AI Orange, Heritage Gold, Tech Blue */
-      --ai-orange: #F26A21;
-      --ai-orange-dark: #D95612;
-      --ai-orange-soft: #FFF0E6;
+  --heritage-gold: #B88A28;
+  --heritage-gold-dark: #916B19;
+  --heritage-gold-soft: #FFF9E6;
 
-      --heritage-gold: #B88A28;
-      --heritage-gold-dark: #8F6817;
-      --heritage-gold-soft: #FFF7DE;
+  --tech-blue: #2787C8;
+  --tech-blue-dark: #1A699E;
+  --tech-blue-soft: #EBF5FB;
 
-      --tech-blue: #2787C8;
-      --tech-blue-dark: #17669C;
-      --tech-blue-soft: #EAF5FC;
+  /* Borders & Shadows */
+  --border-light: #E7E0D2;
+  --border-medium: #D6CCA8;
+  --border-focus: #1F5948;
 
-      /* Borders & Elevation */
-      --border-light: #E6DED1;
-      --border-medium: #D8CDBD;
+  --shadow-sm: 0 2px 8px rgba(24, 36, 54, 0.04);
+  --shadow-md: 0 6px 20px rgba(24, 36, 54, 0.06);
+  --shadow-lg: 0 14px 38px rgba(24, 36, 54, 0.09);
 
-      --shadow-sm: 0 2px 8px rgba(24, 36, 54, 0.05);
-      --shadow-md: 0 8px 28px rgba(24, 36, 54, 0.07);
-      --shadow-lg: 0 18px 45px rgba(24, 36, 54, 0.10);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
 
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
+* {
+  box-sizing: border-box;
+}
 
-      /* Chalkboard Tokens */
-      --chalk-bg: #13322B;
-      --chalk-card: #1B443B;
-      --chalk-text: #FFFDF6;
-      --chalk-muted: rgba(255, 255, 255, 0.78);
-      --chalk-orange: #FF7A2F;
-      --chalk-gold: #E5BE58;
-      --chalk-blue: #5AC2FF;
-      --chalk-green: #59E5B3;
-      --chalk-rose: #FF7B7D;
-      --chalk-purple: #D194FF;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-main);
-      color: var(--text-primary);
-      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+:focus-visible {
+  outline: 2px solid var(--school-green);
+  outline-offset: 2px;
+}
 
-    :focus-visible {
-      outline: 2px solid var(--school-green);
-      outline-offset: 2px;
-    }
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-    .wrap {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+/* ==========================================================================
+   1. Header Navigation
+   ========================================================================== */
+header.site-header {
+  background: #173F35;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: 0 2px 12px rgba(18, 36, 54, 0.15);
+}
 
-    /* 1. Header */
-    header.site-header {
-      background: linear-gradient(90deg, #14352D 0%, #1F5948 100%);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      position: sticky;
-      top: 0;
-      z-index: 500;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 0;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 1.02rem;
-    }
-    .brand-badge {
-      background: var(--ai-orange);
-      color: #FFFFFF;
-      padding: 3px 9px;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .nav-link {
-      color: rgba(255, 255, 255, 0.86);
-      text-decoration: none;
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: #FFFFFF;
-    }
-    .nav-link.active {
-      background: #FFFFFF;
-      color: var(--school-green);
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-    }
-    .nav-btn-deck {
-      background: #E5BE58;
-      color: #122E27 !important;
-      font-weight: 700 !important;
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      transition: all 0.2s ease;
-    }
-    .nav-btn-deck:hover {
-      background: #F3CE6C;
-      transform: translateY(-1px);
-    }
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
 
-    /* 2. Four Color Operation Pills */
-    .color-pills-bar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 16px 0 24px;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    }
-    .pill-a {
-      background: #EAF5F0;
-      border: 1px solid #1F5948;
-      color: #143F33;
-    }
-    .pill-b {
-      background: #EAF5FC;
-      border: 1px solid #2787C8;
-      color: #125E91;
-    }
-    .pill-all {
-      background: #FFF8E6;
-      border: 1px solid #B88A28;
-      color: #7A5710;
-    }
-    .pill-pause {
-      background: #FDE8E8;
-      border: 1px solid #D9383A;
-      color: #A81B1D;
-    }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #FFFDF8;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+}
 
-    /* 3. Cards & Typography */
-    .hero-banner {
-      background: linear-gradient(135deg, #FFFDF8 0%, #F5EFE3 100%);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      margin: 28px 0 32px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-motto {
-      display: inline-block;
-      background: linear-gradient(90deg, #14352D 0%, #1F5948 100%);
-      color: #FFFFFF;
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-    .hero-title {
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: var(--school-navy);
-      margin: 0 0 12px;
-      line-height: 1.35;
-      letter-spacing: -0.5px;
-    }
-    .hero-line {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--ai-orange);
-      margin: 0 0 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .hero-desc {
-      color: var(--text-secondary);
-      font-size: 1.02rem;
-      max-width: 840px;
-      margin: 0;
-      line-height: 1.8;
-    }
+.brand-badge {
+  background: var(--ai-orange);
+  color: #FFFFFF;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
 
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 22px;
-      transition: all 0.2s ease;
-    }
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-medium);
-    }
-    .card-zoomable {
-      cursor: pointer;
-      position: relative;
-    }
-    .card-zoomable:hover {
-      transform: translateY(-2px);
-      border-color: var(--school-green);
-    }
-    .zoom-badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: #EAF2EE;
-      color: var(--school-green);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(31,89,72,0.25);
-    }
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
+.nav-links a {
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.18s ease;
+}
 
-    /* 4. Prominent Map */
-    .prominent-map {
-      background: #FFFDF8;
-      border: 2px solid var(--school-green);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin: 28px 0;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: var(--shadow-md);
-      transition: all 0.25s ease;
-      position: relative;
-    }
-    .prominent-map:hover {
-      box-shadow: 0 12px 36px rgba(31,89,72,0.16);
-      transform: translateY(-2px);
-    }
-    .prominent-map img {
-      max-width: 100%;
-      height: auto;
-      border-radius: var(--radius-sm);
-      display: block;
-      margin: 0 auto;
-    }
+.nav-links a:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
 
-    /* 5. Classroom Floating Toolbar */
-    #classroom-toolbar {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(20, 53, 45, 0.94);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      padding: 7px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 12px 35px rgba(18, 36, 54, 0.35);
-      z-index: 1000;
-      color: #FFFFFF;
-    }
-    .tool-btn {
-      background: rgba(255, 255, 255, 0.12);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.18s ease;
-      user-select: none;
-    }
-    .tool-btn:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
-    }
-    .tool-btn.active {
-      background: #E5BE58;
-      color: #122E27;
-      border-color: #E5BE58;
-      box-shadow: 0 0 12px rgba(229,190,88,0.5);
-    }
-    .color-picker-group {
-      display: none;
-      align-items: center;
-      gap: 6px;
-      margin-left: 4px;
-    }
-    .color-dot {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid #FFFFFF;
-      transition: transform 0.15s ease;
-    }
-    .color-dot:hover {
-      transform: scale(1.25);
-    }
-    .color-dot.active {
-      outline: 2px solid #FFFFFF;
-      transform: scale(1.3);
-    }
+.nav-links a.active {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+}
 
-    /* 6. Laser Pointer & Canvas */
-    #laser-dot {
-      display: none;
-      position: fixed;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #FF2A2A;
-      box-shadow: 0 0 14px 4px rgba(255, 42, 42, 0.85);
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-    }
-    #paint-canvas {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9999;
-      cursor: crosshair;
-    }
+.nav-deck-btn {
+  background: var(--heritage-gold);
+  color: #16362C !important;
+  font-weight: 800 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(184, 138, 40, 0.35);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
 
-    /* 7. Blackboard Deck Modal (Dual-Column 85% Viewport) */
-    #deck-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(10, 24, 20, 0.92);
-      backdrop-filter: blur(12px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
-    .deck-container {
-      width: 92vw;
-      max-width: 1480px;
-      height: 88vh;
-      background: #13322B;
-      border: 3px solid #2B6154;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      color: #FFFDF6;
-    }
-    .deck-topbar {
-      padding: 14px 28px;
-      background: #1A4239;
-      border-bottom: 2px solid #2B6154;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .deck-top-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .deck-category-badge {
-      background: #E5BE58;
-      color: #122E27;
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-    .deck-slide-count {
-      font-family: monospace;
-      font-size: 1rem;
-      color: #8FD8C4;
-      font-weight: 700;
-    }
-    .deck-nav-btns {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .deck-btn {
-      background: #235246;
-      border: 1px solid #3C7A6B;
-      color: #FFFDF6;
-      border-radius: 8px;
-      padding: 7px 16px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-    .deck-btn:hover {
-      background: #316B5D;
-    }
-    .deck-next-btn {
-      background: #E5BE58 !important;
-      color: #122E27 !important;
-      border-color: #E5BE58 !important;
-      font-weight: 800 !important;
-      box-shadow: 0 0 10px rgba(229, 190, 88, 0.35);
-    }
-    .deck-next-btn:hover {
-      background: #F3CE6C !important;
-      transform: translateY(-1px);
-    }
-    .deck-close-btn {
-      background: #A82424;
-      border-color: #C53B3B;
-    }
-    .deck-close-btn:hover {
-      background: #BF2D2D;
-    }
+.nav-deck-btn:hover {
+  background: #CBA23D !important;
+  color: #122B23 !important;
+  transform: translateY(-1px);
+}
 
-    .deck-main-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 24px 32px;
-      overflow: hidden;
-      min-height: 0;
-    }
-    .deck-slide-card {
-      background: #173B33;
-      border: 1px solid #2B6154;
-      border-radius: 16px;
-      padding: 34px 44px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 100%;
-      min-height: 0;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-    }
-    .deck-slide-title {
-      font-size: 2.35rem;
-      font-weight: 800;
-      color: #FFFDF6;
-      margin: 0 0 14px;
-      line-height: 1.32;
-      flex-shrink: 0;
-    }
-    .deck-slide-desc {
-      font-size: 1.25rem;
-      color: #8FD8C4;
-      margin-bottom: 22px;
-      font-weight: 600;
-      line-height: 1.68;
-      flex-shrink: 0;
-    }
-    .deck-slide-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex: 1;
-    }
-    .deck-slide-list li {
-      font-size: 1.25rem;
-      line-height: 1.78;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 18px;
-      border-radius: 10px;
-      background: rgba(27, 68, 59, 0.55);
-      border: 1px solid rgba(43, 97, 84, 0.45);
-    }
-    .deck-slide-callout {
-      background: rgba(14, 38, 32, 0.92);
-      border: 1.5px dashed #59E5B3;
-      border-radius: 12px;
-      padding: 18px 24px;
-      margin-top: auto;
-      font-size: 1.2rem;
-      color: #E5BE58;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      line-height: 1.65;
-      flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-    }
-    .hl-badge {
-      display: inline-block;
-      padding: 2px 9px;
-      border-radius: 5px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      margin-right: 6px;
-      vertical-align: middle;
-    }
-    .hl-badge.gold { background: #E5BE58; color: #122E27; }
-    .hl-badge.green { background: #59E5B3; color: #0C3325; }
-    .hl-badge.cyan { background: #5AC2FF; color: #0C2E42; }
-    .hl-badge.purple { background: #D194FF; color: #360E54; }
-    .hl-badge.rose { background: #FF7B7D; color: #4F0B0D; }
-    .hl-gold { color: #E5BE58; font-weight: 700; text-shadow: 0 0 8px rgba(229,190,88,0.35); }
-    .hl-green { color: #59E5B3; font-weight: 700; text-shadow: 0 0 8px rgba(89,229,179,0.35); }
-    .hl-cyan { color: #5AC2FF; font-weight: 700; text-shadow: 0 0 8px rgba(90,194,255,0.35); }
-    .hl-purple { color: #D194FF; font-weight: 700; text-shadow: 0 0 8px rgba(209,148,255,0.35); }
-    .hl-rose { color: #FF7B7D; font-weight: 700; text-shadow: 0 0 8px rgba(255,123,125,0.35); }
+/* ==========================================================================
+   2. Hero Section
+   ========================================================================== */
+.hero {
+  padding: 52px 0 42px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-main) 100%);
+}
 
-    /* 8. Toast Feedback */
-    #copy-toast {
-      position: fixed;
-      bottom: 85px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #14352D;
-      color: #FFFFFF;
-      border: 1px solid #59E5B3;
-      padding: 10px 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.22s ease;
-      z-index: 99999;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    #copy-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
 
-    /* 9. Prompt Box & Table */
-    .prompt-box {
-      background: #FDFBF7;
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      margin-bottom: 22px;
-      position: relative;
-    }
-    .prompt-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .prompt-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--school-navy);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .copy-btn {
-      background: var(--school-green);
-      color: #FFFFFF;
-      border: none;
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .copy-btn:hover {
-      background: var(--school-green-dark);
-      transform: translateY(-1px);
-    }
-    pre.prompt-code {
-      background: #142E27;
-      color: #FFFDF6;
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      font-family: Consolas, Monaco, "Courier New", monospace;
-      font-size: 0.92rem;
-      line-height: 1.65;
-      overflow-x: auto;
-      margin: 0;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-soft);
+  color: var(--school-navy);
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+}
 
-    /* 10. Responsive Table */
-    .tw {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 18px 0;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-    }
-    table.data-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #FFFFFF;
-      font-size: 0.92rem;
-      text-align: left;
-    }
-    table.data-table th {
-      background: var(--school-green-soft);
-      color: var(--school-green-dark);
-      padding: 12px 16px;
-      font-weight: 700;
-      border-bottom: 1px solid var(--border-medium);
-      white-space: nowrap;
-    }
-    table.data-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-light);
-      vertical-align: top;
-    }
-    table.data-table tr:last-child td {
-      border-bottom: none;
-    }
-    table.data-table tr:hover td {
-      background: #FDFCF9;
-    }
+.hero-tag.motto {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  border-color: rgba(31, 89, 72, 0.25);
+}
 
-    footer.site-footer {
-      background: #14352D;
-      color: rgba(255, 255, 255, 0.85);
-      padding: 40px 0;
-      margin-top: 60px;
-      font-size: 0.92rem;
-      border-top: 2px solid #2B6154;
-    }
+.hero-motto-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 89, 72, 0.2);
+  margin-bottom: 20px;
+}
 
-  
+.hero h1 {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--school-green-dark);
+  margin: 0 0 16px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
 
-    /* Additional Styles for Short URL and Index Highlights */
-    .header-short-link {
-      display: flex;
-      align-items: center;
-    }
-    .short-url-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--ai-orange);
-      color: #FFFFFF !important;
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.35);
-      transition: all 180ms ease;
-      letter-spacing: 0.3px;
-    }
-    .short-url-pill:hover {
-      background: var(--ai-orange-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(242, 106, 33, 0.5);
-    }
-    .deck-short-url-tag {
-      background: rgba(242, 106, 33, 0.25);
-      color: #FF8D4D;
-      border: 1px solid rgba(242, 106, 33, 0.5);
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-    .hero-short-url-banner {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--soft-orange) 0%, var(--soft-gold) 100%);
-      border: 1.5px solid rgba(242, 106, 33, 0.4);
-      padding: 8px 18px;
-      border-radius: 30px;
-      margin: 12px 0 20px 0;
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--school-navy);
-      box-shadow: 0 2px 8px rgba(242, 106, 33, 0.15);
-    }
-    .hero-short-url-banner a {
-      color: var(--ai-orange);
-      text-decoration: underline;
-    }
-    .p-slide-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      position: relative;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: all 180ms ease;
-    }
-    .p-slide-card:hover {
-      border-color: var(--school-green);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(24, 36, 54, 0.12);
-    }
-    .p-slide-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--school-green-soft);
-      color: var(--school-green-dark);
-      margin-bottom: 8px;
-    }
-    .p-slide-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--school-navy);
-      margin: 0 0 8px 0;
-    }
-    .p-slide-desc {
-      font-size: 0.86rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin: 0;
-    }
+.hero p.lead, .hero p.hero-p {
+  font-size: 1.12rem;
+  color: var(--text-secondary);
+  max-width: 820px;
+  margin: 0 auto 24px;
+  line-height: 1.75;
+}
 
+.hero-track-bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg-card);
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.track-item {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--school-navy);
+}
+
+.track-arrow {
+  color: var(--ai-orange);
+  font-weight: 800;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Informational Callout Boxes */
+.info-box {
+  background: var(--bg-card);
+  border-left: 4px solid var(--school-green);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 20px;
+  margin: 20px auto;
+  max-width: 860px;
+  text-align: left;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  box-shadow: var(--shadow-sm);
+}
+
+.warn-box {
+  background: var(--ai-orange-soft);
+  border-left: 4px solid var(--ai-orange);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 20px;
+  margin: 20px auto;
+  max-width: 860px;
+  text-align: left;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #7C2D12;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.96rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--school-green);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(31, 89, 72, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--school-green-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--school-navy);
+  border-color: var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-medium);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background: var(--ai-orange);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(242, 106, 33, 0.28);
+}
+
+.btn-accent:hover {
+  background: var(--ai-orange-dark);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   3. Content Sections & Cards
+   ========================================================================== */
+section.content-section {
+  padding: 44px 0;
+}
+
+.section-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--school-green-dark);
+  margin: 0 0 10px;
+}
+
+.section-header p {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.card h3 {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--school-navy);
+  margin: 0 0 10px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0 0 14px;
+  line-height: 1.7;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   4. Milestone & Run Sheet
+   ========================================================================== */
+.milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.milestone-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-left: 5px solid var(--school-green);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.milestone-time {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.milestone-body {
+  flex: 1;
+}
+
+.milestone-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--school-navy);
+  margin: 0 0 6px;
+}
+
+.milestone-desc {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* Runsheet Cards */
+.runsheet-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.runsheet-card:hover {
+  border-color: var(--school-green);
+  box-shadow: var(--shadow-md);
+}
+
+.runsheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--school-green-soft);
+  padding-bottom: 10px;
+}
+
+.runsheet-title {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--school-green-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.runsheet-time-badge {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  border: 1px solid rgba(31, 89, 72, 0.2);
+}
+
+.enter-badge {
+  display: inline-block;
+  background: var(--ai-orange-soft);
+  color: var(--ai-orange);
+  border: 1.5px solid var(--ai-orange);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.enter-badge.active {
+  background: var(--ai-orange);
+  color: #FFFFFF;
+  box-shadow: 0 0 8px rgba(242, 106, 33, 0.4);
+}
+
+.slide-badge-link {
+  display: inline-block;
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(31, 89, 72, 0.2);
+}
+
+.slide-badge-link:hover {
+  background: var(--school-green);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   5. Deck Slides Grid (12-slide map)
+   ========================================================================== */
+.slides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.slide-thumb {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.slide-thumb:hover {
+  border-color: var(--school-green);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.slide-thumb-num {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--heritage-gold-dark);
+  margin-bottom: 6px;
+}
+
+.slide-thumb-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--school-navy);
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.slide-thumb-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. Prompt Box Component
+   ========================================================================== */
+.prompt-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.prompt-box:hover {
+  border-color: var(--school-green);
+  box-shadow: var(--shadow-md);
+}
+
+.prompt-header {
+  padding: 16px 22px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.prompt-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--school-green-dark);
+}
+
+.prompt-tag {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.prompt-body {
+  padding: 20px 22px;
+}
+
+.prompt-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.prompt-meta-item {
+  background: var(--bg-soft);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.prompt-meta-item strong {
+  color: var(--school-navy);
+}
+
+.copy-btn {
+  background: var(--school-green);
+  color: #FFFFFF;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.copy-btn:hover {
+  background: var(--school-green-dark);
+  transform: translateY(-1px);
+}
+
+pre.code-block, pre.prompt-code {
+  background: #132E26;
+  color: #FFFDF8;
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  border: 1px solid #234E42;
+}
+
+/* ==========================================================================
+   7. Troubleshooting Cards
+   ========================================================================== */
+.trouble-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.trouble-card:hover {
+  border-color: var(--school-green);
+  box-shadow: var(--shadow-md);
+}
+
+.trouble-header {
+  padding: 16px 22px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trouble-badge {
+  background: #DC2626;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.trouble-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--school-navy);
+}
+
+.trouble-body {
+  padding: 20px 22px;
+}
+
+.trouble-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.trouble-step-num {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  font-weight: 800;
+  font-size: 0.82rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   8. Tables (Scrollable Wrapper)
+   ========================================================================== */
+.tw, .table-wrapper {
+  overflow-x: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  margin: 16px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.91rem;
+}
+
+th {
+  background: var(--school-green-soft);
+  color: var(--school-green-dark);
+  padding: 12px 16px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+  color: var(--text-primary);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: var(--bg-surface);
+}
+
+/* ==========================================================================
+   9. Chalkboard Deck Modal (全屏大字號投影簡報，>85% 視窗覆蓋)
+   ========================================================================== */
+#deck-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 24, 20, 0.94);
+  backdrop-filter: blur(12px);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#deck-modal.active {
+  display: flex;
+}
+
+.deck-container {
+  width: 94vw;
+  max-width: 1480px;
+  height: 90vh;
+  background: #13322B;
+  border: 2px solid #2B6154;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #FFFDF6;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+}
+
+.deck-topbar {
+  padding: 14px 28px;
+  background: #1A4239;
+  border-bottom: 2px solid #2B6154;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.deck-top-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.deck-category-badge {
+  background: var(--heritage-gold);
+  color: #122E27;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.deck-slide-count {
+  font-family: monospace;
+  font-size: 1.05rem;
+  color: #8FD8C4;
+  font-weight: 700;
+}
+
+.deck-nav-btns {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.deck-btn {
+  background: #235246;
+  border: 1px solid #3C7A6B;
+  color: #FFFDF6;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.deck-btn:hover {
+  background: #316B5D;
+}
+
+.deck-next-btn {
+  background: var(--heritage-gold) !important;
+  color: #122E27 !important;
+  border-color: var(--heritage-gold) !important;
+  font-weight: 800 !important;
+}
+
+.deck-next-btn:hover {
+  background: #F3CE6C !important;
+}
+
+.deck-close-btn {
+  background: #9A2424;
+  border-color: #B53232;
+}
+
+.deck-close-btn:hover {
+  background: #B52828;
+}
+
+.deck-main-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.deck-slide-card {
+  background: #173B33;
+  border: 1px solid #2B6154;
+  border-radius: 14px;
+  padding: 32px 42px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  min-height: 0;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.deck-slide-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFFDF6;
+  margin: 0 0 12px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.deck-slide-desc {
+  font-size: 1.2rem;
+  color: #8FD8C4;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.deck-slide-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.deck-slide-list li {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: rgba(27, 68, 59, 0.55);
+  border: 1px solid rgba(43, 97, 84, 0.45);
+}
+
+.deck-slide-callout {
+  background: rgba(14, 38, 32, 0.92);
+  border: 1.5px dashed #59E5B3;
+  border-radius: 12px;
+  padding: 16px 22px;
+  margin-top: auto;
+  font-size: 1.15rem;
+  color: #E5BE58;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.deck-bottom-bar {
+  padding: 10px 28px;
+  background: #0E2922;
+  border-top: 1px solid #1F4D41;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Highlight Badges */
+.hl-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.hl-badge.gold { background: #E5BE58; color: #122E27; }
+.hl-badge.green { background: #59E5B3; color: #0C3325; }
+.hl-badge.cyan { background: #5AC2FF; color: #0C2E42; }
+.hl-badge.purple { background: #D194FF; color: #360E54; }
+.hl-badge.rose { background: #FF7B7D; color: #4F0B0D; }
+
+/* Toast */
+#site-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #173F35;
+  color: #FFFFFF;
+  border: 1px solid #59E5B3;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.22s ease;
+  z-index: 999999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+#site-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   10. Footer
+   ========================================================================== */
+footer.site-footer {
+  background: #14352D;
+  color: rgba(255, 255, 255, 0.82);
+  padding: 36px 0;
+  margin-top: 60px;
+  font-size: 0.9rem;
+  border-top: 2px solid #235246;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-title {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+}
+
+.footer-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.86rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.9rem; }
+  .nav-container { flex-direction: column; height: auto; padding: 12px 0; gap: 10px; }
+  .nav-links { flex-wrap: wrap; justify-content: center; }
+  .deck-slide-title { font-size: 1.6rem; }
+  .deck-slide-list li { font-size: 1rem; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
   </style>
 </head>
 <body>
 
-  <!-- Spotlight Overlay -->
-  <div id="spotlight-overlay"></div>
-
-  <!-- Laser Dot -->
-  <div id="laser-dot"></div>
-
-  <!-- Fullscreen Chalkboard Canvas -->
-  <canvas id="chalk-canvas"></canvas>
-
-  <!-- Pen Color Palette -->
-  <div id="pen-palette" class="pen-palette">
-    <span style="font-size:0.8rem; font-weight:700; color:#FFFDF6; margin-right:4px;">畫筆顏色：</span>
-    <div class="pen-color-dot active" style="background:#FFE600;" onclick="setPenColor('#FFE600', this)" title="螢光黃"></div>
-    <div class="pen-color-dot" style="background:#FF4444;" onclick="setPenColor('#FF4444', this)" title="粉筆紅"></div>
-    <div class="pen-color-dot" style="background:#38BDF8;" onclick="setPenColor('#38BDF8', this)" title="科技藍"></div>
-    <div class="pen-color-dot" style="background:#52D1A1;" onclick="setPenColor('#52D1A1', this)" title="算理綠"></div>
-  </div>
-
-  <!-- Blackboard Deck Modal (單欄全景投影，>85% 視窗利用率) -->
-  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
-    <div class="deck-modal-container">
-      <div class="deck-header">
-        <div class="deck-title-area">
-          <span class="deck-tag" id="deck-cat">P01 ｜ 課堂啟動</span>
-          <span class="deck-short-url-tag">🌐 tinyurl.com/25kekzvv</span>
-        </div>
-        <div class="deck-controls-top">
-          <span class="deck-counter" id="deck-counter">[ 1 / 12 ]</span>
-          <button class="deck-icon-btn" onclick="prevSlide()" title="上一頁 (← 或 PageUp)">◀</button>
-          <button class="deck-icon-btn" onclick="nextSlide()" title="下一頁 (→ / Space / Enter / PageDown)">▶</button>
-          <button class="deck-icon-btn" onclick="toggleFullscreen()" title="全螢幕 (F)">⛶</button>
-          <button class="deck-icon-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖</button>
-        </div>
-      </div>
-      <div class="deck-body">
-        <div class="deck-slide-card">
-          <div id="deck-slide-content">
-            <!-- Dynamically populated by renderSlide() -->
-          </div>
-        </div>
-      </div>
-      <div class="deck-footer">
-        <span class="deck-tip">💡 提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或簡報筆 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板</span>
-        <button class="deck-close-btn" onclick="closeDeck()">關閉投影 (Esc)</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Classroom Floating Toolbar -->
-  <div class="classroom-toolbar">
-    <button class="tool-btn" id="btn-deck" onclick="toggleBlackboard()" title="開啟黑板投影片 (B)">
-      <span class="tool-icon">🖥️</span><span class="tool-text">黑板投影</span>
-    </button>
-    <div class="toolbar-divider"></div>
-    <button class="tool-btn" id="btn-laser" onclick="toggleLaser()" title="雷射筆指標 (L)">
-      <span class="tool-icon">🔴</span><span class="tool-text">雷射筆</span>
-    </button>
-    <button class="tool-btn" id="btn-pen" onclick="togglePaint()" title="全螢幕塗鴉 (P)">
-      <span class="tool-icon">✏️</span><span class="tool-text">畫筆</span>
-    </button>
-    <button class="tool-btn" id="btn-clear" onclick="clearCanvas()" title="清除筆跡 (C)">
-      <span class="tool-icon">🧹</span><span class="tool-text">清除</span>
-    </button>
-    <div class="toolbar-divider"></div>
-    <button class="tool-btn" id="btn-spotlight" onclick="toggleSpotlight()" title="聚光燈 (S)">
-      <span class="tool-icon">🔦</span><span class="tool-text">聚光燈</span>
-    </button>
-    <button class="tool-btn" id="btn-fs" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">
-      <span class="tool-icon">⛶</span><span class="tool-text">全螢幕</span>
-    </button>
-    <div class="toolbar-divider"></div>
-    <button class="tool-btn" onclick="toggleHelp()" title="快捷鍵指南 (?)">
-      <span class="tool-icon">❓</span><span class="tool-text">指南</span>
-    </button>
-  </div>
-
-  <!-- Help Modal -->
-  <div id="help-modal">
-    <h3>⌨️ 課堂授課教具快捷鍵指南</h3>
-    <table>
-      <tr><td><kbd>B</kbd></td><td>開啟／關閉黑板全景簡報</td></tr>
-      <tr><td><kbd>→</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> / <kbd>PgDn</kbd></td><td>投影片下一頁</td></tr>
-      <tr><td><kbd>←</kbd> / <kbd>PgUp</kbd></td><td>投影片上一頁</td></tr>
-      <tr><td><kbd>L</kbd></td><td>開啟／關閉紅色呼吸雷射筆</td></tr>
-      <tr><td><kbd>P</kbd></td><td>開啟／關閉全螢幕畫筆塗鴉</td></tr>
-      <tr><td><kbd>C</kbd></td><td>一鍵清除畫筆塗鴉</td></tr>
-      <tr><td><kbd>S</kbd></td><td>開啟／關閉聚光燈遮罩</td></tr>
-      <tr><td><kbd>F</kbd></td><td>切換瀏覽器滿版全螢幕</td></tr>
-      <tr><td><kbd>?</kbd></td><td>開啟本快捷鍵指南</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>退出目前模式／關閉彈窗</td></tr>
-    </table>
-    <div style="text-align:right; margin-top:16px;">
-      <button class="btn btn-secondary" onclick="toggleHelp()" style="padding:6px 16px;">我知道了</button>
-    </div>
-  </div>
-
-  <!-- Header -->
+  <!-- Site Header -->
   <header class="site-header">
     <div class="wrap nav-container">
       <a href="index.html" class="brand">
@@ -930,511 +1120,524 @@
         <li><a href="workshop-flow.html">120分鐘流程</a></li>
         <li><a href="prompts.html">實操提示詞庫</a></li>
         <li><a href="troubleshooting.html">疑難排解SOP</a></li>
+        <li><a href="javascript:void(0)" onclick="toggleBlackboard()" class="nav-deck-btn" title="開啟黑板全屏投影簡報 (快捷鍵: B)">🖥️ 課堂黑板 (B)</a></li>
       </ul>
-      <div class="header-short-link">
-        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" title="課堂專屬短網址，點擊直接前往或分享">
-          <span class="short-icon">🌐</span>
-          <span class="short-text">tinyurl.com/25kekzvv</span>
-        </a>
-      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <div class="hero">
+  <header class="hero">
     <div class="wrap">
-      <div class="hero-meta">
-        <span class="hero-tag school">澳門聖若瑟教區中學第五校</span>
-        <span class="hero-tag motto">校訓精神：毅誠勤樸</span>
-        <span class="hero-tag">小學中英文部數學教師 (約40人)</span>
-        <span class="hero-tag" style="background:#FEE2E2; color:#DC2626; border-color:#F87171;">第一堂：只學 Agent</span>
+      <div class="hero-motto-tag">
+        <span>🏛️ 聖五校訓</span>
+        <span>AI 時代守本心，毅誠勤樸篤前行</span>
       </div>
-
-      <h1>小學數學 × OpenCode<br><span class="key-text">---AI Agent 實作工作坊</span></h1>
-
-      <!-- Short URL Banner -->
-      <div>
-        <div class="hero-short-url-banner">
-          <span>📲 課堂專屬短網址：</span>
-          <a href="https://tinyurl.com/25kekzvv" target="_blank">https://tinyurl.com/25kekzvv</a>
-          <span style="font-size:0.8rem; font-weight:normal; color:var(--text-secondary);">（手機／筆電即刻免登入查閱）</span>
-        </div>
+      <h1>小學數學 × OpenCode AI Agent 入門工作坊</h1>
+      <p class="lead">
+        專為聖若瑟教區中學第五校小學中英文部數學科全體教師量身打造。120 分鐘浸潤式實作，零代碼門檻，全班齊步走。
+      </p>
+      <div class="hero-track-bar">
+        <span class="track-item">📚 真教材</span>
+        <span class="track-arrow">➔</span>
+        <span class="track-item">❓ 真問題</span>
+        <span class="track-arrow">➔</span>
+        <span class="track-item">📄 真產出</span>
+        <span class="track-arrow">➔</span>
+        <span class="track-item">💼 真使用</span>
       </div>
-
-      <!-- Core Motto Banner -->
-      <div class="motto-banner clickable-card" onclick="openDeck(1)" title="點擊放大至黑板展示今日主線">
-        <span class="card-zoom-badge">放大授課 ↗</span>
-        <span class="motto-icon">🌟</span>
-        <div class="motto-text">
-          <strong>今日唯一主線：真教材 → 真問題 → 真產出 → 真使用</strong>
-          <p>以聖若瑟五校校訓「毅誠勤樸」為精神底色：<strong>AI 做草稿，教師做判斷！</strong>這不是比誰生成得多，而是看誰能讓 Agent 更懂你的真實課堂。</p>
-        </div>
-      </div>
-
-      <!-- 4 Core Pillars of Workshop -->
-      <div class="pillars-grid" id="pillars">
-        <div class="pillar-card" onclick="openDeck(0)" title="點擊放大至黑板翻頁">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <div class="pillar-num">2 小時</div>
-          <div class="pillar-title">⏱️ 逐分精準節奏</div>
-          <p class="pillar-desc">12 個 10 分鐘區段嚴格時間控制，只在指定節點全班同步 ENTER，不拖泥帶水。</p>
-        </div>
-        <div class="pillar-card" onclick="openDeck(5)" title="點擊放大至黑板翻頁">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <div class="pillar-num">1 個教材</div>
-          <div class="pillar-title">📄 未來真實材料</div>
-          <p class="pillar-desc">以未來 1–2 週真實教材為依據，不放個資、不用虛構 Demo，恪守概念邊界。</p>
-        </div>
-        <div class="pillar-card" onclick="openDeck(2)" title="點擊放大至黑板翻頁">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <div class="pillar-num">4 次循環</div>
-          <div class="pillar-title">🔄 Agent 備課循環</div>
-          <p class="pillar-desc">完整經歷 RDQ 診斷 → 第一版內容 → DOCX/PDF 匯出 → 分層修訂 → 換教材 Reuse。</p>
-        </div>
-        <div class="pillar-card" onclick="openDeck(4)" title="點擊放大至黑板翻頁">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <div class="pillar-num">1 個專案</div>
-          <div class="pillar-title">📦 長期校本資產</div>
-          <p class="pillar-desc">建立具備 AGENTS.md 規範的永久專案架構，換課題換單元隨時成熟重用。</p>
-        </div>
-      </div>
-
       <div class="hero-actions">
-        <button class="btn" onclick="openDeck(0)">🖥️ 開啟黑板全景投影片 (B)</button>
-        <a href="workshop-flow.html" class="btn btn-secondary">⏱️ 進入 120 分鐘逐分鐘流程</a>
-        <a href="prompts.html" class="btn btn-secondary">📋 複製 10 大實操 Prompt</a>
-        <a href="troubleshooting.html" class="btn btn-outline">🛠️ 13 大故障排查 SOP</a>
+        <a href="workshop-flow.html" class="btn btn-primary">⏱️ 120分鐘逐分流程</a>
+        <a href="prompts.html" class="btn btn-secondary">📋 實操提示詞庫</a>
+        <a href="troubleshooting.html" class="btn btn-secondary">🛠️ 疑難排解 SOP</a>
+        <button onclick="toggleBlackboard(0)" class="btn btn-accent" style="border:none;">🖥️ 啟動黑板投影 (B)</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 1: Three Core Principles -->
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-header">
+          <h2>三大校本教研心法</h2>
+          <p>回歸教學專業本質，AI 承擔繁重草稿，教師專注專業診斷與判斷</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-icon">📚</span>
+            <h3>真教材實戰</h3>
+            <p>
+              不脫離課堂實際，全程以《小學數學五上第二單元多邊形面積》真實教材開展實戰。從教材文本解析到幾何圖形割補，真實驗證教學效能。
+            </p>
+            <div class="card-footer">
+              堅持有校史、有學術底蘊的嚴謹教研
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">🤖</span>
+            <h3>第一堂：只學 Agent</h3>
+            <p>
+              不講晦澀的演算法技術黑話。聚焦於 AI Agent「自主讀取目錄、分析關係、多檔案生成、自我稽核」的自主代理能力，徹底超越普通聊天機器人。
+            </p>
+            <div class="card-footer">
+              零編程門檻，每位教師都能輕鬆掌握
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">⚖️</span>
+            <h3>AI 做草稿，教師做判斷</h3>
+            <p>
+              AI Agent 承擔 80% 的耗時排版、題組鋪陳與雙語轉換工作；教師則把握 20% 核心靈魂：概念是否超綱、題目是否精準、分層是否契合學情。
+            </p>
+            <div class="card-footer">
+              細節當主菜，展現教師專業權威
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: 6 Major Milestones -->
+    <section class="content-section" style="background: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="wrap">
+        <div class="section-header">
+          <h2>120 分鐘實作六大里程碑</h2>
+          <p>全班齊步走，每一個階段都有明確的產出物與檢驗標準</p>
+        </div>
+        <div class="milestone-list">
+          <div class="milestone-item">
+            <div class="milestone-time">000 - 019 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 1 ｜ 破冰共鳴、60 秒震撼示範與環境檢查</div>
+              <p class="milestone-desc">
+                對比傳統備課痛點與 Agent 全新範式。現場直擊真實教材一鍵轉化為分層作業；確認 40 位老師本機環境與教材目錄完整就緒。
+              </p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-time">020 - 049 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 2 ｜ Prompt A/B/C 三連擊：單元結構與概念骨架</div>
+              <p class="milestone-desc">
+                自主讀檔分析：產出單元心智圖 (unit_mindmap.md)、核心概念與易錯點對照表 (concepts_and_misconceptions.md) 及三層次學習目標 (learning_objectives.md)。
+              </p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-time">050 - 059 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 3 ｜ 中場盤點：前 60 分鐘成果驗收</div>
+              <p class="milestone-desc">
+                全班停筆核對三大骨架產出。由助教一對一快速挽救落後學員，確保全班 100% 齊步跨入下半場產出實戰。
+              </p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-time">060 - 079 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 4 ｜ 中英文雙軌分層作業單生成</div>
+              <p class="milestone-desc">
+                Prompt D 生成中文部基礎/進階/拔尖三層次作業單；Prompt E 同步轉換英文部學科雙語作業單，實現跨部同頻共構。
+              </p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-time">080 - 099 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 5 ｜ 課堂評量與交叉自檢審計</div>
+              <p class="milestone-desc">
+                Prompt F 生成 20 分鐘診斷卷與逐題得分標準；Prompt G 啟動 Agent 交叉審計，杜絕計算錯誤與題目超綱。
+              </p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-time">100 - 120 min</div>
+            <div class="milestone-body">
+              <div class="milestone-title">里程碑 6 ｜ 成果打包、下學期範本沉澱與交流</div>
+              <p class="milestone-desc">
+                Prompt H/I 打包為可重用專案範本。現場 2 位教師投屏分享調優心得，提交滿意度問卷，領取實踐認證證書。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: 12 Slides Map -->
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-header">
+          <h2>課堂投影簡報地圖 (12 頁)</h2>
+          <p>點擊任一卡片即可全螢幕預覽黑板投影片，支援簡報筆 PageDown / PageUp 翻頁</p>
+        </div>
+        <div class="slides-grid">
+          <div class="slide-thumb" onclick="toggleBlackboard(0)">
+            <span class="slide-thumb-num">P01 ｜ 課堂啟動</span>
+            <div class="slide-thumb-title">傳統備課困境 vs AI Agent 新範式</div>
+            <p class="slide-thumb-desc">重複勞動、分層之痛、單人盲點，對比 Agent 自主協同優勢。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(1)">
+            <span class="slide-thumb-num">P02 ｜ 震撼示範</span>
+            <div class="slide-thumb-title">60 秒見證：從教材目錄到分層評量</div>
+            <p class="slide-thumb-desc">真實單元材料一氣呵成生成骨架與題組，看見即相信。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(2)">
+            <span class="slide-thumb-num">P03 ｜ 環境整備</span>
+            <div class="slide-thumb-title">工作目錄結構與教材確認</div>
+            <p class="slide-thumb-desc">Starter Pack 目錄架構、40人同步節奏與 Agent 工作邊界。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(3)">
+            <span class="slide-thumb-num">P04 ｜ Prompt A</span>
+            <div class="slide-thumb-title">步驟一：教材解析與單元心智圖生成</div>
+            <p class="slide-thumb-desc">深入分析教材脈絡，梳理平行四邊形、三角形與梯形面積。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(4)">
+            <span class="slide-thumb-num">P05 ｜ Prompt B</span>
+            <div class="slide-thumb-title">步驟二：核心概念提煉與易錯點診斷</div>
+            <p class="slide-thumb-desc">提煉教學重難點，預判公式混淆、底高非對應等典型認知陷阱。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(5)">
+            <span class="slide-thumb-num">P06 ｜ Prompt C</span>
+            <div class="slide-thumb-title">步驟三：三維度學習目標制定</div>
+            <p class="slide-thumb-desc">依據課標要求，將單元教學轉化為可觀察、可測量的三層次目標。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(6)">
+            <span class="slide-thumb-num">P07 ｜ 中場盤點</span>
+            <div class="slide-thumb-title">前 60 分鐘成果驗收：單元骨架就緒</div>
+            <p class="slide-thumb-desc">核對三大產出物，全員對齊進度，為下半場分層產出奠定基礎。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(7)">
+            <span class="slide-thumb-num">P08 ｜ Prompt D</span>
+            <div class="slide-thumb-title">步驟四：中文部分層作業單設計</div>
+            <p class="slide-thumb-desc">基礎、進階、拔尖三層次階梯式題型設計，落實因材施教。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(8)">
+            <span class="slide-thumb-num">P09 ｜ Prompt E</span>
+            <div class="slide-thumb-title">步驟五：英文部同步作業單與學科轉換</div>
+            <p class="slide-thumb-desc">保持知識點難度嚴格一致，同步產出符合國際標準的英文作業單。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(9)">
+            <span class="slide-thumb-num">P10 ｜ Prompt F</span>
+            <div class="slide-thumb-title">步驟六：單元診斷卷與詳細評分標準</div>
+            <p class="slide-thumb-desc">打造 20 分鐘診斷卷，逐題給出標準解題步驟與迷思扣分細則。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(10)">
+            <span class="slide-thumb-num">P11 ｜ Prompt G</span>
+            <div class="slide-thumb-title">步驟七：全套產出整合與交叉核對</div>
+            <p class="slide-thumb-desc">Agent 自檢模式：驗證知識點覆蓋、算理核查與一致性審計。</p>
+          </div>
+          <div class="slide-thumb" onclick="toggleBlackboard(11)">
+            <span class="slide-thumb-num">P12 ｜ 成果沉澱</span>
+            <div class="slide-thumb-title">成果打包重用與下學期範本沉澱</div>
+            <p class="slide-thumb-desc">打包可重用專案範本，交流分享調優心得，圓滿完成實踐認證。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Preflight Checklist -->
+    <section class="content-section" style="background: var(--bg-surface); border-top: 1px solid var(--border-light);">
+      <div class="wrap">
+        <div class="section-header">
+          <h2>課前 30 分鐘 Preflight 環境整備清單</h2>
+          <p>確保 40 位學員電腦環境、教材目錄與模型服務器完全就緒</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card-icon">⚡</span>
+            <h3>軟體與連線測試</h3>
+            <p>確認 OpenCode 客戶端可正常開啟，終端命令列能順暢執行，本地/校園網路對 AI 模型伺服器連線延遲低於 250ms。</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">📂</span>
+            <h3>目錄與檔案權限</h3>
+            <p>確認已完整解壓縮 Starter Pack，教材檔案未反白唯讀，且 output 目錄具備寫入權限，避免 Agent 寫入失敗。</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🤝</span>
+            <h3>雙軌分工準備</h3>
+            <p>中文部與英文部教師就位，兩位助教分別負責左右兩排學員，隨身攜帶備援隨身碟，準備隨時支援突發卡點。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chalkboard Deck Modal (全屏大字號投影簡報，覆蓋率 >85%) -->
+  <div id="deck-modal" onclick="onDeckBackdropClick(event)">
+    <div class="deck-container">
+      <div class="deck-topbar">
+        <div class="deck-top-left">
+          <span class="deck-category-badge" id="deck-cat">P01 ｜ 課堂啟動</span>
+          <span class="deck-slide-count" id="deck-counter">[ 1 / 12 ]</span>
+        </div>
+        <div class="deck-nav-btns">
+          <button class="deck-btn" onclick="prevSlide()" title="上一頁 (← 或 PageUp)">◀ 上一頁</button>
+          <button class="deck-btn deck-next-btn" onclick="nextSlide()" title="下一頁 (→ / Space / Enter / PageDown)">下一頁 ▶</button>
+          <button class="deck-btn" onclick="toggleFullscreen()" title="滿版全螢幕 (F)">⛶ 全螢幕</button>
+          <button class="deck-btn deck-close-btn" onclick="closeDeck()" title="關閉黑板 (Esc)">✖ 關閉</button>
+        </div>
+      </div>
+      <div class="deck-main-body">
+        <div class="deck-slide-card">
+          <div id="deck-slide-content">
+            <!-- Dynamically populated by renderSlide() -->
+          </div>
+        </div>
+      </div>
+      <div class="deck-bottom-bar">
+        <span>💡 投影提示：按 <strong>Space</strong>、<strong>Enter</strong>、<strong>→</strong> 或簡報筆 <strong>PageDown</strong> 切換下一頁；按 <strong>B</strong> 開啟/關閉黑板</span>
+        <span>聖若瑟教區中學第五校 ｜ 數學科校本教研</span>
       </div>
     </div>
   </div>
 
-  <main class="wrap">
-
-    <!-- Section 1: 今日唯一主線 -->
-    <section class="section">
-      <h2 class="section-title">🌟 今日唯一主線：真教材 → 真問題 → 真產出 → 真使用</h2>
-      <span class="section-accent-line"></span>
-      <p class="section-subtitle">拒絕泛理論演講與虛構 Demo；這不是工具安裝課，而是真實教學備課落地實戰。</p>
-
-      <div class="grid">
-        <div class="card clickable-card" onclick="openDeck(5)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge key">1. 輸入端</span>
-          <h3>📄 真教材 (Real Materials)</h3>
-          <p>拿未來 1–2 週真實會教的教學材料放入 <code>materials/</code>，絕不放學生個資，不用虛假 Demo。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(7)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge hi">2. 審查端</span>
-          <h3>🔍 真問題 (Real Problems)</h3>
-          <p>直面認知難點、題量與作答留白；透過三種證據標記與「三問審核」嚴格把關教學品質。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(2)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge blue">3. 產出端</span>
-          <h3>📦 真產出 (Real Output)</h3>
-          <p>透過 v2.3 OpenXML 穩定生成標準 A4 DOCX 學習單與教師詳解，杜絕 Word COM 當機卡死。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(11)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge">4. 應用端</span>
-          <h3>🏫 真使用 (Real Teaching)</h3>
-          <p>下週直接列印帶進課堂發給學生使用，課後透過 Exit Ticket 反思觀察，持續修訂累積資產。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: 120 分鐘實作成功標準 -->
-    <section class="section">
-      <h2 class="section-title">🎯 120 分鐘成功標準（六大實作里程碑）</h2>
-      <span class="section-accent-line green"></span>
-      <p class="section-subtitle">第一堂課的成功不是學會最多名詞，而是完成一次真實、可審核、可重用的 Agent 工作循環。</p>
-
-      <div class="grid">
-        <div class="card clickable-card" onclick="openDeck(6)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge">里程碑 1</span>
-          <h3>① RDQ 診斷</h3>
-          <p>先列出讀取檔名，完成教材診斷與學生迷思分析，最多提 5 個問題後停下等審核。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(8)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge key">里程碑 2</span>
-          <h3>② 第一版內容草稿</h3>
-          <p>產出 5 部分內容草稿（基礎、核心、應用、說理、Exit Ticket），經三問審核與局部修改。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(2)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge blue">里程碑 3</span>
-          <h3>③ 實體 DOCX 匯出</h3>
-          <p>執行 v2.3 OpenXML 匯出工具，驗證 <code>output/02-worksheet/</code> 產生大於 0 位元組的真實檔案。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(9)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge hi">里程碑 4</span>
-          <h3>④ A/B/C 分層設計</h3>
-          <p>同一目的地不同支架；產出差異表與同一組 2 題三層示範，A 加支架、B 核心、C 增推理。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(10)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge">里程碑 5</span>
-          <h3>⑤ 同步修訂多版本維護</h3>
-          <p>針對真實課堂問題只改指定部分，Agent 先列修改前後摘要，再重新匯出更新檔案。</p>
-        </div>
-        <div class="card clickable-card" onclick="openDeck(11)">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="card-badge key">里程碑 6</span>
-          <h3>⑥ 換教材 Reuse</h3>
-          <p>指定第二份真實教材，驗證無舊課殘留、重啟 RDQ，證明工作流可複製、越備越快！</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: 12 頁黑板投影地圖概覽 -->
-    <section class="section">
-      <h2 class="section-title">🖥️ 12 頁黑板投影地圖 (P01~P12) 概覽</h2>
-      <span class="section-accent-line gold"></span>
-      <p class="section-subtitle">點擊任意卡片可直接以 85% 視窗單欄全景黑板模式展示，支援實體簡報筆翻頁操作。</p>
-
-      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        <div class="p-slide-card" onclick="openDeck(0)" title="點擊投影 P01">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P01 投影</span>
-          <div class="p-slide-title">封面：只學 Agent</div>
-          <p class="p-slide-desc">第一堂專注於 Agent 核心機制；課前 Preflight 就緒，課堂不處理安裝環境。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(1)" title="點擊投影 P02">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P02 投影</span>
-          <div class="p-slide-title">今日唯一主線</div>
-          <p class="p-slide-desc">真教材 → 真問題 → 真產出 → 真使用；拒絕泛理論演講與虛構 Demo。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(2)" title="點擊投影 P03">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P03 投影</span>
-          <div class="p-slide-title">120 分鐘成功標準</div>
-          <p class="p-slide-desc">RDQ、第一版、DOCX/PDF、A/B/C 分層、同步修訂、換教材 Reuse 六大里程碑。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(3)" title="點擊投影 P04">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P04 投影</span>
-          <div class="p-slide-title">專案結構地圖</div>
-          <p class="p-slide-desc">AGENTS.md、materials/、requirements/、output/、tools/ 清楚分工。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(4)" title="點擊投影 P05">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P05 投影</span>
-          <div class="p-slide-title">AGENTS.md 長期規則</div>
-          <p class="p-slide-desc">長期規則 ≠ 一次性 Prompt；真實性原則與順序鐵律，教師保留最終判斷。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(5)" title="點擊投影 P06">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P06 投影</span>
-          <div class="p-slide-title">真教材規則</div>
-          <p class="p-slide-desc">未來 1–2 週真實課堂教材；絕不放學生個資，另備第二份備用。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(6)" title="點擊投影 P07">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P07 投影</span>
-          <div class="p-slide-title">RDQ：先理解後生成</div>
-          <p class="p-slide-desc">READ → DIAGNOSE → QUESTION；深度分析概念與迷思，提問後停下等審核。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(7)" title="點擊投影 P08">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P08 投影</span>
-          <div class="p-slide-title">三種證據標記</div>
-          <p class="p-slide-desc">MATERIAL-SUPPORTED / INFERRED / NEEDS-TEACHER-CONFIRMATION，審核邊界。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(8)" title="點擊投影 P09">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P09 投影</span>
-          <div class="p-slide-title">三問審核標準</div>
-          <p class="p-slide-desc">對教材嗎？對學生嗎？明天敢用嗎？以局部修改句替代整份重做。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(9)" title="點擊投影 P010">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P10 投影</span>
-          <div class="p-slide-title">差異化分層原則</div>
-          <p class="p-slide-desc">同一目的地不同支架；A 版加提示鷹架，B 版核心，C 版開放推理，同題示範。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(10)" title="點擊投影 P011">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P11 投影</span>
-          <div class="p-slide-title">一次判斷同步修訂</div>
-          <p class="p-slide-desc">只改指定部分，Agent 先列前後摘要，再以 OpenXML 重新匯出，極速維護。</p>
-        </div>
-        <div class="p-slide-card" onclick="openDeck(11)" title="點擊投影 P012">
-          <span class="card-zoom-badge">放大授課 ↗</span>
-          <span class="p-slide-tag">P12 投影</span>
-          <div class="p-slide-title">Reuse 與真使用</div>
-          <p class="p-slide-desc">換教材、不換規則；重啟 RDQ 無舊課殘留；選定一份真教材進課堂實踐！</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: 第一堂最低完成證據 -->
-    <section class="section">
-      <h2 class="section-title">☑️ 第一堂最低完成證據（8 大驗收清單）</h2>
-      <span class="section-accent-line"></span>
-      <p class="section-subtitle">研討會結束時，每位教師電腦中應具備的真實成果檢驗清單：</p>
-
-      <div class="check">
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>materials 中有真實教材：</strong>Agent 能明確列出實際成功讀取的檔名，絕非虛構材料。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>完成完整 RDQ 流程：</strong>完成 READ → DIAGNOSE → QUESTION，且任課教師至少介入糾正／補充 Agent 一次。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>第一版內容經三問審核：</strong>切實回答「對教材嗎？對學生嗎？明天敢用嗎？」並完成局部修訂。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>實體 DOCX 匯出：</strong><code>output/02-worksheet/</code> 內至少產生一份真正大於 0 位元組的 DOCX；PDF 有則更好。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>分層示範完成：</strong>產出 A/B/C 差異表 ＋ 同一組 2 題三層示範文件（output/03-differentiated/）。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>同步修訂落地：</strong>完成一次「只改指定部分」的同步修訂，並重新輸出至 output/04-revised/。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>第二教材 Reuse 成功：</strong>指定第二份真實教材，重新完成 READ → DIAGNOSE → QUESTION，驗證工作流重用。</div>
-        </div>
-        <div class="check-item">
-          <span class="check-icon">☑</span>
-          <div><strong>Exit Ticket 反思：</strong>選定一份未來 1–2 週真正會印出進課堂使用的產物，完成課後實踐約定。</div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
+  <!-- Site Footer -->
   <footer class="site-footer">
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div class="wrap footer-inner">
       <div>
-        <p class="footer-title">聖若瑟教區中學第五校 ｜ 小學數學科校本教研</p>
-        <p class="footer-motto">AI 時代守本心，毅誠勤樸篤前行 ｜ 真教材 → 真問題 → 真產出 → 真使用</p>
-        <p class="footer-note">v2.3 OpenXML 實作標準 ｜ 專供校內 40 位數學教師教學實作使用</p>
+        <div class="footer-title">聖若瑟教區中學第五校 ｜ 小學數學科校本教研</div>
+        <p class="footer-desc">AI 時代守本心，毅誠勤樸篤前行 ｜ 真教材 → 真問題 → 真產出 → 真使用</p>
       </div>
       <div style="text-align:right;">
-        <a href="https://tinyurl.com/25kekzvv" target="_blank" class="short-url-pill" style="display:inline-flex;">
-          <span class="short-icon">🌐</span>
-          <span>tinyurl.com/25kekzvv</span>
-        </a>
+        <span style="font-size:0.86rem; color:rgba(255,255,255,0.65);">v2.3 OpenXML 官方實作標準 ｜ 專供校內 40 位教師教研實作使用</span>
       </div>
     </div>
   </footer>
 
   <script>
-
-    // --- 1. Blackboard Slides System ---
     const slidesData = [
       {
-        category: "P01 ｜ 課堂啟動",
-        title: "OpenCode 教師 AI Agent 入門",
-        desc: "第一堂：只學 Agent — 零編程門檻，做一份真正能進課堂的教學資產",
+        id: "P01",
+        cat: "P01 ｜ 課堂啟動與破冰",
+        title: "傳統備課困境 vs AI Agent 新範式",
+        desc: "從「手動逐題拼湊」走向「結構化自主代理」，看見備課效能的根本躍升。",
         points: [
-          "<span class='hl-gold'>【唯一前設】</span>OpenCode Desktop 已可用、指定模型已連接、Preflight 課前完成。",
-          "<span class='hl-cyan'>【課堂原則】</span>正式 120 分鐘不處理安裝、CLI、Node、Git；單機故障兩人共用。",
-          "<span class='hl-green'>【學習心態】</span>不是比誰生成得多，而是看誰能讓 Agent 更懂你的真實課堂。",
-          "<span class='hl-rose'>【現場專屬短網址】</span>https://tinyurl.com/25kekzvv（手機或筆電直接開啟講義）。"
+          "<span class='hl-badge gold'>重複勞動</span> 格式排版、題幹修改、分層梯度微調耗費高達 70% 備課時間",
+          "<span class='hl-badge green'>分層之痛</span> 班級兩極化嚴重，但為中英文部設計不同難度作業單需耗費數倍心力",
+          "<span class='hl-badge cyan'>盲點局限</span> 單人備課難以全面窮盡學生常見迷思與算理陷阱",
+          "<span class='hl-badge purple'>新舊對比</span> 傳統 Chatbot 需反覆提示；AI Agent 能自主讀取教材並連續完成全套產出",
+          "<span class='hl-badge rose'>今日目標</span> 120 分鐘內，每位老師在自己電腦上完整跑完一整套單元實戰"
         ],
-        callout: "🌟 今日唯一主線：真教材 → 真問題 → 真產出 → 真使用"
+        callout: "🏛️ 傳承心法：以真實校本教材為根基，讓 AI 承擔繁瑣草稿，讓教師專注教學診斷與靈魂引導。"
       },
       {
-        category: "P02 ｜ 唯一主線",
-        title: "真教材 → 真問題 → 真產出 → 真使用",
-        desc: "四字主線貫穿 120 分鐘，拒絕泛理論演講與虛構 Demo：",
+        id: "P02",
+        cat: "P02 ｜ 震撼展示 Demo",
+        title: "60 秒見證：從教材目錄到分層評量",
+        desc: "講師現場實機示範：餵入真實單元教材，Agent 一氣呵成生成骨架與題組。",
         points: [
-          "<span class='hl-gold'>【真教材】</span>拿未來 1–2 週真實會教的教學材料，不放學生個資。",
-          "<span class='hl-cyan'>【真問題】</span>直面認知難點、題量、作答空間與學生常見迷思。",
-          "<span class='hl-green'>【真產出】</span>產出符合 OpenXML 標準的真正 DOCX 學習單與教師解答。",
-          "<span class='hl-purple'>【真使用】</span>下週直接印出來進課堂，課後反思觀察再改進。"
+          "<span class='hl-badge gold'>真教材</span> 輸入《小學數學五上第二單元多邊形面積》原始教學材料",
+          "<span class='hl-badge green'>自解析</span> Agent 自主剖析單元概念架構、知識節點與前後單元關聯",
+          "<span class='hl-badge cyan'>雙軌並行</span> 同步生成中文部與英文部階梯式作業單草案",
+          "<span class='hl-badge purple'>診斷標準</span> 一併輸出形成性評量、扣分指引與迷思診斷手冊",
+          "<span class='hl-badge rose'>教師掌控</span> AI 負責 80% 的繁瑣骨架與樣式，教師做最終的教學裁決"
         ],
-        callout: "💡 一句 Prompt 也能出題目，但唯有真教材與真要求，才能產出真正能用的教學材料！"
+        callout: "🎯 落地心法：看見即相信。Agent 不是聊天玩具，而是專為學科備課打造的高速生產力引擎。"
       },
       {
-        category: "P03 ｜ 成功標準",
-        title: "120 分鐘實作成功標準",
-        desc: "今天每位老師必達的六大實作里程碑：",
+        id: "P03",
+        cat: "P03 ｜ 環境與架構盤點",
+        title: "課前整備：工作目錄結構與教材確認",
+        desc: "理清工作區目錄架構，確認環境與模型配置就緒，確保實操零卡頓。",
         points: [
-          "<span class='hl-cyan'>①【RDQ 診斷】</span>READ → DIAGNOSE → QUESTION，先理解、後生成。",
-          "<span class='hl-gold'>②【第一版內容】</span>經三問審核：對教材嗎？對學生嗎？明天敢用嗎？",
-          "<span class='hl-green'>③【真正 DOCX/PDF】</span>v2.3 OpenXML 雙軌匯出，拒絕 COM 當機。",
-          "<span class='hl-purple'>④【A/B/C 分層與同步修訂】</span>同目標不同支架；一次教師介入多檔同步維護。"
+          "<span class='hl-badge gold'>專案結構</span> 認識 Starter Pack 目錄：教材區、提示詞庫、產出目錄與設定檔",
+          "<span class='hl-badge green'>40人協作</span> 熟悉全班同步操作與錯峰送出節奏，守護網路頻寬",
+          "<span class='hl-badge cyan'>Agent 邊界</span> 嚴格設定工作範圍：只讀取本單元材料，不擅自修改其他歷史檔案",
+          "<span class='hl-badge purple'>終端檢驗</span> 確認 OpenCode 命令列與本地服務器連線正常",
+          "<span class='hl-badge rose'>避坑指引</span> 遇報錯切勿慌張，隨時查閱疑難排解 SOP 或舉手呼叫助教支援"
         ],
-        callout: "🎯 慢組保底：RDQ、第一版、DOCX、分層示範、一次修訂、Reuse；快組深化審核！"
+        callout: "🏛️ 傳承心法：磨刀不誤砍柴工。規範的目錄與嚴謹的邊界，是數位資產長期積累的第一步。"
       },
       {
-        category: "P04 ｜ 專案地圖",
-        title: "01-Agent-Project 專案結構地圖",
-        desc: "材料是 Context，requirements 是工作步驟，output 是證據：",
+        id: "P04",
+        cat: "P04 ｜ Prompt A 實操",
+        title: "步驟一：教材解析與單元心智圖生成",
+        desc: "讓 Agent 深入閱讀單元材料，提取結構脈絡並轉化為標準結構化心智圖。",
         points: [
-          "<span class='hl-gold'>📂 AGENTS.md</span>：這個 Agent 長期工作的校規與底線（Project Rules）。",
-          "<span class='hl-cyan'>📂 materials/</span>：你的真實教材 PDF / Word（教學 Context 輸入端）。",
-          "<span class='hl-green'>📂 requirements/</span>：01-RDQ 到 05-Reuse 的具體任務步驟指引。",
-          "<span class='hl-purple'>📂 output/ 與 tools/</span>：02-worksheet 等正式產物與輕量排版工具。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt A]，替換指定變數後全員待命",
+          "<span class='hl-badge green'>倒數同步</span> 講師倒數 3、2、1，全體老師同步按下 ENTER 送出",
+          "<span class='hl-badge cyan'>自主讀檔</span> 觀察 Agent 自行檢索多邊形面積文本並分析幾何推導脈絡",
+          "<span class='hl-badge purple'>產出驗收</span> 檢查單元心智圖是否包含平行四邊形、三角形與梯形割補關係",
+          "<span class='hl-badge rose'>成果歸檔</span> 確認產出檔案 unit_mindmap.md 正確存於 output 目錄"
         ],
-        callout: "🗺️ 打開資料夾，看懂目錄角色，這就是專業 Agent 備課的標準工作空間！"
+        callout: "🎯 落地心法：把教材餵給 AI，讓它幫你畫出知識地圖，備課的第一道宏觀視野瞬間建立。"
       },
       {
-        category: "P05 ｜ 核心規則",
-        title: "AGENTS.md：長期規則 ≠ 一次性 Prompt",
-        desc: "它是整個專案的校規，約束 Agent 不隨意腦補、恪守教學邊界：",
+        id: "P05",
+        cat: "P05 ｜ Prompt B 實操",
+        title: "步驟二：核心概念提煉與易錯點診斷",
+        desc: "從教材中提煉教學重難點，預判學生最容易掉入的幾何算理陷阱。",
         points: [
-          "<span class='hl-gold'>【長期規則】</span>每次對話自動繼承，不需要在 Prompt 裡重複碎念。",
-          "<span class='hl-rose'>【真實性原則】</span>嚴禁杜撰教材內容、學生情況或評量標準。",
-          "<span class='hl-cyan'>【順序鐵律】</span>必須遵守 READ → DIAGNOSE → QUESTION 嚴禁搶跑生成。",
-          "<span class='hl-green'>【教師主導】</span>AI 做草稿，教師做判斷；教師保留最終裁判權。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt B]，聚焦單元核心概念與典型認知障礙",
+          "<span class='hl-badge green'>算理辨析</span> 診斷典型錯誤：三角形面積忘記除以 2、梯形高找錯對應邊",
+          "<span class='hl-badge cyan'>割補盲點</span> 預判複合圖形轉化時底與高的非垂直對應誤區",
+          "<span class='hl-badge purple'>成果清單</span> 生成 concepts_and_misconceptions.md 對照清單",
+          "<span class='hl-badge rose'>同儕核對</span> 左右鄰座老師交流：AI 抓出的易錯點是否吻合你平時的改卷經驗？"
         ],
-        callout: "📜 AGENTS.md 是 AI 的工作邊界守護者，把教學主控權牢牢留在教師手中！"
+        callout: "🏛️ 傳承心法：優秀教案的精髓在於預判學生的迷思。AI 的廣度加上教師的經驗，才是最嚴密的防線。"
       },
       {
-        category: "P06 ｜ 真教材原則",
-        title: "真教材規則：杜絕虛構 Demo",
-        desc: "今天只用真正要教的內容，嚴防個資與失真：",
+        id: "P06",
+        cat: "P06 ｜ Prompt C 實操",
+        title: "步驟三：三維度學習目標制定",
+        desc: "依據課標要求，將單元教學轉化為可觀察、可測量的三層次教學目標。",
         points: [
-          "<span class='hl-gold'>【選材原則】</span>選擇未來 1–2 週真正要進課堂的數學教材單元。",
-          "<span class='hl-rose'>【隱私紅線】</span>絕不放學生姓名、座號、成績或任何隱私個資。",
-          "<span class='hl-cyan'>【檔名清晰】</span>如 01-課本.pdf、02-現有練習.docx、03-教師指引.pdf。",
-          "<span class='hl-purple'>【備用材料】</span>另備第二份教材放入資料夾，第 11 區段 Reuse 時使用。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt C]，啟動分維度目標生成流程",
+          "<span class='hl-badge green'>層次劃分</span> 明確區分「基礎知識技能」、「思維探索過程」與「學科情感價值」",
+          "<span class='hl-badge cyan'>動詞規範</span> 捨棄模糊動詞，全面採用「能推導、能辨析、能計算、能應用」等具體動詞",
+          "<span class='hl-badge purple'>產出驗收</span> 生成 learning_objectives.md，完整涵蓋單元核心素養",
+          "<span class='hl-badge rose'>檢驗標尺</span> 確保後續所有作業與試卷設計都能嚴格對應到本目標"
         ],
-        callout: "⚠️ 沒帶材料可與同級科組共用；真實教材是檢驗 Agent 質量的唯一標準！"
+        callout: "🎯 落地心法：目標是評價的尺規。目標訂得精準，接下來的分層設計與考卷才能箭無虛發。"
       },
       {
-        category: "P07 ｜ RDQ 流程",
-        title: "RDQ：先理解，後生成",
-        desc: "第一個 Prompt 最大要求：不要生成學習單！",
+        id: "P07",
+        cat: "P07 ｜ 中場盤點與里程碑",
+        title: "前 60 分鐘成果驗收：單元骨架就緒",
+        desc: "全體老師停筆盤點，驗收前 3 大產出物，確保全班進度 100% 齊步走。",
         points: [
-          "<span class='hl-cyan'>📖 READ</span>：先列出實際讀取的檔名，確認 Context 真正讀入。",
-          "<span class='hl-gold'>🔍 DIAGNOSE</span>：深度分析學習重點、前置概念、學生常見迷思。",
-          "<span class='hl-purple'>❓ QUESTION</span>：最多只提出 5 個真正會影響設計的澄清問題。",
-          "<span class='hl-rose'>🛑 提問後停下</span>：等候教師回答，不擅自展開生成。"
+          "<span class='hl-badge gold'>成果查核</span> 核對已完成的三大骨架：心智圖、易錯點清單、三維學習目標",
+          "<span class='hl-badge green'>全員對齊</span> 統計全班進度，由助教協助進度落後的 1-2 位老師秒速補齊",
+          "<span class='hl-badge cyan'>轉折點</span> 前半段完成「理解教材」，後半段正式進入「生產生產物」實戰",
+          "<span class='hl-badge purple'>雙軌預備</span> 中文部老師與英文部老師準備分別開展對應軌道實操",
+          "<span class='hl-badge rose'>茶歇舒展</span> 2 分鐘起立舒展，為下半場高強度的分層設計儲備精力"
         ],
-        callout: "🧱 先把教學地基打穩，才能蓋出扎實的課堂練習；這就是 Context Engineering！"
+        callout: "🏛️ 傳承心法：教育實踐講求循序漸進。地基打得穩，樓閣方能起得高、立得正。"
       },
       {
-        category: "P08 ｜ 證據邊界",
-        title: "三種證據標記：審核 AI 判斷",
-        desc: "這一步不是挑 AI 錯字，而是嚴格挑出證據邊界：",
+        id: "P08",
+        cat: "P08 ｜ Prompt D 實操",
+        title: "步驟四：中文部分層作業單設計（基礎/進階/拔尖）",
+        desc: "落實因材施教，由 Agent 自動配置三層次階梯作業單與圖形引導題。",
         points: [
-          "<span class='hl-green'>🟢 MATERIAL-SUPPORTED</span>：教材有明確文字或圖形直接支持的事實。",
-          "<span class='hl-gold'>🟡 INFERRED</span>：根據教材合理推論，但教材並未明示之觀點。",
-          "<span class='hl-rose'>🔴 NEEDS-TEACHER-CONFIRMATION</span>：AI 不得代猜、必須由任課教師確認之條件。",
-          "<span class='hl-cyan'>【邊界清查】</span>無教材證據者主動更正，只保留 5 個核心問題。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt D]，設定三層題目梯度與題型配比",
+          "<span class='hl-badge green'>基礎層 (Level 1)</span> 鞏固基本公式與標準圖形辨識，確保全員保底掌握",
+          "<span class='hl-badge cyan'>進階層 (Level 2)</span> 逆向求解高或底、多條件干擾辨析，培養審題能力",
+          "<span class='hl-badge purple'>拔尖層 (Level 3)</span> 複合圖形割補、生活實際應用情境題，激發高階思維",
+          "<span class='hl-badge rose'>產出驗收</span> 生成 worksheet_zh_tiered.md，包含題幹與圖形文字說明"
         ],
-        callout: "🧐 學會分辨事實與推測，教師才能從被動接收者轉化為主動審查官！"
+        callout: "🎯 落地心法：好的分層作業讓弱生有成就感、優生有挑戰性，告別一刀切的無效題海。"
       },
       {
-        category: "P09 ｜ 審核標準",
-        title: "三問審核：教學可用性檢驗",
-        desc: "第一版草稿產出後，啟動最嚴格的教師專業三問：",
+        id: "P09",
+        cat: "P09 ｜ Prompt E 實操",
+        title: "步驟五：英文部同步作業單與學科詞彙轉換",
+        desc: "保持知識點與難度梯隊嚴格一致，同步產出符合國際標準的英文作業單。",
         points: [
-          "<span class='hl-cyan'>❓ 問 1：真的對教材嗎？</span>（是否超出範圍？核心知識點是否精準扣合？）",
-          "<span class='hl-gold'>❓ 問 2：真的對學生嗎？</span>（語文難度是否合宜？認知坡度是否過陡？）",
-          "<span class='hl-rose'>❓ 問 3：明天真的敢用嗎？</span>（這份工作紙明天印出來，你敢發給全班嗎？）",
-          "<span class='hl-green'>【局部修訂】</span>挑出一個必改問題，給出具體指令，不讓 AI 重做整份。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt E]，啟動英文部學科雙語生成",
+          "<span class='hl-badge green'>術語對齊</span> 嚴格規範專業術語：base, height, parallelogram, trapezoid, decomposition",
+          "<span class='hl-badge cyan'>語境適配</span> 符合英文部學生閱讀習慣與國際學科教學表達風格",
+          "<span class='hl-badge purple'>跨部共備</span> 中英文部老師即時互看作業單，確認認知要求與題型結構 100% 對稱",
+          "<span class='hl-badge rose'>產出驗收</span> 生成 worksheet_en_tiered.md，英文部教研數位資產入庫"
         ],
-        callout: "⚖️ 三問過關，才算真正能進課堂的真產出！"
+        callout: "🏛️ 傳承心法：中英雙軌、同頻共構。校本教研的跨部聯動，展現百年團隊的開放與專業。"
       },
       {
-        category: "P10 ｜ 差異化分層",
-        title: "分層原則：同一目的地，不同支架",
-        desc: "分層不是降低目標，而是提供不同梯子通往同一個高度：",
+        id: "P10",
+        cat: "P10 ｜ Prompt F 實操",
+        title: "步驟六：單元診斷卷與詳細評分標準",
+        desc: "打造科學的形成性檢測卷，並為每一道小題生成精確的評分標準與給分指南。",
         points: [
-          "<span class='hl-green'>🪜 A 版（基礎支架）</span>：增加圖解、提示、步驟鷹架；⚠️ 絕非單純數字變小。",
-          "<span class='hl-cyan'>🎯 B 版（核心標準）</span>：維持全班核心學習標準與標準題量。",
-          "<span class='hl-purple'>🚀 C 版（挑戰推理）</span>：增加比較、解釋、策略、開放探究；⚠️ 絕非單純增加題量。",
-          "<span class='hl-gold'>【同題示範】</span>以同一組 2 題改寫為 A/B/C 三層，比較支架差異。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt F]，產出 20 分鐘限時單元診斷檢測卷",
+          "<span class='hl-badge green'>題型佈局</span> 選擇題、填空判斷題、計算推導題、生活應用題綜合分佈",
+          "<span class='hl-badge cyan'>評分標準</span> 逐題給出：標準解題步驟、關鍵得分點、部分給分細則",
+          "<span class='hl-badge purple'>迷思扣分</span> 清楚標註典型算理錯誤之扣分標準，避免主觀判分差異",
+          "<span class='hl-badge rose'>產出驗收</span> 生成 diagnostic_test.md 及 grading_rubric.md"
         ],
-        callout: "🚨 警報：A 版不是降級做低年級題，C 版不是題海加量！"
+        callout: "🎯 落地心法：評量不是為了考倒學生，而是為了診斷學情。詳盡的評分指引是減輕批改負擔的神器。"
       },
       {
-        category: "P11 ｜ 同步修訂",
-        title: "一次教師判斷，多版本同步維護",
-        desc: "真正為老師省時間的不是第一次生成，而是後續維護：",
+        id: "P11",
+        cat: "P11 ｜ Prompt G 實操",
+        title: "步驟七：全套產出整合與交叉核對",
+        desc: "啟動 Agent 自檢審查模式，對全套生成的教研資產進行一致性與科學性驗收。",
         points: [
-          "<span class='hl-cyan'>【真情境修改】</span>如發現第 3 題文字太難或課時縮減，指定局部修改。",
-          "<span class='hl-gold'>【只改指定部分】</span>保留未修改題目的穩定性，不允許整份重寫。",
-          "<span class='hl-purple'>【修改前後摘要】</span>Agent 先列修改對照表，經確認後再重新輸出。",
-          "<span class='hl-green'>【v2.3 重新匯出】</span>一鍵同步更新 output/04-revised/ 中的 DOCX/PDF。"
+          "<span class='hl-badge gold'>全班指令</span> 複製 [Prompt G]，執行全套教材交叉對照審計",
+          "<span class='hl-badge green'>前後呼應</span> 驗證：學習目標、分層作業、診斷考卷的知識點是否完全覆蓋",
+          "<span class='hl-badge cyan'>算理核查</span> 重新計算每一道題目的數值答案，杜絕計算失誤或題目超綱",
+          "<span class='hl-badge purple'>格式規範</span> 統整為全套結構化交付包，包含目錄導航與使用說明",
+          "<span class='hl-badge rose'>產出驗收</span> 生成 consistency_audit_report.md 審查清單"
         ],
-        callout: "🔄 學會精準維護，才能讓備課成果代代相傳、越用越順！"
+        callout: "🏛️ 傳承心法：細節當主菜！用最挑剔的學術眼光把關每一道題目的數據與符號，方顯教育匠心。"
       },
       {
-        category: "P12 ｜ 重用與真使用",
-        title: "換教材、不換規則：工作流重用",
-        desc: "如果換一課就失效，那只是次性 Prompt，不是成熟 Agent 工作流：",
+        id: "P12",
+        cat: "P12 ｜ 成果打包與範本沈澱",
+        title: "成果打包重用與下學期範本沉澱",
+        desc: "將今日 120 分鐘的全部勞動成果打包為科組專案範本，實現下學期一鍵重用。",
         points: [
-          "<span class='hl-cyan'>【換教材不換規則】</span>放入第二份教材，保留 AGENTS.md 完整規則。",
-          "<span class='hl-gold'>【重啟 RDQ】</span>重新列出第二教材檔名，重新完成診斷與 5 提問。",
-          "<span class='hl-green'>【無舊課殘留】</span>徹底驗證無上一課知識殘留，證明流程可複製。",
-          "<span class='hl-purple'>【Exit Ticket 反思】</span>選定一份未來 1–2 週真正進課堂的材料。"
+          "<span class='hl-badge gold'>資產封裝</span> 將產出的 8 大核心文件整理歸入專案正式發布包",
+          "<span class='hl-badge green'>範本化</span> 提煉通用的單元備課工作流程，日後更換第三單元教材即可秒級復刻",
+          "<span class='hl-badge cyan'>科組共構</span> 上傳至科組教研共享目錄，跨年級、跨學期傳承智慧資產",
+          "<span class='hl-badge purple'>全班交流</span> 邀請 2 位老師現場投影分享自己的個性化成果與調優心得",
+          "<span class='hl-badge rose'>圓滿收工</span> 完成培訓滿意度問卷，領取本次工作坊實踐認證證書"
         ],
-        callout: "🌟 完整閉環：教材 → Agent → 產出 → 課堂 → 反思 → 再改！"
+        callout: "🌟 總結心法：AI 時代守本心，毅誠勤樸篤前行。今天的一小步，是聖五數學科走向現代化的一大步！"
       }
     ];
 
-    let currentSlide = 0;
+    let currentSlideIdx = 0;
 
-    function openDeck(index) {
-      if (typeof index === 'number' && index >= 0 && index < slidesData.length) {
-        currentSlide = index;
+    function renderSlide(idx) {
+      if (idx < 0 || idx >= slidesData.length) return;
+      currentSlideIdx = idx;
+      const s = slidesData[idx];
+
+      document.getElementById('deck-cat').innerText = s.cat;
+      document.getElementById('deck-counter').innerText = `[ ${idx + 1} / ${slidesData.length} ]`;
+
+      let pointsHtml = s.points.map(p => `<li>${p}</li>`).join('');
+
+      const html = `
+        <h2 class="deck-slide-title">${s.title}</h2>
+        <div class="deck-slide-desc">${s.desc}</div>
+        <ul class="deck-slide-list">
+          ${pointsHtml}
+        </ul>
+        <div class="deck-slide-callout">
+          ${s.callout}
+        </div>
+      `;
+
+      document.getElementById('deck-slide-content').innerHTML = html;
+    }
+
+    function toggleBlackboard(slideIdx) {
+      const modal = document.getElementById('deck-modal');
+      const isOpening = !modal.classList.contains('active');
+      if (isOpening) {
+        if (typeof slideIdx === 'number') {
+          renderSlide(slideIdx);
+        } else {
+          renderSlide(currentSlideIdx);
+        }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        closeDeck();
       }
-      renderSlide();
-      document.getElementById('deck-modal').classList.add('active');
-      document.body.style.overflow = 'hidden';
     }
 
     function closeDeck() {
-      document.getElementById('deck-modal').classList.remove('active');
+      const modal = document.getElementById('deck-modal');
+      modal.classList.remove('active');
       document.body.style.overflow = '';
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(err => console.log(err));
+      }
     }
 
     function nextSlide() {
-      if (currentSlide < slidesData.length - 1) {
-        currentSlide++;
-        renderSlide();
+      if (currentSlideIdx < slidesData.length - 1) {
+        renderSlide(currentSlideIdx + 1);
       }
     }
 
     function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        renderSlide();
+      if (currentSlideIdx > 0) {
+        renderSlide(currentSlideIdx - 1);
       }
-    }
-
-    function toggleBlackboard() {
-      const modal = document.getElementById('deck-modal');
-      if (modal.classList.contains('active')) closeDeck();
-      else openDeck(currentSlide);
-    }
-
-    function renderSlide() {
-      const slide = slidesData[currentSlide];
-      document.getElementById('deck-cat').innerText = slide.category;
-      document.getElementById('deck-counter').innerText = `[ ${currentSlide + 1} / ${slidesData.length} ]`;
-
-      let slideHtml = `<h2 class="deck-slide-title">${slide.title}</h2>`;
-      slideHtml += `<p class="deck-slide-desc">${slide.desc}</p>`;
-      slideHtml += `<ul class="deck-slide-list">`;
-      slide.points.forEach(pt => {
-        slideHtml += `<li>${pt}</li>`;
-      });
-      slideHtml += `</ul>`;
-      if (slide.callout) {
-        slideHtml += `<div class="deck-slide-callout"><span>💡</span> <div>${slide.callout}</div></div>`;
-      }
-      document.getElementById('deck-slide-content').innerHTML = slideHtml;
     }
 
     function onDeckBackdropClick(e) {
@@ -1443,188 +1646,25 @@
       }
     }
 
-    // --- 2. Classroom Toolbar & Laser & Canvas Paint ---
-    let laserActive = false;
-    let paintActive = false;
-    let canvas, ctx;
-    let painting = false;
-    let currentColor = '#FFE600';
-
-    function toggleLaser() {
-      laserActive = !laserActive;
-      const dot = document.getElementById('laser-dot');
-      const btn = document.getElementById('btn-laser');
-      if (laserActive) {
-        dot.style.display = 'block';
-        btn.classList.add('active');
-        if (paintActive) togglePaint();
-      } else {
-        dot.style.display = 'none';
-        btn.classList.remove('active');
-      }
-    }
-
-    function togglePaint() {
-      paintActive = !paintActive;
-      const palette = document.getElementById('pen-palette');
-      const btn = document.getElementById('btn-pen');
-      if (!canvas) initCanvas();
-
-      if (paintActive) {
-        canvas.style.pointerEvents = 'auto';
-        palette.classList.add('show');
-        btn.classList.add('active');
-        if (laserActive) toggleLaser();
-      } else {
-        canvas.style.pointerEvents = 'none';
-        palette.classList.remove('show');
-        btn.classList.remove('active');
-      }
-    }
-
-    function initCanvas() {
-      canvas = document.getElementById('chalk-canvas');
-      ctx = canvas.getContext('2d');
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      canvas.addEventListener('mousedown', startPosition);
-      canvas.addEventListener('mouseup', finishedPosition);
-      canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('touchstart', handleTouchStart);
-      canvas.addEventListener('touchend', finishedPosition);
-      canvas.addEventListener('touchmove', handleTouchMove);
-    }
-
-    function resizeCanvas() {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function setPenColor(color, el) {
-      currentColor = color;
-      document.querySelectorAll('.pen-color-dot').forEach(d => d.classList.remove('active'));
-      if (el) el.classList.add('active');
-    }
-
-    function startPosition(e) {
-      if (!paintActive) return;
-      painting = true;
-      draw(e);
-    }
-
-    function finishedPosition() {
-      painting = false;
-      if (ctx) ctx.beginPath();
-    }
-
-    function draw(e) {
-      if (!painting || !paintActive) return;
-      ctx.lineWidth = 4;
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = currentColor;
-
-      ctx.lineTo(e.clientX, e.clientY);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(e.clientX, e.clientY);
-    }
-
-    function handleTouchStart(e) {
-      if (!paintActive) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      const mouseEvent = new MouseEvent('mousedown', {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      canvas.dispatchEvent(mouseEvent);
-    }
-
-    function handleTouchMove(e) {
-      if (!paintActive) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      const mouseEvent = new MouseEvent('mousemove', {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      canvas.dispatchEvent(mouseEvent);
-    }
-
-    function clearCanvas() {
-      if (ctx && canvas) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-
-    // --- 3. Spotlight Overlay ---
-    let spotlightActive = false;
-    function toggleSpotlight() {
-      spotlightActive = !spotlightActive;
-      const overlay = document.getElementById('spotlight-overlay');
-      const btn = document.getElementById('btn-spotlight');
-      if (spotlightActive) {
-        overlay.classList.add('active');
-        btn.classList.add('active');
-      } else {
-        overlay.classList.remove('active');
-        btn.classList.remove('active');
-      }
-    }
-
-    // Mouse Tracking for Laser & Spotlight
-    window.addEventListener('mousemove', function(e) {
-      if (laserActive) {
-        const dot = document.getElementById('laser-dot');
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
-      }
-      if (spotlightActive) {
-        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
-      }
-    });
-
-    // --- 4. Fullscreen & Help Modal ---
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => console.log(err));
       } else {
-        if (document.exitFullscreen) document.exitFullscreen();
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(err => console.log(err));
+        }
       }
     }
 
-    function toggleHelp() {
-      const hm = document.getElementById('help-modal');
-      hm.classList.toggle('show');
-    }
-
-    // --- 5. Keyboard Navigation ---
+    // Keyboard navigation
     window.addEventListener('keydown', function(e) {
-      const isDeckActive = document.getElementById('deck-modal').classList.contains('active');
+      const modal = document.getElementById('deck-modal');
+      const isDeckActive = modal && modal.classList.contains('active');
 
-      if (e.key === 'Escape') {
-        if (isDeckActive) closeDeck();
-        if (paintActive) togglePaint();
-        if (laserActive) toggleLaser();
-        if (spotlightActive) toggleSpotlight();
-        document.getElementById('help-modal').classList.remove('show');
-      } else if (e.key === 'b' || e.key === 'B') {
+      if (e.key === 'b' || e.key === 'B') {
         toggleBlackboard();
-      } else if (e.key === 'l' || e.key === 'L') {
-        toggleLaser();
-      } else if (e.key === 'p' || e.key === 'P') {
-        togglePaint();
-      } else if (e.key === 'c' || e.key === 'C') {
-        clearCanvas();
-      } else if (e.key === 's' || e.key === 'S') {
-        toggleSpotlight();
-      } else if (e.key === 'f' || e.key === 'F') {
-        toggleFullscreen();
-      } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-        toggleHelp();
+      } else if (e.key === 'Escape') {
+        if (isDeckActive) closeDeck();
       } else if (isDeckActive) {
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
           e.preventDefault();
@@ -1636,16 +1676,16 @@
       }
     });
 
-    // --- 6. One-Click Copy with Toast ---
+    // Copy Prompt Functionality
     function copyPrompt(btn, text) {
       navigator.clipboard.writeText(text).then(() => {
         const originalText = btn.innerHTML;
         btn.innerHTML = '✅ 已複製成功！';
-        btn.classList.add('copied');
+        btn.style.background = '#1F5948';
         showToast('📋 Prompt 指令已複製至剪貼簿！');
         setTimeout(() => {
           btn.innerHTML = originalText;
-          btn.classList.remove('copied');
+          btn.style.background = '';
         }, 2000);
       }).catch(err => {
         console.error('複製失敗：', err);
@@ -1658,7 +1698,6 @@
       if (!toast) {
         toast = document.createElement('div');
         toast.id = 'site-toast';
-        toast.className = 'site-toast';
         document.body.appendChild(toast);
       }
       toast.innerText = msg;
