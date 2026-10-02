@@ -1143,76 +1143,78 @@ tr:hover td {
 }
 
 .deck-slide-title {
-  font-size: clamp(1.35rem, 2.6vh, 2.15rem);
+  font-size: clamp(1.65rem, 3.2vh, 2.5rem);
   font-weight: 800;
   color: #FFFDF6;
-  margin: 0 0 clamp(4px, 0.6vh, 8px);
+  margin: 0 0 clamp(6px, 0.8vh, 10px);
   line-height: 1.25;
+  letter-spacing: -0.3px;
   flex-shrink: 0;
 }
 
 .deck-slide-desc {
-  font-size: clamp(0.9rem, 1.55vh, 1.15rem);
+  font-size: clamp(1.08rem, 2.0vh, 1.38rem);
   color: #8FD8C4;
-  margin-bottom: clamp(8px, 1.2vh, 14px);
+  margin-bottom: clamp(10px, 1.4vh, 16px);
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.48;
   flex-shrink: 0;
 }
 
 .deck-slide-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 clamp(8px, 1.2vh, 14px);
+  margin: 0 0 clamp(10px, 1.4vh, 16px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: clamp(6px, 0.9vh, 10px);
+  gap: clamp(8px, 1.1vh, 12px);
   flex: 1;
   min-height: 0;
   overflow: hidden !important;
 }
 
 .deck-slide-list li {
-  font-size: clamp(0.86rem, 1.65vh, 1.12rem);
-  line-height: 1.38;
+  font-size: clamp(1.12rem, 2.25vh, 1.45rem);
+  line-height: 1.46;
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.2vw, 14px);
-  padding: clamp(5px, 0.9vh, 9px) clamp(10px, 1.4vw, 16px);
-  border-radius: 8px;
-  background: rgba(27, 68, 59, 0.55);
-  border: 1px solid rgba(43, 97, 84, 0.45);
+  gap: clamp(10px, 1.3vw, 16px);
+  padding: clamp(8px, 1.2vh, 14px) clamp(14px, 1.8vw, 22px);
+  border-radius: 10px;
+  background: rgba(27, 68, 59, 0.62);
+  border: 1px solid rgba(89, 229, 179, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   flex: 1;
   min-height: 0;
   box-sizing: border-box;
 }
 
 .deck-slide-callout {
-  background: rgba(14, 38, 32, 0.95);
+  background: rgba(14, 38, 32, 0.96);
   border: 1.5px dashed #59E5B3;
-  border-radius: 10px;
-  padding: clamp(7px, 1.1vh, 12px) clamp(12px, 1.6vw, 18px);
+  border-radius: 12px;
+  padding: clamp(10px, 1.4vh, 15px) clamp(16px, 2vw, 24px);
   margin-top: 0;
-  font-size: clamp(0.84rem, 1.45vh, 1.05rem);
-  color: #E5BE58;
+  font-size: clamp(1.05rem, 1.95vh, 1.3rem);
+  color: #F7D479;
   display: flex;
   align-items: center;
-  gap: 12px;
-  line-height: 1.45;
+  gap: 14px;
+  line-height: 1.5;
   flex-shrink: 0;
   box-sizing: border-box;
 }
 
 .deck-bottom-bar {
-  padding: clamp(6px, 1vh, 10px) clamp(16px, 2vw, 28px);
+  padding: clamp(8px, 1.1vh, 12px) clamp(16px, 2vw, 28px);
   background: #0E2922;
   border-top: 1px solid #1F4D41;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: clamp(0.75rem, 1.1vh, 0.88rem);
-  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.82rem, 1.3vh, 0.95rem);
+  color: rgba(255, 255, 255, 0.75);
   flex-shrink: 0;
   box-sizing: border-box;
 }
@@ -1220,12 +1222,15 @@ tr:hover td {
 /* Highlight Badges */
 .hl-badge {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 5px;
-  font-size: 0.82rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: clamp(0.92rem, 1.7vh, 1.15rem);
   font-weight: 800;
-  margin-right: 6px;
+  margin-right: 8px;
   vertical-align: middle;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .hl-badge.gold { background: #E5BE58; color: #122E27; }
 .hl-badge.green { background: #59E5B3; color: #0C3325; }
@@ -1301,15 +1306,15 @@ footer.site-footer {
   .footer-inner { flex-direction: column; text-align: center; }
 }
 @media (max-height: 780px) {
-  .deck-topbar { padding: 6px 16px; }
-  .deck-main-body { padding: 8px 16px; }
-  .deck-slide-card { padding: 10px 18px; }
-  .deck-slide-title { font-size: 1.35rem; margin-bottom: 4px; }
-  .deck-slide-desc { font-size: 0.88rem; margin-bottom: 6px; }
-  .deck-slide-list { margin-bottom: 6px; gap: 4px; }
-  .deck-slide-list li { font-size: 0.82rem; padding: 4px 10px; }
-  .deck-slide-callout { font-size: 0.8rem; padding: 6px 12px; }
-  .deck-bottom-bar { padding: 4px 16px; font-size: 0.74rem; }
+  .deck-topbar { padding: 6px 18px; }
+  .deck-main-body { padding: 8px 18px; }
+  .deck-slide-card { padding: 10px 20px; }
+  .deck-slide-title { font-size: clamp(1.45rem, 2.8vh, 1.8rem); margin-bottom: 6px; }
+  .deck-slide-desc { font-size: clamp(1.02rem, 1.8vh, 1.22rem); margin-bottom: 8px; }
+  .deck-slide-list { margin-bottom: 8px; gap: 6px; }
+  .deck-slide-list li { font-size: clamp(1.05rem, 2.0vh, 1.25rem); padding: 6px 14px; line-height: 1.4; }
+  .deck-slide-callout { font-size: clamp(1.0rem, 1.8vh, 1.18rem); padding: 8px 16px; }
+  .deck-bottom-bar { padding: 5px 18px; font-size: 0.82rem; }
 }
   </style>
 </head>

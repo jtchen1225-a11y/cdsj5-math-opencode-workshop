@@ -22,3 +22,10 @@
      ```bash
      python _scripts/audit_prompts_links.py
      ```
+
+3. **`test_deck_layout_math.py`**
+   - **作用**：以數值精確模擬並驗證 768p、800p、900p、1080p、1440p 投影設備下的黑板卡片可用高度、字級與行距，確保在字體最大化、閱讀最舒適的前提下，垂直保留安全裕度（Margin > 0），零溢出、零滾動條。
+   - **執行方式**：
+     ```bash
+     python _scripts/test_deck_layout_math.py
+     ```

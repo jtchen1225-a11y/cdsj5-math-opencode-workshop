@@ -50,6 +50,21 @@
 
 ## 4. 跨電腦交接日誌 (Session Handover Logs)
 
+### 2026-10-02 19:48 (GMT+8) — 12 頁黑板投影地圖字級全面舒適化放大（零捲軸＋大字號極致體驗）
+- **使用者核心需求落地**：
+  - 核心反饋：12 頁黑板投影地圖在解決滾動條後，字體相對偏小，希望稍微變大一些，令現場投影與觀看更為舒適。
+  - 字級全面有感放大約 25%~30%：
+    - 主標題（`.deck-slide-title`）：由 `clamp(1.35rem, 2.6vh, 2.15rem)` 提升至 `clamp(1.65rem, 3.2vh, 2.5rem)`（1080p 下達 34.6px，2K 下達 40px）。
+    - 引導句（`.deck-slide-desc`）：由 `clamp(0.9rem, 1.55vh, 1.15rem)` 提升至 `clamp(1.08rem, 2.0vh, 1.38rem)`。
+    - 5 大重點卡片（`.deck-slide-list li`）：由 `clamp(0.86rem, 1.65vh, 1.12rem)` 提升至 `clamp(1.12rem, 2.25vh, 1.45rem)`（1080p 下達 23.2px），字體飽滿、筆觸清晰。
+    - 高亮膠囊標章（`.hl-badge`）：由固定 `0.82rem` 提升至響應式 `clamp(0.92rem, 1.7vh, 1.15rem)`。
+    - 底部總結金句盒（`.deck-slide-callout`）：由 `clamp(0.84rem, 1.45vh, 1.05rem)` 提升至 `clamp(1.05rem, 1.95vh, 1.3rem)`，搭配亮金色 `#F7D479`，吸睛典雅。
+  - 數學佈局數值驗證（`_scripts/test_deck_layout_math.py`）：
+    - 768p 筆電/投影幕：li 垂直裕度保留 +59.9px，零捲軸 PASS。
+    - 800p 學校投影機：li 垂直裕度保留 +55.3px，零捲軸 PASS。
+    - 1080p 投影大螢幕：li 垂直裕度保留 +91.8px，零捲軸 PASS。
+  - 全站 4 大頁面全數通過 `_scripts/verify_workshop_site.py`，全數 PASS。
+
 ### 2026-10-02 19:30 (GMT+8) — 提示詞庫獨立學員工作台與 12 頁投影地圖零捲軸一版一頁極致適配
 - **使用者核心需求落地**：
   1. **實操提示詞庫獨立頁 (`prompts.html`) 徹底隔離**：
