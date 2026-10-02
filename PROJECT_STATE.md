@@ -24,13 +24,14 @@
 
 ## 2. 當前進度階段 (Current Stage)
 
-- **目前階段**：**階段 6 — DayDayStudy 短網址整合、金色精神信念標章與課堂投影優化就緒（Short URLs & Heritage Belief Badge Active）**
+- **目前階段**：**階段 7 — 提示詞庫獨立學員工作台與 12 頁投影地圖零捲軸一版一頁極致適配（Standalone Student Prompt Workbench & Zero-Scroll Projection Deck Active）**
 - **全站健檢狀態**：
   - [x] 4 大 HTML 核心頁面完整無缺（index.html、workshop-flow.html、prompts.html、troubleshooting.html）
+  - [x] `prompts.html` 徹底隔離為學員專屬提示詞工作台（0 外部/跨頁連結、100% 本頁錨點跳轉、移除簡報與黑板干擾）
+  - [x] 12 頁投影地圖（#deck-modal）全屏零捲軸一版一頁極致適配（`overflow: hidden !important`、`#deck-slide-content` 彈性分佈、`@media (max-height: 780px)` 適配）
   - [x] 官方 DayDayStudy 短網址 (`/cdsj5` 與 `/prompt`) 註冊成功並具備一鍵複製功能
   - [x] 聖若瑟五校「毅誠勤樸」金色精神信念標章醒目呈現於各頁 Hero 與黑板簡報中
-  - [x] 課堂投影黑板簡報（#deck-modal）P01-P12 數據、文字對比度與快捷鍵導航完整無誤
-  - [x] 後台工程規範遵循：自動化校驗腳本統一歸檔於 `_scripts/verify_workshop_site.py`，全數 PASS
+  - [x] 後台工程規範遵循：自動化校驗腳本統一歸檔於 `_scripts/verify_workshop_site.py` 與 `_scripts/audit_prompts_links.py`，全數 PASS
   - [x] GitHub Pages 自動構建與全球 CDN 即時同步
 
 ---
@@ -48,6 +49,23 @@
 ---
 
 ## 4. 跨電腦交接日誌 (Session Handover Logs)
+
+### 2026-10-02 19:30 (GMT+8) — 提示詞庫獨立學員工作台與 12 頁投影地圖零捲軸一版一頁極致適配
+- **使用者核心需求落地**：
+  1. **實操提示詞庫獨立頁 (`prompts.html`) 徹底隔離**：
+     - 目標：專供學員免打字直達複製，絕不外跳或連結到其他頁面（零干擾、純工作台）。
+     - Header 導航重構為純站內快速錨點導航（`Prompt A` ~ `Prompt I` 與 `Prompt R`）。
+     - 品牌列改為純文字 `CDSJ5 ｜ 聖若瑟五校 ｜ 學員實操提示詞工作台`，無外跳超連結。
+     - 徹底移除 `#deck-modal` 投影片容器、`slidesData` 及黑板按鍵監聽腳本，避免學員意外觸發投影模式。
+     - 經 `_scripts/audit_prompts_links.py` 完整審計：全頁共 20 個 `<a>` 標籤，100% 全數為本頁 `#prompt-*` 錨點，零跨頁與零外部外連。
+  2. **12 頁投影地圖零捲軸、一版一頁極致適配**：
+     - 目標：在任何解析度（筆電、教室 720p/1080p 投影機、黑板全螢幕）下，單頁 100% 滿版完整呈現，`overflow: hidden !important`，絕對不出現垂直捲軸。
+     - 容器佈局：`.deck-container` 高度設為 `96vh; max-height: 98vh;`，父層各層全數鎖定 `overflow: hidden !important;`。
+     - 卡片彈性：`.deck-slide-card` 採用 `padding: clamp(...)`，內部 `#deck-slide-content` 宣告為 `flex: 1; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden !important;`。
+     - 列表均勻分配：`.deck-slide-list` 採用 `flex: 1; justify-content: space-between; gap: clamp(...)`；各列表項 `li` 採用 `flex: 1; display: flex; align-items: center;`，讓 5 大重點等比均勻瓜分垂直空間並垂直置中。
+     - 低高度投影機適配：新增 `@media (max-height: 780px)` 響應式媒體查詢，大幅緊湊化內距與字級，杜絕小螢幕溢出。
+  3. **後台工程規範嚴格落實**：
+     - 撰寫 `_scripts/audit_prompts_links.py` 審計所有連結；升級 `_scripts/verify_workshop_site.py`，全站 4 大頁面 100% PASS。
 
 ### 2026-10-02 00:38 (GMT+8) — DayDayStudy 短網址整合、金色教育精神標章與大螢幕高對比投影演練
 - **使用者核心需求落地**：

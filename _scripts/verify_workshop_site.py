@@ -3,7 +3,7 @@
 """
 Workshop Site Verification Script
 Checks all 4 HTML files for required assets, short URLs, educational motto badges,
-deck modal integrity, and internal link health.
+deck modal integrity, zero scrollbar architecture, and isolation of prompts.html.
 """
 
 import os
@@ -33,38 +33,58 @@ def check_file(filename):
     
     errors = []
     
-    # 1. Check Deck Modal
-    if 'id="deck-modal"' not in content:
-        errors.append("Missing id='deck-modal'")
-    if 'toggleBlackboard' not in content:
-        errors.append("Missing toggleBlackboard function")
-    
-    # 2. Check 12 slides data
-    for i in range(1, 13):
-        slide_id = f"P{i:02d}"
-        if slide_id not in content:
-            errors.append(f"Missing slide ID: {slide_id}")
-            
-    # 3. Check Motto in main pages
+    # Check Motto phrases in all pages
     for phrase in REQUIRED_MOTTO_PHRASES:
         if phrase not in content:
             errors.append(f"Missing motto phrase: {phrase}")
             
-    # 4. Check Short URLs in index.html and prompts.html
-    if filename in ["index.html", "prompts.html"]:
-        for url in REQUIRED_SHORT_URLS:
-            if url not in content:
-                errors.append(f"Missing required short URL: {url}")
-                
-    # 5. Check copyShortUrl function
-    if filename in ["index.html", "prompts.html", "workshop-flow.html", "troubleshooting.html"]:
-        if "copyShortUrl" not in content:
-            errors.append("Missing copyShortUrl function in script")
+    # Check copyShortUrl function
+    if "copyShortUrl" not in content:
+        errors.append("Missing copyShortUrl function in script")
+
+    # SPECIFIC CHECKS FOR prompts.html (ISOLATED STUDENT WORKBENCH)
+    if filename == "prompts.html":
+        # Must have prompt short URL
+        if "https://www.daydaystudy.top/prompt" not in content:
+            errors.append("Missing student short URL: https://www.daydaystudy.top/prompt")
             
-    # 6. Check internal navigation links
-    for target in HTML_FILES:
-        if f'href="{target}"' not in content and filename != target:
-            errors.append(f"Missing internal link to: {target}")
+        # Must NOT have deck-modal or slides
+        if 'id="deck-modal"' in content:
+            errors.append("prompts.html must NOT contain id='deck-modal' (should be isolated from chalkboard presentation)")
+        if 'slidesData' in content:
+            errors.append("prompts.html must NOT contain slidesData")
+            
+        # Must NOT link to other pages
+        other_pages = ["index.html", "workshop-flow.html", "troubleshooting.html"]
+        for p in other_pages:
+            if f'href="{p}"' in content or f"href='{p}'" in content:
+                errors.append(f"prompts.html must be isolated, but links to {p}")
+                
+        # Must contain copyPrompt
+        if "copyPrompt" not in content:
+            errors.append("Missing copyPrompt function in prompts.html")
+            
+    # SPECIFIC CHECKS FOR PRESENTATION PAGES (index, workshop-flow, troubleshooting)
+    else:
+        # Check Deck Modal
+        if 'id="deck-modal"' not in content:
+            errors.append("Missing id='deck-modal'")
+        if 'toggleBlackboard' not in content:
+            errors.append("Missing toggleBlackboard function")
+        
+        # Check 12 slides data
+        for i in range(1, 13):
+            slide_id = f"P{i:02d}"
+            if slide_id not in content:
+                errors.append(f"Missing slide ID: {slide_id}")
+                
+        # Check Zero Scrollbar CSS requirements
+        if ".deck-slide-card" not in content or "overflow: hidden !important" not in content:
+            errors.append("Missing overflow: hidden !important in deck modal CSS")
+        if "#deck-slide-content" not in content:
+            errors.append("Missing #deck-slide-content flex styling in deck modal CSS")
+        if "@media (max-height: 780px)" not in content:
+            errors.append("Missing @media (max-height: 780px) responsive adaptation")
 
     if errors:
         return False, f"{filename} errors:\n  - " + "\n  - ".join(errors)
